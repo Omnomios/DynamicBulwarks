@@ -21,7 +21,8 @@ _lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"
 _lootBox addAction [
     "<t color='#FF0000'>Spin the box!</t>", {_handle = [_lootBox] execVM "lootspin.sqf"}
 ];
-
+_wabbit = createVehicle ["Rabbit_F", _lootBoxRoom, [], 0 , "CAN_COLLIDE"];
+_wabbit attachTo [_lootBox,[0,-.2,0.6]];
 
 _emptyCrate allowDamage false;
 clearItemCargoGlobal _emptyCrate;
