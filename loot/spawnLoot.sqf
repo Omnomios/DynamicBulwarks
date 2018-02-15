@@ -20,9 +20,10 @@ _lootBox enableSimulationGlobal false;
 _lootBox addAction [
     "<t color='#FF0000'>Spin the box!</t>", {
         // Call lootspin script only on the server, from the client
-        [[_lootBox], "lootspin.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+        [[_lootBox], "loot/lootspin.sqf"] remoteExec ["BIS_fnc_execVM", 0];
     }
 ];
+publicVariable "_lootBox";
 activeLoot pushback _lootBox; //add lootbox to cleanup array
 
 for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
