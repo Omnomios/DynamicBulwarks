@@ -10,7 +10,8 @@ while {isNil "BulwarkRoomPos"} do {
 };
 
 
-_crateRoom = selectRandom bulwarkRooms;	_emptyCrate = createVehicle ["B_supplyCrate_F", _crateRoom, [], 0, "CAN_COLLIDE"];
+_crateRoom = selectRandom bulwarkRooms;	
+_emptyCrate = createVehicle ["B_supplyCrate_F", _crateRoom, [], 0, "CAN_COLLIDE"];
 _emptyCrate allowDamage false;
 clearItemCargoGlobal _emptyCrate;
 clearWeaponCargoGlobal _emptyCrate;

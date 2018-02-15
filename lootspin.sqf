@@ -47,8 +47,8 @@ if(isNil {_this select 1}) then {
 
     // Spin complete, present winning weapon with ammo
     finalWeapon = selectRandom _weaponList;
-    lootWeapon addMagazineCargo [finalWeapon select 1, 1];
-    lootWeapon addWeaponCargo [finalWeapon select 0, 1];
+    lootWeapon addMagazineCargoGlobal [finalWeapon select 1, 1];
+    lootWeapon addWeaponCargoGlobal [finalWeapon select 0, 1];
     detach lootWeapon;
 
     // Hold weapon for 3 seconds
@@ -60,7 +60,7 @@ if(isNil {_this select 1}) then {
     terminate _coRoutine;
 
     // Clean up for the next spin
-    clearWeaponCargo lootWeapon;
+    clearWeaponCargoGlobal lootWeapon;
     deleteVehicle lootWeapon;
 } else {
     //
