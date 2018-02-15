@@ -22,9 +22,9 @@ _lootBox addAction [
         // Call lootspin script only on the server, from the client
         [[_lootBox], "loot/lootspin.sqf"] remoteExec ["BIS_fnc_execVM", 0];
     }
-];
 publicVariable "_lootBox";
 activeLoot pushback _lootBox; //add lootbox to cleanup array
+activeLoot pushback _wabbit; //add lootbox to cleanup array
 
 for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 	_lootRoomPos = nil;
