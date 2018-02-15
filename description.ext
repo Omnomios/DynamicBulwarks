@@ -1,0 +1,33 @@
+onLoadMission = "dynamicBulwarks";
+onLoadIntro = "Defend yourself"
+onLoadName = "dynamicBulwarks";
+briefingName = "dynamicBulwarks";
+overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
+author = "Hilltop";
+
+respawn = 3;
+respawnOnStart = 1;
+respawnDialog = 0;
+ReviveMode = 1;
+ReviveRequiredItems = 2;
+ReviveBleedOutDelay = 120;
+
+corpseLimit = 10;
+wreckLimit = 2;
+corpseRemovalMinTime = 20;
+corpseRemovalMaxTime = 30;
+wreckRemovalMinTime = 30;
+wreckRemovalMaxTime = 50;
+
+class CfgDebriefing
+{  
+	class End1
+	{
+		title = [END];
+		subtitle = "You were wiped out";
+		description = "Game Over";
+		pictureBackground = "";
+		picture = "KIA";
+		pictureColor[] = {0.6,0.1,0.2,1};
+	};
+};

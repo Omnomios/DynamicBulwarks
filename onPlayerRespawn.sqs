@@ -1,0 +1,1 @@
+["Respawn on next wave"] remoteExec ["BIS_fnc_dynamicText", _this select 0];

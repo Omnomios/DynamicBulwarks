@@ -1,0 +1,4 @@
+random loot in random rooms - weapons - ammo - statics - building supplies
+
+save current inventory - only works once
+
