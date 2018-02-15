@@ -10,11 +10,10 @@ while {isNil "BulwarkRoomPos"} do {
 };
 
 
-<<<<<<< HEAD
+
 _crateRoom = selectRandom bulwarkRooms;	
 _emptyCrate = createVehicle ["B_supplyCrate_F", _crateRoom, [], 0, "CAN_COLLIDE"];
-=======
-_crateRoom = selectRandom bulwarkRooms;_emptyCrate = createVehicle ["B_supplyCrate_F", _crateRoom, [], 0, "CAN_COLLIDE"];
+
 
 // Lootbox
 _lootBoxRoom = selectRandom bulwarkRooms;
@@ -23,7 +22,7 @@ _lootBox addAction [
     "<t color='#FF0000'>Spin the box!</t>", {_handle = [_lootBox] execVM "lootspin.sqf"}
 ];
 
->>>>>>> 62f47191fd2ca971706dcd328c242ca1e7f347b2
+
 _emptyCrate allowDamage false;
 clearItemCargoGlobal _emptyCrate;
 clearWeaponCargoGlobal _emptyCrate;
