@@ -8,6 +8,16 @@ _CfgWeapons = configFile >> "CfgWeapons";
 _totalentriesWep = count _CfgWeapons;
 
 
+// Lootbox
+_randCityLocation = [(bulwarkCity select 0) + (random [-100, 0, 100]),(bulwarkCity select 1) + (random [-100, 0, 100]), 0];
+_lootBulding = nearestBuilding _randCityLocation;
+_lootRooms = _lootBulding buildingPos -1;
+_lootBoxRoom = selectRandom _lootRooms;
+_lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
+_lootBox addAction [
+    "<t color='#FF0000'>Spin the box!</t>", {_handle = [_lootBox] execVM "lootspin.sqf"}
+];
+
 
 activeLoot = [];
 
@@ -80,3 +90,4 @@ for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 		};
 	};
 };
+
