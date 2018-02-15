@@ -3,7 +3,7 @@ onLoadIntro = "Defend yourself"
 onLoadName = "dynamicBulwarks";
 briefingName = "dynamicBulwarks";
 overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
-author = "Hilltop";
+author = "Hilltop & Omnomios";
 
 respawn = 3;
 respawnOnStart = 1;
