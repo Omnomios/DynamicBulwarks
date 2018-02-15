@@ -18,7 +18,12 @@ _lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"
 _lootBox addAction [
     "<t color='#FF0000'>Spin the box!</t>", {_handle = [_lootBox] execVM "lootspin.sqf"}
 ];
+
+_wabbit = createVehicle ["Rabbit_F", _lootBoxRoom, [], 0 , "CAN_COLLIDE"];
+_wabbit attachTo [_lootBox,[0,-.2,0.6]];
+
 activeLoot pushback _lootBox; //add lootbox to cleanup array
+activeLoot pushback _wabbit; //add lootbox to cleanup array
 
 for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 	_lootRoomPos = nil;
