@@ -5,6 +5,9 @@ if (isServer) then {
 	waitUntil { scriptDone _basepoint };
 };
 
+// Create const that points to mission folder
+MISSION_ROOT = call { private "_arr"; _arr = toArray str missionConfigFile; _arr resize (count _arr - 15); toString _arr };
+
 //Create spawnpoint
 bulMkr = createMarker ["respawn_west", BulwarkRoomPos];
 bulMkr setMarkerShape "ICON";
@@ -14,7 +17,7 @@ bulMkr setMarkerText "Spawn";
 
 if (!isServer && (player != player)) then {
 	waitUntil {player == player};
-	waitUntil {time > 10}; 
+	waitUntil {time > 10};
 };
 hint "Ready";
 
