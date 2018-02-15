@@ -13,9 +13,14 @@ _randCityLocation = [(bulwarkCity select 0) + (random [-100, 0, 100]),(bulwarkCi
 _lootBulding = nearestBuilding _randCityLocation;
 _lootRooms = _lootBulding buildingPos -1;
 _lootBoxRoom = selectRandom _lootRooms;
+
 _lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
+_lootBox enableSimulationGlobal false;
 _lootBox addAction [
-    "<t color='#FF0000'>Spin the box!</t>", {_handle = [_lootBox] execVM "lootspin.sqf"}
+    "<t color='#FF0000'>Spin the box!</t>", {
+        // Call lootspin script only on the server, from the client
+        [[_lootBox], "lootspin.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+    }
 ];
 
 
@@ -23,20 +28,20 @@ activeLoot = [];
 
 for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 	_lootRoomPos = nil;
-	
-	//find room to spawn loot	
+
+	//find room to spawn loot
 	while {isNil "_lootRoomPos"} do {
 		_randCityLocation = [(bulwarkCity select 0) + (random [-100, 0, 100]),(bulwarkCity select 1) + (random [-100, 0, 100]), 0];
 		_lootBulding = nearestBuilding _randCityLocation;
 		_lootRooms = _lootBulding buildingPos -1;
 		_lootRoomPos = selectRandom _lootRooms;
-	};	
+	};
 	_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
-	
+
 	//determine type of loot to spawn
 	_lootToSpawn = floor random 2;
-	
-	if (_lootToSpawn == 0) then {	//spawn weapon 
+
+	if (_lootToSpawn == 0) then {	//spawn weapon
 		_scope = 0;
 		while {true} do {
 			_checkedWep = _CfgWeapons select round (random _totalentriesWep);
@@ -50,7 +55,7 @@ for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 			_lootHolder addWeaponCargoGlobal [wepClassname, 1];
 		};
 	};
-	
+
 	if (_lootToSpawn == 1) then {	//spawn Mag
 		while {true} do {
 			_lootFound = nil;
@@ -67,10 +72,10 @@ for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 		};
 	};
 	_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];
-	
+
 	activeLoot pushback _lootHolder; // Add object to array for later cleanup
-	
-	//spawn packpack - Not really working	
+
+	//spawn packpack - Not really working
 	_spwnBackPack = floor random 3;
 	if (_spwnBackPack == 1) then {
 		while {true} do {
@@ -90,4 +95,3 @@ for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 		};
 	};
 };
-
