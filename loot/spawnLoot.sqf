@@ -7,6 +7,7 @@ _totalentriesVec = count _CfgVehicles;
 _CfgWeapons = configFile >> "CfgWeapons";
 _totalentriesWep = count _CfgWeapons;
 
+activeLoot = [];
 
 // Lootbox
 _randCityLocation = [(bulwarkCity select 0) + (random [-100, 0, 100]),(bulwarkCity select 1) + (random [-100, 0, 100]), 0];
@@ -17,9 +18,7 @@ _lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"
 _lootBox addAction [
     "<t color='#FF0000'>Spin the box!</t>", {_handle = [_lootBox] execVM "lootspin.sqf"}
 ];
-
-
-activeLoot = [];
+activeLoot pushback _lootBox; //add lootbox to cleanup array
 
 for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 	_lootRoomPos = nil;
