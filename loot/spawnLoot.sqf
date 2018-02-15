@@ -7,6 +7,7 @@ _totalentriesVec = count _CfgVehicles;
 _CfgWeapons = configFile >> "CfgWeapons";
 _totalentriesWep = count _CfgWeapons;
 
+activeLoot = [];
 
 // Lootbox
 _randCityLocation = [(bulwarkCity select 0) + (random [-100, 0, 100]),(bulwarkCity select 1) + (random [-100, 0, 100]), 0];
@@ -22,9 +23,7 @@ _lootBox addAction [
         [[_lootBox], "lootspin.sqf"] remoteExec ["BIS_fnc_execVM", 0];
     }
 ];
-
-
-activeLoot = [];
+activeLoot pushback _lootBox; //add lootbox to cleanup array
 
 for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 	_lootRoomPos = nil;
