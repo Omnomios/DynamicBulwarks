@@ -13,6 +13,8 @@ _weaponList = [
 private ["_lootBox"];
 _lootBox = _this select 0;
 
+systemChat format ["%1", _lootBox];
+
 if(isNil {_this select 0}) then {
     throw "Lootbox is not being referenced in VM call";
 };

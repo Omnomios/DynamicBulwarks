@@ -11,15 +11,18 @@ while {isNil "BulwarkRoomPos"} do {
 
 
 
-_crateRoom = selectRandom bulwarkRooms;	
+_crateRoom = selectRandom bulwarkRooms;
 _emptyCrate = createVehicle ["B_supplyCrate_F", _crateRoom, [], 0, "CAN_COLLIDE"];
-
 
 // Lootbox
 _lootBoxRoom = selectRandom bulwarkRooms;
 _lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
+_lootBox enableSimulationGlobal false;
 _lootBox addAction [
-    "<t color='#FF0000'>Spin the box!</t>", {_handle = [_lootBox] execVM "lootspin.sqf"}
+"<t color='#FF0000'>Spin the box!</t>", {
+	systemChat format ["%1, %2", _lootBox, this];
+	_handle = [_lootBox] execVM "lootspin.sqf";
+}
 ];
 _wabbit = createVehicle ["Rabbit_F", _lootBoxRoom, [], 0 , "CAN_COLLIDE"];
 _wabbit attachTo [_lootBox,[0,-.2,0.6]];
