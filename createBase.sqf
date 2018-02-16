@@ -9,7 +9,9 @@ while {isNil "BulwarkRoomPos"} do {
 	BulwarkRoomPos = selectRandom bulwarkRooms;
 };
 
-
+_crateRoom = selectRandom bulwarkRooms;
+_ammoBox = createVehicle ["Land_Ammobox_rounds_F", _crateRoom, [], 0, "CAN_COLLIDE"];
+_ammoBox addAction ["FILL AMMO", "supports\ammoDrop.sqf"];
 
 _crateRoom = selectRandom bulwarkRooms;
 _emptyCrate = createVehicle ["B_supplyCrate_F", _crateRoom, [], 0, "CAN_COLLIDE"];

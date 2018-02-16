@@ -108,3 +108,15 @@ for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 		};
 	};
 };
+
+
+[[(bulwarkCity select 0) - 1000,(bulwarkCity select 1) - 1000,200],[(bulwarkCity select 0) + 1000,(bulwarkCity select 1) + 1000,200],200,"NORMAL","B_T_VTOL_01_vehicle_F",WEST] call BIS_fnc_ambientFlyby;
+sleep 8;
+_parachute = "Steerable_Parachute_F" CreateVehicle [0,0,0];
+_parachute setPos [((bulwarkCity select 0) + (random [-100, 100, 0])),((bulwarkCity select 1) + (random [-100, 100, 0])),175];
+//_parachute setPos [bulwarkCity select 0,bulwarkCity select 1,175];
+
+_ammoBox = createVehicle ["Land_Ammobox_rounds_F", [0,0,0], [], 0, "CAN_COLLIDE"];
+_ammoBox addAction ["FILL AMMO", "supports\ammoDrop.sqf"];
+_ammoBox attachTo [_parachute,[0,0,0]];
+_ammoBox allowDamage false;
