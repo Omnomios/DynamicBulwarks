@@ -21,11 +21,12 @@ _lootBox enableSimulationGlobal false;
 _lootBox addAction [
 "<t color='#FF0000'>Spin the box!</t>", {
 	systemChat format ["%1, %2", _lootBox, this];
-	_handle = [_lootBox] execVM "lootspin.sqf";
+	_handle = [_lootBox] execVM "loot\lootspin.sqf";
 }
 ];
 _wabbit = createVehicle ["Rabbit_F", _lootBoxRoom, [], 0 , "CAN_COLLIDE"];
 _wabbit attachTo [_lootBox,[0,-.2,0.6]];
+
 
 _emptyCrate allowDamage false;
 clearItemCargoGlobal _emptyCrate;

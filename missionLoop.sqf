@@ -3,27 +3,26 @@ sleep 5;
 _CenterPos = _this;
 attkWave = 0;
 activeLoot = [];
-mrkrs = [];
+//mrkrs = [];
 
 //spawn start loot
 if (isServer) then {
 	execVM "loot\spawnLoot.sqf";
 };
+
 sleep 15;
+
 while {true} do {
 	attkWave = (attkWave + 1);
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
-	//setPlayerRespawnTime 9999;
 	{9999 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
 	if (isServer) then {
 		{deleteVehicle _x} foreach activeLoot;
 	};
-	hint "creating hostiles";
 	if (isServer) then {
 		_createHostiles = execVM "hostiles\create_squad.sqf";
 		waitUntil { scriptDone _createHostiles};
 	};
-	//hint "done spawning hostiles";
 	if (isServer) then {
 		_spawnLoot = execVM "loot\spawnLoot.sqf";
 		waitUntil { scriptDone _spawnLoot};
@@ -52,7 +51,7 @@ while {true} do {
 		} foreach playableUnits;
 	};
 	["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
-	//setPlayerRespawnTime 0;
 	{0 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
+	//[deleteMarker _x] forEach mrkrs;
 	sleep 40;
 };
