@@ -23,11 +23,10 @@ while {true} do {
 		_createHostiles = execVM "hostiles\create_squad.sqf";
 		waitUntil { scriptDone _createHostiles};
 	};
-	if (isServer) then {
+	if (attkWave > 1 && isServer) then { //if first wave give player extra time before spawning enemies
 		_spawnLoot = execVM "loot\spawnLoot.sqf";
 		waitUntil { scriptDone _spawnLoot};
 	};
-	hint "done spawning loot";
 	while {true} do {
 		//get hostiles to keep moving towards player - loop updating player pos?
 		if (east countSide allUnits == 0) exitWith {
@@ -52,6 +51,10 @@ while {true} do {
 	};
 	["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	{0 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
+	{if (!alive _x) then {
+		forceRespawn _x;
+		};
+	} foreach allPlayers;
 	//[deleteMarker _x] forEach mrkrs;
 	sleep 40;
 };
