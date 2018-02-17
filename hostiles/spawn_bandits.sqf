@@ -21,7 +21,7 @@ while {true} do {
 		_infBandit createUnit [[bulwarkCity, 150, 300,1,0] call BIS_fnc_findSafePos, _attGroupBand, "_banditSpaned = this", hosSkill];
 		if (isNull _banditSpaned) then {hint "falied to spawn";} else {
 			_banditSpaned doMove (getPos (selectRandom playableUnits));
-			_banditSpaned setUnitAbility _hosSkill;
+			_banditSpaned setUnitAbility _hosSkill; //todo https://community.bistudio.com/wiki/CfgAISkill
 			_banditSpaned addEventHandler ["Hit", killPoints_fnc_hit];
 			_banditSpaned addEventHandler ["Killed", killPoints_fnc_killed];
 		};

@@ -15,15 +15,14 @@ sleep 15;
 while {true} do {
 	attkWave = (attkWave + 1);
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
-	{9999 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
-	if (isServer) then {
-		{deleteVehicle _x} foreach activeLoot;
-	};
+	//{9999 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
+	[9999] remoteExec ["setPlayerRespawnTime", 0];
 	if (isServer) then {
 		_createHostiles = execVM "hostiles\create_squad.sqf";
 		waitUntil { scriptDone _createHostiles};
 	};
 	if (attkWave > 1 && isServer) then { //if first wave give player extra time before spawning enemies
+		{deleteVehicle _x} foreach activeLoot;
 		_spawnLoot = execVM "loot\spawnLoot.sqf";
 		waitUntil { scriptDone _spawnLoot};
 	};
@@ -49,12 +48,16 @@ while {true} do {
 		};
 		} foreach playableUnits;
 	};
+	
 	["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
-	{0 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
-	{if (!alive _x) then {
+	//{0 remoteExec ["setPlayerRespawnTime", 0]} foreach playableUnits;
+	[0] remoteExec ["setPlayerRespawnTime", 0];
+	
+	{
+	if (lifeState _x == "DEAD") then {
 		forceRespawn _x;
-		};
+	};
 	} foreach allPlayers;
-	//[deleteMarker _x] forEach mrkrs;
+
 	sleep 40;
 };

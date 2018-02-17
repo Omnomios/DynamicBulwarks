@@ -23,18 +23,6 @@ publicVariable "lootBox";
 lootBoxPos    = getPos lootBox; publicVariable "lootBoxPos";
 lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
 
-
-//lootBox addAction [
-//    "<t color='#FF0000'>Spin the box!</t>", {
-//		//TODO: should use the return from spend call
-//		if(player getVariable "killPoints" >= 20) then {
-//			[player, 20] call killPoints_fnc_spend;
-//			// Call lootspin script on ALL clients
-//			[[lootBoxPos, lootBoxPosATL], "loot\spin\main.sqf"] remoteExec ["BIS_fnc_execVM", 0];
-//		};
-//    }
-//];
-
 [lootBox, [
 	    "<t color='#FF0000'>Spin the box!</t>", {
 		//TODO: should use the return from spend call
