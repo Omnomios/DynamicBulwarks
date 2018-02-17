@@ -99,11 +99,11 @@ _roomCount = 0;
 					};
 					case 2: {
 						_clothes = selectRandom List_AllClothes;
-						_lootHolder addWeaponCargoGlobal [_clothes, 1];
+						_lootHolder addItemCargoGlobal [_clothes, 1];
 					};
 					case 3: {
 						_backpack = selectRandom List_AllStorage;
-						_lootHolder addWeaponCargoGlobal [_backpack, 1];
+						_lootHolder addBackpackCargoGlobal  [_backpack, 1];
 					};
 				};
 				_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];
