@@ -4,7 +4,7 @@ _killPoints = _player getVariable "killPoints";
 if(isNil "_killPoints") then {
 	_killPoints = 0;
 };
-_killPoints = _killPoints + _points;
+_killPoints = round (_killPoints + _points);
 _player setVariable ["killPoints", _killPoints, true];
 
 [_player] call killPoints_fnc_updateHud;
