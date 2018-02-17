@@ -1,3 +1,4 @@
+_hosSkill = (attkWave / 40);
 _cfgVehicles = configFile >> "CfgVehicles";
 _totalentries = count _cfgVehicles;  // GO INTO CFGVEHICLES AND CHECK NUMBER OF ENTRIES
 _realentries = _totalentries - 1;
@@ -20,6 +21,7 @@ while {true} do {
 		_infBandit createUnit [[bulwarkCity, 150, 300,1,0] call BIS_fnc_findSafePos, _attGroupBand, "_banditSpaned = this", hosSkill];
 		if (isNull _banditSpaned) then {hint "falied to spawn";};
 		_banditSpaned doMove (getPos (selectRandom playableUnits));
+		_banditSpaned setUnitAbility _hosSkill;
 	};
 };  
 //hint "Soldier found and spawned";

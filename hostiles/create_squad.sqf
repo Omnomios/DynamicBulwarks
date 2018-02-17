@@ -1,8 +1,8 @@
 hosSkill = (attkWave / 40);
 _noOfPlayers = count playableUnits;
-_multiplierBase = (1.5 * _noOfPlayers);
-hint str _multiplierBase;
-sleep 1;
+_multiplierBase = (1.5 * (_noOfPlayers/2));
+//hint str _multiplierBase;
+//sleep 1;
 
 for ("_i") from 0 to (floor (attkWave * _multiplierBase)) do {
 	_spwnBandit = execVM "hostiles\spawn_bandits.sqf";
