@@ -35,3 +35,28 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerColor "ColorWhite";
 
 lootHouses = bulwarkCity nearObjects ["House", 150];
+
+/* Spinner Box */
+_lootBulding = selectRandom lootHouses;
+_lootRooms = _lootBulding buildingPos -1;
+_lootBoxRoom = selectRandom _lootRooms;
+
+lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
+lootBox enableSimulationGlobal false;
+publicVariable "lootBox";
+lootBoxPos    = getPos lootBox; publicVariable "lootBoxPos";
+lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
+[lootBox, [
+	    "<t color='#FF0000'>Spin the box!</t>", {
+		//TODO: should use the return from spend call
+		if(player getVariable "killPoints" >= 950) then {
+			[player, 950] call killPoints_fnc_spend;
+			// Call lootspin script on ALL clients
+			[[lootBoxPos, lootBoxPosATL], "loot\spin\main.sqf"] remoteExec ["BIS_fnc_execVM", player];
+		};
+    }
+]] remoteExec ["addAction", 0, true];
+_boxMkr = createMarker [netId lootBox, getPos lootBox];
+_boxMkr setMarkerShape "ICON";
+_boxMkr setMarkerType "hd_dot";
+_boxMkr setMarkerColor "ColorGreen";

@@ -1,6 +1,6 @@
 /** Config **/
-lootHouseProb = 3;  // Every nth house
-lootRoomProb = 4;   // Every nth position
+lootHouseProb = 2;  // Every nth house
+lootRoomProb = 3;   // Every nth position
 lootDebug = false;   // Loot spawning visibility
 
 /* Start Script */
@@ -25,36 +25,6 @@ if(lootDebug) then {
 
 activeLoot pushback _droneSupport;
 
-/* Spinner Box */
-_randCityLocation = [(bulwarkCity select 0) + (random [-125, 0, 125]),(bulwarkCity select 1) + (random [-125, 0, 125]), 0];
-_lootBulding = nearestBuilding _randCityLocation;
-_lootRooms = _lootBulding buildingPos -1;
-_lootBoxRoom = selectRandom _lootRooms;
-if(!isNil "lootBox") then {deleteVehicle lootBox;};
-
-lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
-lootBox enableSimulationGlobal false;
-publicVariable "lootBox";
-lootBoxPos    = getPos lootBox; publicVariable "lootBoxPos";
-lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
-[lootBox, [
-	    "<t color='#FF0000'>Spin the box!</t>", {
-		//TODO: should use the return from spend call
-		if(player getVariable "killPoints" >= 950) then {
-			[player, 950] call killPoints_fnc_spend;
-			// Call lootspin script on ALL clients
-			[[lootBoxPos, lootBoxPosATL], "loot\spin\main.sqf"] remoteExec ["BIS_fnc_execVM", player];
-		};
-    }
-]] remoteExec ["addAction", 0];
-
-if(lootDebug) then {
-	_houseMkr = createMarker [netId lootBox, lootBoxPos];
-	_houseMkr setMarkerShape "ICON";
-	_houseMkr setMarkerType "hd_dot";
-	_houseMkr setMarkerColor "ColorGreen";
-	lootDebugMarkers pushback _houseMkr;
-};
 
 /* Master loot spawner */
 if(lootDebug) then { systemChat "Started loot spawn"; };
@@ -85,11 +55,11 @@ _roomCount = 0;
 				_lootRoomPos = _x;
 				_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
 
-				switch (floor random 4) do {
+				switch (floor random 5) do {
 					case 0: {
 						_weapon = selectRandom List_AllWeapons;
 						_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-						_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 2];
+						_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
 						_lootHolder addWeaponCargoGlobal [_weapon, 1];
 					};
 					case 1: {
@@ -102,6 +72,10 @@ _roomCount = 0;
 						_lootHolder addItemCargoGlobal [_clothes, 1];
 					};
 					case 3: {
+						_optics = selectRandom List_Optics;
+						_lootHolder addItemCargoGlobal [_optics, 1];
+					};
+					case 4: {
 						_backpack = selectRandom List_AllStorage;
 						_lootHolder addBackpackCargoGlobal  [_backpack, 1];
 					};

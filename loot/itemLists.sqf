@@ -4,6 +4,7 @@ _vests = [];
 _primaries = [];
 _secondaries = [];
 _launchers = [];
+_optics = [];
 _backpacks = [];
 _glasses = [];
 _faces = [];
@@ -18,20 +19,17 @@ for "_x" from 0 to (_count-1) do {
 					case 605: {_hats = _hats + [configName _weap];};
 					case 801: {_uniforms = _uniforms + [configName _weap];};
 					case 701: {_vests = _vests + [configName _weap];};
+					case 201: {_optics = _optics + [configName _weap];};
 				};
 			};
 			if (!isClass (_weap >> "LinkedItems")) then {
 				if (count(getarray (_weap >> "magazines")) !=0 ) then {
 					_type = getnumber (_weap >> "type");
-					if (_type == 1) then {
-                        _primaries = _primaries + [configName _weap];
-                    } else {
-                        if (_type == 2) then {
-                            _secondaries = _secondaries + [configName _weap];
-                        } else {
-                            if (_type == 4) then { _launchers = _launchers + [configName _weap]; };
-                        };
-                    };
+					switch (_type) do {
+						case 1: {_primaries = _primaries + [configName _weap];};
+						case 3: {_secondaries = _secondaries + [configName _weap];};
+						case 4: {_launchers = _launchers + [configName _weap];};
+					};
                 };
             };
         };
@@ -72,6 +70,7 @@ List_Backpacks = [] + _backpacks;
 List_Primaries = [] + _primaries;
 List_Secondaries = [] + _secondaries;
 List_Launchers = [] + _launchers;
+List_Optics = [] + _optics;
 List_Glasses = [] + _glasses;
 List_Faces = [] + _faces;
 

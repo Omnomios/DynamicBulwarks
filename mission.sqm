@@ -17,9 +17,9 @@ class EditorData
 	class Camera
 	{
 		pos[]={10634.964,33.61507,11790.998};
-		dir[]={-0.23319374,-0.42714107,0.87369406};
-		up[]={-0.11016417,0.90415388,0.41274425};
-		aside[]={0.96626759,8.8405068e-007,0.25790346};
+		dir[]={-0.62354535,-0.31301162,0.71650815};
+		up[]={-0.20552886,0.94971997,0.23617001};
+		aside[]={0.75441712,1.0078074e-006,0.656537};
 	};
 };
 binarizationWanted=0;
@@ -523,7 +523,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
