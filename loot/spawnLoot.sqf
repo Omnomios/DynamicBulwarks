@@ -4,9 +4,6 @@ _totalentriesMag = count _CfgMagazines;
 _CfgVehicles = configfile >> "CfgVehicles";
 _totalentriesVec = count _CfgVehicles;
 
-_CfgWeapons = configFile >> "CfgWeapons";
-_totalentriesWep = count _CfgWeapons;
-
 activeLoot = [];
 
 // Lootbox
@@ -14,28 +11,6 @@ _randCityLocation = [(bulwarkCity select 0) + (random [-100, 0, 100]),(bulwarkCi
 _lootBulding = nearestBuilding _randCityLocation;
 _lootRooms = _lootBulding buildingPos -1;
 _lootBoxRoom = selectRandom _lootRooms;
-
-/*
-lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
-lootBox enableSimulationGlobal false;
-publicVariable "lootBox";
-
-lootBoxPos    = getPos lootBox;
-lootBoxPosATL = getPosATL lootBox;
-
-publicVariable "lootBoxPos";
-publicVariable "lootBoxPosATL";
-
-lootBox addAction [
-    "<t color='#FF0000'>Spin the box!</t>", {
-        // Call lootspin script on ALL clients
-        [[lootBoxPos, lootBoxPosATL], "spin/main.sqf"] remoteExec ["BIS_fnc_execVM", 0];
-    }
-];
-_wabbit = createVehicle ["Rabbit_F", _lootBoxRoom, [], 0 , "CAN_COLLIDE"];
-_wabbit attachTo [lootBox,[0,-.2,0.6]];
-*/
-
 
 //Item to reveal hostiles on Map (1 spawns every wave)
 _randCityLocation = [(bulwarkCity select 0) + (random [-125, 0, 125]),(bulwarkCity select 1) + (random [-125, 0, 125]), 0];
@@ -48,6 +23,53 @@ _droneSupport addAction ["Reveal enemies", "supports\reconDrone.sqf"];
 //add loot items to cleanup array
 activeLoot pushback _droneSupport;
 
+systemChat "Started loot spawn";
+
+{
+	_lootBulding = _x;
+	_lootRooms = _lootBulding buildingPos -1;
+
+	{
+		_lootRoomPos = _x;
+		_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
+
+		//determine type of loot to spawn
+		_lootToSpawn = floor random 4;
+
+		if (_lootToSpawn == 0) then {
+			_weapon = selectRandom List_AllWeapons;
+			_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+			_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 3];
+			_lootHolder addWeaponCargoGlobal [_weapon, 1];
+		};
+
+		if (_lootToSpawn == 1) then {	//spawn Mag
+			_weapon = selectRandom List_AllWeapons;
+			_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+			_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 2];
+		};
+
+		if (_lootToSpawn == 2) then {	//spawn Mag
+			_clothes = selectRandom List_AllClothes;
+			_lootHolder addWeaponCargoGlobal [_clothes, 1];
+		};
+
+		if (_lootToSpawn == 3) then {	//spawn Mag
+			_backpack = selectRandom List_AllStorage;
+			_lootHolder addWeaponCargoGlobal [_backpack, 1];
+		};
+
+		_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];
+
+		activeLoot pushback _lootHolder; // Add object to array for later cleanup
+
+	} forEach _lootRooms;
+
+} forEach lootHouses;
+
+systemChat "Loot spawn complete";
+
+/*
 for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 	_lootRoomPos = nil;
 
@@ -63,34 +85,17 @@ for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 	//determine type of loot to spawn
 	_lootToSpawn = floor random 2;
 
-	if (_lootToSpawn == 0) then {	//spawn weapon
-		_scope = 0;
-		while {true} do {
-			_checkedWep = _CfgWeapons select round (random _totalentriesWep);
-			_scope = getNumber (_checkedWep >> "scope");
-			if (_scope != 0) exitWith {wepClassname = configName _checkedWep};
-		};
-		if (wepClassname isKindOf ["ItemCore", configFile >> "cfgWeapons"]) then {
-			_lootHolder addItemCargoGlobal [wepClassname, 1];
-        } else {
-			_lootHolder addWeaponCargoGlobal [wepClassname, 1];
-		};
+	if (_lootToSpawn == 0) then {
+		_weapon = selectRandom List_AllWeapons;
+		_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+		_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 3];
+		_lootHolder addWeaponCargoGlobal [_weapon, 1];
 	};
 
 	if (_lootToSpawn == 1) then {	//spawn Mag
-		while {true} do {
-			_lootFound = nil;
-			_checkedMag = _CfgMagazines select round (random _totalentriesMag);
-			_classname = configName _checkedMag;
-			if (_classname isKindOf ["VehicleMagazine", configFile >> "cfgMagazines"]) then {
-				_lootFound = false;
-			} else {
-				_lootFound = true;
-			};
-			if (_lootFound) exitWith {
-				_lootHolder addMagazineCargoGlobal [_classname, 1];
-			};
-		};
+		_weapon = selectRandom List_AllWeapons;
+		_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+		_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 2];
 	};
 	_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];
 
@@ -117,7 +122,7 @@ for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
 		};
 	};
 };
-
+*/
 
 [[(bulwarkCity select 0) - 1000,(bulwarkCity select 1) - 1000,200],[(bulwarkCity select 0) + 1000,(bulwarkCity select 1) + 1000,200],200,"NORMAL","B_T_VTOL_01_vehicle_F",WEST] call BIS_fnc_ambientFlyby;
 sleep 10;

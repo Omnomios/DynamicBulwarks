@@ -1,14 +1,17 @@
 _hPos = 0.70;
-_lPos = 0.25;
+_lPos = 0.35;
+/*
 _weaponList = [
-    ["srifle_EBR_F",            "20Rnd_762x51_Mag"],
-    ["hgun_ACPC2_F",            "9Rnd_45ACP_Mag"],
-    ["LMG_Zafir_ARCO_F",        "150Rnd_762x54_Box"],
-    ["arifle_MX_Holo_pointer_F","30Rnd_65x39_caseless_mag"],
-    ["srifle_LRR_tna_LRPS_F",   "7Rnd_408_Mag"],
-    ["arifle_SPAR_01_GL_snd_F", "30Rnd_556x45_Stanag"],
-    ["arifle_MXC_ACO_F",        "30Rnd_65x39_caseless_mag"]
+    "srifle_EBR_F",
+    "hgun_ACPC2_F",
+    "LMG_Zafir_ARCO_F",
+    "arifle_MX_Holo_pointer_F",
+    "srifle_LRR_tna_LRPS_F",
+    "arifle_SPAR_01_GL_snd_F",
+    "arifle_MXC_ACO_F"
 ];
+*/
+_weaponList = List_AllWeapons;
 
 
 if(isNil {_this select 0}) then {
@@ -25,7 +28,6 @@ _boxPosATL = _this select 1;
 _weapon = createVehicle ["GroundWeaponHolder_Scripted", _boxPos, [], 0, "can_collide"];
 _weapon setPosATL [_boxPosATL select 0, _boxPosATL select 1, ((_boxPosATL select 2) + _lPos) ];
 _weapon enableSimulationGlobal false;
-//_weapon attachTo [_lootBox];
 
 // Trigger sound effect
 playSound3D [MISSION_ROOT + "sound\boxspin.wav", _weapon, false, getPosASL _weapon, 1, 1, 0];
@@ -35,11 +37,11 @@ _coRoutine = [1, _boxPosATL, _lPos, _hPos, _weapon] execVM "loot\spin\animateWea
 
 // Start cycling weapons
 _spinDelay = 0.01;
-while {_spinDelay < 0.5} do {
-    _weapon addWeaponCargo [selectRandom _weaponList select 0, 1];
+while {_spinDelay < 0.33} do {
+    _weapon addWeaponCargo [selectRandom _weaponList, 1];
     sleep _spinDelay;
     clearWeaponCargo _weapon;
-    _spinDelay = _spinDelay + 0.02;
+    _spinDelay = _spinDelay + 0.01;
 };
 
 // For safety, stop the weapon from moving.
@@ -48,8 +50,10 @@ terminate _coRoutine;
 // Spin complete, present winning weapon with ammo
 _weapon enableSimulationGlobal true;
 _finalWeapon = selectRandom _weaponList;
-_weapon addMagazineCargoGlobal [_finalWeapon select 1, 1];
-_weapon addWeaponCargoGlobal [_finalWeapon select 0, 1];
+
+_ammoArray = getArray (configFile >> "CfgWeapons" >> _finalWeapon >> "magazines");
+_weapon addMagazineCargoGlobal [selectRandom _ammoArray, 2];
+_weapon addWeaponCargoGlobal [_finalWeapon, 1];
 
 // Hold weapon for 3 seconds
 sleep 3;

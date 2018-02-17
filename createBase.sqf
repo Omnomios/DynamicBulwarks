@@ -26,8 +26,8 @@ lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
 [lootBox, [
 	    "<t color='#FF0000'>Spin the box!</t>", {
 		//TODO: should use the return from spend call
-		if(player getVariable "killPoints" >= 950) then {
-			[player, 950] call killPoints_fnc_spend;
+		if(player getVariable "killPoints" >= 0) then {
+			[player, 0] call killPoints_fnc_spend;
 			// Call lootspin script on ALL clients
 			[[lootBoxPos, lootBoxPosATL], "loot\spin\main.sqf"] remoteExec ["BIS_fnc_execVM", player];
 		};
@@ -53,3 +53,5 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerShape "ELLIPSE";
 "Mission Area" setMarkerSize [150, 150];
 "Mission Area" setMarkerColor "ColorWhite";
+
+lootHouses = bulwarkCity nearObjects ["House", 150];
