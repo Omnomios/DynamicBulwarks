@@ -14,13 +14,15 @@ while {true} do {
 	_classname = configName _checked_veh;
 	_checkBandit = [_classname, 0, 16] call BIS_fnc_trimString;
 	if (_checkBandit == "O_V_Soldier_Viper") exitWith {
-		_infBandit = _classname; 
+		_infBandit = _classname;
 		//hint ("spawning: " + str _infBandit);
 		//sleep 1;
 		_infBandit createUnit [[bulwarkCity, 150, 300,1,0] call BIS_fnc_findSafePos, _attGroupBand, "_banditSpaned = this", hosSkill];
 		if (isNull _banditSpaned) then {hint "falied to spawn";};
 		_banditSpaned doMove (getPos (selectRandom playableUnits));
+		_banditSpaned addEventHandler ["Hit", killPoints_fnc_hit];
+		_banditSpaned addEventHandler ["Killed", killPoints_fnc_killed];
 	};
-};  
+};
 //hint "Soldier found and spawned";
 //sleep 5;
