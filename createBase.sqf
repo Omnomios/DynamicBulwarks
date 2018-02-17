@@ -13,30 +13,11 @@ while {isNil "BulwarkRoomPos"} do {
 	}
 };
 
-// Lootbox
-lootBoxRoom = selectRandom bulwarkRooms; publicVariable "lootBoxRoom";
-
-lootBox = createVehicle ["Land_WoodenBox_F", lootBoxRoom, [], 0, "CAN_COLLIDE"];
-lootBox enableSimulationGlobal false;
-publicVariable "lootBox";
-
-lootBoxPos    = getPos lootBox; publicVariable "lootBoxPos";
-lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
-
-[lootBox, [
-	    "<t color='#FF0000'>Spin the box!</t>", {
-		//TODO: should use the return from spend call
-		if(player getVariable "killPoints" >= 950) then {
-			[player, 950] call killPoints_fnc_spend;
-			// Call lootspin script on ALL clients
-			[[lootBoxPos, lootBoxPosATL], "loot\spin\main.sqf"] remoteExec ["BIS_fnc_execVM", player];
-		};
-    }
-]] remoteExec ["addAction", 0];
-
+/*
 wabbit = createVehicle ["Rabbit_F", lootBoxRoom, [], 0 , "CAN_COLLIDE"];
 wabbit attachTo [lootBox,[0,-.2,0.6]];
 publicVariable "wabbit";
+*/
 
 _crateRoom = selectRandom bulwarkRooms;
 _emptyCrate = createVehicle ["B_supplyCrate_F", _crateRoom, [], 0, "CAN_COLLIDE"];
@@ -48,8 +29,9 @@ clearBackpackCargoGlobal _emptyCrate;
 _emptyCrate addWeaponCargoGlobal["hgun_P07_F",10];
 _emptyCrate addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 
-
 _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerShape "ELLIPSE";
 "Mission Area" setMarkerSize [150, 150];
 "Mission Area" setMarkerColor "ColorWhite";
+
+lootHouses = bulwarkCity nearObjects ["House", 150];

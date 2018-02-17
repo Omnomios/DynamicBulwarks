@@ -34,3 +34,5 @@ if (!isDedicated) then {
 if (isServer) then {
 	[bulwarkCity] execVM "missionLoop.sqf";
 };
+
+[] execVM "loot\itemLists.sqf";

@@ -1,43 +1,13 @@
-_CfgMagazines = configFile >> "CfgMagazines";
-_totalentriesMag = count _CfgMagazines;
+/** Config **/
+lootHouseProb = 3;  // Every nth house
+lootRoomProb = 4;   // Every nth position
+lootDebug = false;   // Loot spawning visibility
 
-_CfgVehicles = configfile >> "CfgVehicles";
-_totalentriesVec = count _CfgVehicles;
-
-_CfgWeapons = configFile >> "CfgWeapons";
-_totalentriesWep = count _CfgWeapons;
-
+/* Start Script */
 activeLoot = [];
+lootDebugMarkers = [];
 
-// Lootbox
-_randCityLocation = [(bulwarkCity select 0) + (random [-100, 0, 100]),(bulwarkCity select 1) + (random [-100, 0, 100]), 0];
-_lootBulding = nearestBuilding _randCityLocation;
-_lootRooms = _lootBulding buildingPos -1;
-_lootBoxRoom = selectRandom _lootRooms;
-
-/*
-lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
-lootBox enableSimulationGlobal false;
-publicVariable "lootBox";
-
-lootBoxPos    = getPos lootBox;
-lootBoxPosATL = getPosATL lootBox;
-
-publicVariable "lootBoxPos";
-publicVariable "lootBoxPosATL";
-
-lootBox addAction [
-    "<t color='#FF0000'>Spin the box!</t>", {
-        // Call lootspin script on ALL clients
-        [[lootBoxPos, lootBoxPosATL], "spin/main.sqf"] remoteExec ["BIS_fnc_execVM", 0];
-    }
-];
-_wabbit = createVehicle ["Rabbit_F", _lootBoxRoom, [], 0 , "CAN_COLLIDE"];
-_wabbit attachTo [lootBox,[0,-.2,0.6]];
-*/
-
-
-//Item to reveal hostiles on Map (1 spawns every wave)
+/* Item to reveal hostiles on Map (1 spawns every wave) */
 _randCityLocation = [(bulwarkCity select 0) + (random [-125, 0, 125]),(bulwarkCity select 1) + (random [-125, 0, 125]), 0];
 _lootBulding = nearestBuilding _randCityLocation;
 _lootRooms = _lootBulding buildingPos -1;
@@ -45,80 +15,117 @@ _droneRoom = selectRandom _lootRooms;
 _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_COLLIDE"];
 _droneSupport addAction ["Reveal enemies", "supports\reconDrone.sqf"];
 
-//add loot items to cleanup array
-activeLoot pushback _droneSupport;
-
-for "_i" from 1 to 60 do { //change to from 1 to wave multiplier
-	_lootRoomPos = nil;
-
-	//find room to spawn loot
-	while {isNil "_lootRoomPos"} do {
-		_randCityLocation = [(bulwarkCity select 0) + (random [-125, 0, 125]),(bulwarkCity select 1) + (random [-125, 0, 125]), 0];
-		_lootBulding = nearestBuilding _randCityLocation;
-		_lootRooms = _lootBulding buildingPos -1;
-		_lootRoomPos = selectRandom _lootRooms;
-	};
-	_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
-
-	//determine type of loot to spawn
-	_lootToSpawn = floor random 2;
-
-	if (_lootToSpawn == 0) then {	//spawn weapon
-		_scope = 0;
-		while {true} do {
-			_checkedWep = _CfgWeapons select round (random _totalentriesWep);
-			_scope = getNumber (_checkedWep >> "scope");
-			if (_scope != 0) exitWith {wepClassname = configName _checkedWep};
-		};
-		if (wepClassname isKindOf ["ItemCore", configFile >> "cfgWeapons"]) then {
-			_lootHolder addItemCargoGlobal [wepClassname, 1];
-        } else {
-			_lootHolder addWeaponCargoGlobal [wepClassname, 1];
-		};
-	};
-
-	if (_lootToSpawn == 1) then {	//spawn Mag
-		while {true} do {
-			_lootFound = nil;
-			_checkedMag = _CfgMagazines select round (random _totalentriesMag);
-			_classname = configName _checkedMag;
-			if (_classname isKindOf ["VehicleMagazine", configFile >> "cfgMagazines"]) then {
-				_lootFound = false;
-			} else {
-				_lootFound = true;
-			};
-			if (_lootFound) exitWith {
-				_lootHolder addMagazineCargoGlobal [_classname, 1];
-			};
-		};
-	};
-	_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];
-
-	activeLoot pushback _lootHolder; // Add object to array for later cleanup
-
-	//spawn packpack
-	_spwnBackPack = floor random 10;
-	if (_spwnBackPack == 1) then {
-		while {true} do {
-			_lootBag = objNull;
-			_lootFound = false;
-			_checkedBPack = _CfgVehicles select round (random _totalentriesVec);
-			_classname = configName _checkedBPack;
-			if (_classname isKindOf ["Bag_Base", configFile >> "CfgVehicles"]) then {
-				_lootFound = true;
-			};
-			if (_lootFound) exitWith {
-				//_bagHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
-				//_bagHolder addItemCargoGlobal [_classname, 1];
-				_lootBagRoomPos = selectRandom _lootRooms;
-				_lootBag = _classname createVehicle _lootBagRoomPos;
-				activeLoot pushback _lootBag;
-			};
-		};
-	};
+if(lootDebug) then {
+	_houseMkr = createMarker [netId _droneSupport, _droneRoom];
+	_houseMkr setMarkerShape "ICON";
+	_houseMkr setMarkerType "hd_dot";
+	_houseMkr setMarkerColor "ColorPink";
+	lootDebugMarkers pushback _houseMkr;
 };
 
+activeLoot pushback _droneSupport;
 
+/* Spinner Box */
+_randCityLocation = [(bulwarkCity select 0) + (random [-125, 0, 125]),(bulwarkCity select 1) + (random [-125, 0, 125]), 0];
+_lootBulding = nearestBuilding _randCityLocation;
+_lootRooms = _lootBulding buildingPos -1;
+_lootBoxRoom = selectRandom _lootRooms;
+if(!isNil "lootBox") then {deleteVehicle lootBox;};
+
+lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
+lootBox enableSimulationGlobal false;
+publicVariable "lootBox";
+lootBoxPos    = getPos lootBox; publicVariable "lootBoxPos";
+lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
+[lootBox, [
+	    "<t color='#FF0000'>Spin the box!</t>", {
+		//TODO: should use the return from spend call
+		if(player getVariable "killPoints" >= 950) then {
+			[player, 950] call killPoints_fnc_spend;
+			// Call lootspin script on ALL clients
+			[[lootBoxPos, lootBoxPosATL], "loot\spin\main.sqf"] remoteExec ["BIS_fnc_execVM", player];
+		};
+    }
+]] remoteExec ["addAction", 0];
+
+if(lootDebug) then {
+	_houseMkr = createMarker [netId lootBox, lootBoxPos];
+	_houseMkr setMarkerShape "ICON";
+	_houseMkr setMarkerType "hd_dot";
+	_houseMkr setMarkerColor "ColorGreen";
+	lootDebugMarkers pushback _houseMkr;
+};
+
+/* Master loot spawner */
+if(lootDebug) then { systemChat "Started loot spawn"; };
+_houseCount = 0;
+_houseLoot = 0;
+_roomCount = 0;
+{
+	_houseCount = _houseCount + 1;
+	if (_houseCount mod lootHouseProb == 0) then {
+		_houseLoot = _houseLoot + 1;
+
+		_lootBulding = _x;
+		_lootRooms = _lootBulding buildingPos -1;
+
+		if(lootDebug) then {
+			_houseMkr = createMarker [netId _lootBulding, getPos _lootBulding];
+			_houseMkr setMarkerShape "ICON";
+			_houseMkr setMarkerType "hd_dot";
+			_houseMkr setMarkerColor "ColorBlue";
+			lootDebugMarkers pushback _houseMkr;
+		};
+
+		_roomCount = -1;
+		{
+			_roomCount = _roomCount + 1;
+			if (_roomCount mod lootRoomProb == 0) then {
+
+				_lootRoomPos = _x;
+				_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
+
+				switch (floor random 4) do {
+					case 0: {
+						_weapon = selectRandom List_AllWeapons;
+						_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+						_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 2];
+						_lootHolder addWeaponCargoGlobal [_weapon, 1];
+					};
+					case 1: {
+						_weapon = selectRandom List_AllWeapons;
+						_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+						_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1 + (floor random 3)];
+					};
+					case 2: {
+						_clothes = selectRandom List_AllClothes;
+						_lootHolder addWeaponCargoGlobal [_clothes, 1];
+					};
+					case 3: {
+						_backpack = selectRandom List_AllStorage;
+						_lootHolder addWeaponCargoGlobal [_backpack, 1];
+					};
+				};
+				_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];
+
+				if(lootDebug) then {
+					_houseMkr = createMarker [netId _lootHolder, getPos _lootHolder];
+					_houseMkr setMarkerShape "ICON";
+					_houseMkr setMarkerType "hd_dot";
+					_houseMkr setMarkerColor "ColorRed";
+					lootDebugMarkers pushback _houseMkr;
+				};
+
+				activeLoot pushback _lootHolder; // Add object to array for later cleanup
+			};
+		} forEach _lootRooms;
+	};
+
+} forEach lootHouses;
+
+if(lootDebug) then { systemChat format ["Loot spawn complete (%1/%2)", _houseCount, _houseLoot]; };
+
+/* Supply Drop */
 [[(bulwarkCity select 0) - 1000,(bulwarkCity select 1) - 1000,200],[(bulwarkCity select 0) + 1000,(bulwarkCity select 1) + 1000,200],200,"NORMAL","B_T_VTOL_01_vehicle_F",WEST] call BIS_fnc_ambientFlyby;
 sleep 10;
 _playerCount = count playableUnits;
