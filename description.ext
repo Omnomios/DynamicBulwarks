@@ -30,6 +30,19 @@ class RscTitles
 	#include "score\hud.hpp"
 };
 
+class CfgRemoteExec
+{
+	class Functions
+	{
+		mode = 2;
+		class init {};
+		class add {};
+		class spend {};
+		class hit {};
+		class killed {};
+		class updateHud {};
+	};
+};
 
 class CfgDebriefing
 {
