@@ -55,7 +55,7 @@ while {true} do {
 	[0] remoteExec ["setPlayerRespawnTime", 0];
 
 	{
-	if (lifeState _x == "DEAD") then {
+	if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
 		forceRespawn _x;
 	};
 	} foreach allPlayers;
