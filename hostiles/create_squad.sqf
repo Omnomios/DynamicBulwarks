@@ -1,31 +1,29 @@
 hosSkill = (attkWave / 40);
 _noOfPlayers = count playableUnits;
-_multiplierBase = (1.5 * (_noOfPlayers/2));
-//hint str _multiplierBase;
-//sleep 1;
+//_multiplierBase = (1.5 * (_noOfPlayers/2));
+_multiplierBase = 1.5;
+_SoldierMulti = attkWave / 5;
 
 for ("_i") from 0 to (floor (attkWave * _multiplierBase)) do {
-	_spwnBandit = execVM "hostiles\spawn_bandits.sqf";
-	waitUntil {scriptDone _spwnBandit};
+	_script = [List_Bandits, attkWave, _noOfPlayers] execVM "hostiles\spawn_group.sqf";
+	waitUntil {scriptDone _script};
 };
 
 if (attkWave > 5) then {
-	_SoldierMulti = attkWave / 5;
-	for ("_i") from 0 to (floor (_SoldierMulti * _noOfPlayers)) do {
-		_spwnSoldier = execVM "hostiles\spawn_soldiers.sqf";
-		waitUntil {scriptDone _spwnSoldier};
+	for ("_i") from 0 to (floor (_SoldierMulti)) do {
+		_script = [List_ParaBandits, attkWave, _noOfPlayers] execVM "hostiles\spawn_group.sqf";
+		waitUntil {scriptDone _script};
 	};
 };
 
 if (attkWave > 10) then {
-	_ViperMulti = attkWave / 5;
-	for ("_i") from 0 to (floor (_ViperMulti * _noOfPlayers)) do {
-		_spwnViper = execVM "hostiles\spawn_vipers.sqf";
-		waitUntil {scriptDone _spwnViper};
+	for ("_i") from 0 to (floor (_SoldierMulti)) do {
+		_script = [List_Viper, attkWave, _noOfPlayers] execVM "hostiles\spawn_group.sqf";
+		waitUntil {scriptDone _script};
 	};
 };
 
 if (attkWave > 15 && (random 5) == 1) then {
-	_spwnVec = execVM "hostiles\spawn_Vec.sqf";
+	_spwnVec = execVM "hostiles\spawn_vehc.sqf";
 	waitUntil {scriptDone _spwnVec};
 };

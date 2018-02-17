@@ -35,4 +35,5 @@ if (isServer) then {
 	[bulwarkCity] execVM "missionLoop.sqf";
 };
 
-[] execVM "loot\itemLists.sqf";
+[] execVM "loot\lists.sqf";
+[] execVM "hostiles\lists.sqf";
