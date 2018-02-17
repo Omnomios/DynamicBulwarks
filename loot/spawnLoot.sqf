@@ -15,16 +15,27 @@ _lootBulding = nearestBuilding _randCityLocation;
 _lootRooms = _lootBulding buildingPos -1;
 _lootBoxRoom = selectRandom _lootRooms;
 
-_lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
-_lootBox enableSimulationGlobal false;
-_lootBox addAction [
+/*
+lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
+lootBox enableSimulationGlobal false;
+publicVariable "lootBox";
+
+lootBoxPos    = getPos lootBox;
+lootBoxPosATL = getPosATL lootBox;
+
+publicVariable "lootBoxPos";
+publicVariable "lootBoxPosATL";
+
+lootBox addAction [
     "<t color='#FF0000'>Spin the box!</t>", {
-        // Call lootspin script only on the server, from the client
-        [[_lootBox], "loot/lootspin.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+        // Call lootspin script on ALL clients
+        [[lootBoxPos, lootBoxPosATL], "spin/main.sqf"] remoteExec ["BIS_fnc_execVM", 0];
     }
 ];
+*/
+
 _wabbit = createVehicle ["Rabbit_F", _lootBoxRoom, [], 0 , "CAN_COLLIDE"];
-_wabbit attachTo [_lootBox,[0,-.2,0.6]];
+_wabbit attachTo [lootBox,[0,-.2,0.6]];
 
 //Item to reveal hostiles on Map (1 spawns every wave)
 _randCityLocation = [(bulwarkCity select 0) + (random [-125, 0, 125]),(bulwarkCity select 1) + (random [-125, 0, 125]), 0];
@@ -35,7 +46,7 @@ _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_C
 _droneSupport addAction ["Reveal enemies", "supports\reconDrone.sqf"];
 
 //add loot items to cleanup array
-activeLoot pushback _lootBox;
+activeLoot pushback lootBox;
 activeLoot pushback _wabbit;
 activeLoot pushback _droneSupport;
 

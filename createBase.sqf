@@ -16,18 +16,27 @@ _ammoBox addAction ["FILL AMMO", "supports\ammoDrop.sqf"];
 _crateRoom = selectRandom bulwarkRooms;
 _emptyCrate = createVehicle ["B_supplyCrate_F", _crateRoom, [], 0, "CAN_COLLIDE"];
 
+
 // Lootbox
-_lootBoxRoom = selectRandom bulwarkRooms;
-_lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
-_lootBox enableSimulationGlobal false;
-_lootBox addAction [
-"<t color='#FF0000'>Spin the box!</t>", {
-	systemChat format ["%1, %2", _lootBox, this];
-	_handle = [_lootBox] execVM "loot\lootspin.sqf";
-}
+lootBoxRoom = selectRandom bulwarkRooms; publicVariable "lootBoxRoom";
+
+lootBox = createVehicle ["Land_WoodenBox_F", lootBoxRoom, [], 0, "CAN_COLLIDE"];
+lootBox enableSimulationGlobal false;
+publicVariable "lootBox";
+
+lootBoxPos    = getPos lootBox; publicVariable "lootBoxPos";
+lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
+
+lootBox addAction [
+    "<t color='#FF0000'>Spin the box!</t>", {
+        // Call lootspin script on ALL clients
+		_handle = [lootBoxPos, lootBoxPosATL] execVM "loot/spin/main.sqf";
+		//[[lootBoxPos, lootBoxPosATL], "loot/spin/main.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+    }
 ];
-_wabbit = createVehicle ["Rabbit_F", _lootBoxRoom, [], 0 , "CAN_COLLIDE"];
-_wabbit attachTo [_lootBox,[0,-.2,0.6]];
+
+_wabbit = createVehicle ["Rabbit_F", lootBoxRoom, [], 0 , "CAN_COLLIDE"];
+_wabbit attachTo [lootBox,[0,-.2,0.6]];
 
 
 _emptyCrate allowDamage false;
