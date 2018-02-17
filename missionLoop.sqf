@@ -14,6 +14,8 @@ sleep 15;
 
 while {true} do {
 	attkWave = (attkWave + 1);
+	[player] call killPoints_fnc_updateHud;
+
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 	//{9999 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
 	[9999] remoteExec ["setPlayerRespawnTime", 0];

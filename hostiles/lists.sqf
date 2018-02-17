@@ -50,13 +50,12 @@ List_ZombieBoss = _zombieBoss;
 List_ZombieWalker = _zombieWalker;
 
 _bandits = [];
-_count = count (configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup");
+_groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup";
+_count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
-    _item=((configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup") select _x);
+    _item=((_groupConfig) select _x);
     if (isClass _item) then {
-		_className = getText (_item >> "vehicle");
-		hint format ["%1", count _bandits];
-		_bandits = _bandits + _className;
+		_bandits pushback getText (_item >> "vehicle");
     };
 };
 List_Bandits = _bandits;
@@ -67,7 +66,7 @@ _count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((_groupConfig) select _x);
     if (isClass _item) then {
-		_paraBandits = _paraBandits + getText (_item >> "vehicle");
+		_paraBandits pushback getText (_item >> "vehicle");
     };
 };
 List_ParaBandits = _paraBandits;
@@ -78,7 +77,7 @@ _count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((_groupConfig) select _x);
     if (isClass _item) then {
-		_eastSoldier = _eastSoldier + getText (_item >> "vehicle");
+		_eastSoldier pushback getText (_item >> "vehicle");
     };
 };
 List_OPFOR = _eastSoldier;
@@ -89,7 +88,7 @@ _count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSquad") select _x);
     if (isClass _item) then {
-		_indSoldier = _indSoldier + getText (_item >> "vehicle");
+		_indSoldier pushback getText (_item >> "vehicle");
     };
 };
 List_INDEP = _indSoldier;
@@ -100,7 +99,7 @@ _count =  count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((_groupConfig) select _x);
     if (isClass _item) then {
-		_viper = _viper + getText (_item >> "vehicle");
+		_viper pushback getText (_item >> "vehicle");
     };
 };
 List_Viper = _viper;
