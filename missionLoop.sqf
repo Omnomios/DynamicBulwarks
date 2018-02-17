@@ -22,6 +22,7 @@ while {true} do {
 		waitUntil { scriptDone _createHostiles};
 	};
 	if (attkWave > 1 && isServer) then { //if first wave give player extra time before spawning enemies
+		{deleteMarker _x} foreach lootDebugMarkers;
 		{deleteVehicle _x} foreach activeLoot;
 		_spawnLoot = execVM "loot\spawnLoot.sqf";
 		waitUntil { scriptDone _spawnLoot};
@@ -48,11 +49,11 @@ while {true} do {
 		};
 		} foreach playableUnits;
 	};
-	
+
 	["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	//{0 remoteExec ["setPlayerRespawnTime", 0]} foreach playableUnits;
 	[0] remoteExec ["setPlayerRespawnTime", 0];
-	
+
 	{
 	if (lifeState _x == "DEAD") then {
 		forceRespawn _x;

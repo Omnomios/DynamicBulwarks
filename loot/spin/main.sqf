@@ -1,16 +1,6 @@
 _hPos = 0.70;
 _lPos = 0.35;
-/*
-_weaponList = [
-    "srifle_EBR_F",
-    "hgun_ACPC2_F",
-    "LMG_Zafir_ARCO_F",
-    "arifle_MX_Holo_pointer_F",
-    "srifle_LRR_tna_LRPS_F",
-    "arifle_SPAR_01_GL_snd_F",
-    "arifle_MXC_ACO_F"
-];
-*/
+
 _weaponList = List_AllWeapons;
 
 
