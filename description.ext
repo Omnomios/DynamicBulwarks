@@ -19,8 +19,20 @@ corpseRemovalMaxTime = 30;
 wreckRemovalMinTime = 30;
 wreckRemovalMaxTime = 50;
 
+#include "score\hudCommon.hpp"
+class CfgFunctions
+{
+	#include "score\Functions.h"
+};
+
+class RscTitles
+{
+	#include "score\hud.hpp"
+};
+
+
 class CfgDebriefing
-{  
+{
 	class End1
 	{
 		title = [END];
