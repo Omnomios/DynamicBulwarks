@@ -32,10 +32,10 @@ lootBox addAction [
         [[lootBoxPos, lootBoxPosATL], "spin/main.sqf"] remoteExec ["BIS_fnc_execVM", 0];
     }
 ];
-*/
-
 _wabbit = createVehicle ["Rabbit_F", _lootBoxRoom, [], 0 , "CAN_COLLIDE"];
 _wabbit attachTo [lootBox,[0,-.2,0.6]];
+*/
+
 
 //Item to reveal hostiles on Map (1 spawns every wave)
 _randCityLocation = [(bulwarkCity select 0) + (random [-125, 0, 125]),(bulwarkCity select 1) + (random [-125, 0, 125]), 0];
@@ -46,8 +46,6 @@ _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_C
 _droneSupport addAction ["Reveal enemies", "supports\reconDrone.sqf"];
 
 //add loot items to cleanup array
-activeLoot pushback lootBox;
-activeLoot pushback _wabbit;
 activeLoot pushback _droneSupport;
 
 for "_i" from 1 to 60 do { //change to from 1 to wave multiplier

@@ -59,6 +59,8 @@ randomSeed=13606913;
 class ScenarioData
 {
 	author="Hilltop";
+	briefing=0;
+	debriefing=0;
 	disabledAI=1;
 	respawn=3;
 };
@@ -185,7 +187,7 @@ class Mission
 						position[]={137.19299,-59.266689,-272.55432};
 					};
 					side="West";
-					flags=7;
+					flags=3;
 					class Attributes
 					{
 						description="Survivor";
@@ -232,6 +234,7 @@ class Mission
 					};
 					id=10;
 					type="C_man_1_1_F";
+					atlOffset=126.70187;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -291,7 +294,7 @@ class Mission
 					};
 					id=58;
 					type="C_Man_casual_2_F";
-					atlOffset=0.86597061;
+					atlOffset=127.32756;
 				};
 				class Item2
 				{
@@ -309,7 +312,7 @@ class Mission
 					};
 					id=60;
 					type="C_Man_casual_3_F";
-					atlOffset=1.2439995;
+					atlOffset=126.79832;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -369,7 +372,7 @@ class Mission
 					};
 					id=62;
 					type="C_man_sport_1_F";
-					atlOffset=1.8995667;
+					atlOffset=127.76376;
 				};
 				class Item4
 				{
@@ -387,7 +390,7 @@ class Mission
 					};
 					id=64;
 					type="C_man_sport_2_F";
-					atlOffset=0.59456253;
+					atlOffset=127.17061;
 				};
 				class Item5
 				{
@@ -397,7 +400,7 @@ class Mission
 						position[]={146.77173,-58.940475,-301.14041};
 					};
 					side="West";
-					flags=5;
+					flags=1;
 					class Attributes
 					{
 						description="Survivor";
@@ -405,6 +408,7 @@ class Mission
 					};
 					id=66;
 					type="C_man_sport_3_F";
+					atlOffset=127.02809;
 				};
 				class Item6
 				{
@@ -414,7 +418,7 @@ class Mission
 						position[]={117.74372,-60.69836,-279.78174};
 					};
 					side="West";
-					flags=5;
+					flags=1;
 					class Attributes
 					{
 						description="Survivor";
@@ -422,7 +426,7 @@ class Mission
 					};
 					id=68;
 					type="C_Man_casual_4_F";
-					atlOffset=0.092319489;
+					atlOffset=125.2702;
 				};
 				class Item7
 				{
@@ -440,7 +444,7 @@ class Mission
 					};
 					id=70;
 					type="C_Man_casual_5_F";
-					atlOffset=1.9732208;
+					atlOffset=127.97156;
 				};
 				class Item8
 				{
@@ -450,7 +454,7 @@ class Mission
 						position[]={139.16815,-59.195179,-301.24194};
 					};
 					side="West";
-					flags=5;
+					flags=1;
 					class Attributes
 					{
 						description="Survivor";
@@ -458,6 +462,7 @@ class Mission
 					};
 					id=72;
 					type="C_Man_casual_6_F";
+					atlOffset=126.77338;
 				};
 				class Item9
 				{
@@ -467,7 +472,7 @@ class Mission
 						position[]={117.4144,-60.769497,-286.94952};
 					};
 					side="West";
-					flags=5;
+					flags=1;
 					class Attributes
 					{
 						description="Survivor";
@@ -475,7 +480,7 @@ class Mission
 					};
 					id=74;
 					type="C_man_polo_1_F";
-					atlOffset=0.027328491;
+					atlOffset=125.19907;
 				};
 				class Item10
 				{
@@ -493,13 +498,14 @@ class Mission
 					};
 					id=76;
 					type="C_man_polo_2_F";
-					atlOffset=1.2708092;
+					atlOffset=127.56181;
 				};
 			};
 			class Attributes
 			{
 			};
 			id=0;
+			atlOffset=126.70187;
 			class CustomAttributes
 			{
 				class Attribute0

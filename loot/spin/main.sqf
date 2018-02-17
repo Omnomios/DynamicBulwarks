@@ -21,18 +21,17 @@ if(isNil {_this select 1}) then {
 _boxPos    = _this select 0;
 _boxPosATL = _this select 1;
 
-systemChat format ["%1, %2", _boxPos, _boxPosATL];
-
 // Create weapon holder and position on loot box
 _weapon = createVehicle ["GroundWeaponHolder_Scripted", _boxPos, [], 0, "can_collide"];
-_weapon setposATL [_boxPosATL select 0, _boxPosATL select 1, ((_boxPosATL select 2) + _lPos) ];
+_weapon setPosATL [_boxPosATL select 0, _boxPosATL select 1, ((_boxPosATL select 2) + _lPos) ];
+_weapon enableSimulationGlobal false;
 //_weapon attachTo [_lootBox];
 
 // Trigger sound effect
 playSound3D [MISSION_ROOT + "sound\boxspin.wav", _weapon, false, getPosASL _weapon, 1, 1, 0];
 
 // Start raising the weapon out of the box
-_coRoutine = [1] execVM "animateWeapon.sqf";
+_coRoutine = [1, _boxPosATL, _lPos, _hPos, _weapon] execVM "loot\spin\animateWeapon.sqf";
 
 // Start cycling weapons
 _spinDelay = 0.01;
@@ -47,6 +46,7 @@ while {_spinDelay < 0.5} do {
 terminate _coRoutine;
 
 // Spin complete, present winning weapon with ammo
+_weapon enableSimulationGlobal true;
 _finalWeapon = selectRandom _weaponList;
 _weapon addMagazineCargoGlobal [_finalWeapon select 1, 1];
 _weapon addWeaponCargoGlobal [_finalWeapon select 0, 1];
@@ -55,7 +55,7 @@ _weapon addWeaponCargoGlobal [_finalWeapon select 0, 1];
 sleep 3;
 
 // Start to drop the weapon
-_coRoutine = [2] execVM "animateWeapon.sqf";
+_coRoutine = [2, _boxPosATL, _lPos, _hPos, _weapon] execVM "loot\spin\animateWeapon.sqf";
 sleep 6;
 terminate _coRoutine;
 
