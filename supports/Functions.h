@@ -6,5 +6,6 @@ class supports
         class supplyDrop {};
         class paraTroop {};
         class reconUAV {};
+        class airStrike {};
     };
 };

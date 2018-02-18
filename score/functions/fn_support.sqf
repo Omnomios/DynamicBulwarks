@@ -1,6 +1,7 @@
 _player   = _this select 0;
-_type     = _this select 1;
-_aircraft = _this select 2;
+_target   = _this select 1;
+_type     = _this select 2;
+_aircraft = _this select 3;
 
 _requiredPoints = 0;
 _humanText = "";
@@ -13,16 +14,23 @@ switch (_type) do {
         _requiredPoints = SCORE_RECONUAV;
         _humanText = "recon UAV"
     };
+    case ("airStrike"): {
+        _requiredPoints = SCORE_AIRSTRIKE;
+        _humanText = "bombing run"
+    };
 };
 
 if(_player getVariable "killPoints" >= _requiredPoints) then {
     [_player, _requiredPoints] call killPoints_fnc_spend;
     switch (_type) do {
         case ("paraTroop"): {
-            [_player, getPos _player, PARATROOP_COUNT, _aircraft, PARATROOP_CLASS] call supports_fnc_paraTroop;
+            [_player, _target, PARATROOP_COUNT, _aircraft, PARATROOP_CLASS] call supports_fnc_paraTroop;
         };
         case ("reconUAV"): {
             [_player, getPos _player, _aircraft] call supports_fnc_reconUAV;
+        };
+        case ("airStrike"): {
+            [_player, _target, _aircraft] call supports_fnc_airStrike;
         };
     };
 } else {

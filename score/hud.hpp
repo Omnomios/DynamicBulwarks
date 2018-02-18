@@ -14,9 +14,9 @@ class KillPointsHud {
 			idc = killPoints_idc;
 			type = CT_STRUCTURED_TEXT;
 			size = 0.040;
-			x = (SafeZoneX + 0.015);
+			x = (SafeZoneX + 0);
 			y = (SafeZoneY + 0.015);
-			w = 0.2; h = 0.15;
+			w = 0.2; h = 0.178;
 			colorText[] = {1,1,1,1};
 			lineSpacing = 3;
 			colorBackground[] = {0,0,0,0.3};

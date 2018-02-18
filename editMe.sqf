@@ -34,5 +34,6 @@ SCORE_DAMAGE_BASE = 10; // Extra points awarded for damage. 100% = SCORE_DAMAGE_
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
 SCORE_AMMOBOX = 500;    // Cost to reload at an ammo box
 SCORE_FIRSTAID = 250;   // Cost per FAK
-SCORE_RECONUAV = 800;   //
-SCORE_PARATROOP = 1500; // Paratroopers
+SCORE_RECONUAV = 800;   // Show units on map
+SCORE_PARATROOP = 1450; // Paratroopers
+SCORE_AIRSTRIKE = 5430; // CAS Missles

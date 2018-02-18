@@ -12,6 +12,7 @@ if(_killPoints - _points >= 0) then {
     _killPoints = _killPoints - _points;
     _player setVariable ["killPoints", _killPoints, true];
     _returnValue = true;
+	[_player] call killPoints_fnc_updateSupports;
     [_player] remoteExec ["killPoints_fnc_updateHud", _player];
 };
 

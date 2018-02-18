@@ -16,6 +16,12 @@ _runMissionLoop = true;
 _missionFailure = false;
 
 while {_runMissionLoop} do {
+	for ("_i") from 0 to 14 do {
+		if(_i > 10) then {playsound "beep_target";} else {playsound "readoutClick";};
+		[format ["<t>%1</t>", 15-_i], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
+		sleep 1;
+	};
+
 	attkWave = (attkWave + 1);
 	publicVariable "attkWave";
 	[player] remoteExec ["killPoints_fnc_updateHud", 0];
@@ -78,5 +84,5 @@ while {_runMissionLoop} do {
 	};
 	} foreach allPlayers;
 
-	sleep 40;
+	sleep 30;
 };
