@@ -1,6 +1,6 @@
 /* Attacker Waves */
 
-// List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_Viper
+// List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper
 
 HOSTILE_LEVEL_1 = List_Bandits;         // Wave 0 >
 HOSTILE_LEVEL_2 = List_ParaBandits;     // Wave 5 >
@@ -24,6 +24,8 @@ LOOT_ROOM_DISTRIBUTION = 3;   // Every *th position, within that house will spaw
 LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
 LOOT_DEBUG = FALSE;           // Shows loot as markers on the map
 LOOT_SUPPLYDROP = 0.2;        // Radius of supply drop
+PARATROOP_COUNT = 3;
+PARATROOP_CLASS = List_INDEP;
 
 /* Points */
 SCORE_KILL = 100;       // Every kill
@@ -32,4 +34,5 @@ SCORE_DAMAGE_BASE = 10; // Extra points awarded for damage. 100% = SCORE_DAMAGE_
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
 SCORE_AMMOBOX = 500;    // Cost to reload at an ammo box
 SCORE_FIRSTAID = 250;   // Cost per FAK
-SCORE_AIRSTRIKE = 1300; // Cost per Bomb
+SCORE_RECONUAV = 800;   //
+SCORE_PARATROOP = 1500; // Paratroopers

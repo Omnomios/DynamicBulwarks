@@ -43,6 +43,7 @@ class CfgRemoteExec
 		class killed {};
 		class updateHud {};
 		class supplyDrop {};
+		class support {};
 	};
 };
 
@@ -57,4 +58,28 @@ class CfgDebriefing
 		picture = "KIA";
 		pictureColor[] = {0.6,0.1,0.2,1};
 	};
+};
+
+class CfgCommunicationMenu
+{
+    class paraDrop
+    {
+        text = "Paratroops";
+        submenu = "";
+        expression = "[_this select 0, 'paraTroop', 'B_T_VTOL_01_vehicle_F'] remoteExec ['killPoints_fnc_support', 2];";
+        icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\attack_ca.paa";
+        cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
+        enable = "1";
+        removeAfterExpressionCall = 0;
+    };
+    class reconUAV
+    {
+        text = "Recon UAV";
+        submenu = "";
+        expression = "[_this select 0, 'reconUAV', 'B_UAV_01_F'] remoteExec ['killPoints_fnc_support', 2];";
+        icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\defend_ca.paa";
+        cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
+        enable = "1";
+        removeAfterExpressionCall = 0;
+    };
 };

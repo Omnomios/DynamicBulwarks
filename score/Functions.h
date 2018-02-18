@@ -9,5 +9,6 @@ class killPoints
         class hit {};
         class killed {};
         class updateHud {};
+        class support {};
     };
 };

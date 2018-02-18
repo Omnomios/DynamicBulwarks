@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=89;
+		nextID=93;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={3363.2676,457.18692,12289.995};
-		dir[]={0.78250879,-0.61926955,-0.066354111};
-		up[]={0.61709017,0.78513646,-0.052322358};
-		aside[]={-0.084498905,-6.5532367e-007,-0.99656272};
+		pos[]={7361.8101,71.708641,15385.523};
+		dir[]={0.95128441,-0.29667097,0.085201763};
+		up[]={0.2955837,0.95493686,0.026478905};
+		aside[]={0.089225404,1.618153e-006,-0.99614936};
 	};
 };
 binarizationWanted=0;
@@ -31,13 +31,15 @@ addons[]=
 	"A3_Weapons_F_Items",
 	"A3_Characters_F_Exp_Civil",
 	"A3_Modules_F_Curator_Curator",
-	"A3_Ui_F"
+	"A3_Ui_F",
+	"A3_Characters_F_Common",
+	"A3_Drones_F_Air_F_Gamma_UAV_01"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=5;
+		items=6;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -70,6 +72,13 @@ class AddonsMetaData
 		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item5
+		{
+			className="A3_Drones_F";
+			name="Arma 3 Beta - Drones";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -191,7 +200,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=7;
+		items=9;
 		class Item0
 		{
 			dataType="Group";
@@ -678,6 +687,102 @@ class Mission
 			a=150;
 			b=150;
 			id=88;
+		};
+		class Item7
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=2;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={4734.9561,234.48323,17784.764};
+						angles[]={0.022662206,0,0.18196538};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+					};
+					id=91;
+					type="B_UAV_AI";
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={4734.9287,234.63113,17784.768};
+						angles[]={0.022662206,0,0.18196538};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+					};
+					id=92;
+					type="B_UAV_AI";
+					atlOffset=0.15304565;
+				};
+			};
+			class Attributes
+			{
+			};
+			class CrewLinks
+			{
+				class LinkIDProvider
+				{
+					nextID=2;
+				};
+				class Links
+				{
+					items=2;
+					class Item0
+					{
+						linkID=0;
+						item0=91;
+						item1=90;
+						class CustomData
+						{
+							role=1;
+						};
+					};
+					class Item1
+					{
+						linkID=1;
+						item0=92;
+						item1=90;
+						class CustomData
+						{
+							role=2;
+							turretPath[]={0};
+						};
+					};
+				};
+			};
+			id=89;
+		};
+		class Item8
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={4734.9287,234.6297,17784.717};
+				angles[]={0.022662206,0,0.18196538};
+			};
+			side="West";
+			flags=6;
+			class Attributes
+			{
+				reportRemoteTargets=1;
+				reportOwnPosition=1;
+			};
+			id=90;
+			type="B_UAV_01_F";
 		};
 	};
 };
