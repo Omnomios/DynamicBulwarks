@@ -1,8 +1,14 @@
 /* Attacker Waves */
+
+// List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_Viper
+
 HOSTILE_LEVEL_1 = List_Bandits;         // Wave 0 >
 HOSTILE_LEVEL_2 = List_ParaBandits;     // Wave 5 >
 HOSTILE_LEVEL_3 = List_Viper;           // Wave 10 >
 
+
+// List_LocationMarkers, List_AllCities
+BULWARK_LOCATIONS = List_LocationMarkers;
 BULWARK_RADIUS = 150;
 
 /* Loot Spawn */
@@ -16,7 +22,7 @@ LOOT_HOUSE_DISTRIBUTION = 2;  // Every *th house will spwan loot.
 LOOT_ROOM_DISTRIBUTION = 3;   // Every *th position, within that house will spawn loot.
 LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
 LOOT_DEBUG = FALSE;           // Shows loot as markers on the map
-LOOT_SUPPLYDROP = 0.2;     // Radius of supply drop
+LOOT_SUPPLYDROP = 0.2;        // Radius of supply drop
 
 /* Points */
 SCORE_KILL = 100;       // Every kill

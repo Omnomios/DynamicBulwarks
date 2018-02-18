@@ -1,3 +1,5 @@
+_handle = [] execVM "locationLists.sqf";
+waitUntil {scriptDone _handle};
 _handle = [] execVM "loot\lists.sqf";
 waitUntil {scriptDone _handle};
 _handle = [] execVM "hostiles\lists.sqf";

@@ -1,10 +1,9 @@
-_locations = (nearestLocations [[0,0,0], ["NameCity", "NameCityCapital", "Airport"], 40000]);
 BulwarkRoomPos = nil;
 
 _TWOTHIRDS = 0.6666;
 
 while {isNil "BulwarkRoomPos"} do {
-	bulwarkCity = locationPosition (selectRandom _locations);
+	bulwarkCity = selectRandom BULWARK_LOCATIONS;
 	while {true} do {
 		_randCityLocation = [(bulwarkCity select 0) + (random [-BULWARK_RADIUS*_TWOTHIRDS, 0, BULWARK_RADIUS*_TWOTHIRDS]),(bulwarkCity select 1) + (random [-BULWARK_RADIUS*_TWOTHIRDS, 0, BULWARK_RADIUS*_TWOTHIRDS]), 0];
 		bulwarkBulding = nearestBuilding _randCityLocation;

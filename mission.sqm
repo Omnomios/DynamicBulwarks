@@ -8,18 +8,18 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=84;
+		nextID=85;
 	};
 	class MarkerIDProvider
 	{
-		nextID=2;
+		nextID=3;
 	};
 	class Camera
 	{
-		pos[]={10634.964,33.61507,11790.998};
-		dir[]={-0.62354535,-0.31301162,0.71650815};
-		up[]={-0.20552886,0.94971997,0.23617001};
-		aside[]={0.75441712,1.0078074e-006,0.656537};
+		pos[]={7478.4409,206.21547,15303.284};
+		dir[]={-0.46942008,-0.71007621,0.52498901};
+		up[]={-0.47330701,0.70410931,0.5293352};
+		aside[]={0.74553245,-2.9453076e-007,0.66662383};
 	};
 };
 binarizationWanted=0;
@@ -30,13 +30,14 @@ addons[]=
 	"A3_Weapons_F",
 	"A3_Weapons_F_Items",
 	"A3_Characters_F_Exp_Civil",
-	"A3_Modules_F_Curator_Curator"
+	"A3_Modules_F_Curator_Curator",
+	"A3_Ui_F"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=4;
+		items=5;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -62,6 +63,13 @@ class AddonsMetaData
 		{
 			className="A3_Modules_F_Curator";
 			name="Arma 3 Zeus Update - Scripted Modules";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item4
+		{
+			className="A3_Ui_F";
+			name="Arma 3 - User Interface";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -183,7 +191,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=2;
+		items=3;
 		class Item0
 		{
 			dataType="Group";
@@ -613,6 +621,18 @@ class Mission
 				};
 				nAttributes=3;
 			};
+		};
+		class Item2
+		{
+			dataType="Marker";
+			position[]={7402.1348,55.849998,15393.67};
+			name="bulwark_zone_1";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=84;
+			atlOffset=0.00048446655;
 		};
 	};
 };

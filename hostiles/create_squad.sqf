@@ -1,10 +1,10 @@
 hosSkill = (attkWave / 40);
-_noOfPlayers = count playableUnits;
-//_multiplierBase = (1.5 * (_noOfPlayers/2));
+_noOfPlayers = playersNumber west;
 _multiplierBase = 1.5;
 _SoldierMulti = attkWave / 5;
 
-for ("_i") from 0 to (floor (attkWave * _multiplierBase)) do {
+_squadCount = floor (attkWave * _multiplierBase);
+for ("_i") from 1 to (floor (attkWave * _multiplierBase)) do {
 	_script = [HOSTILE_LEVEL_1, attkWave, _noOfPlayers] execVM "hostiles\spawn_group.sqf";
 	waitUntil {scriptDone _script};
 };

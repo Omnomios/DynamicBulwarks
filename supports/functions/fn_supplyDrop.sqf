@@ -27,7 +27,7 @@ _supplyBox = createVehicle ["Cargonet_01_box_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _supplyBox attachTo [_parachute, [0,0,0]];
 _supplyBox allowDamage false;
 
-// Open cargo door
+// Close cargo door
 _dropVehc animateDoor ['Door_1_source', 0];
 
 waitUntil {getpos _supplyBox select 2<4};
