@@ -23,6 +23,7 @@ wreckRemovalMaxTime = 50;
 class CfgFunctions
 {
 	#include "score\Functions.h"
+	#include "supports\Functions.h"
 };
 
 class RscTitles
@@ -41,6 +42,7 @@ class CfgRemoteExec
 		class hit {};
 		class killed {};
 		class updateHud {};
+		class supplyDrop {};
 	};
 };
 

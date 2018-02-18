@@ -15,11 +15,11 @@ class KillPointsHud {
 			type = CT_STRUCTURED_TEXT;
 			size = 0.040;
 			x = (SafeZoneX + 0.015);
-			y = (SafeZoneY + 0.60);
-			w = 0.4; h = 0.65;
+			y = (SafeZoneY + 0.015);
+			w = 0.2; h = 0.2;
 			colorText[] = {1,1,1,1};
 			lineSpacing = 3;
-			colorBackground[] = {0,0,0,0};
+			colorBackground[] = {0,0,0,0.5};
 			text = "Text";
 			font = "PuristaLight";
 			shadow = 2;

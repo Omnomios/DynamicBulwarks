@@ -5,20 +5,20 @@ _multiplierBase = 1.5;
 _SoldierMulti = attkWave / 5;
 
 for ("_i") from 0 to (floor (attkWave * _multiplierBase)) do {
-	_script = [List_Bandits, attkWave, _noOfPlayers] execVM "hostiles\spawn_group.sqf";
+	_script = [HOSTILE_LEVEL_1, attkWave, _noOfPlayers] execVM "hostiles\spawn_group.sqf";
 	waitUntil {scriptDone _script};
 };
 
 if (attkWave > 5) then {
 	for ("_i") from 0 to (floor (_SoldierMulti)) do {
-		_script = [List_ParaBandits, attkWave, _noOfPlayers] execVM "hostiles\spawn_group.sqf";
+		_script = [HOSTILE_LEVEL_2, attkWave, _noOfPlayers] execVM "hostiles\spawn_group.sqf";
 		waitUntil {scriptDone _script};
 	};
 };
 
 if (attkWave > 10) then {
 	for ("_i") from 0 to (floor (_SoldierMulti)) do {
-		_script = [List_Viper, attkWave, _noOfPlayers] execVM "hostiles\spawn_group.sqf";
+		_script = [HOSTILE_LEVEL_3, attkWave, _noOfPlayers] execVM "hostiles\spawn_group.sqf";
 		waitUntil {scriptDone _script};
 	};
 };

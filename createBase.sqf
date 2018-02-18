@@ -1,10 +1,12 @@
-_locations = (nearestLocations [[0,0,0], ["NameCity", "NameCityCapital", "Airport"], 40000]); //"NameLocal",
+_locations = (nearestLocations [[0,0,0], ["NameCity", "NameCityCapital", "Airport"], 40000]);
 BulwarkRoomPos = nil;
+
+_TWOTHIRDS = 0.6666;
 
 while {isNil "BulwarkRoomPos"} do {
 	bulwarkCity = locationPosition (selectRandom _locations);
 	while {true} do {
-		_randCityLocation = [(bulwarkCity select 0) + (random [-100, 0, 100]),(bulwarkCity select 1) + (random [-100, 0, 100]), 0];
+		_randCityLocation = [(bulwarkCity select 0) + (random [-BULWARK_RADIUS*_TWOTHIRDS, 0, BULWARK_RADIUS*_TWOTHIRDS]),(bulwarkCity select 1) + (random [-BULWARK_RADIUS*_TWOTHIRDS, 0, BULWARK_RADIUS*_TWOTHIRDS]), 0];
 		bulwarkBulding = nearestBuilding _randCityLocation;
 		bulwarkRooms = bulwarkBulding buildingPos -1;
 		if ((count bulwarkRooms) > 5) exitWith {
@@ -31,10 +33,10 @@ _emptyCrate addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 
 _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerShape "ELLIPSE";
-"Mission Area" setMarkerSize [150, 150];
+"Mission Area" setMarkerSize [BULWARK_RADIUS, BULWARK_RADIUS];
 "Mission Area" setMarkerColor "ColorWhite";
 
-lootHouses = bulwarkCity nearObjects ["House", 150];
+lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
 
 /* Spinner Box */
 _lootBulding = selectRandom lootHouses;
@@ -49,14 +51,16 @@ lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
 [lootBox, [
 	    "<t color='#FF0000'>Spin the box!</t>", {
 		//TODO: should use the return from spend call
-		if(player getVariable "killPoints" >= 950) then {
-			[player, 950] call killPoints_fnc_spend;
+		if(player getVariable "killPoints" >= SCORE_RANDOMBOX) then {
+			[player, SCORE_RANDOMBOX] call killPoints_fnc_spend;
 			// Call lootspin script on ALL clients
 			[[lootBoxPos, lootBoxPosATL], "loot\spin\main.sqf"] remoteExec ["BIS_fnc_execVM", player];
 		};
     }
 ]] remoteExec ["addAction", 0, true];
+/*
 _boxMkr = createMarker [netId lootBox, getPos lootBox];
 _boxMkr setMarkerShape "ICON";
 _boxMkr setMarkerType "hd_dot";
 _boxMkr setMarkerColor "ColorGreen";
+*/

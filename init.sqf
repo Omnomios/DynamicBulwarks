@@ -1,3 +1,9 @@
+_handle = [] execVM "loot\lists.sqf";
+waitUntil {scriptDone _handle};
+_handle = [] execVM "hostiles\lists.sqf";
+waitUntil {scriptDone _handle};
+_handle = [] execVM "editMe.sqf";
+waitUntil {scriptDone _handle};
 
 //Select City and spawn point
 if (isServer) then {
@@ -34,6 +40,3 @@ if (!isDedicated) then {
 if (isServer) then {
 	[bulwarkCity] execVM "missionLoop.sqf";
 };
-
-[] execVM "loot\lists.sqf";
-[] execVM "hostiles\lists.sqf";

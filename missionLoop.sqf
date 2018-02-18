@@ -42,11 +42,11 @@ while {true} do {
 			};
 		} foreach allUnits;
 		sleep 10;
-		{if ((_x distance bulwarkCity) > 150) then {
+		{if ((_x distance bulwarkCity) > BULWARK_RADIUS*0.9) then {
 			["Warning: Leaving mission area!"] remoteExec ["BIS_fnc_dynamicText", _x];
 		};
 		} foreach playableUnits;
-		{if ((_x distance bulwarkCity) > 175) then {
+		{if ((_x distance bulwarkCity) > BULWARK_RADIUS*1.2) then {
 			_x setpos BulwarkRoomPos;
 		};
 		} foreach playableUnits;
