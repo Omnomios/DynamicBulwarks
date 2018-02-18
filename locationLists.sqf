@@ -6,6 +6,7 @@ _zoneMarkers = [];
         _currMarker = toString _currMarker;
         if(_currMarker == "bulwark_") then{
             _zoneMarkers append [getMarkerPos _x];
+            deleteMarker _x;
         };
     };
 } foreach allMapMarkers;
