@@ -4,11 +4,12 @@ lootDebugMarkers = [];
 
 
 /* Item to reveal hostiles on Map (1 spawns every wave) */
-_droneRoom = objNull;
-while {isNull _droneRoom} do {
+_droneRoom = while {true} do {
 	_lootBulding = selectRandom lootHouses;
 	_lootRooms = _lootBulding buildingPos -1;
-	_droneRoom = selectRandom _lootRooms;
+	_lootRoom = selectRandom _lootRooms;
+	systemChat format ["%1", _lootRoom];
+	if(!isNil "_lootRoom") exitWith {_lootRoom};
 };
 _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_COLLIDE"];
 _droneSupport addAction ["Reveal enemies", "supports\reconDrone.sqf"];

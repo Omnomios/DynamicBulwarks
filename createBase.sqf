@@ -36,13 +36,13 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerColor "ColorWhite";
 
 lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
+
 /* Spinner Box */
-_lootBoxRoom = objNull;
-_lootBoxRoom = while {isNull _lootBoxRoom} do {
+_lootBoxRoom = while {true} do {
 	_lootBulding = selectRandom lootHouses;
 	_lootRooms = _lootBulding buildingPos -1;
-	exitWith {selectRandom _lootRooms;};
-	systemChat format ["%1", _lootBoxRoom];
+	_lootRoom = selectRandom _lootRooms;
+	if(!isNil "_lootRoom") exitWith {_lootRoom};
 };
 lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
 publicVariable "lootBox";
@@ -59,10 +59,10 @@ lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
 		};
     }
 ]] remoteExec ["addAction", 0, true];
+lootBox enableSimulationGlobal false;
 /*
 _boxMkr = createMarker [netId lootBox, getPos lootBox];
 _boxMkr setMarkerShape "ICON";
 _boxMkr setMarkerType "hd_dot";
 _boxMkr setMarkerColor "ColorGreen";
 */
-lootBox enableSimulationGlobal false;
