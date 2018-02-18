@@ -15,7 +15,7 @@ _banditSpaned = objNull;
 _infBandit = selectRandom _unitClasses;
 hint ("spawning: " + str _infBandit);
 //sleep 1;
-_infBandit createUnit [[bulwarkCity, 150, 300,1,0] call BIS_fnc_findSafePos, _attGroupBand, "_banditSpaned = this", hosSkill];
+_infBandit createUnit [[bulwarkCity, BULWARK_RADIUS, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos, _attGroupBand, "_banditSpaned = this", hosSkill];
 if (isNull _banditSpaned) then {hint "falied to spawn";} else {
 	_banditSpaned doMove (getPos (selectRandom playableUnits));
 	_banditSpaned setUnitAbility hosSkill; //todo https://community.bistudio.com/wiki/CfgAISkill
@@ -25,6 +25,4 @@ if (isNull _banditSpaned) then {hint "falied to spawn";} else {
 	_banditSpaned setSkill ["spotTime", hosSkill];
 	_banditSpaned addEventHandler ["Hit", killPoints_fnc_hit];
 	_banditSpaned addEventHandler ["Killed", killPoints_fnc_killed];
-	//hint ("current skill " + str (skill _banditSpaned));
-	//sleep 1;
 };

@@ -5,11 +5,12 @@
 HOSTILE_LEVEL_1 = List_Bandits;         // Wave 0 >
 HOSTILE_LEVEL_2 = List_ParaBandits;     // Wave 5 >
 HOSTILE_LEVEL_3 = List_Viper;           // Wave 10 >
-
+HOSTILE_QUANTITYMULTIPLIER = 1.2;
 
 // List_LocationMarkers, List_AllCities
 BULWARK_LOCATIONS = List_LocationMarkers;
 BULWARK_RADIUS = 150;
+BULWARK_MINROOMS = 5;   // Spawn room must have this many locations to be valid
 
 /* Loot Spawn */
 LOOT_WEAPON_POOL  = List_AllWeapons;    // Classnames of Loot items as an array

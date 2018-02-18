@@ -1,6 +1,6 @@
 hosSkill = (attkWave / 40);
 _noOfPlayers = playersNumber west;
-_multiplierBase = 1.5;
+_multiplierBase = HOSTILE_MULTIPLIER;
 _SoldierMulti = attkWave / 5;
 
 _squadCount = floor (attkWave * _multiplierBase);

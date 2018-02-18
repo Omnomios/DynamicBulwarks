@@ -8,7 +8,7 @@ while {isNil "BulwarkRoomPos"} do {
 		_randCityLocation = [(bulwarkCity select 0) + (random [-BULWARK_RADIUS*_TWOTHIRDS, 0, BULWARK_RADIUS*_TWOTHIRDS]),(bulwarkCity select 1) + (random [-BULWARK_RADIUS*_TWOTHIRDS, 0, BULWARK_RADIUS*_TWOTHIRDS]), 0];
 		bulwarkBulding = nearestBuilding _randCityLocation;
 		bulwarkRooms = bulwarkBulding buildingPos -1;
-		if ((count bulwarkRooms) > 5) exitWith {
+		if ((count bulwarkRooms) >= BULWARK_MINROOMS) exitWith {
 			BulwarkRoomPos = selectRandom bulwarkRooms;
 		};
 	}
