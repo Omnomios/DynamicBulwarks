@@ -23,7 +23,10 @@ bulMkr setMarkerType "hd_dot";
 bulMkr setMarkerColor "ColorBlue";
 bulMkr setMarkerText "Spawn";
 
-{_x setPos (getMarkerPos bulMkr)} forEach allPlayers;  //move any players that spawned already to respawn point
+{
+	_newLoc = [getMarkerPos bulMkr, 0, 10, 1, 0] call BIS_fnc_findSafePos;
+	_x setpos _newLoc;
+} forEach allPlayers;  //move any players that spawned already to respawn point
 
 if (!isServer && (player != player)) then {
 	waitUntil {player == player};

@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=85;
+		nextID=89;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={7478.4409,206.21547,15303.284};
-		dir[]={-0.46942008,-0.71007621,0.52498901};
-		up[]={-0.47330701,0.70410931,0.5293352};
-		aside[]={0.74553245,-2.9453076e-007,0.66662383};
+		pos[]={3363.2676,457.18692,12289.995};
+		dir[]={0.78250879,-0.61926955,-0.066354111};
+		up[]={0.61709017,0.78513646,-0.052322358};
+		aside[]={-0.084498905,-6.5532367e-007,-0.99656272};
 	};
 };
 binarizationWanted=0;
@@ -191,7 +191,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=3;
+		items=7;
 		class Item0
 		{
 			dataType="Group";
@@ -633,6 +633,51 @@ class Mission
 			b=150;
 			id=84;
 			atlOffset=0.00048446655;
+		};
+		class Item3
+		{
+			dataType="Marker";
+			position[]={13934.795,22.678057,18720.475};
+			name="bulwark_zone_2";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=85;
+			atlOffset=-0.61751747;
+		};
+		class Item4
+		{
+			dataType="Marker";
+			position[]={14344.489,36.901539,18931.111};
+			name="bulwark_zone_3";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=86;
+		};
+		class Item5
+		{
+			dataType="Marker";
+			position[]={4899.2383,77.78672,16145.303};
+			name="bulwark_zone_4";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=87;
+		};
+		class Item6
+		{
+			dataType="Marker";
+			position[]={3728.6355,32.330929,12319.103};
+			name="bulwark_zone_5";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=88;
 		};
 	};
 };

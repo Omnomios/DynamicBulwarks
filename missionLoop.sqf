@@ -18,7 +18,7 @@ _missionFailure = false;
 while {_runMissionLoop} do {
 	attkWave = (attkWave + 1);
 	publicVariable "attkWave";
-	[player] remoteExec ["killPoints_fnc_updateHud", -2];
+	[player] remoteExec ["killPoints_fnc_updateHud", 0];
 
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 	//{9999 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
@@ -59,8 +59,9 @@ while {_runMissionLoop} do {
 		};
 		} foreach _allHPs;
 
-		{if ((_x distance bulwarkCity) > BULWARK_RADIUS*1.2) then {
-			_x setpos BulwarkRoomPos;
+		{if ((_x distance bulwarkCity) > BULWARK_RADIUS*1.1) then {
+			_newLoc = [BulwarkRoomPos, 0, 5, 1, 0] call BIS_fnc_findSafePos;
+			_x setpos _newLoc;
 		};
 		} foreach _allHPs;
 	};

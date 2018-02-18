@@ -2,11 +2,14 @@
 activeLoot = [];
 lootDebugMarkers = [];
 
+
 /* Item to reveal hostiles on Map (1 spawns every wave) */
-_randCityLocation = [(bulwarkCity select 0) + (random [-BULWARK_RADIUS*LOOT_SUPPLYDROP, 0, BULWARK_RADIUS*LOOT_SUPPLYDROP]),(bulwarkCity select 1) + (random [-BULWARK_RADIUS*LOOT_SUPPLYDROP, 0, BULWARK_RADIUS*LOOT_SUPPLYDROP]), 0];
-_lootBulding = nearestBuilding _randCityLocation;
-_lootRooms = _lootBulding buildingPos -1;
-_droneRoom = selectRandom _lootRooms;
+_droneRoom = objNull;
+while {isNull _droneRoom} do {
+	_lootBulding = selectRandom lootHouses;
+	_lootRooms = _lootBulding buildingPos -1;
+	_droneRoom = selectRandom _lootRooms;
+};
 _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_COLLIDE"];
 _droneSupport addAction ["Reveal enemies", "supports\reconDrone.sqf"];
 

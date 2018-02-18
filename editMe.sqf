@@ -5,7 +5,7 @@
 HOSTILE_LEVEL_1 = List_Bandits;         // Wave 0 >
 HOSTILE_LEVEL_2 = List_ParaBandits;     // Wave 5 >
 HOSTILE_LEVEL_3 = List_Viper;           // Wave 10 >
-HOSTILE_QUANTITYMULTIPLIER = 1.2;
+HOSTILE_MULTIPLIER = 1.2;
 
 // List_LocationMarkers, List_AllCities
 BULWARK_LOCATIONS = List_LocationMarkers;
