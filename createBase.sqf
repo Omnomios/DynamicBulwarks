@@ -29,6 +29,8 @@ clearMagazineCargoGlobal _emptyCrate;
 clearBackpackCargoGlobal _emptyCrate;
 _emptyCrate addWeaponCargoGlobal["hgun_P07_F",10];
 _emptyCrate addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
+[_emptyCrate, ["Pickup", "loot\moveBox.sqf"]] remoteExec ["addAction", 0];
+
 
 _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerShape "ELLIPSE";
@@ -57,7 +59,7 @@ lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
 			// Call lootspin script on ALL clients
 			[[lootBoxPos, lootBoxPosATL], "loot\spin\main.sqf"] remoteExec ["BIS_fnc_execVM", player];
 		} else {
-			[format ["<t size='0.6' color='#ff3300'>%1 points required to spin the box</t>", SCORE_RANDOMBOX], -0.6, -0.35] call BIS_fnc_dynamicText;			
+			[format ["<t size='0.6' color='#ff3300'>%1 points required to spin the box</t>", SCORE_RANDOMBOX], -0.6, -0.35] call BIS_fnc_dynamicText;
 		};
     }
 ]] remoteExec ["addAction", 0, true];
