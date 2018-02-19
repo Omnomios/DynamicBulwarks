@@ -17,7 +17,7 @@ _missionFailure = false;
 
 while {_runMissionLoop} do {
 	for ("_i") from 0 to 14 do {
-		if(_i > 10) then {"beep_target" remoteExec ["playsound", 0];} else {"beep_target" remoteExec ["readoutClick", 0];};
+		if(_i > 10) then {"beep_target" remoteExec ["playsound", 0];} else {"readoutClick" remoteExec ["playsound", 0];};
 		[format ["<t>%1</t>", 15-_i], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 		sleep 1;
 	};
