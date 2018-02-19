@@ -19,11 +19,11 @@ for ("_i") from 1 to _unitCount do {
 
 	if (isNull _banditSpaned) then {hint "falied to spawn";} else {
 		_banditSpaned doMove (getPos (selectRandom playableUnits));
-		_banditSpaned setUnitAbility hosSkill; //todo https://community.bistudio.com/wiki/CfgAISkill
-		_banditSpaned setSkill ["aimingAccuracy", hosSkill];
-		_banditSpaned setSkill ["aimingSpeed", hosSkill];
-		_banditSpaned setSkill ["aimingShake", hosSkill];
-		_banditSpaned setSkill ["spotTime", hosSkill];
+		_banditSpaned setUnitAbility hosSkill;
+		_banditSpaned setSkill ["aimingAccuracy", 0.05];
+		_banditSpaned setSkill ["aimingSpeed", 0.05];
+		_banditSpaned setSkill ["aimingShake", 0.05];
+		_banditSpaned setSkill ["spotTime", 0.05];
 		_banditSpaned addEventHandler ["Hit", killPoints_fnc_hit];
 		_banditSpaned addEventHandler ["Killed", killPoints_fnc_killed];
 	};
