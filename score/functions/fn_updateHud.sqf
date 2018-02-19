@@ -1,9 +1,11 @@
-disableSerialization;
-
 if (!isDedicated) then {
+    disableSerialization;
     _player = _this select 0;
 
     _killPoints = _player getVariable "killPoints";
+    if(isNil "_killPoints") then {
+        _killPoints = 0;
+    };
 
     _attackWave = 0;
     if(!isNil "attkWave") then {
