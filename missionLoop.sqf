@@ -54,8 +54,14 @@ while {_runMissionLoop} do {
 			"End1" call BIS_fnc_endMissionServer;
 		};
 		{if (side _x == east) then {
-			_x doMove ([getPos (selectRandom _allHPs), 2, 20,1,0] call BIS_fnc_findSafePos);
+			while {true} do {
+				_goToPlayer = selectRandom _allHPs;
+				if (alive _goToPlayer) exitWith {
+					_goToPlayerPos = getPos _goToPlayer;
+					_x doMove [(_goToPlayerPos select 0) + (random [-20,20,0]),(_goToPlayerPos select 1) + (random [-20,20,0]),0];
+				};
 			};
+		};
 		} foreach allUnits;
 		sleep 10;
 
