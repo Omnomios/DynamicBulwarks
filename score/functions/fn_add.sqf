@@ -8,6 +8,6 @@ if (isServer) then {
 	_killPoints = round (_killPoints + _points);
 	_player setVariable ["killPoints", _killPoints, true];
 
-	[_player] call killPoints_fnc_updateSupports;
-	[_player] remoteExec ["killPoints_fnc_updateHud", _player];
+	[] remoteExec ["killPoints_fnc_updateSupports", _player];
+	[] remoteExec ["killPoints_fnc_updateHud", _player];
 };

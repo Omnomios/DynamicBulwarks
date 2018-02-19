@@ -22,9 +22,14 @@ while {_runMissionLoop} do {
 		sleep 1;
 	};
 
+	// Get all human players in this wave cycle
+	_allHCs = entities "HeadlessClient_F";
+	_allHPs = allPlayers - _allHCs;
+
+	[] remoteExec ["killPoints_fnc_updateHud", -2];
+
 	attkWave = (attkWave + 1);
 	publicVariable "attkWave";
-	[player] remoteExec ["killPoints_fnc_updateHud", 0];
 
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 	//{9999 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
@@ -40,10 +45,6 @@ while {_runMissionLoop} do {
 		waitUntil { scriptDone _spawnLoot};
 	};
 	while {_runMissionLoop} do {
-		// Get all human players in this wave cycle
-		_allHCs = entities "HeadlessClient_F";
-		_allHPs = allPlayers - _allHCs;
-
 		//get hostiles to keep moving towards player - loop updating player pos?
 		if (east countSide allUnits == 0) exitWith {
 			hint "wave Complete";
@@ -81,7 +82,6 @@ while {_runMissionLoop} do {
 	if(_missionFailure) exitWith {};
 
 	["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
-	//{0 remoteExec ["setPlayerRespawnTime", 0]} foreach playableUnits;
 	[0] remoteExec ["setPlayerRespawnTime", 0];
 
 	{
