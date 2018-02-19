@@ -86,12 +86,23 @@ _indSoldier = [];
 _groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSquad";
 _count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
-    _item=((configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSquad") select _x);
+    _item=(_groupConfig select _x);
     if (isClass _item) then {
 		_indSoldier pushback getText (_item >> "vehicle");
     };
 };
 List_INDEP = _indSoldier;
+
+_natoSoldier = [];
+_groupConfig = configfile >> "CfgGroups" >> "West" >> "BLU_F" >> "Infantry" >> "BUS_InfSquad";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=(_groupConfig select _x);
+    if (isClass _item) then {
+		_natoSoldier pushback getText (_item >> "vehicle");
+    };
+};
+List_NATO = _natoSoldier;
 
 _viper = [];
 _groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_ViperTeam";

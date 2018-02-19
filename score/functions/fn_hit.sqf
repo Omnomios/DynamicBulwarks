@@ -1,3 +1,4 @@
+_unit = _this select 0;
 _dmg = _this select 2;
 _instigator = _this select 3;
 if (isPlayer _instigator) then {
