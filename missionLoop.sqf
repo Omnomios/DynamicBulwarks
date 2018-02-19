@@ -17,7 +17,7 @@ _missionFailure = false;
 
 while {_runMissionLoop} do {
 	for ("_i") from 0 to 14 do {
-		if(_i > 10) then {playsound "beep_target";} else {playsound "readoutClick";};
+		if(_i > 10) then {"beep_target" remoteExec ["playsound", 0];} else {"beep_target" remoteExec ["readoutClick", 0];};
 		[format ["<t>%1</t>", 15-_i], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 		sleep 1;
 	};
@@ -66,12 +66,12 @@ while {_runMissionLoop} do {
 		sleep 10;
 
 		// Mission area protection
-		{if ((_x distance bulwarkCity) > BULWARK_RADIUS*0.9) then {
+		{if ((_x distance bulwarkCity) > BULWARK_RADIUS * 0.9) then {
 			["Warning: Leaving mission area!",0, 0.1] remoteExec ["BIS_fnc_dynamicText", _x];
 		};
 		} foreach _allHPs;
 
-		{if ((_x distance bulwarkCity) > BULWARK_RADIUS*1.1) then {
+		{if ((_x distance bulwarkCity) > BULWARK_RADIUS * 1.1) then {
 			_newLoc = [BulwarkRoomPos, 0, 5, 1, 0] call BIS_fnc_findSafePos;
 			_x setpos _newLoc;
 		};
