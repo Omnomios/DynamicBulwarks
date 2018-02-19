@@ -66,3 +66,7 @@ _boxMkr setMarkerShape "ICON";
 _boxMkr setMarkerType "hd_dot";
 _boxMkr setMarkerColor "ColorGreen";
 */
+
+_lootRoom = selectRandom bulwarkRooms;
+_artRadio = createVehicle ["Land_PortableLongRangeRadio_F", _lootRoom, [], 0, "CAN_COLLIDE"];
+[_artRadio, ["Artilery", "supports\artillery.sqf"]] remoteExec ["addAction", 0];
