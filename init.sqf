@@ -25,8 +25,8 @@ bulMkr setMarkerText "Spawn";
 
 if (isServer) then {
 	{
-		_newLoc = [getMarkerPos bulMkr, 0, 10, 1, 0] call BIS_fnc_findSafePos;
-		_x setpos _newLoc;
+		_newLoc = (getPos bullwarkBox) findEmptyPosition [1, 10];
+		_x setPos _newLoc vectorAdd [0,0,1];
 	} forEach allPlayers;  //move any players that spawned already to respawn point
 };
 

@@ -11,12 +11,12 @@ while {!_found} do {
 		_vehclass = getText (_checked_veh >> "vehicleClass");
 		_scope = getNumber (_checked_veh >> "scope");
 		_simulation_paracheck = getText (_checked_veh >> "simulation");
-		if (_vehclass == _vehClass && _scope != 0 && _simulation_paracheck != "parachute" && _classname != "O_MBT_02_arty_F") exitWith {  
+		if (_vehclass == _vehClass && _scope != 0 && _simulation_paracheck != "parachute" && _classname != "O_MBT_02_arty_F") exitWith {
 			_foundVeh = _classname;
 			_found = true;
 		};
-	};   
-}; 
+	};
+};
 _createdVehFnc = [[bulwarkCity, 200, 450,8,0] call BIS_fnc_findSafePos, 0, _foundVeh, east] call bis_fnc_spawnvehicle;
 _createdVehFnc select 0 doMove (getPos (selectRandom playableUnits));
 hint "vec spawned";

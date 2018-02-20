@@ -6,6 +6,8 @@ publicVariable "attkWave";
 activeLoot = [];
 //mrkrs = [];
 
+waveUnits = [[],[],[]];
+
 //spawn start loot
 if (isServer) then {
 	execVM "loot\spawnLoot.sqf";

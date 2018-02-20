@@ -21,15 +21,15 @@ publicVariable "wabbit";
 */
 
 _crateRoom = selectRandom bulwarkRooms;
-_emptyCrate = createVehicle ["B_supplyCrate_F", _crateRoom, [], 0, "CAN_COLLIDE"];
-_emptyCrate allowDamage false;
-clearItemCargoGlobal _emptyCrate;
-clearWeaponCargoGlobal _emptyCrate;
-clearMagazineCargoGlobal _emptyCrate;
-clearBackpackCargoGlobal _emptyCrate;
-_emptyCrate addWeaponCargoGlobal["hgun_P07_F",10];
-_emptyCrate addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
-[_emptyCrate, ["Pickup", "loot\moveBox.sqf"]] remoteExec ["addAction", 0];
+bullwarkBox = createVehicle ["B_supplyCrate_F", _crateRoom, [], 0, "CAN_COLLIDE"];
+bullwarkBox allowDamage false;
+clearItemCargoGlobal bullwarkBox;
+clearWeaponCargoGlobal bullwarkBox;
+clearMagazineCargoGlobal bullwarkBox;
+clearBackpackCargoGlobal bullwarkBox;
+bullwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
+bullwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
+[bullwarkBox, ["Pickup", "loot\moveBox.sqf"]] remoteExec ["addAction", 0];
 
 
 _marker1 = createMarker ["Mission Area", bulwarkCity];

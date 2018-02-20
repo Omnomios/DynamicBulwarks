@@ -15,7 +15,7 @@ _dropStart  = _targetPos vectorAdd [_pointX, _pointY, _height];
 _dropTarget = [(_targetPos select 0), (_targetPos select 1), 200];
 _dropEnd    = _targetPos vectorAdd [-_pointX*2, -_pointY*2, _height];;
 
-_targetSmoker = "SmokeShellGreen" createVehicle (_targetPos);
+_targetSmoker = "SmokeShellGreen" createVehicle (_targetPos vectorAdd [0,0,0.3]);
 
 _agSpawn = [_dropStart, 0, _aircraft, WEST] call bis_fnc_spawnvehicle;
 _agVehicle = _agSpawn select 0;	//the aircraft
@@ -46,22 +46,21 @@ _waypoint1 setwaypointtype "Move";
 _agVehicle animateDoor ['Door_1_source', 1];
 waitUntil {paraTroopLatch};
 
-_location = getPos _agVehicle;
-[_location] remoteExec ['hint', 0];
-
 sleep 0.5;
 _attGroupBand = group _player;
 for ("_i") from 1 to 3 do {
-    _banditSpaned = objNull;
-    _infBandit = selectRandom _classList;
-    systemChat _infBandit;
-    _infBandit createUnit [[0,0,0], _attGroupBand, "_banditSpaned = this", 1];
-    if (isNull _banditSpaned) then {hint "falied to spawn";} else {
-        _banditSpaned setPos [_location vectorAdd [0,0,-2]];
-        _banditSpaned addBackpack "B_Parachute";
-        _banditSpaned doMove _targetPos;
-    };
+    _location = getPos _agVehicle;
+    _unitClass = selectRandom _classList;
+    _unit = objNull;
+    _unit = _attGroupBand createUnit [_unitClass, _location vectorAdd [0,0,-2], [], 0.5, "CAN_COLLIDE"];
     sleep 0.3;
+    waitUntil {!isNull _unit};
+    _unit addBackpack "B_Parachute";
+    _unit setSkill ["aimingAccuracy", 0.8];
+    _unit setSkill ["aimingSpeed", 0.7];
+    _unit setSkill ["aimingShake", 0.8];
+    _unit setSkill ["spotTime", 1];
+    _unit doMove _targetPos;
 };
 
 sleep 20;

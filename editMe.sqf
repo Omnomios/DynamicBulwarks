@@ -35,5 +35,5 @@ SCORE_RANDOMBOX = 950;  // Cost to spin the box
 SCORE_AMMOBOX = 500;    // Cost to reload at an ammo box
 SCORE_FIRSTAID = 250;   // Cost per FAK
 SCORE_RECONUAV = 800;   // Show units on map
-SCORE_PARATROOP = 0; // Paratroopers
+SCORE_PARATROOP = 1950; // Paratroopers
 SCORE_AIRSTRIKE = 5430; // CAS Missles
