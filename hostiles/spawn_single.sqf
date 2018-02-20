@@ -9,13 +9,15 @@ if (_attackWave < 40) then { //determine AI skill based on Wave
 
 sleep 0.5;
 
-_attGroupBand = createGroup [east, true];
+_attGroupBand = createGroup [EAST, true];
 _location = [bulwarkCity, BULWARK_RADIUS, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 _unitClass = selectRandom _unitClasses;
 _unit = objNull;
-_unit = _attGroupBand createUnit [_unitClass, _location, [], 0.5, "CAN_COLLIDE"];
+_unit = _attGroupBand createUnit [_unitClass, _location, [], 0.5, "FORM"];
 sleep 0.3;
 waitUntil {!isNull _unit};
+
+[_unit] join _attGroupBand;
 _unit doMove (getPos (selectRandom playableUnits));
 _unit setUnitAbility hosSkill; //todo https://community.bistudio.com/wiki/CfgAISkill
 _unit setSkill ["aimingAccuracy", hosSkill];
