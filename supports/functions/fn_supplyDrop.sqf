@@ -19,18 +19,20 @@ _ag1crew = _ag1spawn select 1;	//the units that make up the crew
 _ag1 = _ag1spawn select 2;	//the group
 {_x allowFleeing 0} forEach units _ag1;
 
+_markSmoker = "SmokeShellGreen" createVehicle ([getpos _dropTarget select 0, getpos _dropTarget select 1, (getpos _dropTarget select 2)+5]);
+
 _ag1air flyInHeight 100;
 _ag1air setpos [getposATL _ag1air select 0, getposATL _ag1air select 1, _height];
 
 _reldir = [_dropStart, _targetPos] call BIS_fnc_dirTo;
 _ag1air setdir _reldir;
 
-paraDropLatch = false;
+supplyDropLatch = false;
 
 _waypoint0 = _ag1 addwaypoint[_dropTarget,0];
 _waypoint0 setwaypointtype "Move";
 _waypoint0 setWaypointCompletionRadius 10;
-_waypoint0 setWaypointStatements ["true", "paraDropLatch = true;"];
+_waypoint0 setWaypointStatements ["true", "supplyDropLatch = true;"];
 
 _waypoint1 = _ag1 addwaypoint[_dropEnd,0];
 _waypoint1 setwaypointtype "Move";
@@ -41,7 +43,7 @@ _waypoint1 setwaypointtype "Move";
 
 sleep 4;
 _ag1air animateDoor ['Door_1_source', 1];
-waitUntil {paraDropLatch};
+waitUntil {supplyDropLatch};
 
 // Drop cargo
 _playerCount = count playableUnits;
