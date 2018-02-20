@@ -34,7 +34,7 @@ paraTroopLatch = false;
 _waypoint0 = _ag addwaypoint[_dropTarget, 0];
 _waypoint0 setwaypointtype "Move";
 _waypoint0 setWaypointCompletionRadius 5;
-_waypoint0 setWaypointStatements ["true", "paraTroopLatch = true; [getPos _this] execVM 'supports/dropTroops.sqf'"];
+_waypoint0 setWaypointStatements ["true", "paraTroopLatch = true;"];
 
 _waypoint1 = _ag addwaypoint[_dropEnd, 0];
 _waypoint1 setwaypointtype "Move";
@@ -45,6 +45,24 @@ _waypoint1 setwaypointtype "Move";
 
 _agVehicle animateDoor ['Door_1_source', 1];
 waitUntil {paraTroopLatch};
+
+_location = getPos _agVehicle;
+[_location] remoteExec ['hint', 0];
+
+sleep 0.5;
+_attGroupBand = group _player;
+for ("_i") from 1 to 3 do {
+    _banditSpaned = objNull;
+    _infBandit = selectRandom _classList;
+    systemChat _infBandit;
+    _infBandit createUnit [[0,0,0], _attGroupBand, "_banditSpaned = this", 1];
+    if (isNull _banditSpaned) then {hint "falied to spawn";} else {
+        _banditSpaned setPos [_location vectorAdd [0,0,-2]];
+        _banditSpaned addBackpack "B_Parachute";
+        _banditSpaned doMove _targetPos;
+    };
+    sleep 0.3;
+};
 
 sleep 20;
 deletevehicle _agVehicle;
