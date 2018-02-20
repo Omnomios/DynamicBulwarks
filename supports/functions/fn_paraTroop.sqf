@@ -21,6 +21,8 @@ _ag1crew = _ag1spawn select 1;	//the units that make up the crew
 _ag1 = _ag1spawn select 2;	//the group
 {_x allowFleeing 0} forEach units _ag1;
 
+_markSmoker = "SmokeShellGreen" createVehicle ([getpos _dropTarget select 0, getpos _dropTarget select 1, (getpos _dropTarget select 2)+5]);
+
 _ag1air flyInHeight 100;
 _ag1air setpos [getposATL _ag1air select 0, getposATL _ag1air select 1, _height];
 
