@@ -15,6 +15,8 @@ _dropStart  = [(_targetPos select 0)+_pointX, (_targetPos select 1)+_pointY, _he
 _dropTarget = [(_targetPos select 0), (_targetPos select 1), 200];
 _dropEnd    = [(_targetPos select 0)-_pointX*2, (_targetPos select 1)-_pointY*2, _height];
 
+_targetSmoker = "SmokeShellGreen" createVehicle (_dropTarget);
+
 _ag1spawn = [_dropStart, 0, _aircraft, WEST] call bis_fnc_spawnvehicle;
 _ag1air = _ag1spawn select 0;	//the aircraft
 _ag1crew = _ag1spawn select 1;	//the units that make up the crew
@@ -31,7 +33,7 @@ paraTroopLatch = false;
 
 _waypoint0 = _ag1 addwaypoint[_dropTarget,0];
 _waypoint0 setwaypointtype "Move";
-_waypoint0 setWaypointCompletionRadius 10;
+_waypoint0 setWaypointCompletionRadius 5;
 _waypoint0 setWaypointStatements ["true", "paraTroopLatch = true;"];
 
 _waypoint1 = _ag1 addwaypoint[_dropEnd,0];
@@ -43,6 +45,7 @@ _waypoint1 setwaypointtype "Move";
 
 _ag1air animateDoor ['Door_1_source', 1];
 waitUntil {paraTroopLatch};
+sleep 0.5;
 
 _attGroupBand = group _player;
 for ("_i") from 1 to _unitCount do {
