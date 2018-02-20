@@ -90,5 +90,5 @@ while {_runMissionLoop} do {
 	};
 	} foreach allPlayers;
 
-	sleep 30;
+	sleep 20+(attkWave*6);
 };
