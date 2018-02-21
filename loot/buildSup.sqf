@@ -27,6 +27,7 @@ switch (_index) do {
     case 6: {
         _shopClass = "Land_Cargo_Patrol_V3_F"; _shopPrice = 5000;
     };
+  };
 
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};
