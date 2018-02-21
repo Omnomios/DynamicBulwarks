@@ -15,7 +15,7 @@ switch (_index) do {
     case 2: {
         _shopClass = "Land_Mil_WallBig_4m_F"; _shopPrice = 250;
     };
-    case 3:{
+    case 3: {
         _shopClass = "Land_HBarrier_3_F"; _shopPrice = 500;
     };
     case 4: {
@@ -32,10 +32,10 @@ if(_shopClass == "") exitWith {};
 if(player getVariable "killPoints" >= _shopPrice) then {
     [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
     shopVehic = _shopClass createVehicle [0,0,0];
-    objPurchase = true
+    objPurchase = true;
 } else {
     [format ["<t size='0.6' color='#ff3300'>NOT ENOUGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
-    objPurchase = false
+    objPurchase = false;
 };
 
 sleep 0.1;
