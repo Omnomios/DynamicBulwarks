@@ -10,12 +10,12 @@ HOSTILE_MULTIPLIER = 1;
 // List_LocationMarkers, List_AllCities
 BULWARK_LOCATIONS = List_LocationMarkers;
 BULWARK_RADIUS = 150;
-BULWARK_MINROOMS = 5;   // Spawn room must have this many locations to be valid
+BULWARK_MINROOMS = 3;   // Spawn room must have this many locations to be valid
 
 /* Loot Spawn */
 LOOT_WEAPON_POOL  = List_AllWeapons;    // Classnames of Loot items as an array
 LOOT_APPAREL_POOL = List_AllClothes;
-LOOT_ITEM_POOL    = List_Optics;
+LOOT_ITEM_POOL    = List_Optics + List_Items;
 LOOT_STORAGE_POOL = List_AllStorage;
 
 /* Random Loot */
@@ -37,3 +37,4 @@ SCORE_FIRSTAID = 250;   // Cost per FAK
 SCORE_RECONUAV = 800;   // Show units on map
 SCORE_PARATROOP = 1950; // Paratroopers
 SCORE_AIRSTRIKE = 5430; // CAS Missles
+SCORE_RAGEPACK  = 100;  // Berzerk mode

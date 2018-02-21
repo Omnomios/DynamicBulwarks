@@ -18,6 +18,10 @@ switch (_type) do {
         _requiredPoints = SCORE_AIRSTRIKE;
         _humanText = "bombing run"
     };
+    case ("ragePack"): {
+        _requiredPoints = SCORE_RAGEPACK;
+        _humanText = "rage stimpack"
+    };
 };
 
 if(_player getVariable "killPoints" >= _requiredPoints) then {
@@ -31,6 +35,10 @@ if(_player getVariable "killPoints" >= _requiredPoints) then {
         };
         case ("airStrike"): {
             [_player, _target, _aircraft] call supports_fnc_airStrike;
+        };
+        case ("ragePack"): {
+            // Ragepack is a local effect so it needs to be executed locally
+            [] remoteExec ["supports_fnc_ragePack", _player];
         };
     };
 } else {

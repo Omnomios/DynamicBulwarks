@@ -7,5 +7,6 @@ class supports
         class paraTroop {};
         class reconUAV {};
         class airStrike {};
+        class ragePack {};
     };
 };

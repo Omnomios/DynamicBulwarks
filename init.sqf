@@ -1,3 +1,4 @@
+titleText ["Preparing mission", "BLACK FADED", 0];
 _handle = [] execVM "locationLists.sqf";
 waitUntil {scriptDone _handle};
 _handle = [] execVM "loot\lists.sqf";
@@ -26,7 +27,7 @@ bulMkr setMarkerText "Spawn";
 if (isServer) then {
 	{
 		_newLoc = (getPos bullwarkBox) findEmptyPosition [1, 10];
-		_x setPos _newLoc vectorAdd [0,0,1];
+		_x setPos _newLoc;
 	} forEach allPlayers;  //move any players that spawned already to respawn point
 };
 
@@ -44,6 +45,7 @@ if (!isDedicated) then {
      player addEventHandler ['Respawn',{player setUnitRecoilCoefficient .5;}];
 };
 
+titleText ["", "BLACK IN", 2];
 if (isServer) then {
 	[bulwarkCity] execVM "missionLoop.sqf";
 };

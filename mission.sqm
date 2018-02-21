@@ -212,7 +212,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=12;
+		items=11;
 		class Item0
 		{
 			dataType="Group";
@@ -225,7 +225,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={137.19299,75.43,-272.55432};
+						position[]={16.160862,75.399818,20.93811};
 					};
 					side="West";
 					flags=3;
@@ -275,7 +275,7 @@ class Mission
 					};
 					id=10;
 					type="C_man_1_1_F";
-					atlOffset=261.39856;
+					atlOffset=261.36838;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -324,7 +324,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={133.30273,76.055687,-282.59302};
+						position[]={12.339567,76.074409,28.627747};
 					};
 					side="West";
 					flags=1;
@@ -335,14 +335,14 @@ class Mission
 					};
 					id=58;
 					type="C_Man_casual_2_F";
-					atlOffset=262.02423;
+					atlOffset=262.04297;
 				};
 				class Item2
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={123.582,75.526451,-275.04602};
+						position[]={11.141609,75.534279,21.036194};
 					};
 					side="West";
 					flags=1;
@@ -363,7 +363,7 @@ class Mission
 					};
 					id=60;
 					type="C_Man_casual_3_F";
-					atlOffset=261.495;
+					atlOffset=261.50284;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -412,7 +412,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={126.90207,76.49189,-285.41745};
+						position[]={12.339567,76.534462,8.4495239};
 					};
 					side="West";
 					flags=1;
@@ -423,14 +423,14 @@ class Mission
 					};
 					id=62;
 					type="C_man_sport_1_F";
-					atlOffset=262.46045;
+					atlOffset=262.50302;
 				};
 				class Item4
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={134.52901,75.898735,-292.04355};
+						position[]={20.725241,75.766335,12.64447};
 					};
 					side="West";
 					flags=1;
@@ -441,14 +441,14 @@ class Mission
 					};
 					id=64;
 					type="C_man_sport_2_F";
-					atlOffset=261.86731;
+					atlOffset=261.73489;
 				};
 				class Item5
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={146.77173,75.756218,-301.14041};
+						position[]={23.320795,75.661995,20.435608};
 					};
 					side="West";
 					flags=1;
@@ -459,14 +459,14 @@ class Mission
 					};
 					id=66;
 					type="C_man_sport_3_F";
-					atlOffset=261.72479;
+					atlOffset=261.63055;
 				};
 				class Item6
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={117.74372,73.998329,-279.78174};
+						position[]={8.1467323,74.230812,14.642151};
 					};
 					side="West";
 					flags=1;
@@ -477,14 +477,14 @@ class Mission
 					};
 					id=68;
 					type="C_Man_casual_4_F";
-					atlOffset=259.96689;
+					atlOffset=260.19937;
 				};
 				class Item7
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={128.33931,76.699684,-295.4747};
+						position[]={19.32762,76.57737,7.0505981};
 					};
 					side="West";
 					flags=1;
@@ -495,14 +495,14 @@ class Mission
 					};
 					id=70;
 					type="C_Man_casual_5_F";
-					atlOffset=262.66824;
+					atlOffset=262.54593;
 				};
 				class Item8
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={12491.119,147.9632,20186.645};
+						position[]={19.559406,75.202957,28.97229};
 					};
 					side="West";
 					flags=1;
@@ -513,14 +513,14 @@ class Mission
 					};
 					id=72;
 					type="C_Man_casual_6_F";
-					atlOffset=75.423592;
+					atlOffset=261.17151;
 				};
 				class Item9
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={117.4144,73.927193,-286.94952};
+						position[]={20.52557,73.904335,29.226501};
 					};
 					side="West";
 					flags=1;
@@ -531,14 +531,14 @@ class Mission
 					};
 					id=74;
 					type="C_man_polo_1_F";
-					atlOffset=259.89575;
+					atlOffset=259.87289;
 				};
 				class Item10
 				{
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={131.47502,76.28994,-305.03253};
+						position[]={27.713285,-185.6972,25.031555};
 					};
 					side="West";
 					flags=1;
@@ -549,14 +549,56 @@ class Mission
 					};
 					id=76;
 					type="C_man_polo_2_F";
-					atlOffset=262.25848;
+					atlOffset=0.2713623;
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male05GRE";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.04;
+								};
+							};
+						};
+						nAttributes=2;
+					};
 				};
 			};
 			class Attributes
 			{
 			};
 			id=0;
-			atlOffset=261.39856;
+			atlOffset=261.36838;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -652,17 +694,6 @@ class Mission
 		class Item7
 		{
 			dataType="Marker";
-			position[]={17868.893,2.1068213,18131.996};
-			name="bulwark_zone_7";
-			markerType="ELLIPSE";
-			type="ellipse";
-			a=150;
-			b=150;
-			id=94;
-		};
-		class Item8
-		{
-			dataType="Marker";
 			position[]={8303.9863,75.046875,10078.488};
 			name="bulwark_zone_8";
 			markerType="ELLIPSE";
@@ -672,7 +703,7 @@ class Mission
 			id=99;
 			atlOffset=-1.089798;
 		};
-		class Item9
+		class Item8
 		{
 			dataType="Marker";
 			position[]={12815.5,88.037025,16676.613};
@@ -683,7 +714,7 @@ class Mission
 			b=150;
 			id=100;
 		};
-		class Item10
+		class Item9
 		{
 			dataType="Marker";
 			position[]={14485.818,20.029274,17671.791};
@@ -695,7 +726,7 @@ class Mission
 			id=101;
 			atlOffset=-0.69843292;
 		};
-		class Item11
+		class Item10
 		{
 			dataType="Marker";
 			position[]={12841.994,43.018955,19643.109};

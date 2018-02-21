@@ -3,7 +3,7 @@ onLoadIntro = "Defend yourself"
 onLoadName = "dynamicBulwarks";
 briefingName = "dynamicBulwarks";
 overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
-author = "Hilltop & Omnomios";
+author = "Hilltop & omNomios";
 
 respawn = 3;
 respawnOnStart = 1;
@@ -46,6 +46,7 @@ class CfgRemoteExec
 		class supplyDrop {};
 		class support {};
 		class airStrike {};
+		class ragePack {};
 	};
 };
 
@@ -65,6 +66,25 @@ class CfgDebriefing
 class CfgCommunicationMenu
 {
 	#include "supports\CommunicationMenu.h"
+};
+
+
+class CfgSounds
+{
+	sounds[] = {boxSpin, rageSound};
+	class boxSpin
+	{
+		name = "Gambling box sound";
+		sound[] = {"\sound\boxspin.wav", 1, 1, 100};
+		titles[] = {0,""};
+	};
+
+	class rageSound
+	{
+		name = "Rage support SFX";
+		sound[] = {"\sound\3rd_person_berserk.ogg", 1, 1, 100};
+		titles[] = {0,""};
+	};
 };
 
 #include "dialogs\defines.hpp"
