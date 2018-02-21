@@ -75,7 +75,7 @@ while {_runMissionLoop} do {
 					};
 				} forEach _allHPs;
 				*/
-				if (alive goToPlayer) exitWith {
+				if (alive _goToPlayer) exitWith {
 					_goToPlayerPos = getPos _goToPlayer;
 					thisNPC doMove _goToPlayerPos;
 				};
