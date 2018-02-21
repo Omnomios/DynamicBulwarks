@@ -34,6 +34,7 @@ while {_runMissionLoop} do {
 	publicVariable "attkWave";
 
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
+	//{9999 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
 	[9999] remoteExec ["setPlayerRespawnTime", 0];
 	if (isServer) then {
 		// Delete
@@ -64,11 +65,18 @@ while {_runMissionLoop} do {
 			"End1" call BIS_fnc_endMissionServer;
 		};
 		{if (side _x == east) then {
+			thisNPC = _x;
 			while {true} do {
-				_goToPlayer = selectRandom _allHPs;
-				if (alive _goToPlayer) exitWith {
-					_goToPlayerPos = getPos _goToPlayer;
-					_x doMove [(_goToPlayerPos select 0) + (random [-20,20,0]),(_goToPlayerPos select 1) + (random [-20,20,0]),0];
+				//_goToPlayer = selectRandom _allHPs;
+				_gotoPlayerDistance = 9999;
+ 				{_playerDistance = (getPos thisNPC) distance (getPos _x);
+					if (_playerDistance < _gotoPlayerDistance) then {
+						goToPlayer = _x;
+					};
+				} forEach _allHPs;
+				if (alive goToPlayer) exitWith {
+					_goToPlayerPos = getPos goToPlayer;
+					thisNPC doMove _goToPlayerPos;
 				};
 			};
 		};
