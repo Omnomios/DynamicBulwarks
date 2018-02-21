@@ -34,7 +34,6 @@ while {_runMissionLoop} do {
 	publicVariable "attkWave";
 
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
-	//{9999 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
 	[9999] remoteExec ["setPlayerRespawnTime", 0];
 	if (isServer) then {
 		// Delete

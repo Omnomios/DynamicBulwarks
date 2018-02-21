@@ -65,12 +65,6 @@ lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
     }
 ]] remoteExec ["addAction", 0, true];
 lootBox enableSimulationGlobal false;
-/*
-_boxMkr = createMarker [netId lootBox, getPos lootBox];
-_boxMkr setMarkerShape "ICON";
-_boxMkr setMarkerType "hd_dot";
-_boxMkr setMarkerColor "ColorGreen";
-*/
 
 _lootRoom = selectRandom bulwarkRooms;
 _artRadio = createVehicle ["Land_PortableLongRangeRadio_F", _lootRoom, [], 0, "CAN_COLLIDE"];

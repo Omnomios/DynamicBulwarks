@@ -38,11 +38,16 @@ if (!isServer && (player != player)) then {
 
 //Remove stamina and lower sway and recoil
 if (!isDedicated) then {
-     player setCustomAimCoef 0.2;
-     player enableStamina FALSE;
-     player addEventHandler ['Respawn',{player enableStamina FALSE;}];
-     player addEventHandler ['Respawn',{player setCustomAimCoef 0.2;}];
-     player addEventHandler ['Respawn',{player setUnitRecoilCoefficient .5;}];
+	player setCustomAimCoef 0.2;
+	player enableStamina FALSE;
+	player addEventHandler ['Respawn',{player enableStamina FALSE;}];
+	player addEventHandler ['Respawn',{player setCustomAimCoef 0.2;}];
+	player addEventHandler ['Respawn',{player setUnitRecoilCoefficient 0.5;}];
+
+	player addAction ['Break Medikit', {
+	    player removeItem "Medikit";
+	    for ("_i") from 1 to 4 do { player addItem "firstAidKit"; };
+	}, nil, 1.5, true, true, '', "'Medikit' in items _this"];
 };
 
 titleText ["", "BLACK IN", 2];
