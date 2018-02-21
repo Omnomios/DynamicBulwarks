@@ -1,4 +1,6 @@
-titleText ["Preparing mission", "BLACK FADED", 0];
+if (isServer) then {
+	["Preparing mission", "BLACK IN", 2] remoteExec ["titleText", -2];
+};
 _handle = [] execVM "locationLists.sqf";
 waitUntil {scriptDone _handle};
 _handle = [] execVM "loot\lists.sqf";
@@ -43,14 +45,9 @@ if (!isDedicated) then {
 	player addEventHandler ['Respawn',{player enableStamina FALSE;}];
 	player addEventHandler ['Respawn',{player setCustomAimCoef 0.2;}];
 	player addEventHandler ['Respawn',{player setUnitRecoilCoefficient 0.5;}];
-
-	player addAction ['Break Medikit', {
-	    player removeItem "Medikit";
-	    for ("_i") from 1 to 4 do { player addItem "firstAidKit"; };
-	}, nil, 1.5, true, true, '', "'Medikit' in items _this"];
 };
 
-titleText ["", "BLACK IN", 2];
 if (isServer) then {
+	["", "BLACK IN", 2] remoteExec ["titleText", -2];
 	[bulwarkCity] execVM "missionLoop.sqf";
 };

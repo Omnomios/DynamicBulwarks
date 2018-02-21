@@ -32,7 +32,6 @@ bullwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 [bullwarkBox, ["Pickup", "loot\moveBox.sqf"]] remoteExec ["addAction", 0];
 [bullwarkBox, ["Shop", "[] spawn guis_fnc_startBoxGui; ShopCaller = _this select 1"]] remoteExec ["addAction", 0];
 
-
 _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerShape "ELLIPSE";
 "Mission Area" setMarkerSize [BULWARK_RADIUS, BULWARK_RADIUS];
