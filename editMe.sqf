@@ -37,4 +37,4 @@ SCORE_FIRSTAID = 250;   // Cost per FAK
 SCORE_RECONUAV = 800;   // Show units on map
 SCORE_PARATROOP = 1950; // Paratroopers
 SCORE_AIRSTRIKE = 5430; // CAS Missles
-SCORE_RAGEPACK  = 100;  // Berzerk mode
+SCORE_RAGEPACK  = 8930; // Berzerk mode

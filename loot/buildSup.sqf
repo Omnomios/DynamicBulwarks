@@ -2,88 +2,44 @@ _index = lbCurSel 1500;
 shopVehic = objNull;
 //["Short Sandbag Wall","Tall Concrete Wall","Land_HBarrier_3_F","Land_HBarrierWall4_F","Land_SandbagBarricade_01_hole_F","Land_Cargo_Patrol_V3_F"];
 
-switch (_index) do
-{
-    case 1:
-    {
-      if(player getVariable "killPoints" >= 150) then {
-        [player, 100] call killPoints_fnc_spend;
-        shopVehic = "Land_SandbagBarricade_01_half_F" createVehicle [0,0,0];
-        objPurchase = true
-      } else {
-        [format ["<t size='0.6' color='#ff3300'>NOT ENOGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
-        objPurchase = false
-      };
+_shopClass = "";
+_shopPrice = 0;
+
+switch (_index) do {
+    case 0: {
+        _shopClass = "Land_Barricade_01_4m_F"; _shopPrice = 50;
+    };
+    case 1: {
+        _shopClass = "Land_SandbagBarricade_01_half_F"; _shopPrice = 150;
+    };
+    case 2: {
+        _shopClass = "Land_SandbagBarricade_01_hole_F"; _shopPrice = 250;
+    };
+    case 3: {
+        _shopClass = "Land_Mil_WallBig_4m_F"; _shopPrice = 500;
+    };
+    case 4: {
+        _shopClass = "Land_HBarrier_3_F"; _shopPrice = 600;
+    };
+    case 5: {
+        _shopClass = "Land_HBarrierWall4_F"; _shopPrice = 1000;
+    };
+    case 6: {
+        _shopClass = "Land_Cargo_Patrol_V3_F"; _shopPrice = 5000;
     };
 
-    case 3:
-    {
-      if(player getVariable "killPoints" >= 250) then {
-        [player, 100] call killPoints_fnc_spend;
-        shopVehic = "Land_Mil_WallBig_4m_F" createVehicle [0,0,0];
-        objPurchase = true
-      } else {
-        [format ["<t size='0.6' color='#ff3300'>NOT ENOGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
-        objPurchase = false
-      };
-    };
+// Script was passed an invalid number
+if(_shopClass == "") exitWith {};
 
-    case 4:
-    {
-      if(player getVariable "killPoints" >= 500) then {
-        [player, 100] call killPoints_fnc_spend;
-        shopVehic = "Land_HBarrier_3_F" createVehicle [0,0,0];
-        objPurchase = true
-      } else {
-        [format ["<t size='0.6' color='#ff3300'>NOT ENOGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
-        objPurchase = false
-      };
-    };
-    case 5:
-    {
-      if(player getVariable "killPoints" >= 1000) then {
-        [player, 100] call killPoints_fnc_spend;
-        shopVehic = "Land_HBarrierWall4_F" createVehicle [0,0,0];
-        objPurchase = true
-      } else {
-        [format ["<t size='0.6' color='#ff3300'>NOT ENOGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
-        objPurchase = false
-      };
-    };
-    case 2:
-    {
-      if(player getVariable "killPoints" >= 150) then {
-        [player, 100] call killPoints_fnc_spend;
-        shopVehic = "Land_SandbagBarricade_01_hole_F" createVehicle [0,0,0];
-        objPurchase = true
-      } else {
-        [format ["<t size='0.6' color='#ff3300'>NOT ENOGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
-        objPurchase = false
-      };
-    };
-    case 6:
-    {
-      if(player getVariable "killPoints" >= 5000) then {
-        [player, 100] call killPoints_fnc_spend;
-        shopVehic = "Land_Cargo_Patrol_V3_F" createVehicle [0,0,0];
-        objPurchase = true
-      } else {
-        [format ["<t size='0.6' color='#ff3300'>NOT ENOGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
-        objPurchase = false
-      };
-    };
-    case 0:
-    {
-      if(player getVariable "killPoints" >= 50) then {
-        [player, 100] call killPoints_fnc_spend;
-        shopVehic = "Land_Barricade_01_4m_F" createVehicle [0,0,0];
-        objPurchase = true
-      } else {
-        [format ["<t size='0.6' color='#ff3300'>NOT ENOGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
-        objPurchase = false
-      };
-    };
+if(player getVariable "killPoints" >= _shopPrice) then {
+    [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
+    shopVehic = _shopClass createVehicle [0,0,0];
+    objPurchase = true;
+} else {
+    [format ["<t size='0.6' color='#ff3300'>NOT ENOUGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
+    objPurchase = false;
 };
+
 sleep 0.1;
 if (objPurchase) then {
   closeDialog 0;

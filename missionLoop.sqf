@@ -37,16 +37,14 @@ while {_runMissionLoop} do {
 	//{9999 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
 	[9999] remoteExec ["setPlayerRespawnTime", 0];
 	if (isServer) then {
-		/*
 		// Delete
 		_final = waveUnits select 2;
 		{deleteVehicle _x} foreach _final;
 		// Shuffle
-		waveUnits set [2, []];
+		waveUnits set [2, waveUnits select 1];
 		waveUnits set [1, waveUnits select 0];
 		waveUnits set [0, []];
 		// Spawn
-		*/
 		_createHostiles = execVM "hostiles\create_squad.sqf";
 		waitUntil {scriptDone _createHostiles};
 	};
