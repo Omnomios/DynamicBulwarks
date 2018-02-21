@@ -33,3 +33,14 @@ if(!isNil "supportBomb") then {
 		supportBomb = [_player,"airStrike"] call BIS_fnc_addCommMenuItem;
 	};
 };
+
+if(!isNil "supportRage") then {
+	if(_killPoints < SCORE_RAGEPACK) then {
+		[_player, supportRage] call BIS_fnc_removeCommMenuItem;
+        supportRage = nil;
+	};
+} else {
+	if(_killPoints >= SCORE_RAGEPACK) then {
+		supportRage = [_player, "ragePack"] call BIS_fnc_addCommMenuItem;
+	};
+};

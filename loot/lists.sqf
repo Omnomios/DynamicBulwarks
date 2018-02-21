@@ -5,6 +5,7 @@ _primaries = [];
 _secondaries = [];
 _launchers = [];
 _optics = [];
+_items = [];
 _backpacks = [];
 _glasses = [];
 _faces = [];
@@ -20,6 +21,12 @@ for "_x" from 0 to (_count-1) do {
 					case 801: {_uniforms = _uniforms + [configName _weap];};
 					case 701: {_vests = _vests + [configName _weap];};
 					case 201: {_optics = _optics + [configName _weap];};
+					case 601: {_items = _items + [configName _weap];};
+					case 620: {_items = _items + [configName _weap];}; // Toolkit
+					case 619: {_items = _items + [configName _weap];}; // Medikit
+					case 621: {_items = _items + [configName _weap];}; // UAV terminal
+					case 616: {_items = _items + [configName _weap];}; // NVG
+					case 401: {_items = _items + [configName _weap];}; // First Aid Kit
 				};
 			};
 			if (!isClass (_weap >> "LinkedItems")) then {
@@ -71,6 +78,7 @@ List_Primaries = [] + _primaries;
 List_Secondaries = [] + _secondaries;
 List_Launchers = [] + _launchers;
 List_Optics = [] + _optics;
+List_Items = [] + _items + ['ItemGPS'];
 List_Glasses = [] + _glasses;
 List_Faces = [] + _faces;
 
