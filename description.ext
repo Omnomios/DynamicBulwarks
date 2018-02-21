@@ -24,6 +24,7 @@ class CfgFunctions
 {
 	#include "score\Functions.h"
 	#include "supports\Functions.h"
+	#include "Dialogs\functions.hpp"
 };
 
 class RscTitles
@@ -96,3 +97,6 @@ class CfgCommunicationMenu
         removeAfterExpressionCall = 0;
     };
 };
+
+#include "dialogs\defines.hpp"
+#include "dialogs\dialogs.hpp"

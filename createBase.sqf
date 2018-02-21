@@ -30,6 +30,7 @@ clearBackpackCargoGlobal _emptyCrate;
 _emptyCrate addWeaponCargoGlobal["hgun_P07_F",10];
 _emptyCrate addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 [_emptyCrate, ["Pickup", "loot\moveBox.sqf"]] remoteExec ["addAction", 0];
+[_emptyCrate, ["Shop", "[] spawn guis_fnc_startBoxGui; ShopCaller = _this select 1"]] remoteExec ["addAction", 0];
 
 
 _marker1 = createMarker ["Mission Area", bulwarkCity];
