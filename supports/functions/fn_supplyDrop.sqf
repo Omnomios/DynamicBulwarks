@@ -9,9 +9,9 @@ _offsY = 1000;
 _pointX = _offsX*(cos _angle) - _offsY*(sin _angle);
 _pointY = _offsX*(sin _angle) + _offsY*(cos _angle);
 
-_dropStart  = [(_targetPos select 0)+_pointX, (_targetPos select 1)+_pointY, _height];
+_dropStart  = _targetPos vectorAdd [_pointX, _pointY, _height];
 _dropTarget = [(_targetPos select 0), (_targetPos select 1), 100];
-_dropEnd    = [(_targetPos select 0)-_pointX*2, (_targetPos select 1)-_pointY*2, _height];
+_dropEnd    = _targetPos vectorAdd [-_pointX*2, -_pointY*2, _height];;
 
 _ag1spawn = [_dropStart, 0, _aircraft, WEST] call bis_fnc_spawnvehicle;
 _ag1air = _ag1spawn select 0;	//the aircraft
@@ -25,12 +25,12 @@ _ag1air setpos [getposATL _ag1air select 0, getposATL _ag1air select 1, _height]
 _reldir = [_dropStart, _targetPos] call BIS_fnc_dirTo;
 _ag1air setdir _reldir;
 
-paraDropLatch = false;
+supplyDropLatch = false;
 
 _waypoint0 = _ag1 addwaypoint[_dropTarget,0];
 _waypoint0 setwaypointtype "Move";
-_waypoint0 setWaypointCompletionRadius 10;
-_waypoint0 setWaypointStatements ["true", "paraDropLatch = true;"];
+_waypoint0 setWaypointCompletionRadius 5;
+_waypoint0 setWaypointStatements ["true", "supplyDropLatch = true;"];
 
 _waypoint1 = _ag1 addwaypoint[_dropEnd,0];
 _waypoint1 setwaypointtype "Move";
@@ -41,7 +41,8 @@ _waypoint1 setwaypointtype "Move";
 
 sleep 4;
 _ag1air animateDoor ['Door_1_source', 1];
-waitUntil {paraDropLatch};
+waitUntil {supplyDropLatch};
+sleep 1.5;
 
 // Drop cargo
 _playerCount = count playableUnits;
@@ -53,7 +54,7 @@ _supplyBox attachTo [_parachute, [0,0,0]];
 _supplyBox allowDamage false;
 
 waitUntil {getpos _supplyBox select 2<4};
-_smoker = "SmokeShellBlue" createVehicle ([getpos _supplyBox select 0, getpos _supplyBox select 1, (getpos _supplyBox select 2)+5]);
+_smoker = "SmokeShellBlue" createVehicle (getpos _supplyBox vectorAdd [0,0,5]);
 detach _supplyBox;
 
 sleep 20;

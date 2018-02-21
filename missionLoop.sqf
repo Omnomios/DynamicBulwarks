@@ -6,6 +6,8 @@ publicVariable "attkWave";
 activeLoot = [];
 //mrkrs = [];
 
+waveUnits = [[],[],[]];
+
 //spawn start loot
 if (isServer) then {
 	execVM "loot\spawnLoot.sqf";
@@ -22,16 +24,31 @@ while {_runMissionLoop} do {
 		sleep 1;
 	};
 
+	// Get all human players in this wave cycle
+	_allHCs = entities "HeadlessClient_F";
+	_allHPs = allPlayers - _allHCs;
+
+	[] remoteExec ["killPoints_fnc_updateHud", -2];
+
 	attkWave = (attkWave + 1);
 	publicVariable "attkWave";
-	[player] remoteExec ["killPoints_fnc_updateHud", 0];
 
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 	//{9999 remoteExec ["setPlayerRespawnTime", _x]} foreach playableUnits;
 	[9999] remoteExec ["setPlayerRespawnTime", 0];
 	if (isServer) then {
+		/*
+		// Delete
+		_final = waveUnits select 2;
+		{deleteVehicle _x} foreach _final;
+		// Shuffle
+		waveUnits set [2, []];
+		waveUnits set [1, waveUnits select 0];
+		waveUnits set [0, []];
+		// Spawn
+		*/
 		_createHostiles = execVM "hostiles\create_squad.sqf";
-		waitUntil { scriptDone _createHostiles};
+		waitUntil {scriptDone _createHostiles};
 	};
 	if (attkWave > 1 && isServer) then { //if first wave give player extra time before spawning enemies
 		{deleteMarker _x} foreach lootDebugMarkers;
@@ -40,10 +57,6 @@ while {_runMissionLoop} do {
 		waitUntil { scriptDone _spawnLoot};
 	};
 	while {_runMissionLoop} do {
-		// Get all human players in this wave cycle
-		_allHCs = entities "HeadlessClient_F";
-		_allHPs = allPlayers - _allHCs;
-
 		//get hostiles to keep moving towards player - loop updating player pos?
 		if (east countSide allUnits == 0) exitWith {
 			hint "wave Complete";
@@ -81,7 +94,6 @@ while {_runMissionLoop} do {
 	if(_missionFailure) exitWith {};
 
 	["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
-	//{0 remoteExec ["setPlayerRespawnTime", 0]} foreach playableUnits;
 	[0] remoteExec ["setPlayerRespawnTime", 0];
 
 	{
@@ -90,5 +102,5 @@ while {_runMissionLoop} do {
 	};
 	} foreach allPlayers;
 
-	sleep 30;
+	sleep 20+(attkWave*6);
 };

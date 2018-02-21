@@ -2,10 +2,10 @@
 
 // List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper
 
-HOSTILE_LEVEL_1 = List_Bandits;         // Wave 0 >
-HOSTILE_LEVEL_2 = List_ParaBandits;     // Wave 5 >
-HOSTILE_LEVEL_3 = List_Viper;           // Wave 10 >
-HOSTILE_MULTIPLIER = 1.2;
+HOSTILE_LEVEL_1 = List_Bandits;  // Wave 0 >
+HOSTILE_LEVEL_2 = List_OPFOR;    // Wave 5 >
+HOSTILE_LEVEL_3 = List_Viper;    // Wave 10 >
+HOSTILE_MULTIPLIER = 1;
 
 // List_LocationMarkers, List_AllCities
 BULWARK_LOCATIONS = List_LocationMarkers;
@@ -25,7 +25,7 @@ LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
 LOOT_DEBUG = FALSE;           // Shows loot as markers on the map
 LOOT_SUPPLYDROP = 0.2;        // Radius of supply drop
 PARATROOP_COUNT = 3;
-PARATROOP_CLASS = List_INDEP;
+PARATROOP_CLASS = List_NATO;
 
 /* Points */
 SCORE_KILL = 100;       // Every kill
@@ -35,5 +35,5 @@ SCORE_RANDOMBOX = 950;  // Cost to spin the box
 SCORE_AMMOBOX = 500;    // Cost to reload at an ammo box
 SCORE_FIRSTAID = 250;   // Cost per FAK
 SCORE_RECONUAV = 800;   // Show units on map
-SCORE_PARATROOP = 1450; // Paratroopers
+SCORE_PARATROOP = 1950; // Paratroopers
 SCORE_AIRSTRIKE = 5430; // CAS Missles

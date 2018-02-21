@@ -1,3 +1,3 @@
 if (!isDedicated) then {
-	[player] call killPoints_fnc_updateHud;
+	[] call killPoints_fnc_updateHud;
 };

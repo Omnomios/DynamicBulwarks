@@ -1,6 +1,6 @@
 if (!isDedicated) then {
     disableSerialization;
-    _player = _this select 0;
+    _player = player;
 
     _killPoints = _player getVariable "killPoints";
     if(isNil "_killPoints") then {

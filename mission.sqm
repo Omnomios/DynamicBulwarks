@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=99;
+		nextID=103;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8082.8184,245.85576,11326};
-		dir[]={0.479987,-0.37120327,-0.7950241};
-		up[]={0.19190569,0.92847407,-0.31785551};
-		aside[]={-0.85621601,4.8923539e-008,-0.51693642};
+		pos[]={13080.812,194.63264,19529.797};
+		dir[]={-0.27821892,-0.50137383,0.81942785};
+		up[]={-0.16121604,0.86512148,0.47481233};
+		aside[]={0.94706196,-1.4495163e-007,0.32155952};
 	};
 };
 binarizationWanted=0;
@@ -158,6 +158,30 @@ class CustomAttributes
 		};
 		nAttributes=3;
 	};
+	class Category1
+	{
+		name="Scenario";
+		class Attribute0
+		{
+			property="EnableDebugConsole";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		nAttributes=1;
+	};
 };
 class Mission
 {
@@ -188,7 +212,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=8;
+		items=12;
 		class Item0
 		{
 			dataType="Group";
@@ -478,7 +502,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={139.16815,75.501511,-301.24194};
+						position[]={12491.119,147.9632,20186.645};
 					};
 					side="West";
 					flags=1;
@@ -489,7 +513,7 @@ class Mission
 					};
 					id=72;
 					type="C_Man_casual_6_F";
-					atlOffset=261.47006;
+					atlOffset=75.423592;
 				};
 				class Item9
 				{
@@ -635,6 +659,52 @@ class Mission
 			a=150;
 			b=150;
 			id=94;
+		};
+		class Item8
+		{
+			dataType="Marker";
+			position[]={8303.9863,75.046875,10078.488};
+			name="bulwark_zone_8";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=99;
+			atlOffset=-1.089798;
+		};
+		class Item9
+		{
+			dataType="Marker";
+			position[]={12815.5,88.037025,16676.613};
+			name="bulwark_zone_9";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=100;
+		};
+		class Item10
+		{
+			dataType="Marker";
+			position[]={14485.818,20.029274,17671.791};
+			name="bulwark_zone_10";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=101;
+			atlOffset=-0.69843292;
+		};
+		class Item11
+		{
+			dataType="Marker";
+			position[]={12841.994,43.018955,19643.109};
+			name="bulwark_zone_11";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=102;
 		};
 	};
 };

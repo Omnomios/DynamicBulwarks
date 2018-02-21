@@ -10,21 +10,25 @@ if (_attackWave < 40) then { //determine AI skill based on Wave
 
 sleep 0.5;
 
-_attGroupBand = createGroup [east, true];
-_groupPos = [bulwarkCity, BULWARK_RADIUS, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
+_attGroupBand = createGroup [EAST, true];
+_location = [bulwarkCity, BULWARK_RADIUS, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 for ("_i") from 1 to _unitCount do {
-	_banditSpaned = objNull;
-	_infBandit = selectRandom _unitClasses;
-	_infBandit createUnit [_groupPos, _attGroupBand, "_banditSpaned = this", hosSkill];
+	_unitClass = selectRandom _unitClasses;
+	_unit = objNull;
+	_unit = _attGroupBand createUnit [_unitClass, _location, [], 0.5, "FORM"];
+	sleep 0.3;
+	waitUntil {!isNull _unit};
 
-	if (isNull _banditSpaned) then {hint "falied to spawn";} else {
-		_banditSpaned doMove (getPos (selectRandom playableUnits));
-		_banditSpaned setUnitAbility hosSkill;
-		_banditSpaned setSkill ["aimingAccuracy", 0.05];
-		_banditSpaned setSkill ["aimingSpeed", 0.05];
-		_banditSpaned setSkill ["aimingShake", 0.05];
-		_banditSpaned setSkill ["spotTime", 0.05];
-		_banditSpaned addEventHandler ["Hit", killPoints_fnc_hit];
-		_banditSpaned addEventHandler ["Killed", killPoints_fnc_killed];
-	};
+	[_unit] join _attGroupBand;
+	_unit doMove (getPos (selectRandom playableUnits));
+	_unit setUnitAbility hosSkill; //todo https://community.bistudio.com/wiki/CfgAISkill
+	_unit setSkill ["aimingAccuracy", 0.05];
+	_unit setSkill ["aimingSpeed", 0.05];
+	_unit setSkill ["aimingShake", 0.05];
+	_unit setSkill ["spotTime", 0.05];
+	_unit addEventHandler ["Hit", killPoints_fnc_hit];
+	_unit addEventHandler ["Killed", killPoints_fnc_killed];
+
+	_unitArray = waveUnits select 0;
+	_unitArray append [_unit];
 };
