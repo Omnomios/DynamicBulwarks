@@ -4,9 +4,9 @@ shopVehic = objNull;
 
 switch (_index) do
 {
-    case 0:
+    case 1:
     {
-      if(player getVariable "killPoints" >= 100) then {
+      if(player getVariable "killPoints" >= 150) then {
         [player, 100] call killPoints_fnc_spend;
         shopVehic = "Land_SandbagBarricade_01_half_F" createVehicle [0,0,0];
         objPurchase = true
@@ -16,7 +16,7 @@ switch (_index) do
       };
     };
 
-    case 2:
+    case 3:
     {
       if(player getVariable "killPoints" >= 250) then {
         [player, 100] call killPoints_fnc_spend;
@@ -28,7 +28,7 @@ switch (_index) do
       };
     };
 
-    case 3:
+    case 4:
     {
       if(player getVariable "killPoints" >= 500) then {
         [player, 100] call killPoints_fnc_spend;
@@ -39,7 +39,7 @@ switch (_index) do
         objPurchase = false
       };
     };
-    case 4:
+    case 5:
     {
       if(player getVariable "killPoints" >= 1000) then {
         [player, 100] call killPoints_fnc_spend;
@@ -50,7 +50,7 @@ switch (_index) do
         objPurchase = false
       };
     };
-    case 1:
+    case 2:
     {
       if(player getVariable "killPoints" >= 150) then {
         [player, 100] call killPoints_fnc_spend;
@@ -61,11 +61,22 @@ switch (_index) do
         objPurchase = false
       };
     };
-    case 5:
+    case 6:
     {
       if(player getVariable "killPoints" >= 5000) then {
         [player, 100] call killPoints_fnc_spend;
         shopVehic = "Land_Cargo_Patrol_V3_F" createVehicle [0,0,0];
+        objPurchase = true
+      } else {
+        [format ["<t size='0.6' color='#ff3300'>NOT ENOGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
+        objPurchase = false
+      };
+    };
+    case 0:
+    {
+      if(player getVariable "killPoints" >= 50) then {
+        [player, 100] call killPoints_fnc_spend;
+        shopVehic = "Land_Barricade_01_4m_F" createVehicle [0,0,0];
         objPurchase = true
       } else {
         [format ["<t size='0.6' color='#ff3300'>NOT ENOGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
@@ -77,5 +88,5 @@ sleep 0.1;
 if (objPurchase) then {
   closeDialog 0;
   shopVehic attachTo [ShopCaller, [0,2,0.02], "Pelvis"];
-  dropActID = ShopCaller addAction ["drop", "detach shopVehic; ShopCaller removeAction dropActID; _shopVehicPos = getPos shopVehic; shopVehic setPos [_shopVehicPos select 0, _shopVehicPos select 1, 0]"];
+  dropActID = ShopCaller addAction ["Place Object", "detach shopVehic; ShopCaller removeAction dropActID; shopVehic setVehiclePosition [shopVehic, [], 0, 'CAN_COLLIDE'],[shopVehic, ['Remove', 'deleteVehicle (_this select 0)']] remoteExec ['addAction', 0];"];
 };
