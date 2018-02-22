@@ -54,34 +54,31 @@ while {_runMissionLoop} do {
 		waitUntil { scriptDone _spawnLoot};
 	};
 	while {_runMissionLoop} do {
-		//get hostiles to keep moving towards player - loop updating player pos?
+		//Check if all hostiles dead
 		if (east countSide allUnits == 0) exitWith {
 			hint "wave Complete";
 		};
+		//check if all players dead
 		if ({alive _x} count allPlayers isEqualTo 0) then {
 			_runMissionLoop = false;
 			_missionFailure = true;
 			"End1" call BIS_fnc_endMissionServer;
 		};
+		//Move mostiles towards neaest player
+		sleep 1;
 		{if (side _x == east) then {
 			thisNPC = _x;
-			while {true} do {
-				_goToPlayer = selectRandom _allHPs;
-				/*
-				_gotoPlayerDistance = 9999;
- 				{_playerDistance = (getPos thisNPC) distance (getPos _x);
-					if (_playerDistance < _gotoPlayerDistance) then {
-						goToPlayer = _x;
-					};
-				} forEach _allHPs;
-				*/
-				if (alive _goToPlayer) exitWith {
-					_goToPlayerPos = getPos _goToPlayer;
-					thisNPC doMove _goToPlayerPos;
+			_gotoPlayerDistance = 9999;
+ 			{
+				_playerDistance = (getPos thisNPC) distance _x;
+				if ((_playerDistance < _gotoPlayerDistance) && (alive _x)) then {
+					goToPlayer = _x;
 				};
-			};
+			} forEach _allHPs;
+			thisNPC doMove (getPos goToPlayer);
 		};
 		} foreach allUnits;
+
 		sleep 10;
 
 		// Mission area protection

@@ -29,5 +29,10 @@ sleep 0.1;
 if (objPurchase) then {
   closeDialog 0;
   shopVehic attachTo [ShopCaller, [0,2,0.02], "Pelvis"];
-  dropActID = ShopCaller addAction ["Place Object", "detach shopVehic; ShopCaller removeAction dropActID; shopVehic setVehiclePosition [shopVehic, [], 0, 'CAN_COLLIDE'],[shopVehic, ['Remove', 'deleteVehicle (_this select 0)']] remoteExec ['addAction', 0];"];
+  {[shopVehic, _x] remoteExec ["disableCollisionWith", 0];} forEach playableUnits;
+  dropActID = ShopCaller addAction ["Place Object",
+    "detach shopVehic;
+    {[shopVehic, _x] remoteExec ['enableCollisionWith', 0];} forEach playableUnits;
+    ShopCaller removeAction dropActID;
+    shopVehic setVehiclePosition [shopVehic, [], 0, 'CAN_COLLIDE'],[shopVehic, ['Remove', 'deleteVehicle (_this select 0)']] remoteExec ['addAction', 0];"];
 };
