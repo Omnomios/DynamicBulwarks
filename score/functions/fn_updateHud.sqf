@@ -1,3 +1,11 @@
+/**
+*  fn_updateHud
+*
+*  Hud values have changed, update Hud
+*
+*  Domain: Client
+**/
+
 if (!isDedicated) then {
     disableSerialization;
     _player = player;

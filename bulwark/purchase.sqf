@@ -1,33 +1,17 @@
+/**
+*  bulwark/purchase
+*
+*  Actor for the "Purchase building" dialog button
+*
+*  Domain: Client
+**/
+
 _index = lbCurSel 1500;
 shopVehic = objNull;
-//["Short Sandbag Wall","Tall Concrete Wall","Land_HBarrier_3_F","Land_HBarrierWall4_F","Land_SandbagBarricade_01_hole_F","Land_Cargo_Patrol_V3_F"];
 
-_shopClass = "";
-_shopPrice = 0;
-
-switch (_index) do {
-    case 0: {
-        _shopClass = "Land_Barricade_01_4m_F"; _shopPrice = 50;
-    };
-    case 1: {
-        _shopClass = "Land_SandbagBarricade_01_half_F"; _shopPrice = 150;
-    };
-    case 2: {
-        _shopClass = "Land_SandbagBarricade_01_hole_F"; _shopPrice = 250;
-    };
-    case 3: {
-        _shopClass = "Land_Mil_WallBig_4m_F"; _shopPrice = 500;
-    };
-    case 4: {
-        _shopClass = "Land_HBarrier_3_F"; _shopPrice = 600;
-    };
-    case 5: {
-        _shopClass = "Land_HBarrierWall4_F"; _shopPrice = 1000;
-    };
-    case 6: {
-        _shopClass = "Land_Cargo_Patrol_V3_F"; _shopPrice = 5000;
-    };
-  };
+_shopPrice = (BULWARK_BUILDITEMS select _index) select 0;
+_shopName = (BULWARK_BUILDITEMS select _index) select 0;
+_shopClass = (BULWARK_BUILDITEMS select _index) select 2;
 
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};
@@ -37,7 +21,7 @@ if(player getVariable "killPoints" >= _shopPrice) then {
     shopVehic = _shopClass createVehicle [0,0,0];
     objPurchase = true;
 } else {
-    [format ["<t size='0.6' color='#ff3300'>NOT ENOUGH POINTS!</t>"], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
+    [format ["<t size='0.6' color='#ff3300'>Not enough points for %1!</t>", _shopName], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
     objPurchase = false;
 };
 

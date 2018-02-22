@@ -1,3 +1,11 @@
+/**
+*  createBase
+*
+*  Selects a base location and spawns required mission items
+*
+*  Domain: Server
+**/
+
 BulwarkRoomPos = nil;
 
 _TWOTHIRDS = 0.6666;

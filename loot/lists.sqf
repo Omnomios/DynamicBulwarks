@@ -1,3 +1,11 @@
+/**
+*  loot/lists
+*
+*  Populates global arrays with spawnable loot classes
+*
+*  Domain: Server
+**/
+
 _hats = [];
 _uniforms = [];
 _vests = [];

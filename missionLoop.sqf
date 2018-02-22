@@ -44,7 +44,7 @@ while {_runMissionLoop} do {
 		waveUnits set [1, waveUnits select 0];
 		waveUnits set [0, []];
 		// Spawn
-		_createHostiles = execVM "hostiles\create_squad.sqf";
+		_createHostiles = execVM "hostiles\createWave.sqf";
 		waitUntil {scriptDone _createHostiles};
 	};
 	if (attkWave > 1 && isServer) then { //if first wave give player extra time before spawning enemies

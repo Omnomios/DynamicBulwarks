@@ -1,7 +1,13 @@
+/**
+*  editMe
+*
+*  Defines all global config for the mission
+*
+*  Domain: Client, Server
+**/
+
 /* Attacker Waves */
-
 // List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper
-
 HOSTILE_LEVEL_1 = List_Bandits;  // Wave 0 >
 HOSTILE_LEVEL_2 = List_OPFOR;    // Wave 5 >
 HOSTILE_LEVEL_3 = List_Viper;    // Wave 10 >
@@ -32,9 +38,20 @@ SCORE_KILL = 100;       // Every kill
 SCORE_HIT = 10;         // Every Bullet hit that doesn't result in a kill
 SCORE_DAMAGE_BASE = 10; // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
-SCORE_AMMOBOX = 500;    // Cost to reload at an ammo box
-SCORE_FIRSTAID = 250;   // Cost per FAK
-SCORE_RECONUAV = 800;   // Show units on map
-SCORE_PARATROOP = 1950; // Paratroopers
-SCORE_AIRSTRIKE = 5430; // CAS Missles
-SCORE_RAGEPACK  = 8930; // Berzerk mode
+
+BULWARK_SUPPORTITEMS = [
+    [800,  "Recon UAV",     "reconUAV"],
+    [1950, "Paratroopers",  "paraDrop"],
+    [5430, "Missle CAS",    "airStrike"],
+    [8930, "Rage Stimpack", "ragePack"]
+];
+
+BULWARK_BUILDITEMS = [
+    [50,   "Junk Barricade",     "Land_Barricade_01_4m_F"],
+    [100,  "Short Sandbag Wall", "Land_SandbagBarricade_01_half_F"],
+    [150,  "Sandbag Barricade",  "Land_SandbagBarricade_01_hole_F"],
+    [250,  "Tall Concrete Wall", "Land_Mil_WallBig_4m_F"],
+    [500,  "H Barrier",          "Land_HBarrier_3_F"],
+    [1000, "Double H Barrier",   "Land_HBarrierWall4_F"],
+    [5000, "Guard Tower",        "Land_Cargo_Patrol_V3_F"]
+];

@@ -1,6 +1,11 @@
-//
-// Animate the weapon raising and lowering.
-//
+/**
+*  spin/animateWeapon
+*
+*  Raises and lowers the weapon holder for the loot box
+*
+*  Domain: Client
+**/
+
 //TODO: less code duplication
 
 _boxPos       = _this select 1;

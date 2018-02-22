@@ -1,3 +1,11 @@
+/**
+*  spawnVehicle
+*
+*  Creates a single vehicle in a random location
+*
+*  Domain: Server
+**/
+
 _cfgVehicles = configFile >> "CfgVehicles";
 _entries = count _cfgVehicles;  // GO INTO CFGVEHICLES AND CHECK NUMBER OF ENTRIES
 _realentries = _entries - 1;

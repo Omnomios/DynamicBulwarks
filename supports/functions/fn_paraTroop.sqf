@@ -1,3 +1,11 @@
+/**
+*  fn_paraTroop
+*
+*  Calls VTOL to drop a group of paratroopers on the specified location
+*
+*  Domain: Server
+**/
+
 _player    = _this select 0;
 _targetPos = _this select 1;
 _unitCount = _this select 2;

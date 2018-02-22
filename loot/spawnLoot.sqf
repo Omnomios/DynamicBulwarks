@@ -1,4 +1,11 @@
-/* Start Script */
+/**
+*  spawnLoot
+*
+*  Spawns loot randomly around the play area
+*
+*  Domain: Server
+**/
+
 activeLoot = [];
 lootDebugMarkers = [];
 

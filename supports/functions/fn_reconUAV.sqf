@@ -1,3 +1,11 @@
+/**
+*  fn_reconUAV
+*
+*  Spawns UAV and runs special unit position to marker script while it lives
+*
+*  Domain: Client
+**/
+
 _player    = _this select 0;
 _targetPos = _this select 1;
 _aircraft  = _this select 2;

@@ -1,3 +1,12 @@
+/**
+*  fn_supplyDrop
+*
+*  Calls VTOL to drop a box with the action definend by _cargo attached
+*
+*  Domain: Server
+**/
+
+
 _targetPos = _this select 0;
 _cargo     = _this select 1;
 _aircraft  = _this select 2;
