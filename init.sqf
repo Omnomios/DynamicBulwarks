@@ -45,16 +45,6 @@ if (isServer) then {
 	} forEach allPlayers;  //move any players that spawned already to respawn point
 };
 
-<<<<<<< HEAD
-=======
-
-
-if (!isServer && (player != player)) then {
-	waitUntil {player == player};
-	waitUntil {time > 10};
-};
-
->>>>>>> 5eeae73ecc31bb19b5e10f83223e0f07f6f75d5a
 //Remove stamina and lower sway and recoil
 if (!isDedicated) then {
 	player setCustomAimCoef 0.2;
