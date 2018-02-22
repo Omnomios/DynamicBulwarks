@@ -1,6 +1,5 @@
 if (isServer) then {
-	["Preparing mission", "BLACK IN", 2] remoteExec ["titleText", -2];
-};
+	["Preparing mission", "BLACK", 2] remoteExec ["titleText", -2]};
 _handle = [] execVM "locationLists.sqf";
 waitUntil {scriptDone _handle};
 _handle = [] execVM "loot\lists.sqf";
@@ -19,8 +18,16 @@ if (isServer) then {
 // Create const that points to mission folder
 MISSION_ROOT = call { private "_arr"; _arr = toArray str missionConfigFile; _arr resize (count _arr - 15); toString _arr };
 
+
+spawnPlaceAround = {
+	_spawnObject = _this select 0;
+	for ("_i") from 0 to 7 do {
+		_relPos = [getPosASL _spawnObject, 2, 45 * _i] call BIS_fnc_relPos;
+		if(!lineIntersects [ getPosASL _spawnObject, _relPos, _spawnObject]) exitWith {_relPos};
+	};
+};
 //Create spawnpoint
-bulMkr = createMarker ["respawn_west", BulwarkRoomPos];
+bulMkr = createMarker ["respawn_west", [bullwarkBox] call spawnPlaceAround];
 bulMkr setMarkerShape "ICON";
 bulMkr setMarkerType "hd_dot";
 bulMkr setMarkerColor "ColorBlue";
@@ -33,11 +40,21 @@ if (!isServer && (player != player)) then {
 
 if (isServer) then {
 	{
-		_newLoc = (getPos bullwarkBox) findEmptyPosition [1, 10];
-		_x setPos _newLoc;
+		_newLoc = [bullwarkBox] call spawnPlaceAround;
+		_x setPosASL _newLoc vectorAdd [0, 0, 0.15];
 	} forEach allPlayers;  //move any players that spawned already to respawn point
 };
 
+<<<<<<< HEAD
+=======
+
+
+if (!isServer && (player != player)) then {
+	waitUntil {player == player};
+	waitUntil {time > 10};
+};
+
+>>>>>>> 5eeae73ecc31bb19b5e10f83223e0f07f6f75d5a
 //Remove stamina and lower sway and recoil
 if (!isDedicated) then {
 	player setCustomAimCoef 0.2;

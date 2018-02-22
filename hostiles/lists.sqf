@@ -1,3 +1,11 @@
+/**
+*  hostiles/lists
+*
+*  Populates global arrays with various unit types
+*
+*  Domain: Server
+**/
+
 _zombieSpider = [];
 _zombiePlayer = [];
 _zombieCrawler = [];

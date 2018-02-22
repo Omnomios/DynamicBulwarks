@@ -1,3 +1,11 @@
+/**
+*  fn_airStrike
+*
+*  Calls CAS jet to attack passed location
+*
+*  Domain: Server
+**/
+
 _player    = _this select 0;
 _targetPos = _this select 1;
 _aircraft  = _this select 2;

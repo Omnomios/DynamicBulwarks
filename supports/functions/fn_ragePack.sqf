@@ -1,3 +1,11 @@
+/**
+*  fn_ragePack
+*
+*  Applies post processing to screen and gives player godmode, infinite ammo, and faster run speed
+*
+*  Domain: Client
+**/
+
 // Screen effects
 0 = ["ColorInversion", 2500, [0.5, 0.5, 0.5]] spawn { params ["_name", "_priority", "_effect", "_handle"];
     while {

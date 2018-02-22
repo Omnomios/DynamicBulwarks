@@ -1,3 +1,12 @@
+/**
+*  spin/main
+*
+*  Actor for the "Spin the box" action menu item
+*
+*  Domain: Client
+**/
+
+
 _hPos = 0.70;
 _lPos = 0.35;
 

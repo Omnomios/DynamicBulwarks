@@ -1,15 +1,23 @@
-BulwarkRoomPos = nil;
+/**
+*  createBase
+*
+*  Selects a base location and spawns required mission items
+*
+*  Domain: Server
+**/
+
+bulwarkRoomPos = nil;
 
 _TWOTHIRDS = 0.6666;
 
-while {isNil "BulwarkRoomPos"} do {
+while {isNil "bulwarkRoomPos"} do {
 	bulwarkCity = selectRandom BULWARK_LOCATIONS;
 	while {true} do {
 		_randCityLocation = [(bulwarkCity select 0) + (random [-BULWARK_RADIUS*_TWOTHIRDS, 0, BULWARK_RADIUS*_TWOTHIRDS]),(bulwarkCity select 1) + (random [-BULWARK_RADIUS*_TWOTHIRDS, 0, BULWARK_RADIUS*_TWOTHIRDS]), 0];
 		bulwarkBulding = nearestBuilding _randCityLocation;
 		bulwarkRooms = bulwarkBulding buildingPos -1;
 		if ((count bulwarkRooms) >= BULWARK_MINROOMS) exitWith {
-			BulwarkRoomPos = selectRandom bulwarkRooms;
+			bulwarkRoomPos = selectRandom bulwarkRooms;
 		};
 	}
 };

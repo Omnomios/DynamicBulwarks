@@ -6,7 +6,7 @@ class paraDrop
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\attack_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
-    removeAfterExpressionCall = 0;
+    removeAfterExpressionCall = 1;
 };
 
 class reconUAV
@@ -17,18 +17,18 @@ class reconUAV
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\defend_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
-    removeAfterExpressionCall = 0;
+    removeAfterExpressionCall = 1;
 };
 
 class airStrike
 {
-    text = "Bombing Run";
+    text = "Missle CAS";
     submenu = "";
     expression = "[_this select 0, _this select 1, 'airStrike', 'B_Plane_CAS_01_DynamicLoadout_F'] remoteExec ['killPoints_fnc_support', 2];";
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\cas_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
-    removeAfterExpressionCall = 0;
+    removeAfterExpressionCall = 1;
 };
 
 class ragePack
@@ -39,5 +39,5 @@ class ragePack
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa";
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
-    removeAfterExpressionCall = 0;
+    removeAfterExpressionCall = 1;
 };

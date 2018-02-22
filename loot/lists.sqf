@@ -1,3 +1,11 @@
+/**
+*  loot/lists
+*
+*  Populates global arrays with spawnable loot classes
+*
+*  Domain: Server
+**/
+
 _hats = [];
 _uniforms = [];
 _vests = [];
@@ -6,6 +14,7 @@ _secondaries = [];
 _launchers = [];
 _optics = [];
 _items = [];
+_mines = [];
 _backpacks = [];
 _glasses = [];
 _faces = [];
@@ -70,6 +79,19 @@ for "_x" from 0 to (_count-1) do {
     if (isClass _item) then {_faces = _faces + [configName _item];};
 };
 
+_count =  count (configFile >> "CfgMagazines");
+for "_x" from 0 to (_count-1) do {
+    _item=((configFile >> "CfgMagazines") select _x);
+	if (isClass _item) then {
+		if(getNumber (_item >> "value") == 5) then {
+			if(["mine", getText (_item >> "displayName")] call BIS_fnc_inString) then {
+				_mines = _mines + [configName _item];				
+			}
+		};
+	};
+};
+
+
 List_Hats = [] + _hats;
 List_Uniforms = [] + _uniforms;
 List_Vests = [] + _vests;
@@ -79,6 +101,7 @@ List_Secondaries = [] + _secondaries;
 List_Launchers = [] + _launchers;
 List_Optics = [] + _optics;
 List_Items = [] + _items + ['ItemGPS'];
+List_Mines = [] + _mines;
 List_Glasses = [] + _glasses;
 List_Faces = [] + _faces;
 

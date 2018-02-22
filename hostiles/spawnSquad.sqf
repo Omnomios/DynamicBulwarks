@@ -1,3 +1,12 @@
+/**
+*  spawnSquad
+*
+*  Creates a squad of units in a random location
+*
+*  Domain: Server
+**/
+
+
 _unitClasses = _this select 0;
 _attackWave  = _this select 1;
 _unitCount   = _this select 2;

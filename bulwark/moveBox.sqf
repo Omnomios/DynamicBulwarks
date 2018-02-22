@@ -1,3 +1,11 @@
+/**
+*  moveBox
+*
+*  Actor for the bulwark "Pickup" action menu item
+*
+*  Domain: Client
+**/
+
 _emptyCrate = _this select 0;
 _caller = _this select 1;
 _pickupAction = _this select 2;

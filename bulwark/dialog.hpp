@@ -12,7 +12,7 @@ class startBox_Dialog
         class startBox_rscPicture: RscPicture
         {
             idc = 1200;
-            text = "#(argb,8,8,3)color(0.1,0.1,0.1,0.5)";
+            text = "#(argb,8,8,3)color(0.1,0.1,0.1,0.8)";
             x = 0.3 * safezoneW + safezoneX;
             y = 0.25 * safezoneH + safezoneY;
             w = 0.4 * safezoneW;

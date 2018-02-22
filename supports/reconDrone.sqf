@@ -1,3 +1,11 @@
+/**
+*  reconDrone
+*
+*  Actor for recon drone pickup
+*
+*  Domain: Client
+**/
+
 _droneBox = _this select 0;
 hosMrks = [];
 _curWave = attkWave;

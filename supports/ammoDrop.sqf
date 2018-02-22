@@ -1,3 +1,11 @@
+/**
+*  ammoDrop
+*
+*  Actor for "FILL AMMO" action menu item
+*
+*  Domain: Client
+**/
+
 _ammoBox = _this select 0;
 _ammoPlayer = _this select 1;
 

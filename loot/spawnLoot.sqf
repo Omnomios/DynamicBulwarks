@@ -1,4 +1,11 @@
-/* Start Script */
+/**
+*  spawnLoot
+*
+*  Spawns loot randomly around the play area
+*
+*  Domain: Server
+**/
+
 activeLoot = [];
 lootDebugMarkers = [];
 
@@ -13,20 +20,11 @@ _droneRoom = while {true} do {
 _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_COLLIDE"];
 _droneSupport addAction ["Reveal enemies", "supports\reconDrone.sqf"];
 
-if(LOOT_DEBUG) then {
-	_houseMkr = createMarker [netId _droneSupport, _droneRoom];
-	_houseMkr setMarkerShape "ICON";
-	_houseMkr setMarkerType "hd_dot";
-	_houseMkr setMarkerColor "ColorPink";
-	lootDebugMarkers pushback _houseMkr;
-};
-
 activeLoot pushback _droneSupport;
-
 
 /* Master loot spawner */
 if(LOOT_DEBUG) then { systemChat "Started loot spawn"; };
-_houseCount = 0;
+_houseCount = floor random 3; // Mix up the loot houses a bit
 _houseLoot = 0;
 _roomCount = 0;
 {
@@ -53,7 +51,7 @@ _roomCount = 0;
 				_lootRoomPos = _x;
 				_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
 
-				switch (floor random 5) do {
+				switch (floor random 6) do {
 					case 0: {
 						_weapon = selectRandom LOOT_WEAPON_POOL;
 						_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
@@ -75,7 +73,11 @@ _roomCount = 0;
 					};
 					case 4: {
 						_backpack = selectRandom LOOT_STORAGE_POOL;
-						_lootHolder addBackpackCargoGlobal  [_backpack, 1];
+						_lootHolder addBackpackCargoGlobal [_backpack, 1];
+					};
+					case 5: {
+						_explosive = selectRandom LOOT_EXPLOSIVE_POOL;
+						_lootHolder addMagazineCargoGlobal [_explosive, 1 + (floor random 3)];
 					};
 				};
 				_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];

@@ -44,7 +44,7 @@ while {_runMissionLoop} do {
 		waveUnits set [1, waveUnits select 0];
 		waveUnits set [0, []];
 		// Spawn
-		_createHostiles = execVM "hostiles\create_squad.sqf";
+		_createHostiles = execVM "hostiles\createWave.sqf";
 		waitUntil {scriptDone _createHostiles};
 	};
 	if (attkWave > 1 && isServer) then { //if first wave give player extra time before spawning enemies
@@ -88,8 +88,8 @@ while {_runMissionLoop} do {
 		} foreach _allHPs;
 
 		{if ((_x distance bulwarkCity) > BULWARK_RADIUS * 1.1) then {
-			_newLoc = [BulwarkRoomPos, 0, 5, 1, 0] call BIS_fnc_findSafePos;
-			_x setpos _newLoc;
+			_newLoc = [bullwarkBox] call spawnPlaceAround;
+			_x setPosASL _newLoc;
 		};
 		} foreach _allHPs;
 	};

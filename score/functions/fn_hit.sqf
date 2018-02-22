@@ -1,3 +1,11 @@
+/**
+*  fn_hit
+*
+*  Event handler for unit hit.
+*
+*  Domain: Event
+**/
+
 if (isServer) then {
     _unit = _this select 0;
     _dmg = _this select 2;
