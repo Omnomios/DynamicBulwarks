@@ -15,9 +15,6 @@ if (isServer) then {
 	waitUntil { scriptDone _basepoint };
 };
 
-// Create const that points to mission folder
-MISSION_ROOT = call { private "_arr"; _arr = toArray str missionConfigFile; _arr resize (count _arr - 15); toString _arr };
-
 
 spawnPlaceAround = {
 	_spawnObject = _this select 0;
@@ -26,21 +23,22 @@ spawnPlaceAround = {
 		if(!lineIntersects [ getPosASL _spawnObject, _relPos, _spawnObject]) exitWith {_relPos};
 	};
 };
+
 //Create spawnpoint
-bulMkr = createMarker ["respawn_west", [bullwarkBox] call spawnPlaceAround];
+bulMkr = createMarker ["respawn_west", bulwarkRoomPos];
 bulMkr setMarkerShape "ICON";
 bulMkr setMarkerType "hd_dot";
 bulMkr setMarkerColor "ColorBlue";
 bulMkr setMarkerText "Spawn";
 
+publicVariable "bullwarkBox";
+
 if (isServer) then {
 	{
 		_newLoc = [bullwarkBox] call spawnPlaceAround;
-		_x setPosASL _newLoc vectorAdd [0, 0, 0.15];
+		_x setPosASL _newLoc;
 	} forEach allPlayers;  //move any players that spawned already to respawn point
 };
-
-
 
 if (!isServer && (player != player)) then {
 	waitUntil {player == player};
@@ -58,5 +56,5 @@ if (!isDedicated) then {
 
 if (isServer) then {
 	["", "BLACK IN", 2] remoteExec ["titleText", -2];
-	[bulwarkCity] execVM "missionLoop.sqf";
+	[bulwarkRoomPos] execVM "missionLoop.sqf";
 };

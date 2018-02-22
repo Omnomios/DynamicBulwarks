@@ -5,8 +5,6 @@
 *
 *  Domain: Client
 **/
-
-
 _hPos = 0.70;
 _lPos = 0.35;
 
@@ -29,7 +27,7 @@ _weapon setPosATL [_boxPosATL select 0, _boxPosATL select 1, ((_boxPosATL select
 _weapon enableSimulationGlobal false;
 
 // Trigger sound effect
-playSound3D [MISSION_ROOT + "sound\boxspin.wav", _weapon, false, getPosASL _weapon, 1, 1, 0];
+playSound3D ["boxSpin", _weapon, false, getPosASL _weapon, 1, 1, 0];
 
 // Start raising the weapon out of the box
 _coRoutine = [1, _boxPosATL, _lPos, _hPos, _weapon] execVM "loot\spin\animateWeapon.sqf";
