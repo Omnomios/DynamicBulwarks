@@ -6,7 +6,7 @@ overviewText = "Survive by scavenging equipment, in a randomly selected city, ag
 author = "Hilltop & omNomios";
 
 respawn = 3;
-respawnOnStart = 1;
+//respawnOnStart = 1;
 respawnDialog = 0;
 ReviveMode = 1;
 ReviveRequiredItems = 2;
