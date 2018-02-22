@@ -12,7 +12,7 @@ waitUntil {scriptDone _handle};
 
 //Select City and spawn point
 if (isServer) then {
-	_basepoint = [] execVM "createBase.sqf";
+	_basepoint = [] execVM "bulwark\createBase.sqf";
 	waitUntil { scriptDone _basepoint };
 };
 
