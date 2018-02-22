@@ -65,6 +65,6 @@ lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
 ]] remoteExec ["addAction", 0, true];
 lootBox enableSimulationGlobal false;
 
-_lootRoom = selectRandom bulwarkRooms;
-_artRadio = createVehicle ["Land_PortableLongRangeRadio_F", _lootRoom, [], 0, "CAN_COLLIDE"];
-[_artRadio, ["Artilery", "supports\artillery.sqf"]] remoteExec ["addAction", 0];
+//_lootRoom = selectRandom bulwarkRooms;
+//_artRadio = createVehicle ["Land_PortableLongRangeRadio_F", _lootRoom, [], 0, "CAN_COLLIDE"];
+//[_artRadio, ["Artilery", "supports\artillery.sqf"]] remoteExec ["addAction", 0];
