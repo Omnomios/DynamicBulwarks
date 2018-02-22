@@ -19,10 +19,11 @@ BULWARK_RADIUS = 150;
 BULWARK_MINROOMS = 3;   // Spawn room must have this many locations to be valid
 
 /* Loot Spawn */
-LOOT_WEAPON_POOL  = List_AllWeapons;    // Classnames of Loot items as an array
-LOOT_APPAREL_POOL = List_AllClothes;
-LOOT_ITEM_POOL    = List_Optics + List_Items;
-LOOT_STORAGE_POOL = List_AllStorage;
+LOOT_WEAPON_POOL    = List_AllWeapons;    // Classnames of Loot items as an array
+LOOT_APPAREL_POOL   = List_AllClothes;
+LOOT_ITEM_POOL      = List_Optics + List_Items;
+LOOT_EXPLOSIVE_POOL = List_Mines;
+LOOT_STORAGE_POOL   = List_AllStorage;
 
 /* Random Loot */
 LOOT_HOUSE_DISTRIBUTION = 2;  // Every *th house will spwan loot.
@@ -47,11 +48,13 @@ BULWARK_SUPPORTITEMS = [
 ];
 
 BULWARK_BUILDITEMS = [
-    [50,   "Junk Barricade",     "Land_Barricade_01_4m_F"],
-    [100,  "Short Sandbag Wall", "Land_SandbagBarricade_01_half_F"],
-    [150,  "Sandbag Barricade",  "Land_SandbagBarricade_01_hole_F"],
-    [250,  "Tall Concrete Wall", "Land_Mil_WallBig_4m_F"],
-    [500,  "H Barrier",          "Land_HBarrier_3_F"],
-    [1000, "Double H Barrier",   "Land_HBarrierWall4_F"],
-    [5000, "Guard Tower",        "Land_Cargo_Patrol_V3_F"]
+    [50,   "Junk Barricade",       "Land_Barricade_01_4m_F"],
+    [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F"],
+    [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F"],
+    [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F"],
+    [500,  "H Barrier",            "Land_HBarrier_3_F"],
+    [1000, "Double H Barrier",     "Land_HBarrierWall4_F"],
+    [2500, "Machine Gun",          "B_HMG_01_F"],
+    [2500, "Machine Gun (raised)", "B_HMG_01_high_F"],
+    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F"]
 ];

@@ -20,18 +20,28 @@ if (isServer) then {
 MISSION_ROOT = call { private "_arr"; _arr = toArray str missionConfigFile; _arr resize (count _arr - 15); toString _arr };
 
 //Create spawnpoint
-bulMkr = createMarker ["respawn_west", BulwarkRoomPos];
+bulMkr = createMarker ["respawn_west", bulwarkRoomPos];
 bulMkr setMarkerShape "ICON";
 bulMkr setMarkerType "hd_dot";
 bulMkr setMarkerColor "ColorBlue";
 bulMkr setMarkerText "Spawn";
 
+spawnPlaceAround = {
+	_spawnObject = _this select 0;
+	for ("_i") from 0 to 7 do {
+		_relPos = [getPosASL _spawnObject, 1, 45 * _i] call BIS_fnc_relPos;
+		if(!lineIntersects [ getPosASL _spawnObject, _relPos, _spawnObject]) exitWith {_relPos};
+	};
+};
+
 if (isServer) then {
 	{
-		_newLoc = (getPos bullwarkBox) findEmptyPosition [1, 10];
-		_x setPos _newLoc;
+		_newLoc = [bullwarkBox] call spawnPlaceAround;
+		_x setPosASL _newLoc;
 	} forEach allPlayers;  //move any players that spawned already to respawn point
 };
+
+
 
 if (!isServer && (player != player)) then {
 	waitUntil {player == player};
