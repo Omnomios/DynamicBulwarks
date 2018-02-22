@@ -66,15 +66,17 @@ while {_runMissionLoop} do {
 		{if (side _x == east) then {
 			thisNPC = _x;
 			while {true} do {
-				//_goToPlayer = selectRandom _allHPs;
+				_goToPlayer = selectRandom _allHPs;
+				/*
 				_gotoPlayerDistance = 9999;
  				{_playerDistance = (getPos thisNPC) distance (getPos _x);
 					if (_playerDistance < _gotoPlayerDistance) then {
 						goToPlayer = _x;
 					};
 				} forEach _allHPs;
-				if (alive goToPlayer) exitWith {
-					_goToPlayerPos = getPos goToPlayer;
+				*/
+				if (alive _goToPlayer) exitWith {
+					_goToPlayerPos = getPos _goToPlayer;
 					thisNPC doMove _goToPlayerPos;
 				};
 			};

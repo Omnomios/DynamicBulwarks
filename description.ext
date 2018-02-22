@@ -19,18 +19,13 @@ corpseRemovalMaxTime = 30;
 wreckRemovalMinTime = 30;
 wreckRemovalMaxTime = 50;
 
-#include "score\hudCommon.hpp"
 class CfgFunctions
 {
 	#include "score\Functions.h"
 	#include "supports\Functions.h"
-	#include "Dialogs\functions.hpp"
+	#include "bulwark\Functions.hpp"
 };
 
-class RscTitles
-{
-	#include "score\hud.hpp"
-};
 
 class CfgRemoteExec
 {
@@ -48,6 +43,12 @@ class CfgRemoteExec
 		class airStrike {};
 		class ragePack {};
 	};
+};
+
+#include "dialog\defines.hpp"
+class RscTitles
+{
+	#include "score\hud.hpp"
 };
 
 class CfgDebriefing
@@ -87,5 +88,4 @@ class CfgSounds
 	};
 };
 
-#include "dialogs\defines.hpp"
-#include "dialogs\dialogs.hpp"
+#include "bulwark\dialog.hpp"

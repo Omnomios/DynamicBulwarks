@@ -10,9 +10,10 @@ if (_attackWave < 40) then { //determine AI skill based on Wave
 
 sleep 0.5;
 
-_attGroupBand = createGroup [EAST, true];
+
 _location = [bulwarkCity, BULWARK_RADIUS, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 for ("_i") from 1 to _unitCount do {
+	_attGroupBand = createGroup [EAST, true];
 	_unitClass = selectRandom _unitClasses;
 	_unit = objNull;
 	_unit = _attGroupBand createUnit [_unitClass, _location, [], 0.5, "FORM"];
