@@ -26,16 +26,16 @@ bulMkr setMarkerType "hd_dot";
 bulMkr setMarkerColor "ColorBlue";
 bulMkr setMarkerText "Spawn";
 
+if (!isServer && (player != player)) then {
+	waitUntil {player == player};
+	waitUntil {time > 10};
+};
+
 if (isServer) then {
 	{
 		_newLoc = (getPos bullwarkBox) findEmptyPosition [1, 10];
 		_x setPos _newLoc;
 	} forEach allPlayers;  //move any players that spawned already to respawn point
-};
-
-if (!isServer && (player != player)) then {
-	waitUntil {player == player};
-	waitUntil {time > 10};
 };
 
 //Remove stamina and lower sway and recoil
