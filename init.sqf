@@ -1,6 +1,5 @@
 if (isServer) then {
-	["Preparing mission", "BLACK IN", 2] remoteExec ["titleText", -2];
-};
+	["Preparing mission", "BLACK", 2] remoteExec ["titleText", -2]};
 _handle = [] execVM "locationLists.sqf";
 waitUntil {scriptDone _handle};
 _handle = [] execVM "loot\lists.sqf";
@@ -19,25 +18,25 @@ if (isServer) then {
 // Create const that points to mission folder
 MISSION_ROOT = call { private "_arr"; _arr = toArray str missionConfigFile; _arr resize (count _arr - 15); toString _arr };
 
+
+spawnPlaceAround = {
+	_spawnObject = _this select 0;
+	for ("_i") from 0 to 7 do {
+		_relPos = [getPosASL _spawnObject, 2, 45 * _i] call BIS_fnc_relPos;
+		if(!lineIntersects [ getPosASL _spawnObject, _relPos, _spawnObject]) exitWith {_relPos};
+	};
+};
 //Create spawnpoint
-bulMkr = createMarker ["respawn_west", bulwarkRoomPos];
+bulMkr = createMarker ["respawn_west", [bullwarkBox] call spawnPlaceAround];
 bulMkr setMarkerShape "ICON";
 bulMkr setMarkerType "hd_dot";
 bulMkr setMarkerColor "ColorBlue";
 bulMkr setMarkerText "Spawn";
 
-spawnPlaceAround = {
-	_spawnObject = _this select 0;
-	for ("_i") from 0 to 7 do {
-		_relPos = [getPosASL _spawnObject, 1, 45 * _i] call BIS_fnc_relPos;
-		if(!lineIntersects [ getPosASL _spawnObject, _relPos, _spawnObject]) exitWith {_relPos};
-	};
-};
-
 if (isServer) then {
 	{
 		_newLoc = [bullwarkBox] call spawnPlaceAround;
-		_x setPosASL _newLoc;
+		_x setPosASL _newLoc vectorAdd [0, 0, 0.15];
 	} forEach allPlayers;  //move any players that spawned already to respawn point
 };
 
