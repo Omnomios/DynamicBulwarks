@@ -16,14 +16,6 @@ if (isServer) then {
 };
 
 
-spawnPlaceAround = {
-	_spawnObject = _this select 0;
-	for ("_i") from 0 to 7 do {
-		_relPos = [getPosASL _spawnObject, 2, 45 * _i] call BIS_fnc_relPos;
-		if(!lineIntersects [ getPosASL _spawnObject, _relPos, _spawnObject]) exitWith {_relPos};
-	};
-};
-
 //Create spawnpoint
 bulMkr = createMarker ["respawn_west", bulwarkRoomPos];
 bulMkr setMarkerShape "ICON";
