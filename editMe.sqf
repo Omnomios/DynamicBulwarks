@@ -45,7 +45,7 @@ BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",     "reconUAV"],
     [1950, "Paratroopers",  "paraDrop"],
     [5430, "Missle CAS",    "airStrike"],
-    [8930, "Rage Stimpack", "ragePack"]
+    [5930, "Rage Stimpack", "ragePack"]
 ];
 
 BULWARK_BUILDITEMS = [
