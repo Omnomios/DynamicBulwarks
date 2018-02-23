@@ -1,5 +1,5 @@
 onLoadMission = "dynamicBulwarks";
-onLoadIntro = "Defend yourself"
+onLoadIntro = "Defend yourself";
 onLoadName = "dynamicBulwarks";
 briefingName = "dynamicBulwarks";
 overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
