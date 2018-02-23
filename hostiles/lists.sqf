@@ -113,7 +113,7 @@ for "_x" from 0 to (_count-1) do {
 List_NATO = _natoSoldier;
 
 _viper = [];
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_ViperTeam";
+_groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> "OI_ViperTeam";
 _count =  count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((_groupConfig) select _x);
