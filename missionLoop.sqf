@@ -96,7 +96,8 @@ while {_runMissionLoop} do {
 					goToPlayer = _x;
 				};
 			} forEach _allHPs;
-			thisNPC doMove (getPos goToPlayer);
+			_doMovePos = getPos goToPlayer;
+			thisNPC doMove [(_doMovePos select 0) + (random [-10, 10, 0]), (_doMovePos select 1) + (random [-10, 10, 0]), _doMovePos select 2];
 			};
 		} foreach allUnits;
 
