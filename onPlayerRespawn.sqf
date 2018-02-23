@@ -8,4 +8,6 @@ removeVest _player;
 removeBackpack _player;
 removeAllWeapons _player:
 removeAllAssignedItems _player;
+_player addItem "ItemMap";
+_player assignItem "ItemMap";
 _player setPosASL ([bullwarkBox] call bulwark_fnc_findPlaceAround);
