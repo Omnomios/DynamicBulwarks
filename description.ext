@@ -6,7 +6,7 @@ overviewText = "Survive by scavenging equipment, in a randomly selected city, ag
 author = "Hilltop & omNomios";
 
 respawn = 3;
-respawnOnStart = 0;
+respawnOnStart = 1;
 respawnDialog = 0;
 ReviveMode = 1;
 ReviveRequiredItems = 2;
@@ -76,7 +76,7 @@ class CfgSounds
 	class boxSpin
 	{
 		name = "Gambling box sound";
-		sound[] = {"\sound\boxspin.wav", 1, 1, 100};
+		sound[] = {"\sound\boxspin.ogg", 1, 1, 100};
 		titles[] = {0,""};
 	};
 

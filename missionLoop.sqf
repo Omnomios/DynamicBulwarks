@@ -88,7 +88,7 @@ while {_runMissionLoop} do {
 		} foreach _allHPs;
 
 		{if ((_x distance bulwarkCity) > BULWARK_RADIUS * 1.1) then {
-			_newLoc = [bullwarkBox] call spawnPlaceAround;
+			_newLoc = [bullwarkBox] call bulwark_fnc_findPlaceAround;
 			_x setPosASL _newLoc;
 		};
 		} foreach _allHPs;
