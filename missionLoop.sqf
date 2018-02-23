@@ -66,6 +66,8 @@ while {_runMissionLoop} do {
 			};
 		} foreach _allHPs;
 		if (count (_allHPs - _deadUnconscious) <= 0) then {
+			_runMissionLoop = false;
+			_missionFailure = true;
 			"End1" call BIS_fnc_endMissionServer;
 		};
 		//Move mostiles towards neaest player
