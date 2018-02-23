@@ -38,6 +38,7 @@ for ("_i") from 1 to _unitCount do {
 	_unit setSkill ["spotTime", 0.05];
 	_unit addEventHandler ["Hit", killPoints_fnc_hit];
 	_unit addEventHandler ["Killed", killPoints_fnc_killed];
+	removeAllAssignedItems _unit;
 
 	_unitArray = waveUnits select 0;
 	_unitArray append [_unit];

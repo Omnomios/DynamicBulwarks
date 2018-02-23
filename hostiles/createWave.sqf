@@ -7,7 +7,7 @@
 **/
 
 hosSkill = (attkWave / 40);
-_noOfPlayers = playersNumber west;
+_noOfPlayers = 1 max floor ((playersNumber west) * HOSTILE_TEAM_MULTIPLIER);
 _multiplierBase = HOSTILE_MULTIPLIER;
 _SoldierMulti = attkWave / 5;
 

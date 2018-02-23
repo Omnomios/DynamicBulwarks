@@ -85,7 +85,7 @@ for "_x" from 0 to (_count-1) do {
 	if (isClass _item) then {
 		if(getNumber (_item >> "value") == 5) then {
 			if(["mine", getText (_item >> "displayName")] call BIS_fnc_inString) then {
-				_mines = _mines + [configName _item];				
+				_mines = _mines + [configName _item];
 			}
 		};
 	};
@@ -100,7 +100,7 @@ List_Primaries = [] + _primaries;
 List_Secondaries = [] + _secondaries;
 List_Launchers = [] + _launchers;
 List_Optics = [] + _optics;
-List_Items = [] + _items + ['ItemGPS'];
+List_Items = [] + _items + ['ItemGPS','ItemCompass','ItemMap', 'ItemWatch', 'ItemRadio'];
 List_Mines = [] + _mines;
 List_Glasses = [] + _glasses;
 List_Faces = [] + _faces;

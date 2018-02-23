@@ -11,12 +11,13 @@
 HOSTILE_LEVEL_1 = List_Bandits;  // Wave 0 >
 HOSTILE_LEVEL_2 = List_OPFOR;    // Wave 5 >
 HOSTILE_LEVEL_3 = List_Viper;    // Wave 10 >
-HOSTILE_MULTIPLIER = 1;
+HOSTILE_MULTIPLIER = 1;          // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
+HOSTILE_TEAM_MULTIPLIER = 0.5;   // How many extra units are added per player
 
 // List_LocationMarkers, List_AllCities
-BULWARK_LOCATIONS = List_LocationMarkers;
+BULWARK_LOCATIONS = List_AllCities;
 BULWARK_RADIUS = 150;
-BULWARK_MINROOMS = 3;   // Spawn room must have this many locations to be valid
+BULWARK_MINSIZE = 13;   // Spawn room must be bigger than x square metres
 
 /* Loot Spawn */
 LOOT_WEAPON_POOL    = List_AllWeapons;    // Classnames of Loot items as an array
@@ -37,14 +38,14 @@ PARATROOP_CLASS = List_NATO;
 /* Points */
 SCORE_KILL = 100;       // Every kill
 SCORE_HIT = 10;         // Every Bullet hit that doesn't result in a kill
-SCORE_DAMAGE_BASE = 10; // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
+SCORE_DAMAGE_BASE = 20; // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
 
 BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",     "reconUAV"],
     [1950, "Paratroopers",  "paraDrop"],
     [5430, "Missle CAS",    "airStrike"],
-    [8930, "Rage Stimpack", "ragePack"]
+    [5930, "Rage Stimpack", "ragePack"]
 ];
 
 BULWARK_BUILDITEMS = [

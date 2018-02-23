@@ -15,22 +15,16 @@ if (isServer) then {
 	waitUntil { scriptDone _basepoint };
 };
 
-
-//Create spawnpoint
-bulMkr = createMarker ["respawn_west", bulwarkRoomPos];
-bulMkr setMarkerShape "ICON";
-bulMkr setMarkerType "hd_dot";
-bulMkr setMarkerColor "ColorBlue";
-bulMkr setMarkerText "Spawn";
-
 publicVariable "bullwarkBox";
 
+/*
 if (isServer) then {
 	{
 		_newLoc = [bullwarkBox] call bulwark_fnc_findPlaceAround;
 		_x setPosASL _newLoc;
 	} forEach allPlayers;  //move any players that spawned already to respawn point
 };
+*/
 
 if (!isServer && (player != player)) then {
 	waitUntil {player == player};
