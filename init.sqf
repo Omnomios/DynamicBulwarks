@@ -33,6 +33,11 @@ bulMkr setMarkerType "hd_dot";
 bulMkr setMarkerColor "ColorBlue";
 bulMkr setMarkerText "Spawn";
 
+if (isServer) then {
+	{
+		setDate [2018, 1, 1, random [DAYTIMEFROM,DAYTIMETO], 0];
+};
+
 if (!isServer && (player != player)) then {
 	waitUntil {player == player};
 	waitUntil {time > 10};
