@@ -65,8 +65,9 @@ while {_runMissionLoop} do {
 			if ((lifeState _x) == "INCAPACITATED") then {
 				_playerItems = items _x;
 				if ("Medikit" in _playerItems) then {
-					_playerInvToCheck setUnconscious false;
+					[_playerInvToCheck, false] remoteExec ["setUnconscious", 0];
 					_playerInvToCheck removeItem "Medikit";
+					sleep 0.5;
 				};
 			};
 		} forEach _allHPs;
