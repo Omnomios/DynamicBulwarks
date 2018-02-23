@@ -89,16 +89,20 @@ while {_runMissionLoop} do {
 		sleep 1;
 		{
 			if (side _x == east) then {
-			thisNPC = _x;
-			_gotoPlayerDistance = 9999;
- 			{
-				_playerDistance = (getPos thisNPC) distance _x;
-				if ((_playerDistance < _gotoPlayerDistance) && (alive _x)) then {
-					goToPlayer = _x;
-				};
-			} forEach _allHPs;
-			_doMovePos = getPos goToPlayer;
-			thisNPC doMove [(_doMovePos select 0) + (random [-10, 10, 0]), (_doMovePos select 1) + (random [-10, 10, 0]), _doMovePos select 2];
+				thisNPC = _x;
+				_gotoPlayerDistance = 9999;
+ 				{
+					playerHostDistance = (getPos thisNPC) distance _x;
+					if ((playerHostDistance < _gotoPlayerDistance) && (alive _x)) then {
+						goToPlayer = _x;
+					};
+					} forEach _allHPs;
+					_doMovePos = getPos goToPlayer;
+					if (playerHostDistance > 15) then {
+							thisNPC doMove _doMovePos;
+						} else {
+							thisNPC doMove [(_doMovePos select 0) + (random [-7.5, 7.5, 0]), (_doMovePos select 1) + (random [-7.5, 7.5, 0]), _doMovePos select 2];
+					}
 			};
 		} foreach allUnits;
 

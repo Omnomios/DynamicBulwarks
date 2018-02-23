@@ -19,8 +19,8 @@ clearMagazineCargoGlobal bullwarkBox;
 clearBackpackCargoGlobal bullwarkBox;
 bullwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
 bullwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
-[bullwarkBox, ["Pickup", "bulwark\moveBox.sqf"]] remoteExec ["addAction", 0];
-[bullwarkBox, ["Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1"]] remoteExec ["addAction", 0];
+//[bullwarkBox, ["Pickup", "bulwark\moveBox.sqf"]] remoteExec ["addAction", 0];
+//[bullwarkBox, ["Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1"]] remoteExec ["addAction", 0];
 
 _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerShape "ELLIPSE";
