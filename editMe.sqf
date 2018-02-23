@@ -12,7 +12,7 @@ HOSTILE_LEVEL_1 = List_Bandits;  // Wave 0 >
 HOSTILE_LEVEL_2 = List_OPFOR;    // Wave 5 >
 HOSTILE_LEVEL_3 = List_Viper;    // Wave 10 >
 HOSTILE_MULTIPLIER = 1;          // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
-HOSTILE_TEAM_MULTIPLIER = 0.5;   // How many extra units are added per player
+HOSTILE_TEAM_MULTIPLIER = 0.6;   // How many extra units are added per player
 
 // List_LocationMarkers, List_AllCities
 BULWARK_LOCATIONS = List_AllCities;
