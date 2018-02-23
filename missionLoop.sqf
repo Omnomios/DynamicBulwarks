@@ -58,6 +58,17 @@ while {_runMissionLoop} do {
 		if (east countSide allUnits == 0) exitWith {
 			hint "wave Complete";
 		};
+		//check if unconscious players have medkit
+		{
+			_playerInvToCheck = _x;
+			if ((lifeState _x) == "INCAPACITATED") then {
+				_playerItems = items _x;
+				if ("Medikit" in _playerItems) then {
+					_playerInvToCheck setUnconscious false;
+					_playerInvToCheck removeItem "Medikit";
+				};
+			};
+		} forEach _allHPs;
 		//check if all players dead or unconscious
 		_deadUnconscious = [];
 		{
