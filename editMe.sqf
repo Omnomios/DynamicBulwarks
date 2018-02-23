@@ -38,7 +38,7 @@ PARATROOP_CLASS = List_NATO;
 /* Points */
 SCORE_KILL = 100;       // Every kill
 SCORE_HIT = 10;         // Every Bullet hit that doesn't result in a kill
-SCORE_DAMAGE_BASE = 10; // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
+SCORE_DAMAGE_BASE = 20; // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
 
 BULWARK_SUPPORTITEMS = [

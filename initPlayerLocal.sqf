@@ -1,4 +1,3 @@
-Player setPos (getMarkerPos "respawn_west");
 player setCustomAimCoef 0;
 player enableStamina FALSE;
 player addEventHandler ['Respawn',{
