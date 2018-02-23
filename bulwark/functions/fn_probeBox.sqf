@@ -1,11 +1,11 @@
 _spawnObject = _this select 0;
 _dir = _this select 1;
-_objectPos = getPosASL _spawnObject vectorAdd [0,0,0.2];
+_objectPos = getPosASL _spawnObject vectorAdd [0,0,0.15];
 
 _edges = [];
 
 for ("_i") from 0 to 3 do {
-	_relPos = [_objectPos, 5, _dir + (90 * _i)] call BIS_fnc_relPos;
+	_relPos = [_objectPos, 10, _dir + (90 * _i)] call BIS_fnc_relPos;
 	_rayIntersect = lineIntersectsSurfaces [_objectPos, _relPos, _spawnObject, _spawnObject, true, 1, "GEOM", "NONE"];
 	if (count _rayIntersect == 0) exitWith {};
 	_hit = _rayIntersect select 0;

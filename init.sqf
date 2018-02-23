@@ -15,14 +15,6 @@ if (isServer) then {
 	waitUntil { scriptDone _basepoint };
 };
 
-
-//Create spawnpoint
-bulMkr = createMarker ["respawn_west", bulwarkRoomPos];
-bulMkr setMarkerShape "ICON";
-bulMkr setMarkerType "hd_dot";
-bulMkr setMarkerColor "ColorBlue";
-bulMkr setMarkerText "Spawn";
-
 publicVariable "bullwarkBox";
 
 if (isServer) then {

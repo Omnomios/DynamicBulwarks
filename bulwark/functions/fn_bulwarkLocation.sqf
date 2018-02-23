@@ -9,27 +9,36 @@ while {isNil "_finalPos"} do {
 	_city = selectRandom _locations;
 	_houses = nearestObjects [_city, ["house"], _radius];
 
-	_largestVolume = 0;
-	_largestPos = [0,0,0];
+	_options = [];
 
 	// Go through every house and position
 	{
 		_house = _x;
+		_largestVolume = 0;
+		_largestPos = [0,0,0];
+
+		// Go through the positions in the house to find the largest
 		{
 			_probe setPos _x;
 			_roomVolume = [_probe, getDir _house] call bulwark_fnc_roomVolume;
 			if(_roomVolume select 0) then {
-				if(_largestVolume < _roomVolume select 1) then {
+				if((_roomVolume select 1 > _largestVolume) && (_roomVolume select 1 > BULWARK_MINSIZE)) then {
 					_roomCentre = [_probe, getDir _house] call bulwark_fnc_roomCentre;
 					_largestPos = _roomCentre select 1;
+					_largestVolume = (_largestVolume max (_roomVolume select 1));
 				};
-				_largestVolume = (_largestVolume max (_roomVolume select 1));
 			};
 		} forEach (_house buildingPos -1);
+
+		// One house, one location. Add it to the list of options
+		if(_largestVolume > 0) then {
+			_options append [_largestPos];
+		};
+
 	} forEach _houses;
 
-	if(_largestVolume > 0) exitWith {
-		_finalPos = _largestPos;
+	if(count _options > 0) exitWith {
+		_finalPos = selectRandom _options;
 		_finalCity = _city;
 	};
 };
