@@ -58,15 +58,20 @@ while {_runMissionLoop} do {
 		if (east countSide allUnits == 0) exitWith {
 			hint "wave Complete";
 		};
-		//check if all players dead
-		if ({alive _x} count allPlayers isEqualTo 0) then {
-			_runMissionLoop = false;
-			_missionFailure = true;
+		//check if all players dead or unconscious
+		_deadUnconscious = [];
+		{
+			if ((!alive _x) || ((lifeState _x) == "INCAPACITATED")) then {
+				_deadUnconscious pushBack _x;
+			};
+		} foreach _allHPs;
+		if (count (_allHPs - _deadUnconscious) <= 0) then {
 			"End1" call BIS_fnc_endMissionServer;
 		};
 		//Move mostiles towards neaest player
 		sleep 1;
-		{if (side _x == east) then {
+		{
+			if (side _x == east) then {
 			thisNPC = _x;
 			_gotoPlayerDistance = 9999;
  			{
@@ -76,7 +81,7 @@ while {_runMissionLoop} do {
 				};
 			} forEach _allHPs;
 			thisNPC doMove (getPos goToPlayer);
-		};
+			};
 		} foreach allUnits;
 
 		sleep 10;
