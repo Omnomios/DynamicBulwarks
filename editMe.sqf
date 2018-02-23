@@ -59,3 +59,7 @@ BULWARK_BUILDITEMS = [
     [2500, "Machine Gun (raised)", "B_HMG_01_high_F"],
     [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F"]
 ];
+
+/* Time of Day*/
+DAYTIMEFROM = 6; //earliest time. 6 = 6:00 AM
+DAYTIMETO = 18; //earliest time. 18 = 6:00 PM
