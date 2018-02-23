@@ -17,9 +17,6 @@ if (isServer) then {
 
 publicVariable "bullwarkBox";
 
-bullwarkBox addAction ["Pickup", "bulwark\moveBox.sqf"];
-bullwarkBox addAction ["Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1"];
-
 /*
 if (isServer) then {
 	{
