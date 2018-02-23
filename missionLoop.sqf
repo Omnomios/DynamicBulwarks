@@ -54,10 +54,12 @@ while {_runMissionLoop} do {
 		waitUntil { scriptDone _spawnLoot};
 	};
 	while {_runMissionLoop} do {
+
 		//Check if all hostiles dead
 		if (east countSide allUnits == 0) exitWith {
 			hint "wave Complete";
 		};
+
 		//check if all players dead or unconscious
 		_deadUnconscious = [];
 		{
@@ -65,11 +67,13 @@ while {_runMissionLoop} do {
 				_deadUnconscious pushBack _x;
 			};
 		} foreach _allHPs;
+
 		if (count (_allHPs - _deadUnconscious) <= 0) then {
 			_runMissionLoop = false;
 			_missionFailure = true;
 			"End1" call BIS_fnc_endMissionServer;
 		};
+
 		//Move mostiles towards neaest player
 		sleep 1;
 		{
