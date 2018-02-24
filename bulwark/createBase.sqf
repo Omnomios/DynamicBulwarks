@@ -10,17 +10,58 @@ _bulwarkLocation = [BULWARK_LOCATIONS, BULWARK_RADIUS] call bulwark_fnc_bulwarkL
 bulwarkRoomPos = _bulwarkLocation select 0;
 bulwarkCity = _bulwarkLocation select 1;
 
-bullwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
-bullwarkBox setPosASL bulwarkRoomPos;
-bullwarkBox allowDamage false;
-clearItemCargoGlobal bullwarkBox;
-clearWeaponCargoGlobal bullwarkBox;
-clearMagazineCargoGlobal bullwarkBox;
-clearBackpackCargoGlobal bullwarkBox;
-bullwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
-bullwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
-[bullwarkBox, ["Pickup", "bulwark\moveBox.sqf"]] remoteExec ["addAction", 0];
-[bullwarkBox, ["Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1"]] remoteExec ["addAction", 0];
+bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
+bulwarkBox setPosASL bulwarkRoomPos;
+bulwarkBox allowDamage false;
+clearItemCargoGlobal bulwarkBox;
+clearWeaponCargoGlobal bulwarkBox;
+clearMagazineCargoGlobal bulwarkBox;
+clearBackpackCargoGlobal bulwarkBox;
+bulwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
+bulwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
+[bulwarkBox, ["Pickup", "bulwark\moveBox.sqf"]] remoteExec ["addAction", 0];
+[bulwarkBox, ["Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1"]] remoteExec ["addAction", 0];
+
+
+/* Place a table in the room for the lulz */
+_relPos = [bulwarkRoomPos, 10, 0] call BIS_fnc_relPos;
+_hits = lineIntersectsSurfaces [bulwarkRoomPos vectorAdd [0,0,0.2], _relPos, bulwarkBox, objNull, true, 1, "GEOM", "NONE"];
+_boxPos = getPos bulwarkBox;
+
+if(count _hits > 0) then {
+	_hit = _hits select 0;
+	_obj = _hit select 2;
+	_objDir = getDir _obj;
+
+	_furthestDist = 0;
+	_furthestAngle = 0;
+	_furthestPos = [0,0,0];
+	_furthestDir = 0;
+	for ("_i") from 0 to 360 step 22.5 do {
+		_checkAngle = _objDir + _i;
+		_relPos = [bulwarkRoomPos, 10, _checkAngle] call BIS_fnc_relPos;
+		_hits = lineIntersectsSurfaces [bulwarkRoomPos vectorAdd [0,0,0.2], _relPos, bulwarkBox, objNull, true, 1, "GEOM", "NONE"];
+		if(count _hits > 0) then {
+			_hit = _hits select 0;
+			_hitPos = _hit select 0;
+			_distance = _boxPos distance _hitPos;
+			_normalDir = [[0,0,0],(_hit select 1)] call BIS_fnc_dirTo;
+
+			if(_distance > _furthestDist) then {
+				_furthestDist = _distance;
+				_furthestAngle = _checkAngle;
+				_furthestPos = _hitPos;
+				_furthestDir = _normalDir;
+			};
+		};
+	};
+
+	_tablePos = [_furthestPos, -0.5, _furthestAngle] call BIS_fnc_relPos;
+	table = createVehicle ["Land_TableSmall_01_f", [0,0,0], [], 0, "CAN_COLLIDE"];
+	table setPos [_tablePos select 0, _tablePos select 1, _boxPos select 2];
+	table setDir _furthestDir-90;
+	bulwarkBox setDir _objDir;
+};
 
 _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerShape "ELLIPSE";

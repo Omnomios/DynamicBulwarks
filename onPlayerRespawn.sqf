@@ -1,4 +1,4 @@
-waitUntil {!isNil "bullwarkBox"};
+waitUntil {!isNil "bulwarkBox"};
 ["Terminate"] call BIS_fnc_EGSpectator;
 
 _player = _this select 0;
@@ -10,4 +10,4 @@ removeAllWeapons _player:
 removeAllAssignedItems _player;
 _player addItem "ItemMap";
 _player assignItem "ItemMap";
-_player setPosASL ([bullwarkBox] call bulwark_fnc_findPlaceAround);
+_player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);

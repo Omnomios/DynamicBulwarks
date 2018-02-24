@@ -90,3 +90,95 @@ class CfgSounds
 };
 
 #include "bulwark\dialog.hpp"
+
+
+class Params
+{
+	class HOSTILE_MULTIPLIER
+	{
+		title = "Hostiles x Wave number Multiplier";
+		values[] = {1,2,3};
+		texts[] = {"Normal", "Double", "Tripple"};
+		default = 1;
+	};
+
+	class HOSTILE_TEAM_MULTIPLIER
+	{
+		title = "Extra hostiles per player";
+		values[] = {50, 100, 150, 200};
+		texts[] = {"0.5", "1", "1.5", "2"};
+		default = 50;
+	};
+
+	class BULWARK_RADIUS
+	{
+		title = "Mission area size";
+		values[] = {50, 100, 150, 200, 250};
+		texts[] = {"(50m) Tiny", "(100m) Small", "(150m) Normal", "(200m) Large", "(250m) Huge"};
+		default = 150;
+	};
+
+	class BULWARK_MINSIZE
+	{
+		title = "Minimum spawn room size";
+		values[] = {10, 13, 15, 18, 20};
+		texts[] = {"10m²", "13m²", "15m²", "18m²", "20m²"};
+		default = 13;
+	};
+
+	class LOOT_HOUSE_DISTRIBUTION
+	{
+		title = "Loot distribution";
+		values[] = {1, 2, 3, 4};
+		texts[] = {"Every building", "Every second building", "Every third building", "Every fourth building"};
+		default = 2;
+	};
+
+	class LOOT_ROOM_DISTRIBUTION
+	{
+		title = "Loot density";
+		values[] = {1, 2, 3, 4};
+		texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
+		default = 3;
+	};
+
+	class LOOT_SUPPLYDROP
+	{
+		title = "Supply drop distance from centre";
+		values[] = {0, 25, 50, 75};
+		texts[] = {"Dead centre", "25%", "50%", "75%"};
+		default = 25;
+	};
+
+	class PARATROOP_COUNT
+	{
+		title = "Paratrooper count";
+		values[] = {1, 2, 3, 4, 5, 6};
+		texts[] = {"1","2","3","4","5","6"};
+		default = 3;
+	};
+
+	class SCORE_KILL
+	{
+		title = "Points per kill";
+		values[] = {10, 50, 100, 150, 200, 300};
+		texts[] = {"10","50","100","150","200","300"};
+		default = 100;
+	};
+
+	class SCORE_HIT
+	{
+		title = "Points per hit";
+		values[] = {0, 10, 20, 50, 100};
+		texts[] = {"0","10","20","50","100"};
+		default = 10;
+	};
+
+	class SCORE_DAMAGE_BASE
+	{
+		title = "Damage bonus points";
+		values[] = {0, 10, 20, 50, 100};
+		texts[] = {"0","10","20","50","100"};
+		default = 20;
+	};
+};

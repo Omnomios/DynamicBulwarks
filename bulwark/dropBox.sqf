@@ -13,4 +13,4 @@ _playerAction = _this select 1;
 detach _emptyCrate;
 _playerAction removeAction _dropAction;
 [_emptyCrate, ["Pickup", "bulwark\moveBox.sqf"]] remoteExec ["addAction", -2];
-["bullwarkBox"] remoteExec ["publicVariable", 2];
+["bulwarkBox"] remoteExec ["publicVariable", 2];

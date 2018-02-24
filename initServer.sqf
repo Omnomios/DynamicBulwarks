@@ -13,7 +13,7 @@ waitUntil {
 _basepoint = [] execVM "bulwark\createBase.sqf";
 waitUntil { scriptDone _basepoint };
 
-publicVariable "bullwarkBox";
+publicVariable "bulwarkBox";
 publicVariable "PARATROOP_CLASS";
 publicVariable "BULWARK_SUPPORTITEMS";
 publicVariable "BULWARK_BUILDITEMS";

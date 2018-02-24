@@ -107,4 +107,3 @@ List_Faces = [] + _faces;
 
 List_AllWeapons = List_Primaries + List_Secondaries + List_Launchers;
 List_AllClothes = List_Hats + List_Uniforms + List_Glasses;
-List_AllStorage = List_Vests + List_Backpacks;
