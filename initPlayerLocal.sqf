@@ -33,3 +33,8 @@ player setVariable ["killPoints", _killPoints, true];
         if(_currMarker == "bulwark_") then{ deleteMarker _x; };
     };
 } foreach allMapMarkers;
+
+if (didJIP) then {
+  bullwarkBox addAction ["Pickup", "bulwark\moveBox.sqf"];
+  bullwarkBox addAction ["Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1"];
+};
