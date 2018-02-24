@@ -5,10 +5,8 @@
 *
 *  Domain: Server
 **/
+params ["_player", "_targetPos", "_aircraft"];
 
-_player    = _this select 0;
-_targetPos = _this select 1;
-_aircraft  = _this select 2;
 _angle = round random 180;
 
 // Spawn CAS

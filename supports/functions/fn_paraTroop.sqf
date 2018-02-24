@@ -5,12 +5,7 @@
 *
 *  Domain: Server
 **/
-
-_player    = _this select 0;
-_targetPos = _this select 1;
-_unitCount = _this select 2;
-_aircraft  = _this select 3;
-_classList = _this select 4;
+params ["_player", "_targetPos", "_unitCount", "_aircraft", "_classList"];
 
 _angle = round random 180;
 _height = 300;
@@ -55,12 +50,18 @@ _agVehicle animateDoor ['Door_1_source', 1];
 waitUntil {paraTroopLatch};
 
 sleep 0.5;
-_attGroupBand = group _player;
+
+if(isNil "attGroupBand") then {
+    coreGroup = group _player;
+    attGroupBand = createGroup [west, true];
+};
+[_player] join attGroupBand;
+
 for ("_i") from 1 to 3 do {
     _location = getPos _agVehicle;
     _unitClass = selectRandom _classList;
     _unit = objNull;
-    _unit = _attGroupBand createUnit [_unitClass, _location vectorAdd [0,0,-2], [], 0.5, "CAN_COLLIDE"];
+    _unit = attGroupBand createUnit [_unitClass, _location vectorAdd [0,0,-2], [], 0.5, "CAN_COLLIDE"];
     sleep 0.3;
     waitUntil {!isNull _unit};
     _unit addBackpack "B_Parachute";
@@ -69,8 +70,23 @@ for ("_i") from 1 to 3 do {
     _unit setSkill ["aimingShake", 0.8];
     _unit setSkill ["spotTime", 1];
     _unit doMove _targetPos;
+
+    _unit addEventHandler ["Killed", {
+        _self = _this select 0;
+        _selfGroup = group _self;
+
+        removeVest _self;
+        removeBackpack _self;
+        removeAllWeapons _self:
+        removeAllAssignedItems _self;
+
+        if(count units _selfGroup <= 2) then {
+            [player] join coreGroup;
+            coreGroup = nil;
+        };
+    }];
 };
 
 sleep 20;
-deletevehicle _agVehicle;
-{deletevehicle _x} foreach _agCrew;
+deleteVehicle _agVehicle;
+{deleteVehicle _x} foreach _agCrew;

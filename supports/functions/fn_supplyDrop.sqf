@@ -5,11 +5,7 @@
 *
 *  Domain: Server
 **/
-
-
-_targetPos = _this select 0;
-_cargo     = _this select 1;
-_aircraft  = _this select 2;
+params ["_targetPos", "_cargo", "_aircraft"];
 
 _angle = round random 180;
 _height = 300;

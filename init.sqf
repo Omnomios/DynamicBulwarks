@@ -17,15 +17,6 @@ if (isServer) then {
 
 publicVariable "bullwarkBox";
 
-/*
-if (isServer) then {
-	{
-		_newLoc = [bullwarkBox] call bulwark_fnc_findPlaceAround;
-		_x setPosASL _newLoc;
-	} forEach allPlayers;  //move any players that spawned already to respawn point
-};
-*/
-
 if (!isServer && (player != player)) then {
 	waitUntil {player == player};
 	waitUntil {time > 10};

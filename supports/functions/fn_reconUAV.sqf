@@ -5,10 +5,7 @@
 *
 *  Domain: Client
 **/
-
-_player    = _this select 0;
-_targetPos = _this select 1;
-_aircraft  = _this select 2;
+params ["_player", "_targetPos", "_aircraft"];
 
 _angle = round random 180;
 _height = 100;
