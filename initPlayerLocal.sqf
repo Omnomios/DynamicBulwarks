@@ -23,3 +23,13 @@ if(isNil "_killPoints") then {
     _killPoints = 0;
 };
 player setVariable ["killPoints", _killPoints, true];
+
+
+// Delete all map markers on clients
+{
+    _currMarker = toArray _x;
+    if(count _currMarker >= 4) then {
+        _currMarker resize 8; _currMarker = toString _currMarker;
+        if(_currMarker == "bulwark_") then{ deleteMarker _x; };
+    };
+} foreach allMapMarkers;
