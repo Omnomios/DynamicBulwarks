@@ -14,6 +14,9 @@ _basepoint = [] execVM "bulwark\createBase.sqf";
 waitUntil { scriptDone _basepoint };
 
 publicVariable "bullwarkBox";
+publicVariable "PARATROOP_CLASS";
+publicVariable "BULWARK_SUPPORTITEMS";
+publicVariable "BULWARK_BUILDITEMS";
 
 _dayTimeHours = DAYTIMETO - DAYTIMEFROM;
 _randTime = floor random _dayTimeHours;
