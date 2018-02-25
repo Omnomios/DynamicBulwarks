@@ -7,7 +7,7 @@ _finalCity = nil;
 _probe = createVehicle ["Sign_Arrow_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 while {isNil "_finalPos"} do {
 	_city = selectRandom _locations;
-	_houses = nearestObjects [_city, ["house"], _radius];
+	_houses = nearestObjects [_city, ["house"], 1000];
 
 	_options = [];
 
@@ -39,7 +39,7 @@ while {isNil "_finalPos"} do {
 
 	if(count _options > 0) exitWith {
 		_finalPos = selectRandom _options;
-		_finalCity = _city;
+		_finalCity = _finalPos;
 	};
 };
 deleteVehicle _probe;
