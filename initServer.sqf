@@ -17,6 +17,8 @@ publicVariable "bulwarkBox";
 publicVariable "PARATROOP_CLASS";
 publicVariable "BULWARK_SUPPORTITEMS";
 publicVariable "BULWARK_BUILDITEMS";
+publicVariable "PLAYER_STARTWEAPON";
+publicVariable "PLAYER_STARTMAP";
 
 _dayTimeHours = DAYTIMETO - DAYTIMEFROM;
 _randTime = floor random _dayTimeHours;
