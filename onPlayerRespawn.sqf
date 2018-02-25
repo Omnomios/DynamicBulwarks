@@ -8,6 +8,15 @@ removeVest _player;
 removeBackpack _player;
 removeAllWeapons _player:
 removeAllAssignedItems _player;
-_player addItem "ItemMap";
-_player assignItem "ItemMap";
 _player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
+
+if(PLAYER_STARTWEAPON) then {
+    _player addMagazine "16Rnd_9x21_Mag";
+    _player addMagazine "16Rnd_9x21_Mag";
+    _player addWeapon "hgun_P07_F";
+};
+
+if(PLAYER_STARTMAP) then {
+    _player addItem "ItemMap";
+    _player assignItem "ItemMap";
+};

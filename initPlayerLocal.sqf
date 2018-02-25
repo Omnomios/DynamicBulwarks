@@ -34,6 +34,13 @@ player setVariable ["killPoints", _killPoints, true];
     };
 } foreach allMapMarkers;
 
+onEachFrame {
+    if(!isNil "bulwarkBox") then {
+        _textPos = getPosATL bulwarkBox vectorAdd [0, 0, 1.5];
+        drawIcon3D ["", [1,1,1,0.5], _textPos, 1, 1, 0, "Bulwark", 0, 0.04, "RobotoCondensed", "center", true];
+    }
+};
+
 if (didJIP) then {
   bullwarkBox addAction ["Pickup", "bulwark\moveBox.sqf"];
   bullwarkBox addAction ["Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1"];

@@ -19,7 +19,6 @@ if (_attackWave < 40) then { //determine AI skill based on Wave
 
 sleep 0.5;
 
-
 _location = [bulwarkCity, BULWARK_RADIUS, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 for ("_i") from 1 to _unitCount do {
 	_attGroupBand = createGroup [EAST, true];
@@ -39,6 +38,13 @@ for ("_i") from 1 to _unitCount do {
 	_unit addEventHandler ["Hit", killPoints_fnc_hit];
 	_unit addEventHandler ["Killed", killPoints_fnc_killed];
 	removeAllAssignedItems _unit;
+
+	if(_attackWave <= 2) then {
+		removeAllWeapons _unit;
+		_unit addMagazine "16Rnd_9x21_Mag";
+	    _unit addMagazine "16Rnd_9x21_Mag";
+	    _unit addWeapon "hgun_P07_F";
+	};
 
 	_unitArray = waveUnits select 0;
 	_unitArray append [_unit];

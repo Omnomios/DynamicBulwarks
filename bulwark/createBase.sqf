@@ -17,8 +17,8 @@ clearItemCargoGlobal bulwarkBox;
 clearWeaponCargoGlobal bulwarkBox;
 clearMagazineCargoGlobal bulwarkBox;
 clearBackpackCargoGlobal bulwarkBox;
-bulwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
-bulwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
+//bulwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
+//bulwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 [bulwarkBox, ["Pickup", "bulwark\moveBox.sqf"]] remoteExec ["addAction", 0];
 [bulwarkBox, ["Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1"]] remoteExec ["addAction", 0];
 

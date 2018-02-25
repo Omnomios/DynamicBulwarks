@@ -19,6 +19,9 @@ BULWARK_LOCATIONS = List_AllCities;
 BULWARK_RADIUS = ("BULWARK_RADIUS" call BIS_fnc_getParamValue);
 BULWARK_MINSIZE = ("BULWARK_MINSIZE" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
 
+PLAYER_STARTWEAPON = if ("PLAYER_STARTWEAPON" call BIS_fnc_getParamValue == 1) then {true} else {false};
+PLAYER_STARTMAP    = if ("PLAYER_STARTMAP" call BIS_fnc_getParamValue == 1) then {true} else {false};
+
 /* Loot Spawn */
 LOOT_WEAPON_POOL    = List_AllWeapons;    // Classnames of Loot items as an array
 LOOT_APPAREL_POOL   = List_AllClothes + List_Vests;

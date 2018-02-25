@@ -181,4 +181,20 @@ class Params
 		texts[] = {"0","10","20","50","100"};
 		default = 20;
 	};
+
+	class PLAYER_STARTWEAPON
+	{
+		title = "Start with weapon";
+		values[] = {0, 1};
+		texts[] = {"No", "Yes"};
+		default = 0;
+	};
+
+	class PLAYER_STARTMAP
+	{
+		title = "Start with map";
+		values[] = {0, 1};
+		texts[] = {"No", "Yes"};
+		default = 1;
+	};
 };
