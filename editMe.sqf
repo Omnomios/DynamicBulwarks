@@ -11,37 +11,38 @@
 HOSTILE_LEVEL_1 = List_Bandits;  // Wave 0 >
 HOSTILE_LEVEL_2 = List_OPFOR;    // Wave 5 >
 HOSTILE_LEVEL_3 = List_Viper;    // Wave 10 >
-HOSTILE_MULTIPLIER = 1;          // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
-HOSTILE_TEAM_MULTIPLIER = 0.6;   // How many extra units are added per player
+HOSTILE_MULTIPLIER = ("HOSTILE_MULTIPLIER" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
+HOSTILE_TEAM_MULTIPLIER = ("HOSTILE_TEAM_MULTIPLIER" call BIS_fnc_getParamValue) / 100;   // How many extra units are added per player
 
 // List_LocationMarkers, List_AllCities
 BULWARK_LOCATIONS = List_AllCities;
-BULWARK_RADIUS = 150;
-BULWARK_MINSIZE = 13;   // Spawn room must be bigger than x square metres
+BULWARK_RADIUS = ("BULWARK_RADIUS" call BIS_fnc_getParamValue);
+BULWARK_MINSIZE = ("BULWARK_MINSIZE" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
 
 PLAYER_STARTWEAPON = if ("PLAYER_STARTWEAPON" call BIS_fnc_getParamValue == 1) then {true} else {false};
 PLAYER_STARTMAP    = if ("PLAYER_STARTMAP" call BIS_fnc_getParamValue == 1) then {true} else {false};
 
 /* Loot Spawn */
 LOOT_WEAPON_POOL    = List_AllWeapons;    // Classnames of Loot items as an array
-LOOT_APPAREL_POOL   = List_AllClothes;
+LOOT_APPAREL_POOL   = List_AllClothes + List_Vests;
 LOOT_ITEM_POOL      = List_Optics + List_Items;
 LOOT_EXPLOSIVE_POOL = List_Mines;
-LOOT_STORAGE_POOL   = List_AllStorage;
+LOOT_STORAGE_POOL   = List_Backpacks;
+
 
 /* Random Loot */
-LOOT_HOUSE_DISTRIBUTION = 2;  // Every *th house will spwan loot.
-LOOT_ROOM_DISTRIBUTION = 3;   // Every *th position, within that house will spawn loot.
+LOOT_HOUSE_DISTRIBUTION = ("LOOT_HOUSE_DISTRIBUTION" call BIS_fnc_getParamValue);  // Every *th house will spwan loot.
+LOOT_ROOM_DISTRIBUTION = ("LOOT_ROOM_DISTRIBUTION" call BIS_fnc_getParamValue);   // Every *th position, within that house will spawn loot.
 LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
 LOOT_DEBUG = FALSE;           // Shows loot as markers on the map
-LOOT_SUPPLYDROP = 0.2;        // Radius of supply drop
-PARATROOP_COUNT = 3;
+LOOT_SUPPLYDROP = ("BULWARK_MINSIZE" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
+PARATROOP_COUNT = ("PARATROOP_COUNT" call BIS_fnc_getParamValue);
 PARATROOP_CLASS = List_NATO;
 
 /* Points */
-SCORE_KILL = 100;       // Every kill
-SCORE_HIT = 10;         // Every Bullet hit that doesn't result in a kill
-SCORE_DAMAGE_BASE = 20; // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
+SCORE_KILL = ("SCORE_KILL" call BIS_fnc_getParamValue);                 // Every kill
+SCORE_HIT = ("SCORE_HIT" call BIS_fnc_getParamValue);                   // Every Bullet hit that doesn't result in a kill
+SCORE_DAMAGE_BASE = ("SCORE_DAMAGE_BASE" call BIS_fnc_getParamValue);   // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
 
 BULWARK_SUPPORTITEMS = [
