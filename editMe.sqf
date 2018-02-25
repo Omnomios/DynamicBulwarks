@@ -35,7 +35,7 @@ LOOT_HOUSE_DISTRIBUTION = ("LOOT_HOUSE_DISTRIBUTION" call BIS_fnc_getParamValue)
 LOOT_ROOM_DISTRIBUTION = ("LOOT_ROOM_DISTRIBUTION" call BIS_fnc_getParamValue);   // Every *th position, within that house will spawn loot.
 LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
 LOOT_DEBUG = FALSE;           // Shows loot as markers on the map
-LOOT_SUPPLYDROP = ("BULWARK_MINSIZE" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
+LOOT_SUPPLYDROP = ("LOOT_SUPPLYDROP" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
 PARATROOP_COUNT = ("PARATROOP_COUNT" call BIS_fnc_getParamValue);
 PARATROOP_CLASS = List_NATO;
 

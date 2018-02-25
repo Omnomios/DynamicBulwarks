@@ -7,7 +7,7 @@ _finalCity = nil;
 _probe = createVehicle ["Sign_Arrow_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 while {isNil "_finalPos"} do {
 	_city = selectRandom _locations;
-	_houses = nearestObjects [_city, ["house"], 1000];
+	_houses = nearestObjects [_city, ["house"], 300];
 
 	_options = [];
 
@@ -30,8 +30,11 @@ while {isNil "_finalPos"} do {
 			};
 		} forEach (_house buildingPos -1);
 
+		// Make sure it's not some crapshack in the middle of nowhere
+		_neighbours = count nearestObjects [_largestPos, ["house"], BULWARK_RADIUS];
+
 		// One house, one location. Add it to the list of options
-		if(_largestVolume > 0) then {
+		if(_largestVolume > 0 && _neighbours > 10) then {
 			_options append [_largestPos];
 		};
 
