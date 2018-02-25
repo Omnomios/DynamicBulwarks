@@ -22,9 +22,10 @@ wreckRemovalMaxTime = 50;
 
 class CfgFunctions
 {
-	#include "score\Functions.h"
-	#include "supports\Functions.h"
+	#include "score\Functions.hpp"
+	#include "supports\Functions.hpp"
 	#include "bulwark\Functions.hpp"
+	#include "sound\Functions.hpp"
 };
 
 
@@ -43,6 +44,7 @@ class CfgRemoteExec
 		class support {};
 		class airStrike {};
 		class ragePack {};
+		class say3DGlobal {};
 	};
 };
 
@@ -81,10 +83,24 @@ class CfgSounds
 		titles[] = {0,""};
 	};
 
-	class rageSound
+	class rageSoundInternal
 	{
 		name = "Rage support SFX";
-		sound[] = {"\sound\3rd_person_berserk.ogg", 1, 1, 100};
+		sound[] = {"\sound\rageStimpack_internal.ogg", 10, 1, 100};
+		titles[] = {0,""};
+	};
+
+	class rageSoundExternal
+	{
+		name = "Rage support SFX";
+		sound[] = {"\sound\rageStimpack_external.ogg", 8, 1, 100};
+		titles[] = {0,""};
+	};
+
+	class armakartMusic
+	{
+		name = "Armakart music";
+		sound[] = {"\sound\armakart_music.ogg", 30, 1, 100};
 		titles[] = {0,""};
 	};
 };

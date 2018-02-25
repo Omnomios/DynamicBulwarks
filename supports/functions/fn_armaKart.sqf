@@ -10,8 +10,10 @@ _player allowDamage false;
 (_crazyKartGun select 0) attachTo [_crazyKart, [0,1,0.1]];
 [_player, _crazyKart] remoteExec ["moveInDriver", 0];
 
-for "_i" from 1 to 60 do {
-  _player moveInDriver _crazyKart;
+[_crazyKart, "armakartMusic"] remoteExec ["sound_fnc_say3DGlobal", 0];
+
+for "_i" from 1 to 55 do {
+  //_player moveInDriver _crazyKart;
   sleep 1;
 };
 
