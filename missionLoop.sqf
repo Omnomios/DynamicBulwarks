@@ -60,17 +60,27 @@ while {_runMissionLoop} do {
 			hint "wave Complete";
 		};
 		//check if unconscious players have medkit
+		_revivedPlayers = [];
 		{
 			_playerInvToCheck = _x;
 			if ((lifeState _x) == "INCAPACITATED") then {
 				_playerItems = items _x;
 				if ("Medikit" in _playerItems) then {
 					[_playerInvToCheck, false] remoteExec ["setUnconscious", 0];
+					[ "#rev", 1, _playerInvToCheck ] remoteExecCall ["BIS_fnc_reviveOnState", _playerInvToCheck];
+					_playerInvToCheck allowDamage false;
 					_playerInvToCheck removeItem "Medikit";
-					sleep 0.5;
+					_revivedPlayers pushBack _playerInvToCheck;
+					sleep 0.01;
 				};
 			};
 		} forEach _allHPs;
+		if ((count _revivedPlayers) > 0) then {
+			sleep 10;
+			{
+			    _x allowDamage true;
+			} forEach _revivedPlayers;
+		};
 		//check if all players dead or unconscious
 		_deadUnconscious = [];
 		{
