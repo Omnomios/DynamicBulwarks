@@ -42,7 +42,9 @@
 };
 
 // Player modifier
-playSound ["rageSound", false];
+
+[player, "rageSoundExternal"] remoteExec ["sound_fnc_say3DGlobal", 0];
+playSound ["rageSoundInternal", false];
 [] spawn {
     // Turn on RAGE mode
     player allowDamage false;
