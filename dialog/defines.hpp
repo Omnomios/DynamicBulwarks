@@ -421,7 +421,7 @@ class RscListBox
 	};
 	arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
 	arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
-	class ScrollBar
+	class ListScrollBar
 	{
 		color[] =
 		{
