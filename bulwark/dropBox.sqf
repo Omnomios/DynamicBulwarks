@@ -13,5 +13,5 @@ _playerAction = _this select 1;
 detach _emptyCrate;
 {[_emptyCrate, _x] remoteExec ["enableCollisionWith", 0];} forEach playableUnits;
 _playerAction removeAction _dropAction;
-[_emptyCrate, ["Pickup", "bulwark\moveBox.sqf"]] remoteExec ["addAction", 0];
+[_emptyCrate, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveBox.sqf","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0];
 ["bulwarkBox"] remoteExec ["publicVariable", 2];
