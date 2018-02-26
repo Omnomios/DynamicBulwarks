@@ -1,7 +1,7 @@
 /**
 *  reconDrone
 *
-*  Actor for recon drone pickup
+*  Actor for loot drone pickup
 *
 *  Domain: Client
 **/

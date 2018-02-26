@@ -10,7 +10,7 @@ activeLoot = [];
 lootDebugMarkers = [];
 
 
-/* Item to reveal hostiles on Map (1 spawns every wave) */
+/* Item to reveal all loot on the Map (1 spawns every wave) */
 _droneRoom = while {true} do {
 	_lootBulding = selectRandom lootHouses;
 	_lootRooms = _lootBulding buildingPos -1;
@@ -18,7 +18,6 @@ _droneRoom = while {true} do {
 	if(!isNil "_lootRoom") exitWith {_lootRoom};
 };
 _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_COLLIDE"];
-//_droneSupport addAction ["Reveal enemies", "supports\reconDrone.sqf"];
 [_droneSupport, ["<t color='#ff00ff'>" + "Reveal loot", "supports\lootDrone.sqf","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
 activeLoot pushback _droneSupport;
