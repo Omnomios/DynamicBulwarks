@@ -33,6 +33,10 @@ while {_runMissionLoop} do {
 	attkWave = (attkWave + 1);
 	publicVariable "attkWave";
 
+	//Reset the AI position checks
+	AIstuckcheck = 0;
+	AIStuckCheckArray = [];
+
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 	[9999] remoteExec ["setPlayerRespawnTime", 0];
 	if (isServer) then {
@@ -53,6 +57,7 @@ while {_runMissionLoop} do {
 		_spawnLoot = execVM "loot\spawnLoot.sqf";
 		waitUntil { scriptDone _spawnLoot};
 	};
+
 	while {_runMissionLoop} do {
 
 		//Check if all hostiles dead
@@ -94,8 +99,7 @@ while {_runMissionLoop} do {
 			_missionFailure = true;
 			"End1" call BIS_fnc_endMissionServer;
 		};
-
-		//Move mostiles towards neaest player
+		//Move hostiles towards neaest player
 		sleep 1;
 		{
 			if (side _x == east) then {
@@ -115,7 +119,26 @@ while {_runMissionLoop} do {
 					}
 			};
 		} foreach allUnits;
-
+		//Move Stuck AIs after 60 seconds
+		if (AIstuckcheck == 0) then {
+			{
+				if (side _x == east) then {
+					AIStuckCheckArray pushBack [_x, getPos _x];
+				};
+			} forEach allUnits;
+		};
+		AIstuckcheck = AIstuckcheck + 1;
+		if (AIstuckcheck == 6) then {
+			{
+					_AItoCheck = _x select 0;
+					_oldAIPos = _x select 1;
+					if ((alive _AItoCheck) && (((getPos _AItoCheck) distance _oldAIPos) < 10 )) then {
+						_AItoCheck setPos ([_AItoCheck, 3, 20, 5, 0] call BIS_fnc_findSafePos);
+					};
+			} forEach AIStuckCheckArray;
+			AIstuckcheck = 0;
+			AIStuckCheckArray = [];
+		};
 		sleep 10;
 
 		// Mission area protection
