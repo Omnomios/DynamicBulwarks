@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=115;
+		nextID=116;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={3817.7087,57.64777,13468.19};
-		dir[]={-0.12155056,-0.050322305,-0.99142951};
-		up[]={-0.0061427657,0.9986499,-0.050122719};
-		aside[]={-0.99274069,1.8265746e-006,0.12170851};
+		pos[]={41.853455,25.25264,17.192852};
+		dir[]={-0.095473453,-0.98667318,0.13177334};
+		up[]={-0.57889843,0.16270737,0.7990005};
+		aside[]={0.80979294,-8.7820808e-008,0.58671808};
 	};
 };
 binarizationWanted=0;
@@ -31,13 +31,14 @@ addons[]=
 	"A3_Weapons_F_Items",
 	"A3_Characters_F_Exp_Civil",
 	"A3_Characters_F_Exp",
-	"A3_Ui_F"
+	"A3_Ui_F",
+	"A3_Modules_F_Intel"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=4;
+		items=5;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -63,6 +64,13 @@ class AddonsMetaData
 		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item4
+		{
+			className="A3_Modules_F";
+			name="Arma 3 Alpha - Scripted Modules";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -212,7 +220,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=10;
+		items=11;
 		class Item0
 		{
 			dataType="Group";
@@ -275,7 +283,7 @@ class Mission
 					};
 					id=10;
 					type="C_man_1_1_F";
-					atlOffset=171.84372;
+					atlOffset=261.36838;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -335,7 +343,7 @@ class Mission
 					};
 					id=58;
 					type="C_Man_casual_2_F";
-					atlOffset=172.44098;
+					atlOffset=262.04297;
 				};
 				class Item2
 				{
@@ -363,7 +371,7 @@ class Mission
 					};
 					id=60;
 					type="C_Man_casual_3_F";
-					atlOffset=171.96594;
+					atlOffset=261.50284;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -423,7 +431,7 @@ class Mission
 					};
 					id=62;
 					type="C_man_sport_1_F";
-					atlOffset=173.04517;
+					atlOffset=262.50302;
 				};
 				class Item4
 				{
@@ -441,7 +449,7 @@ class Mission
 					};
 					id=64;
 					type="C_man_sport_2_F";
-					atlOffset=172.29715;
+					atlOffset=261.73489;
 				};
 				class Item5
 				{
@@ -459,7 +467,7 @@ class Mission
 					};
 					id=66;
 					type="C_man_sport_3_F";
-					atlOffset=172.1172;
+					atlOffset=261.63055;
 				};
 				class Item6
 				{
@@ -477,7 +485,7 @@ class Mission
 					};
 					id=68;
 					type="C_Man_casual_4_F";
-					atlOffset=170.70282;
+					atlOffset=260.19937;
 				};
 				class Item7
 				{
@@ -495,7 +503,7 @@ class Mission
 					};
 					id=70;
 					type="C_Man_casual_5_F";
-					atlOffset=173.13765;
+					atlOffset=262.54593;
 				};
 				class Item8
 				{
@@ -513,7 +521,7 @@ class Mission
 					};
 					id=72;
 					type="C_Man_casual_6_F";
-					atlOffset=171.57265;
+					atlOffset=261.17151;
 				};
 				class Item9
 				{
@@ -531,7 +539,7 @@ class Mission
 					};
 					id=74;
 					type="C_man_polo_1_F";
-					atlOffset=170.27257;
+					atlOffset=259.87289;
 				};
 				class Item10
 				{
@@ -541,7 +549,7 @@ class Mission
 						position[]={27.713285,-185.6972,25.031555};
 					};
 					side="West";
-					flags=5;
+					flags=1;
 					class Attributes
 					{
 						description="Survivor";
@@ -549,7 +557,7 @@ class Mission
 					};
 					id=76;
 					type="C_man_polo_2_F";
-					atlOffset=-89.281876;
+					atlOffset=0.2713623;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -598,13 +606,13 @@ class Mission
 			{
 			};
 			id=0;
-			atlOffset=171.84372;
+			atlOffset=261.36838;
 			class CustomAttributes
 			{
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -633,7 +641,7 @@ class Mission
 			a=150;
 			b=150;
 			id=84;
-			atlOffset=96.571228;
+			atlOffset=0.00048446655;
 		};
 		class Item2
 		{
@@ -645,7 +653,7 @@ class Mission
 			a=150;
 			b=150;
 			id=85;
-			atlOffset=95.998055;
+			atlOffset=-0.61751747;
 		};
 		class Item3
 		{
@@ -657,7 +665,6 @@ class Mission
 			a=150;
 			b=150;
 			id=86;
-			atlOffset=110.22154;
 		};
 		class Item4
 		{
@@ -669,7 +676,7 @@ class Mission
 			a=150;
 			b=150;
 			id=88;
-			atlOffset=123.36593;
+			atlOffset=-0.709692;
 		};
 		class Item5
 		{
@@ -681,7 +688,6 @@ class Mission
 			a=150;
 			b=150;
 			id=93;
-			atlOffset=106.06324;
 		};
 		class Item6
 		{
@@ -693,7 +699,6 @@ class Mission
 			a=150;
 			b=150;
 			id=100;
-			atlOffset=161.35703;
 		};
 		class Item7
 		{
@@ -705,7 +710,7 @@ class Mission
 			a=150;
 			b=150;
 			id=101;
-			atlOffset=93.349274;
+			atlOffset=-0.69843292;
 		};
 		class Item8
 		{
@@ -717,7 +722,6 @@ class Mission
 			a=150;
 			b=150;
 			id=102;
-			atlOffset=116.33896;
 		};
 		class Item9
 		{
@@ -729,7 +733,116 @@ class Mission
 			a=150;
 			b=150;
 			id=103;
-			atlOffset=104.74167;
+		};
+		class Item10
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={41.681,0,23.445};
+			};
+			id=115;
+			type="ModuleCreateDiaryRecord_F";
+			atlOffset=185.97;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ModuleCreateDiaryRecord_F_PresetTitle";
+					expression="_this setVariable ['PresetTitle',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Mission";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ModuleCreateDiaryRecord_F_Title";
+					expression="_this setVariable ['Title',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="About";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ModuleCreateDiaryRecord_F_Description";
+					expression="_this setVariable ['Description',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="You are unarmed and there are hostile untis moving towards you. Survive for as many waves as possible." \n "<br />" \n "<br /> " \n "Search buildings for weapons, equipment and supplies." \n "<br /> " \n "<br /> " \n "Kill enemies to earn points to spend at the Bulwark Box. Points can be used to purchase Building Supplies and Supports. Purchased Supports can be used via the Supports menu (0 - 8 on keyboard)." \n "<br />" \n "<br /> " \n "If you are knocked unconscious but you have a Medikit in your inventory you will be automatically resurected within 10 seconds. Medikits can also be broken into 4 First Aid Kits from the scroll menu.";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ModuleCreateDiaryRecord_F_Owner";
+					expression="_this setVariable ['Owner',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=3;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="ModuleCreateDiaryRecord_F_Subject";
+					expression="_this setVariable ['Subject',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="dynamicBulwarks";
+						};
+					};
+				};
+				nAttributes=5;
+			};
 		};
 	};
 };

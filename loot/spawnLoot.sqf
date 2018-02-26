@@ -18,7 +18,8 @@ _droneRoom = while {true} do {
 	if(!isNil "_lootRoom") exitWith {_lootRoom};
 };
 _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_COLLIDE"];
-_droneSupport addAction ["Reveal enemies", "supports\reconDrone.sqf"];
+//_droneSupport addAction ["Reveal enemies", "supports\reconDrone.sqf"];
+[_droneSupport, ["<t color='#ff00ff'>" + "Reveal enemies", "supports\reconDrone.sqf","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
 activeLoot pushback _droneSupport;
 
@@ -100,5 +101,4 @@ _roomCount = 0;
 if(LOOT_DEBUG) then { systemChat format ["Loot spawn complete (%1/%2)", _houseCount, _houseLoot]; };
 
 /* Supply Drop */
-_dropPos = bulwarkCity;
-[_dropPos, ["FILL AMMO", "supports\ammoDrop.sqf"], "B_T_VTOL_01_vehicle_F"] remoteExec ["supports_fnc_supplyDrop", 2];
+[bulwarkCity, ["<t color='#00ff00'>" + "FILL AMMO", "supports\ammoDrop.sqf","",2,true,false,"true","true",4], "B_T_VTOL_01_vehicle_F"] remoteExec ["supports_fnc_supplyDrop", 2];
