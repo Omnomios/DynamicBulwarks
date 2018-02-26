@@ -110,13 +110,13 @@ while {_runMissionLoop} do {
 					if ((playerHostDistance < _gotoPlayerDistance) && (alive _x)) then {
 						goToPlayer = _x;
 					};
-					} forEach _allHPs;
-					_doMovePos = getPos goToPlayer;
-					if (playerHostDistance > 15) then {
-							thisNPC doMove _doMovePos;
-						} else {
-							thisNPC doMove [(_doMovePos select 0) + (random [-7.5, 7.5, 0]), (_doMovePos select 1) + (random [-7.5, 7.5, 0]), _doMovePos select 2];
-					}
+				} forEach _allHPs;
+				_doMovePos = getPos goToPlayer;
+				if (playerHostDistance > 15) then {
+					thisNPC doMove _doMovePos;
+				} else {
+					thisNPC doMove [(_doMovePos select 0) + (random [-7.5, 7.5, 0]), (_doMovePos select 1) + (random [-7.5, 7.5, 0]), _doMovePos select 2];
+				};
 			};
 		} foreach allUnits;
 		//Move Stuck AIs after 60 seconds
@@ -130,11 +130,11 @@ while {_runMissionLoop} do {
 		AIstuckcheck = AIstuckcheck + 1;
 		if (AIstuckcheck == 6) then {
 			{
-					_AItoCheck = _x select 0;
-					_oldAIPos = _x select 1;
-					if ((alive _AItoCheck) && (((getPos _AItoCheck) distance _oldAIPos) < 10 )) then {
-						_AItoCheck setPos ([_AItoCheck, 3, 20, 5, 0] call BIS_fnc_findSafePos);
-					};
+				_AItoCheck = _x select 0;
+				_oldAIPos = _x select 1;
+				if ((alive _AItoCheck) && (((getPos _AItoCheck) distance _oldAIPos) < 10 )) then {
+					_AItoCheck setPos ([_AItoCheck, 3, 20, 5, 0] call BIS_fnc_findSafePos);
+				};
 			} forEach AIStuckCheckArray;
 			AIstuckcheck = 0;
 			AIStuckCheckArray = [];

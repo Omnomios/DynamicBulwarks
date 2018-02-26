@@ -23,7 +23,6 @@ _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_C
 activeLoot pushback _droneSupport;
 
 /* Master loot spawner */
-if(LOOT_DEBUG) then { systemChat "Started loot spawn"; };
 _houseCount = floor random 3; // Mix up the loot houses a bit
 _houseLoot = 0;
 _roomCount = 0;
@@ -34,14 +33,6 @@ _roomCount = 0;
 
 		_lootBulding = _x;
 		_lootRooms = _lootBulding buildingPos -1;
-
-		if(LOOT_DEBUG) then {
-			_houseMkr = createMarker [netId _lootBulding, getPos _lootBulding];
-			_houseMkr setMarkerShape "ICON";
-			_houseMkr setMarkerType "hd_dot";
-			_houseMkr setMarkerColor "ColorBlue";
-			lootDebugMarkers pushback _houseMkr;
-		};
 
 		_roomCount = -1;
 		{
@@ -68,8 +59,8 @@ _roomCount = 0;
 						_lootHolder addItemCargoGlobal [_clothes, 1];
 					};
 					case 3: {
-						_optics = selectRandom LOOT_ITEM_POOL;
-						_lootHolder addItemCargoGlobal [_optics, 1];
+						_items = selectRandom LOOT_ITEM_POOL;
+						_lootHolder addItemCargoGlobal [_items, 1];
 					};
 					case 4: {
 						_backpack = selectRandom LOOT_STORAGE_POOL;
@@ -82,22 +73,12 @@ _roomCount = 0;
 				};
 				_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];
 
-				if(LOOT_DEBUG) then {
-					_houseMkr = createMarker [netId _lootHolder, getPos _lootHolder];
-					_houseMkr setMarkerShape "ICON";
-					_houseMkr setMarkerType "hd_dot";
-					_houseMkr setMarkerColor "ColorRed";
-					lootDebugMarkers pushback _houseMkr;
-				};
-
 				activeLoot pushback _lootHolder; // Add object to array for later cleanup
 			};
 		} forEach _lootRooms;
 	};
 
 } forEach lootHouses;
-
-if(LOOT_DEBUG) then { systemChat format ["Loot spawn complete (%1/%2)", _houseCount, _houseLoot]; };
 
 /* Supply Drop */
 [bulwarkCity, ["<t color='#00ff00'>" + "FILL AMMO", "supports\ammoDrop.sqf","",2,true,false,"true","true",4], "B_T_VTOL_01_vehicle_F"] remoteExec ["supports_fnc_supplyDrop", 2];
