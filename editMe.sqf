@@ -69,4 +69,4 @@ DAYTIMEFROM = 6; //earliest time. 6 = 6:00 AM
 DAYTIMETO = 18; //earliest time. 18 = 6:00 PM
 
 /* Starter MediKits */
-BULWARKMEDIKITS = 1;
+BULWARK_MEDIKITS = ("BULWARK_MEDIKIT" call BIS_fnc_getParamValue);
