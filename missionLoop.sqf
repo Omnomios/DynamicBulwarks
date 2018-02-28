@@ -7,6 +7,7 @@ activeLoot = [];
 //mrkrs = [];
 
 waveUnits = [[],[],[]];
+revivedPlayers = [];
 
 //spawn start loot
 if (isServer) then {
@@ -14,10 +15,10 @@ if (isServer) then {
 };
 
 sleep 15;
-_runMissionLoop = true;
-_missionFailure = false;
+runMissionLoop = true;
+missionFailure = false;
 
-while {_runMissionLoop} do {
+while {runMissionLoop} do {
 	for ("_i") from 0 to 14 do {
 		if(_i > 10) then {"beep_target" remoteExec ["playsound", 0];} else {"readoutClick" remoteExec ["playsound", 0];};
 		[format ["<t>%1</t>", 15-_i], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
@@ -58,34 +59,10 @@ while {_runMissionLoop} do {
 		waitUntil { scriptDone _spawnLoot};
 	};
 
-	while {_runMissionLoop} do {
+	while {runMissionLoop} do {
 
 		//Check if all hostiles dead
-		if (east countSide allUnits == 0) exitWith {
-			hint "wave Complete";
-		};
-		//check if unconscious players have medkit
-		_revivedPlayers = [];
-		{
-			_playerInvToCheck = _x;
-			if ((lifeState _x) == "INCAPACITATED") then {
-				_playerItems = items _x;
-				if ("Medikit" in _playerItems) then {
-					[_playerInvToCheck, false] remoteExec ["setUnconscious", 0];
-					[ "#rev", 1, _playerInvToCheck ] remoteExecCall ["BIS_fnc_reviveOnState", _playerInvToCheck];
-					_playerInvToCheck allowDamage false;
-					_playerInvToCheck removeItem "Medikit";
-					_revivedPlayers pushBack _playerInvToCheck;
-					sleep 0.01;
-				};
-			};
-		} forEach _allHPs;
-		if ((count _revivedPlayers) > 0) then {
-			sleep 15;
-			{
-			    _x allowDamage true;
-			} forEach _revivedPlayers;
-		};
+		if (east countSide allUnits == 0) exitWith {};
 		//check if all players dead or unconscious
 		_deadUnconscious = [];
 		{
@@ -95,30 +72,44 @@ while {_runMissionLoop} do {
 		} foreach _allHPs;
 
 		if (count (_allHPs - _deadUnconscious) <= 0) then {
-			_runMissionLoop = false;
-			_missionFailure = true;
+			runMissionLoop = false;
+			missionFailure = true;
 			"End1" call BIS_fnc_endMissionServer;
 		};
+		//Check AI behavior
+		sleep 5;
+		{
+			if (side _x == east) then {
+				_x allowFleeing 0;
+				if ((_x findNearestEnemy _x) == objNull) then {
+					_x setBehaviour "CARELESS";
+				} else {
+					_x setBehaviour "AWARE";
+				};
+			};
+		} foreach allUnits;
+
 		//Move hostiles towards neaest player
-		sleep 1;
 		{
 			if (side _x == east) then {
 				thisNPC = _x;
-				_gotoPlayerDistance = 9999;
+				gotoPlayerDistance = 9999;
  				{
-					playerHostDistance = (getPos thisNPC) distance _x;
-					if ((playerHostDistance < _gotoPlayerDistance) && (alive _x)) then {
+					_playerHostDistance = (getPos thisNPC) distance _x;
+					if ((_playerHostDistance < gotoPlayerDistance) && (alive _x)) then {
 						goToPlayer = _x;
+						gotoPlayerDistance = _playerHostDistance;
 					};
 				} forEach _allHPs;
 				_doMovePos = getPos goToPlayer;
-				if (playerHostDistance > 15) then {
+				if (gotoPlayerDistance > 15) then {
 					thisNPC doMove _doMovePos;
 				} else {
 					thisNPC doMove [(_doMovePos select 0) + (random [-7.5, 7.5, 0]), (_doMovePos select 1) + (random [-7.5, 7.5, 0]), _doMovePos select 2];
 				};
 			};
 		} foreach allUnits;
+
 		//Move Stuck AIs after 60 seconds
 		if (AIstuckcheck == 0) then {
 			{
@@ -128,19 +119,24 @@ while {_runMissionLoop} do {
 			} forEach allUnits;
 		};
 		AIstuckcheck = AIstuckcheck + 1;
-		if (AIstuckcheck == 6) then {
+		if (AIstuckcheck == 30) then {
 			{
 				_AItoCheck = _x select 0;
 				_oldAIPos = _x select 1;
-				if ((alive _AItoCheck) && (((getPos _AItoCheck) distance _oldAIPos) < 10 )) then {
-					_AItoCheck setPos ([_AItoCheck, 3, 20, 5, 0] call BIS_fnc_findSafePos);
+				nearestPlayerDistance = 9999;
+				{
+					_playerHostDistance = (getPos _AItoCheck) distance _x;
+					if ((_playerHostDistance < nearestPlayerDistance)) then {
+						nearestPlayerDistance = _playerHostDistance;
+					};
+				} forEach _allHPs;
+				if ((alive _AItoCheck) && (((getPos _AItoCheck) distance _oldAIPos) < 10 ) && (nearestPlayerDistance > 60)) then {
+					deleteVehicle _AItoCheck;
 				};
 			} forEach AIStuckCheckArray;
 			AIstuckcheck = 0;
 			AIStuckCheckArray = [];
 		};
-		sleep 10;
-
 		// Mission area protection
 		{if ((_x distance2D bulwarkCity) > BULWARK_RADIUS * 0.9) then {
 			["Warning: Leaving mission area!",0, 0.1] remoteExec ["BIS_fnc_dynamicText", _x];
@@ -154,7 +150,7 @@ while {_runMissionLoop} do {
 		} foreach _allHPs;
 	};
 
-	if(_missionFailure) exitWith {};
+	if(missionFailure) exitWith {};
 
 	["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	[0] remoteExec ["setPlayerRespawnTime", 0];
