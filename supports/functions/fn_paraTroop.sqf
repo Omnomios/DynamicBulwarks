@@ -51,17 +51,14 @@ waitUntil {paraTroopLatch};
 
 sleep 0.5;
 
-if(isNil "attGroupBand") then {
-    coreGroup = group _player;
-    attGroupBand = createGroup [west, true];
-};
-[_player] join attGroupBand;
+coreGroup = group _player;
+[group _player, _player] remoteExec ["selectLeader", groupOwner group _player];
 
 for ("_i") from 1 to 3 do {
     _location = getPos _agVehicle;
     _unitClass = selectRandom _classList;
     _unit = objNull;
-    _unit = attGroupBand createUnit [_unitClass, _location vectorAdd [0,0,-2], [], 0.5, "CAN_COLLIDE"];
+    _unit = coreGroup createUnit [_unitClass, _location vectorAdd [0,0,-2], [], 0.5, "CAN_COLLIDE"];
     sleep 0.3;
     waitUntil {!isNull _unit};
     _unit addBackpack "B_Parachute";
@@ -72,18 +69,11 @@ for ("_i") from 1 to 3 do {
     _unit doMove _targetPos;
 
     _unit addEventHandler ["Killed", {
-        _self = _this select 0;
-        _selfGroup = group _self;
-
-        removeVest _self;
-        removeBackpack _self;
-        removeAllWeapons _self:
-        removeAllAssignedItems _self;
-
-        if(count units _selfGroup <= 2) then {
-            [player] join coreGroup;
-            coreGroup = nil;
-        };
+    _self = _this select 0;
+    removeVest _self;
+    removeBackpack _self;
+    removeAllWeapons _self:
+    removeAllAssignedItems _self;
     }];
 };
 
