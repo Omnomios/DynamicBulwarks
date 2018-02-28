@@ -17,9 +17,9 @@ class EditorData
 	class Camera
 	{
 		pos[]={41.853455,25.25264,17.192852};
-		dir[]={-0.095473453,-0.98667318,0.13177334};
-		up[]={-0.57889843,0.16270737,0.7990005};
-		aside[]={0.80979294,-8.7820808e-008,0.58671808};
+		dir[]={-0.11988357,-0.97876358,0.16631491};
+		up[]={-0.57232749,0.20498313,0.79399097};
+		aside[]={0.81122154,2.8847717e-007,0.58474696};
 	};
 };
 binarizationWanted=0;
@@ -199,15 +199,14 @@ class Mission
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;
-		startWeather=0.38108048;
+		startWeather=0.15822819;
 		startFog=0.096915029;
 		startWind=0.1;
 		startWaves=0.1;
-		forecastWeather=0.78670508;
+		forecastWeather=0.15822819;
 		forecastFog=0.16019334;
 		forecastWind=0.1;
 		forecastWaves=0.1;
-		forecastRain=0.46500322;
 		forecastLightnings=0.1;
 		rainForced=1;
 		year=2035;
