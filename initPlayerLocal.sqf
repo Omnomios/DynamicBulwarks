@@ -2,14 +2,6 @@ player setCustomAimCoef 0.2;
 player setUnitRecoilCoefficient 0.5;
 player enableStamina FALSE;
 
-//Move player to bulwark box
-if (isNil "BULWARK_PLACED") then {
-  BULWARK_PLACED = false;
-};
-
-waituntil {BULWARK_PLACED};
-player setVehiclePosition [bulwarkBox, [], 2, "NONE"];
-
 player addEventHandler ['Respawn',{
     player setCustomAimCoef 0.2;
     player setUnitRecoilCoefficient 0.5;
@@ -41,6 +33,15 @@ player setVariable ["killPoints", _killPoints, true];
         if(_currMarker == "bulwark_") then{ deleteMarker _x; };
     };
 } foreach allMapMarkers;
+
+//Move player to bulwark box
+if (isNil "BULWARK_PLACED") then {
+  BULWARK_PLACED = false;
+};
+hint "wainting for bulwark";
+waituntil {BULWARK_PLACED};
+player setVehiclePosition [bulwarkBox, [], 2, "NONE"];
+hint "Bulwark placed";
 
 onEachFrame {
     if(!isNil "bulwarkBox") then {
