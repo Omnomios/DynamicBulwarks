@@ -6,11 +6,11 @@
 *  Domain: Client
 **/
 
-_droneBox = _this select 0;
+//_droneBox = _this select 0;
 lootMrks = [];
 _curWave = attkWave;
 
-deleteVehicle _droneBox;
+//deleteVehicle _droneBox;
 
 ["IntelAdded",["Loot locations added to map"]] remoteExec ["BIS_fnc_showNotification", 0];
 
