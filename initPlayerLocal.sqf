@@ -2,6 +2,14 @@ player setCustomAimCoef 0.2;
 player setUnitRecoilCoefficient 0.5;
 player enableStamina FALSE;
 
+//Move player to bulwark box
+if (isNil "BULWARK_PLACED") then {
+  BULWARK_PLACED = false;
+};
+
+waituntil {BULWARK_PLACED};
+player setVehiclePosition [bulwarkBox, [], 2, "NONE"];
+
 player addEventHandler ['Respawn',{
     player setCustomAimCoef 0.2;
     player setUnitRecoilCoefficient 0.5;
