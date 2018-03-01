@@ -6,12 +6,17 @@
 *  Domain: Server
 **/
 
-_bulwarkLocation = [BULWARK_LOCATIONS, BULWARK_RADIUS] call bulwark_fnc_bulwarkLocation;
-bulwarkRoomPos = _bulwarkLocation select 0;
-bulwarkCity = _bulwarkLocation select 1;
-
 bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
-bulwarkBox setPosASL bulwarkRoomPos;
+
+_isWater = true;
+while {_isWater} do {
+	_bulwarkLocation = [BULWARK_LOCATIONS, BULWARK_RADIUS] call bulwark_fnc_bulwarkLocation;
+	bulwarkRoomPos = _bulwarkLocation select 0;
+	bulwarkCity = _bulwarkLocation select 1;
+	bulwarkBox setPosASL bulwarkRoomPos;
+	_isWater = surfaceIsWater (getPos bulwarkBox);
+};
+
 bulwarkBox allowDamage false;
 clearItemCargoGlobal bulwarkBox;
 clearWeaponCargoGlobal bulwarkBox;

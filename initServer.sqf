@@ -12,12 +12,15 @@ waitUntil {
 _basepoint = [] execVM "bulwark\createBase.sqf";
 waitUntil { scriptDone _basepoint };
 
+BULWARK_PLACED = true;
+
 publicVariable "bulwarkBox";
 publicVariable "PARATROOP_CLASS";
 publicVariable "BULWARK_SUPPORTITEMS";
 publicVariable "BULWARK_BUILDITEMS";
 publicVariable "PLAYER_STARTWEAPON";
 publicVariable "PLAYER_STARTMAP";
+publicVariable "BULWARK_PLACED"
 
 _dayTimeHours = DAYTIMETO - DAYTIMEFROM;
 _randTime = floor random _dayTimeHours;
