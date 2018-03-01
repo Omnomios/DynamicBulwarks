@@ -38,10 +38,8 @@ player setVariable ["killPoints", _killPoints, true];
 if (isNil "BULWARK_PLACED") then {
   BULWARK_PLACED = false;
 };
-hint "wainting for bulwark";
 waituntil {BULWARK_PLACED};
 player setVehiclePosition [bulwarkBox, [], 2, "NONE"];
-hint "Bulwark placed";
 
 onEachFrame {
     if(!isNil "bulwarkBox") then {
