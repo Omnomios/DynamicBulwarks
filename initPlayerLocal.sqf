@@ -24,7 +24,6 @@ if(isNil "_killPoints") then {
 };
 player setVariable ["killPoints", _killPoints, true];
 
-
 // Delete all map markers on clients
 {
     _currMarker = toArray _x;
@@ -33,13 +32,6 @@ player setVariable ["killPoints", _killPoints, true];
         if(_currMarker == "bulwark_") then{ deleteMarker _x; };
     };
 } foreach allMapMarkers;
-
-//Move player to bulwark box
-if (isNil "BULWARK_PLACED") then {
-  BULWARK_PLACED = false;
-};
-waituntil {BULWARK_PLACED};
-player setVehiclePosition [bulwarkBox, [], 2, "NONE"];
 
 onEachFrame {
     if(!isNil "bulwarkBox") then {

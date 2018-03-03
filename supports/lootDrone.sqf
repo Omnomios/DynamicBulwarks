@@ -14,8 +14,6 @@ _curWave = attkWave;
 
 ["IntelAdded",["Loot locations added to map"]] remoteExec ["BIS_fnc_showNotification", 0];
 
-
-
 {
 	_displayName = "";
 	_mrkrName = format ["loot%1", _x];
