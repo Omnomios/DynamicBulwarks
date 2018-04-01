@@ -46,6 +46,8 @@ for ("_i") from 1 to _unitCount do {
 	    _unit addWeapon "hgun_P07_F";
 	};
 
+	mainZeus addCuratorEditableObjects [[_unit], true];
+
 	_unitArray = waveUnits select 0;
 	_unitArray append [_unit];
 };

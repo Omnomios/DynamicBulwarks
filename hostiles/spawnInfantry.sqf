@@ -34,4 +34,7 @@ _unit setSkill ["aimingShake", hosSkill];
 _unit setSkill ["spotTime", hosSkill];
 _unit addEventHandler ["Hit", killPoints_fnc_hit];
 _unit addEventHandler ["Killed", killPoints_fnc_killed];
+
+mainZeus addCuratorEditableObjects [[_unit], true];
+
 removeAllAssignedItems _unit;

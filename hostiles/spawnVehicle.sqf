@@ -27,5 +27,7 @@ while {!_found} do {
 };
 _createdVehFnc = [[bulwarkCity, 200, 450,8,0] call BIS_fnc_findSafePos, 0, _foundVeh, east] call bis_fnc_spawnvehicle;
 _createdVehFnc select 0 doMove (getPos (selectRandom playableUnits));
+mainZeus addCuratorEditableObjects [[_createdVehFnc], true];
+
 hint "vec spawned";
 sleep 2;
