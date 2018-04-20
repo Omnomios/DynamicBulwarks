@@ -59,6 +59,7 @@ for ("_i") from 1 to 3 do {
     _unitClass = selectRandom _classList;
     _unit = objNull;
     _unit = coreGroup createUnit [_unitClass, _location vectorAdd [0,0,-2], [], 0.5, "CAN_COLLIDE"];
+    mainZeus addCuratorEditableObjects [[_unit], true];
     sleep 0.3;
     waitUntil {!isNull _unit};
     _unit addBackpack "B_Parachute";
@@ -67,6 +68,7 @@ for ("_i") from 1 to 3 do {
     _unit setSkill ["aimingShake", 0.8];
     _unit setSkill ["spotTime", 1];
     _unit doMove _targetPos;
+
 
     _unit addEventHandler ["Killed", {
     _self = _this select 0;

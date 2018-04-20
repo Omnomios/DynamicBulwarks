@@ -7,10 +7,12 @@
 **/
 
 /* Attacker Waves */
+
 // List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper
 HOSTILE_LEVEL_1 = List_Bandits;  // Wave 0 >
 HOSTILE_LEVEL_2 = List_OPFOR;    // Wave 5 >
 HOSTILE_LEVEL_3 = List_Viper;    // Wave 10 >
+
 HOSTILE_MULTIPLIER = ("HOSTILE_MULTIPLIER" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
 HOSTILE_TEAM_MULTIPLIER = ("HOSTILE_TEAM_MULTIPLIER" call BIS_fnc_getParamValue) / 100;   // How many extra units are added per player
 

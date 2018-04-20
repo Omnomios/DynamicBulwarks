@@ -148,6 +148,10 @@ while {runMissionLoop} do {
 			_x setPosASL _newLoc;
 		};
 		} foreach _allHPs;
+
+		{
+			mainZeus addCuratorEditableObjects [[_x], true];
+		} foreach _allHPs;
 	};
 
 	if(missionFailure) exitWith {};
