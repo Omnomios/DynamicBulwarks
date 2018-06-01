@@ -110,7 +110,7 @@ while {runMissionLoop} do {
 			};
 		} foreach allUnits;
 
-		//Move Stuck AIs after 60 seconds
+		//Move Stuck AIs after 60 seconds - to do: move to own script
 		if (AIstuckcheck == 0) then {
 			{
 				if (side _x == east) then {
@@ -119,6 +119,7 @@ while {runMissionLoop} do {
 			} forEach allUnits;
 		};
 		AIstuckcheck = AIstuckcheck + 1;
+		sleep(1);
 		if (AIstuckcheck == 30) then {
 			{
 				_AItoCheck = _x select 0;
@@ -130,8 +131,10 @@ while {runMissionLoop} do {
 						nearestPlayerDistance = _playerHostDistance;
 					};
 				} forEach _allHPs;
-				if ((alive _AItoCheck) && (((getPos _AItoCheck) distance _oldAIPos) < 10 ) && (nearestPlayerDistance > 60)) then {
+				if ((alive _AItoCheck) && (((getPos _AItoCheck) distance _oldAIPos) < 10 )) then {
+					if ((west knowsAbout _AItoCheck) < 3.5) then {
 					deleteVehicle _AItoCheck;
+					};
 				};
 			} forEach AIStuckCheckArray;
 			AIstuckcheck = 0;
