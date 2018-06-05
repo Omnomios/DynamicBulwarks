@@ -74,6 +74,13 @@ _roomCount = 0;
 				_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];
 
 				activeLoot pushback _lootHolder; // Add object to array for later cleanup
+
+				[_lootHolder, ["ContainerClosed", { // Add event to delete container if empty
+						params ["_container"];
+						if ((magazineCargo _container isEqualTo []) && (weaponCargo _container isEqualTo []) && (backpackCargo _container isEqualTo [])) exitWith {
+							[_container] remoteExec ["deleteVehicle", 2];
+						};
+				}]] remoteExec ['addEventHandler', 0];
 			};
 		} forEach _lootRooms;
 	};
