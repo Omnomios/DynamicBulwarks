@@ -42,8 +42,11 @@ for ("_i") from 1 to _unitCount do {
 	if(_attackWave <= PISTOL_HOSTILES) then {
 		removeAllWeapons _unit;
 		_unit addMagazine "16Rnd_9x21_Mag";
-	    _unit addMagazine "16Rnd_9x21_Mag";
-	    _unit addWeapon "hgun_P07_F";
+	  _unit addMagazine "16Rnd_9x21_Mag";
+	  _unit addWeapon "hgun_P07_F";
+		if ((floor random 4) == 1) then {
+			_unit additem "FirstAidKit";
+		};
 	};
 
 	mainZeus addCuratorEditableObjects [[_unit], true];
