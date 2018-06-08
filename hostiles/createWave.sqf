@@ -11,6 +11,10 @@ _noOfPlayers = 1 max floor ((playersNumber west) * HOSTILE_TEAM_MULTIPLIER);
 _multiplierBase = HOSTILE_MULTIPLIER;
 _SoldierMulti = attkWave / 5;
 
+if (attkWave <= 2) then {
+	_multiplierBase = 1
+};
+
 _squadCount = floor (attkWave * _multiplierBase);
 for ("_i") from 1 to (floor (attkWave * _multiplierBase)) do {
 	_script = [HOSTILE_LEVEL_1, attkWave, _noOfPlayers] execVM "hostiles\spawnSquad.sqf";

@@ -1,5 +1,7 @@
 sleep 5;
 
+_downTime = ("DOWN_TIME" call BIS_fnc_getParamValue);
+
 _CenterPos = _this;
 attkWave = 0;
 publicVariable "attkWave";
@@ -140,18 +142,7 @@ while {runMissionLoop} do {
 			AIstuckcheck = 0;
 			AIStuckCheckArray = [];
 		};
-		// Mission area protection
-		{if ((_x distance2D bulwarkCity) > BULWARK_RADIUS * 0.9) then {
-			["Warning: Leaving mission area!",0, 0.1] remoteExec ["BIS_fnc_dynamicText", _x];
-		};
-		} foreach _allHPs;
-
-		{if ((_x distance2D bulwarkCity) > BULWARK_RADIUS * 1.1) then {
-			_newLoc = [bulwarkBox] call bulwark_fnc_findPlaceAround;
-			_x setPosASL _newLoc;
-		};
-		} foreach _allHPs;
-
+		//Add objects to zeus
 		{
 			mainZeus addCuratorEditableObjects [[_x], true];
 		} foreach _allHPs;
@@ -168,5 +159,5 @@ while {runMissionLoop} do {
 	};
 	} foreach allPlayers;
 
-	sleep 20+(attkWave*6);
+	sleep _downTime;
 };

@@ -1,6 +1,6 @@
 class startBox_Dialog
 {
-    idd = 9999
+    idd = 9999;
     movingEnabled = false;
 
     class controls

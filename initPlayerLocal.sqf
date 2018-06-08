@@ -10,13 +10,13 @@ player addEventHandler ['Respawn',{
     player addAction ['Break Medikit', {
 	    player removeItem "Medikit";
 	    for ("_i") from 1 to 4 do { player addItem "firstAidKit"; };
-	}, nil, 1.5, true, true, '', "'Medikit' in items _this"];
+	}, nil, 0, true, true, '', "'Medikit' in items _this"];
 }];
 
 player addAction ['Break Medikit', {
     player removeItem "Medikit";
     for ("_i") from 1 to 4 do { player addItem "firstAidKit"; };
-}, nil, 1.5, true, true, '', "'Medikit' in items _this"];
+}, nil, 0, true, true, '', "'Medikit' in items _this"];
 
 _killPoints = player getVariable "killPoints";
 if(isNil "_killPoints") then {

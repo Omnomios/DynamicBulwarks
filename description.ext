@@ -114,9 +114,9 @@ class Params
 {
 	class HOSTILE_MULTIPLIER
 	{
-		title = "Hostiles x Wave number Multiplier";
-		values[] = {1,2,3};
-		texts[] = {"Normal", "Double", "Tripple"};
+		title = "Number of hostiles per wave";
+		values[] = {0.5,1,2,3};
+		texts[] = {"Low (Easiest)", "Normal", "Double", "Tripple (Hardest)"};
 		default = 1;
 	};
 
@@ -126,6 +126,38 @@ class Params
 		values[] = {50, 100, 150, 200};
 		texts[] = {"0.5", "1", "1.5", "2"};
 		default = 50;
+	};
+
+	class PISTOL_HOSTILES
+	{
+		title = "Hostiles only use pistols until wave";
+		values[] = {0, 1, 2, 3, 4, 5, 10, 15, 25, 30};
+		texts[] = {"Start Fully Armed", "One", "Two", "Three", "Four", "Five", "Ten", "Fifteen", "Twenty", "Twenty Five", "Thirty"};
+		default = 3;
+	};
+
+	class PLAYER_STARTWEAPON
+	{
+		title = "Players start with gun";
+		values[] = {0, 1};
+		texts[] = {"No", "Yes"};
+		default = 0;
+	};
+
+	class Down_Time
+	{
+		title = "Time between rounds";
+		values[] = {0, 15, 30, 60, 90, 120, 180, 240, 300};
+		texts[] = {"0", "15 Seconds", "30 Seconds", "1 Minute", "1 Minute 30 Seconds", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
+		default = 30;
+	};
+
+	class BULWARK_MEDIKIT
+	{
+		title = "Medikits in Bulwark";
+		values[] = {0, 1, 3, 4, 5, 6, 7, 8};
+		texts[] = {"None", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"};
+		default = 3;
 	};
 
 	class BULWARK_RADIUS
@@ -200,14 +232,6 @@ class Params
 		default = 20;
 	};
 
-	class PLAYER_STARTWEAPON
-	{
-		title = "Start with weapon";
-		values[] = {0, 1};
-		texts[] = {"No", "Yes"};
-		default = 0;
-	};
-
 	class PLAYER_STARTMAP
 	{
 		title = "Start with map";
@@ -216,11 +240,4 @@ class Params
 		default = 1;
 	};
 
-	class BULWARK_MEDIKIT
-	{
-		title = "Medikits in Bulwark";
-		values[] = {0, 1, 3, 4, 5, 6, 7, 8};
-		texts[] = {"None", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight"};
-		default = 1;
-	};
 };

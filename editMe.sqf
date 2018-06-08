@@ -15,6 +15,7 @@ HOSTILE_LEVEL_3 = List_Viper;    // Wave 10 >
 
 HOSTILE_MULTIPLIER = ("HOSTILE_MULTIPLIER" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
 HOSTILE_TEAM_MULTIPLIER = ("HOSTILE_TEAM_MULTIPLIER" call BIS_fnc_getParamValue) / 100;   // How many extra units are added per player
+PISTOL_HOSTILES = ("PISTOL_HOSTILES" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
 
 // List_LocationMarkers, List_AllCities
 BULWARK_LOCATIONS = List_AllCities;
