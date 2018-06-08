@@ -19,6 +19,7 @@ publicVariable "BULWARK_BUILDITEMS";
 publicVariable "PLAYER_STARTWEAPON";
 publicVariable "PLAYER_STARTMAP";
 publicVariable "PISTOL_HOSTILES";
+publicVariable "DOWN_TIME";
 
 _dayTimeHours = DAYTIMETO - DAYTIMEFROM;
 _randTime = floor random _dayTimeHours;

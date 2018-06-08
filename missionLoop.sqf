@@ -1,5 +1,7 @@
 sleep 5;
 
+_downTime = ("DOWN_TIME" call BIS_fnc_getParamValue);
+
 _CenterPos = _this;
 attkWave = 0;
 publicVariable "attkWave";
@@ -157,5 +159,5 @@ while {runMissionLoop} do {
 	};
 	} foreach allPlayers;
 
-	sleep 20+(attkWave*6);
+	sleep _downTime;
 };
