@@ -234,7 +234,7 @@ class Params
 
 	class PLAYER_STARTWEAPON
 	{
-		title = "Players start with gun";
+		title = "Players start with pistol";
 		values[] = {0, 1};
 		texts[] = {"No", "Yes"};
 		default = 0;
@@ -246,6 +246,22 @@ class Params
 		values[] = {0, 1};
 		texts[] = {"No", "Yes"};
 		default = 0;
+	};
+
+	class DAY_TIME_FROM
+	{
+		title = "Earliest time of day";
+		values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
+		texts[] = {"2am","4am","6am","10am","Midday", "2pm", "4pm", "6pm", "8pm", "10pm"};
+		default = 6;
+	};
+
+	class DAY_TIME_TO
+	{
+		title = "Latest time of day";
+		values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
+		texts[] = {"2am","4am","6am","10am","Midday", "2pm", "4pm", "6pm", "8pm", "10pm"};
+		default = 18;
 	};
 
 };

@@ -69,8 +69,13 @@ BULWARK_BUILDITEMS = [
 ];
 
 /* Time of Day*/
-DAYTIMEFROM = 6; //earliest time. 6 = 6:00 AM
-DAYTIMETO = 18; //earliest time. 18 = 6:00 PM
+DAY_TIME_FROM = ("DAY_TIME_FROM" call BIS_fnc_getParamValue);
+DAY_TIME_TO = ("DAY_TIME_TO" call BIS_fnc_getParamValue);
+
+// Check for sneaky inverted configuration. FROM should always be before TO.
+if (DAY_TIME_FROM > DAY_TIME_TO) then {
+    DAY_TIME_FROM = DAY_TIME_TO - 2;
+};
 
 /* Starter MediKits */
 BULWARK_MEDIKITS = ("BULWARK_MEDIKIT" call BIS_fnc_getParamValue);

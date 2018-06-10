@@ -18,12 +18,13 @@ publicVariable "BULWARK_SUPPORTITEMS";
 publicVariable "BULWARK_BUILDITEMS";
 publicVariable "PLAYER_STARTWEAPON";
 publicVariable "PLAYER_STARTMAP";
+publicVariable "PLAYER_STARTNVG";
 publicVariable "PISTOL_HOSTILES";
 publicVariable "DOWN_TIME";
 
-_dayTimeHours = DAYTIMETO - DAYTIMEFROM;
+_dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;
-_timeToSet = DAYTIMEFROM + _randTime;
+_timeToSet = DAY_TIME_FROM + _randTime;
 setDate [2018, 7, 1, _timeToSet, 0];
 
 [] execVM "revivePlayers.sqf";
