@@ -53,7 +53,7 @@ BULWARK_SUPPORTITEMS = [
     [1950, "Paratroopers",  "paraDrop"],
     [5430, "Missle CAS",    "airStrike"],
     [5930, "Rage Stimpack", "ragePack"],
-    [6666, "ARMAKART TM", "armaKart"]
+    [6666, "ARMAKART TM",   "armaKart"]
 ];
 
 BULWARK_BUILDITEMS = [
@@ -62,7 +62,9 @@ BULWARK_BUILDITEMS = [
     [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F"],
     [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F"],
     [500,  "H Barrier",            "Land_HBarrier_3_F"],
+    [800,  "Storage box small",    "Box_NATO_Support_F"],
     [1000, "Double H Barrier",     "Land_HBarrierWall4_F"],
+    [1200, "Storage box large",    "Box_NATO_AmmoVeh_F"],
     [2500, "Machine Gun",          "B_HMG_01_F"],
     [2500, "Machine Gun (raised)", "B_HMG_01_high_F"],
     [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F"]
