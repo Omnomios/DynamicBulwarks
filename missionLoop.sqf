@@ -104,6 +104,14 @@ while {runMissionLoop} do {
 					};
 				} forEach _allHPs;
 				_doMovePos = getPos goToPlayer;
+
+				// If it's a vehicle move to a place 15m from the player.
+				// TODO: check to see if that spot is empty
+				if(thisNPC isKindOf "LandVehicle") then {
+					_dir = [goToPlayer, thisNPC] call BIS_fnc_relativeDirTo;
+					_doMovePos = [ _doMovePos, 15, _dir ] call BIS_fnc_relPos;
+				};
+
 				if (gotoPlayerDistance > 15) then {
 					thisNPC doMove _doMovePos;
 				} else {
