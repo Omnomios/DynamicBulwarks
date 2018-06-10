@@ -135,7 +135,7 @@ while {runMissionLoop} do {
 				} forEach _allHPs;
 				if ((alive _AItoCheck) && (((getPos _AItoCheck) distance _oldAIPos) < 10 )) then {
 					if ((west knowsAbout _AItoCheck) < 3.5) then {
-					deleteVehicle _AItoCheck;
+						deleteVehicle _AItoCheck;
 					};
 				};
 			} forEach AIStuckCheckArray;
