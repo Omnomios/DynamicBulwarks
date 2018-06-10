@@ -91,7 +91,7 @@ while {runMissionLoop} do {
 			};
 		} foreach allUnits;
 
-		//Move hostiles towards neaest player
+		//Move hostiles towards nearest player
 		{
 			if (side _x == east) then {
 				thisNPC = _x;
@@ -154,9 +154,15 @@ while {runMissionLoop} do {
 	[0] remoteExec ["setPlayerRespawnTime", 0];
 
 	{
-	if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
-		forceRespawn _x;
-	};
+		// Try to force the spectator mode off when players are revived.
+		if (lifeState _x == "DEAD") then {
+			["Terminate"] remoteExec ["BIS_fnc_EGSpectator", -2];
+		}
+
+		// Revive players that died at the end of the round.
+		if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
+			forceRespawn _x;
+		};
 	} foreach allPlayers;
 
 	sleep _downTime;
