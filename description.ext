@@ -136,15 +136,7 @@ class Params
 		default = 3;
 	};
 
-	class PLAYER_STARTWEAPON
-	{
-		title = "Players start with gun";
-		values[] = {0, 1};
-		texts[] = {"No", "Yes"};
-		default = 0;
-	};
-
-	class Down_Time
+	class DOWN_TIME
 	{
 		title = "Time between rounds";
 		values[] = {0, 15, 30, 60, 90, 120, 180, 240, 300};
@@ -238,6 +230,22 @@ class Params
 		values[] = {0, 1};
 		texts[] = {"No", "Yes"};
 		default = 1;
+	};
+
+	class PLAYER_STARTWEAPON
+	{
+		title = "Players start with gun";
+		values[] = {0, 1};
+		texts[] = {"No", "Yes"};
+		default = 0;
+	};
+
+	class PLAYER_STARTNVG
+	{
+		title = "Players start with NVG";
+		values[] = {0, 1};
+		texts[] = {"No", "Yes"};
+		default = 0;
 	};
 
 };
