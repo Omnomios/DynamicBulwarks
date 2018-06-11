@@ -105,6 +105,13 @@ class CfgSounds
 		sound[] = {"\sound\armakart_music.ogg", 30, 1, 100};
 		titles[] = {0,""};
 	};
+
+	class pointsLootSound
+	{
+		name = "Points Loot Audio";
+		sound[] = {"\sound\lootPointsAudio.ogg", 35, 1, 100};
+		titles[] = {0,""};
+	};
 };
 
 #include "bulwark\dialog.hpp"

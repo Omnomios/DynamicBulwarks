@@ -22,6 +22,18 @@ _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_C
 
 activeLoot pushback _droneSupport;
 
+// Item to give KillPoints (1 spawns every wave)
+_pointsLootRoom = while {true} do {
+	_lootBulding = selectRandom lootHouses;
+	_lootRooms = _lootBulding buildingPos -1;
+	_lootRoom = selectRandom _lootRooms;
+	if(!isNil "_lootRoom") exitWith {_lootRoom};
+};
+pointsLoot = createVehicle ["Land_Money_F", _pointsLootRoom, [], 0, "CAN_COLLIDE"];
+[pointsLoot, ["<t color='#00ff00'>" + "Collect Points", "loot\lootPoints.sqf","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
+
+activeLoot pushback pointsLoot;
+
 /* Master loot spawner */
 _houseCount = floor random 3; // Mix up the loot houses a bit
 _houseLoot = 0;
