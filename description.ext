@@ -260,7 +260,7 @@ class Params
 	{
 		title = "Earliest time of day";
 		values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
-		texts[] = {"2am","4am","6am","10am","Midday", "2pm", "4pm", "6pm", "8pm", "10pm"};
+		texts[] = {"2am","4am","6am","8am","10am","Midday", "2pm", "4pm", "6pm", "8pm", "10pm"};
 		default = 6;
 	};
 
@@ -268,7 +268,7 @@ class Params
 	{
 		title = "Latest time of day";
 		values[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22};
-		texts[] = {"2am","4am","6am","10am","Midday", "2pm", "4pm", "6pm", "8pm", "10pm"};
+		texts[] = {"2am","4am","6am","8am","10am","Midday", "2pm", "4pm", "6pm", "8pm", "10pm"};
 		default = 18;
 	};
 
