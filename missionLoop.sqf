@@ -164,7 +164,7 @@ while {runMissionLoop} do {
 	{
 		// Try to force the spectator mode off when players are revived.
 		if (lifeState _x == "DEAD") then {
-			["Terminate"] remoteExec ["BIS_fnc_EGSpectator", -2];
+			["Terminate"] remoteExec ["BIS_fnc_EGSpectator", _x];
 		};
 
 		// Revive players that died at the end of the round.
