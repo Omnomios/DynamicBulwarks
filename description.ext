@@ -152,6 +152,14 @@ class Params
 		default = 3;
 	};
 
+	class START_KILLPOINTS
+	{
+		title = "Kill points Players start with";
+		values[] = {0, 250, 500, 1000, 2500, 5000, 10000};
+		texts[] = {"0", "250", "500", "1000", "2500", "5000", "10000"};
+		default = 0;
+	};
+
 	class BULWARK_RADIUS
 	{
 		title = "Mission area size";
