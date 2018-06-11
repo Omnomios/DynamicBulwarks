@@ -34,8 +34,22 @@ while {isNil "_finalPos"} do {
 		_neighbours = count nearestObjects [_largestPos, ["house"], BULWARK_RADIUS];
 
 		// One house, one location. Add it to the list of options
-		if(_largestVolume > 0 && _neighbours > 10) then {
-			_options append [_largestPos];
+		if(_largestVolume > 0 && _neighbours > LOOT_HOUSE_DENSITY) then {
+			// See how much water is around
+			_water = 0;
+			_land = 0;
+			for ("_i") from 1 to BULWARK_RADIUS / 10 do {
+				for ("_a") from 0 to 15 do {
+					_relPos = [_largestPos, _i * 10, 22 * _a] call BIS_fnc_relPos;
+					if(surfaceIsWater _relPos) then {_water = _water + 1;} else {_land = _land + 1;};
+				};
+			};
+			_totalSurface = _water + _land;
+			_landPercent = (_land / _totalSurface) * 100;
+
+			if(_landPercent > BULWARK_LANDRATIO) then {
+				_options append [_largestPos];
+			};
 		};
 
 	} forEach _houses;
