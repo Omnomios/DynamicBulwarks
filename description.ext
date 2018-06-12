@@ -326,4 +326,31 @@ class Params
 		default = 0;
 	};
 
+	class REVIVE_LABEL
+	{
+		title = "===== Revive Settings ======";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
+	};
+
+	class ReviveRequiredItems
+	{
+		title = "Required items";
+		isGlobal = 1;
+
+		values[] = {
+			0,
+			1,
+			2
+		};
+		texts[] = {
+			"None",
+			"Medikit",
+			"First Aid Kit / Medikit"
+		};
+		default = 2;
+		function = "bis_fnc_paramReviveRequiredItems";
+	};
+
 };
