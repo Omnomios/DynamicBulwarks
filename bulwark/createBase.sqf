@@ -7,6 +7,11 @@
 **/
 
 bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
+_bulMon = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "CAN_COLLIDE"];
+_bulMon setObjectTexture [0, "preview.jpg"];
+_bulMon enableSimulation false;
+_bulMon attachTo [bulwarkBox, [0,0.1,0.6]];
+_bulMon setDir 180;
 
 _isWater = true;
 while {_isWater} do {
