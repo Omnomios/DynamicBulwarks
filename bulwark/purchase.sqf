@@ -60,6 +60,5 @@ if (objPurchase) then {
     if (typeOf shopVehic == "Land_Cargo_Patrol_V3_F") then {
       _shopVehicPos = getPos shopVehic;
       shopVehic setPos [_shopVehicPos select 0, _shopVehicPos select 1, (_shopVehicPos select 2) - 0.5];
-      hint "execed";
     };
 };
