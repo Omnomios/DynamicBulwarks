@@ -33,3 +33,4 @@ setDate [2018, 7, 1, _timeToSet, 0];
 [bulwarkRoomPos] execVM "missionLoop.sqf";
 
 [] execVM "areaEnforcement.sqf";
+[] execVM "hostiles\clearStuck.sqf";
