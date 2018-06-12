@@ -4,6 +4,7 @@ onLoadName = "dynamicBulwarks";
 briefingName = "dynamicBulwarks";
 overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
 author = "Hilltop & omNomios";
+overviewPicture = "preview.paa";
 
 loadScreen = "preview.paa";
 
