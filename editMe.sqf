@@ -21,9 +21,12 @@ PISTOL_HOSTILES = ("PISTOL_HOSTILES" call BIS_fnc_getParamValue);  //What wave e
 BULWARK_LOCATIONS = List_AllCities;
 BULWARK_RADIUS = ("BULWARK_RADIUS" call BIS_fnc_getParamValue);
 BULWARK_MINSIZE = ("BULWARK_MINSIZE" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
+BULWARK_LANDRATIO = ("BULWARK_LANDRATIO" call BIS_fnc_getParamValue);
+LOOT_HOUSE_DENSITY = ("LOOT_HOUSE_DENSITY" call BIS_fnc_getParamValue);  
 
 PLAYER_STARTWEAPON = if ("PLAYER_STARTWEAPON" call BIS_fnc_getParamValue == 1) then {true} else {false};
 PLAYER_STARTMAP    = if ("PLAYER_STARTMAP" call BIS_fnc_getParamValue == 1) then {true} else {false};
+PLAYER_STARTNVG    = if ("PLAYER_STARTNVG" call BIS_fnc_getParamValue == 1) then {true} else {false};
 
 /* Loot Spawn */
 LOOT_WEAPON_POOL    = List_AllWeapons;    // Classnames of Loot items as an array
@@ -52,7 +55,7 @@ BULWARK_SUPPORTITEMS = [
     [1950, "Paratroopers",  "paraDrop"],
     [5430, "Missle CAS",    "airStrike"],
     [5930, "Rage Stimpack", "ragePack"],
-    [6666, "ARMAKART TM", "armaKart"]
+    [6666, "ARMAKART TM",   "armaKart"]
 ];
 
 BULWARK_BUILDITEMS = [
@@ -61,15 +64,22 @@ BULWARK_BUILDITEMS = [
     [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F"],
     [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F"],
     [500,  "H Barrier",            "Land_HBarrier_3_F"],
+    [800,  "Storage box small",    "Box_NATO_Support_F"],
     [1000, "Double H Barrier",     "Land_HBarrierWall4_F"],
+    [1200, "Storage box large",    "Box_NATO_AmmoVeh_F"],
     [2500, "Machine Gun",          "B_HMG_01_F"],
     [2500, "Machine Gun (raised)", "B_HMG_01_high_F"],
     [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F"]
 ];
 
 /* Time of Day*/
-DAYTIMEFROM = 6; //earliest time. 6 = 6:00 AM
-DAYTIMETO = 18; //earliest time. 18 = 6:00 PM
+DAY_TIME_FROM = ("DAY_TIME_FROM" call BIS_fnc_getParamValue);
+DAY_TIME_TO = ("DAY_TIME_TO" call BIS_fnc_getParamValue);
+
+// Check for sneaky inverted configuration. FROM should always be before TO.
+if (DAY_TIME_FROM > DAY_TIME_TO) then {
+    DAY_TIME_FROM = DAY_TIME_TO - 2;
+};
 
 /* Starter MediKits */
 BULWARK_MEDIKITS = ("BULWARK_MEDIKIT" call BIS_fnc_getParamValue);

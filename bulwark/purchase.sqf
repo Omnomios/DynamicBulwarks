@@ -28,6 +28,14 @@ if(player getVariable "killPoints" >= _shopPrice) then {
 sleep 0.1;
 if (objPurchase) then {
     closeDialog 0;
+
+    // If it's a container, make sure it's empty
+    clearItemCargoGlobal shopVehic;
+    clearWeaponCargoGlobal shopVehic;
+    clearMagazineCargoGlobal shopVehic;
+    clearBackpackCargoGlobal shopVehic;
+
+
     shopVehic attachTo [ShopCaller, [0,2,0.02], "Pelvis"];
     {[shopVehic, _x] remoteExec ["disableCollisionWith", 0];} forEach playableUnits;
     dropActID = ShopCaller addAction [ //adds actions to move up, move down and delete the purchased object after it's been placed
@@ -52,6 +60,5 @@ if (objPurchase) then {
     if (typeOf shopVehic == "Land_Cargo_Patrol_V3_F") then {
       _shopVehicPos = getPos shopVehic;
       shopVehic setPos [_shopVehicPos select 0, _shopVehicPos select 1, (_shopVehicPos select 2) - 0.5];
-      hint "execed";
     };
 };

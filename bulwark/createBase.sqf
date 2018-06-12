@@ -7,6 +7,11 @@
 **/
 
 bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
+_bulMon = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "CAN_COLLIDE"];
+_bulMon setObjectTexture [0, "preview.jpg"];
+_bulMon enableSimulation false;
+_bulMon attachTo [bulwarkBox, [0,0.1,0.6]];
+_bulMon setDir 180;
 
 _isWater = true;
 while {_isWater} do {
@@ -25,7 +30,7 @@ clearBackpackCargoGlobal bulwarkBox;
 //bulwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
 //bulwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 if(BULWARK_MEDIKITS > 0) then {
-	bulwarkBox addItemCargo ["Medikit", BULWARK_MEDIKITS];
+	bulwarkBox addItemCargoGlobal ["Medikit", BULWARK_MEDIKITS];
 };
 [bulwarkBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveBox.sqf","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 [bulwarkBox, ["<t color='#00ff00'>" + "Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1","",1.5,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];

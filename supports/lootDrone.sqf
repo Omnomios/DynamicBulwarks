@@ -12,7 +12,7 @@ _curWave = attkWave;
 
 //deleteVehicle _droneBox;
 
-["IntelAdded",["Loot locations added to map"]] remoteExec ["BIS_fnc_showNotification", 0];
+["IntelAdded",["Loot locations added to map"]] remoteExec ["BIS_fnc_showNotification", 2];
 
 {
 	_displayName = "";

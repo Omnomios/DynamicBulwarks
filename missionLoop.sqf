@@ -91,7 +91,7 @@ while {runMissionLoop} do {
 			};
 		} foreach allUnits;
 
-		//Move hostiles towards neaest player
+		//Move hostiles towards nearest player
 		{
 			if (side _x == east) then {
 				thisNPC = _x;
@@ -104,6 +104,14 @@ while {runMissionLoop} do {
 					};
 				} forEach _allHPs;
 				_doMovePos = getPos goToPlayer;
+
+				// If it's a vehicle move to a place 15m from the player.
+				// TODO: check to see if that spot is empty
+				if(thisNPC isKindOf "LandVehicle") then {
+					_dir = thisNPC getDir goToPlayer;
+	                _doMovePos = goToPlayer getPos [20, _dir];
+				};
+
 				if (gotoPlayerDistance > 15) then {
 					thisNPC doMove _doMovePos;
 				} else {
@@ -111,37 +119,7 @@ while {runMissionLoop} do {
 				};
 			};
 		} foreach allUnits;
-
-		//Move Stuck AIs after 60 seconds - to do: move to own script
-		if (AIstuckcheck == 0) then {
-			{
-				if (side _x == east) then {
-					AIStuckCheckArray pushBack [_x, getPos _x];
-				};
-			} forEach allUnits;
-		};
-		AIstuckcheck = AIstuckcheck + 1;
-		sleep(1);
-		if (AIstuckcheck == 30) then {
-			{
-				_AItoCheck = _x select 0;
-				_oldAIPos = _x select 1;
-				nearestPlayerDistance = 9999;
-				{
-					_playerHostDistance = (getPos _AItoCheck) distance _x;
-					if ((_playerHostDistance < nearestPlayerDistance)) then {
-						nearestPlayerDistance = _playerHostDistance;
-					};
-				} forEach _allHPs;
-				if ((alive _AItoCheck) && (((getPos _AItoCheck) distance _oldAIPos) < 10 )) then {
-					if ((west knowsAbout _AItoCheck) < 3.5) then {
-					deleteVehicle _AItoCheck;
-					};
-				};
-			} forEach AIStuckCheckArray;
-			AIstuckcheck = 0;
-			AIStuckCheckArray = [];
-		};
+		
 		//Add objects to zeus
 		{
 			mainZeus addCuratorEditableObjects [[_x], true];
@@ -154,9 +132,15 @@ while {runMissionLoop} do {
 	[0] remoteExec ["setPlayerRespawnTime", 0];
 
 	{
-	if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
-		forceRespawn _x;
-	};
+		// Try to force the spectator mode off when players are revived.
+		if (lifeState _x == "DEAD") then {
+			["Terminate"] remoteExec ["BIS_fnc_EGSpectator", _x];
+		};
+
+		// Revive players that died at the end of the round.
+		if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
+			forceRespawn _x;
+		};
 	} foreach allPlayers;
 
 	sleep _downTime;

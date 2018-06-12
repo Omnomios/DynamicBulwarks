@@ -20,3 +20,8 @@ if(PLAYER_STARTMAP) then {
     _player addItem "ItemMap";
     _player assignItem "ItemMap";
 };
+
+if(PLAYER_STARTNVG) then {
+    _player addItem "Integrated_NVG_F";
+    _player assignItem "Integrated_NVG_F";
+};
