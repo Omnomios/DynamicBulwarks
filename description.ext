@@ -29,6 +29,7 @@ class CfgFunctions
 	#include "supports\Functions.hpp"
 	#include "bulwark\Functions.hpp"
 	#include "sound\Functions.hpp"
+	#include "area\Functions.hpp"
 };
 
 
@@ -48,6 +49,7 @@ class CfgRemoteExec
 		class airStrike {};
 		class ragePack {};
 		class say3DGlobal {};
+		class createBlur {};
 	};
 };
 
