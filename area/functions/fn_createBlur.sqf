@@ -14,7 +14,7 @@ while {
     _priority = _priority + 1;
 };
 _handle ppEffectEnable true;
-_handle ppEffectAdjust [10];
+_handle ppEffectAdjust _effect;
 _handle ppEffectCommit 0;
 waitUntil {ppEffectCommitted _handle};
 _handle ppEffectAdjust [0];
