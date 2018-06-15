@@ -35,30 +35,7 @@ if (objPurchase) then {
     clearMagazineCargoGlobal shopVehic;
     clearBackpackCargoGlobal shopVehic;
 
-
-    shopVehic attachTo [ShopCaller, [0,2,0.02], "Pelvis"];
+    shopVehic attachTo [ShopCaller, [0,3,0.02], "Pelvis"];
     {[shopVehic, _x] remoteExec ["disableCollisionWith", 0];} forEach playableUnits;
-    dropActID = ShopCaller addAction [ //adds actions to move up, move down and delete the purchased object after it's been placed
-      "<t color='#00ffff'>" + "Place Object",
-      "detach shopVehic;
-      {[shopVehic, _x] remoteExec ['enableCollisionWith', 0];} forEach playableUnits;
-      ShopCaller removeAction dropActID;
-      shopVehic setVehiclePosition [shopVehic, [], 0, 'CAN_COLLIDE'],
-      [shopVehic, ['<t color=''#ff0000''>' + 'Remove Object', 'deleteVehicle (_this select 0)','',1,false,false,'true','true',5]] remoteExec ['addAction', 0];
-      [shopVehic, ['<t color=''#00ff00''>' + 'Move Down', '
-        _shopVehicPos = getPos (_this select 0);
-        _thisShopVehic = _this select 0;
-        _thisShopVehic setPos [_shopVehicPos select 0, _shopVehicPos select 1, (_shopVehicPos select 2) - 0.5];
-      ','',2,false,false,'true','true',5]] remoteExec ['addAction', 0];
-      [shopVehic, ['<t color=''#0000ff''>' + 'Move Up', '
-        _shopVehicPos = getPos (_this select 0);
-        _thisShopVehic = _this select 0;
-        _thisShopVehic setPos [_shopVehicPos select 0, _shopVehicPos select 1, (_shopVehicPos select 2) + 0.5];
-      ','',2,false,false,'true','true',5]] remoteExec ['addAction', 0];
-      "
-    ];
-    if (typeOf shopVehic == "Land_Cargo_Patrol_V3_F") then {
-      _shopVehicPos = getPos shopVehic;
-      shopVehic setPos [_shopVehicPos select 0, _shopVehicPos select 1, (_shopVehicPos select 2) - 0.5];
-    };
+    dropActID = ShopCaller addAction ["<t color='#00ffff'>" + "Place Object", "build\heldBuildObject.sqf"]; // Action not attached to objset but attached to player
 };
