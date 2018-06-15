@@ -22,7 +22,7 @@ BULWARK_LOCATIONS = List_AllCities;
 BULWARK_RADIUS = ("BULWARK_RADIUS" call BIS_fnc_getParamValue);
 BULWARK_MINSIZE = ("BULWARK_MINSIZE" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
 BULWARK_LANDRATIO = ("BULWARK_LANDRATIO" call BIS_fnc_getParamValue);
-LOOT_HOUSE_DENSITY = ("LOOT_HOUSE_DENSITY" call BIS_fnc_getParamValue);  
+LOOT_HOUSE_DENSITY = ("LOOT_HOUSE_DENSITY" call BIS_fnc_getParamValue);
 
 PLAYER_STARTWEAPON = if ("PLAYER_STARTWEAPON" call BIS_fnc_getParamValue == 1) then {true} else {false};
 PLAYER_STARTMAP    = if ("PLAYER_STARTMAP" call BIS_fnc_getParamValue == 1) then {true} else {false};
@@ -63,12 +63,16 @@ BULWARK_BUILDITEMS = [
     [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F"],
     [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F"],
     [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F"],
+    [400,  "Ramp",                 "Land_VR_Slope_01_F"],
     [500,  "H Barrier",            "Land_HBarrier_3_F"],
+    [750,  "Ladder",               "Land_PierLadder_F"],
     [800,  "Storage box small",    "Box_NATO_Support_F"],
+    [1000, "Hallogen Lamp",        "Land_LampHalogen_F"],
     [1000, "Double H Barrier",     "Land_HBarrierWall4_F"],
     [1200, "Storage box large",    "Box_NATO_AmmoVeh_F"],
     [2500, "Machine Gun",          "B_HMG_01_F"],
     [2500, "Machine Gun (raised)", "B_HMG_01_high_F"],
+    [3000, "Small Bunker",         "Land_BagBunker_Small_F"],
     [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F"]
 ];
 
