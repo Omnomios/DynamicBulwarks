@@ -28,13 +28,19 @@ PLAYER_STARTWEAPON = if ("PLAYER_STARTWEAPON" call BIS_fnc_getParamValue == 1) t
 PLAYER_STARTMAP    = if ("PLAYER_STARTMAP" call BIS_fnc_getParamValue == 1) then {true} else {false};
 PLAYER_STARTNVG    = if ("PLAYER_STARTNVG" call BIS_fnc_getParamValue == 1) then {true} else {false};
 
-/* Loot Spawn */
-LOOT_WEAPON_POOL    = List_AllWeapons;    // Classnames of Loot items as an array
-LOOT_APPAREL_POOL   = List_AllClothes + List_Vests;
-LOOT_ITEM_POOL      = List_Optics + List_Items;
-LOOT_EXPLOSIVE_POOL = List_Mines;
-LOOT_STORAGE_POOL   = List_Backpacks;
+/* Loot Blacklist */
+LOOT_BLACKLIST = [
+    "example_item1",
+    "example_item2",
+    "example_item3"
+];
 
+/* Loot Spawn */
+LOOT_WEAPON_POOL    = List_AllWeapons - LOOT_BLACKLIST;    // Classnames of Loot items as an array
+LOOT_APPAREL_POOL   = List_AllClothes + List_Vests - LOOT_BLACKLIST;
+LOOT_ITEM_POOL      = List_Optics + List_Items - LOOT_BLACKLIST;
+LOOT_EXPLOSIVE_POOL = List_Mines - LOOT_BLACKLIST;
+LOOT_STORAGE_POOL   = List_Backpacks - LOOT_BLACKLIST;
 
 /* Random Loot */
 LOOT_HOUSE_DISTRIBUTION = ("LOOT_HOUSE_DISTRIBUTION" call BIS_fnc_getParamValue);  // Every *th house will spwan loot.
