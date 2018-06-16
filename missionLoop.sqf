@@ -119,7 +119,7 @@ while {runMissionLoop} do {
 				};
 			};
 		} foreach allUnits;
-		
+
 		//Add objects to zeus
 		{
 			mainZeus addCuratorEditableObjects [[_x], true];
@@ -133,9 +133,7 @@ while {runMissionLoop} do {
 
 	{
 		// Try to force the spectator mode off when players are revived.
-		if (lifeState _x == "DEAD") then {
-			["Terminate"] remoteExec ["BIS_fnc_EGSpectator", _x];
-		};
+		["Terminate"] remoteExec ["BIS_fnc_EGSpectator", _x];
 
 		// Revive players that died at the end of the round.
 		if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
