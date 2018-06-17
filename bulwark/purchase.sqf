@@ -12,6 +12,7 @@ shopVehic = objNull;
 _shopPrice = (BULWARK_BUILDITEMS select _index) select 0;
 _shopName  = (BULWARK_BUILDITEMS select _index) select 1;
 _shopClass = (BULWARK_BUILDITEMS select _index) select 2;
+_shopDir   = (BULWARK_BUILDITEMS select _index) select 3;
 
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};

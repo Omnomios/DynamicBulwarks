@@ -49,6 +49,6 @@ shopVehic setVehiclePosition [shopVehic, [], 0, "CAN_COLLIDE"];
           _thisPlacedVehic setVehiclePosition [_thisPlacedVehic , [], 0, ''CAN_COLLIDE''];
       ', [thisHeldVehic]];
     } else {
-      hint 'players too close';
+      ['<t color=''#ff0000''>Warning: Other players too close to pick this up</t>', 0, 0.1, 2, 1] remoteExec ['BIS_fnc_dynamicText', _player];
     };
 ", [shopVehic],2,false,false,"true","true",5]] remoteExec ["addAction", 0];
