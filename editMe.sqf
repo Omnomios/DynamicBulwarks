@@ -28,6 +28,10 @@ PLAYER_STARTWEAPON = if ("PLAYER_STARTWEAPON" call BIS_fnc_getParamValue == 1) t
 PLAYER_STARTMAP    = if ("PLAYER_STARTMAP" call BIS_fnc_getParamValue == 1) then {true} else {false};
 PLAYER_STARTNVG    = if ("PLAYER_STARTNVG" call BIS_fnc_getParamValue == 1) then {true} else {false};
 
+/* Respawn */
+RESPAWN_TIME = ("RESPAWN_TIME" call BIS_fnc_getParamValue);
+RESPAWN_TICKETS = ("RESPAWN_TICKETS" call BIS_fnc_getParamValue);
+
 /* Loot Blacklist */
 LOOT_BLACKLIST = [
     "example_item1",
