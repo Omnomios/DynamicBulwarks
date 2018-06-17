@@ -77,6 +77,10 @@ while {runMissionLoop} do {
 
 	while {runMissionLoop} do {
 
+		// Get all human players in this wave cycle // moved to contain players that respawned in this wave
+		_allHCs = entities "HeadlessClient_F";
+		_allHPs = allPlayers - _allHCs;
+
 		//Check if all hostiles dead
 		if (east countSide allUnits == 0) exitWith {};
 		//check if all players dead or unconscious
