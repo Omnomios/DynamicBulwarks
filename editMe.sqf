@@ -24,8 +24,9 @@ BULWARK_MINSIZE = ("BULWARK_MINSIZE" call BIS_fnc_getParamValue);   // Spawn roo
 BULWARK_LANDRATIO = ("BULWARK_LANDRATIO" call BIS_fnc_getParamValue);
 LOOT_HOUSE_DENSITY = ("LOOT_HOUSE_DENSITY" call BIS_fnc_getParamValue);  
 
+PLAYER_STARTEQUIPMENT = ("PLAYER_STARTEQUIPMENT" call BIS_fnc_getParamValue);
+PLAYER_STARTVISION = ("PLAYER_STARTVISION" call BIS_fnc_getParamValue);
 PLAYER_STARTWEAPON = if ("PLAYER_STARTWEAPON" call BIS_fnc_getParamValue == 1) then {true} else {false};
-PLAYER_STARTMAP    = if ("PLAYER_STARTMAP" call BIS_fnc_getParamValue == 1) then {true} else {false};
 PLAYER_STARTNVG    = if ("PLAYER_STARTNVG" call BIS_fnc_getParamValue == 1) then {true} else {false};
 
 /* Loot Spawn */
