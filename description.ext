@@ -29,6 +29,7 @@ class CfgFunctions
 	#include "supports\Functions.hpp"
 	#include "bulwark\Functions.hpp"
 	#include "sound\Functions.hpp"
+	#include "area\Functions.hpp"
 };
 
 
@@ -48,6 +49,7 @@ class CfgRemoteExec
 		class airStrike {};
 		class ragePack {};
 		class say3DGlobal {};
+		class createBlur {};
 	};
 };
 
@@ -117,7 +119,7 @@ class CfgSounds
 	class pointsLootSound
 	{
 		name = "Points Loot Audio";
-		sound[] = {"\sound\lootPointsAudio.ogg", 35, 1, 100};
+		sound[] = {"\sound\lootPointsAudio.ogg", 15, 1, 100};
 		titles[] = {0,""};
 	};
 };
@@ -325,6 +327,33 @@ class Params
 		values[] = {0, 250, 500, 1000, 2500, 5000, 10000};
 		texts[] = {"0", "250", "500", "1000", "2500", "5000", "10000"};
 		default = 0;
+	};
+
+	class REVIVE_LABEL
+	{
+		title = "===== Revive Settings ======";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
+	};
+
+	class ReviveRequiredItems
+	{
+		title = "Required items";
+		isGlobal = 1;
+
+		values[] = {
+			0,
+			1,
+			2
+		};
+		texts[] = {
+			"None",
+			"Medikit",
+			"First Aid Kit / Medikit"
+		};
+		default = 2;
+		function = "bis_fnc_paramReviveRequiredItems";
 	};
 
 };

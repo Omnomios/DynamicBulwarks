@@ -17,24 +17,7 @@ while {true} do {
                 _newLoc = bulwarkCity getPos [(BULWARK_RADIUS * 1.1)-8, _dir];
                 _x setPosASL _newLoc;
                 [_x, "teleportHit"] remoteExec ["sound_fnc_say3DGlobal", 0];
-                0 = ["DynamicBlur", 200, [10]] spawn {
-                    params ["_name", "_priority", "_effect", "_handle"];
-                    while {
-                        _handle = ppEffectCreate [_name, _priority];
-                        _handle < 0
-                    } do {
-                            _priority = _priority + 1;
-                    };
-                    _handle ppEffectEnable true;
-                    _handle ppEffectAdjust [10];
-                    _handle ppEffectCommit 0;
-                    waitUntil {ppEffectCommitted _handle};
-                    _handle ppEffectAdjust [0];
-                    _handle ppEffectCommit 1;
-                    waitUntil {ppEffectCommitted _handle};
-                    _handle ppEffectEnable false;
-                    ppEffectDestroy _handle;
-                };
+                ["DynamicBlur", 200, [10]] remoteExec ["area_fnc_createBlur", _x];
             };
 
             // Warn the player that they're too far from the centre
