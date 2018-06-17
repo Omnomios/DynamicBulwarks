@@ -30,6 +30,7 @@ class CfgFunctions
 	#include "bulwark\Functions.hpp"
 	#include "sound\Functions.hpp"
 	#include "area\Functions.hpp"
+	#include "build\Functions.hpp"
 };
 
 
