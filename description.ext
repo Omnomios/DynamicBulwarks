@@ -119,7 +119,7 @@ class CfgSounds
 	class pointsLootSound
 	{
 		name = "Points Loot Audio";
-		sound[] = {"\sound\lootPointsAudio.ogg", 35, 1, 100};
+		sound[] = {"\sound\lootPointsAudio.ogg", 15, 1, 100};
 		titles[] = {0,""};
 	};
 };
