@@ -362,7 +362,7 @@ class Params
 		title = "Tickets";
 		values[] = {0, 5, 10, 15, 20};
 		texts[] = {"0", "5", "10", "15", "20"};
-		default = 5;
+		default = 0;
 	};
 
 	class RESPAWN_TIME
