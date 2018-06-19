@@ -30,6 +30,7 @@ class CfgFunctions
 	#include "bulwark\Functions.hpp"
 	#include "sound\Functions.hpp"
 	#include "area\Functions.hpp"
+	#include "hostiles\Functions.hpp"
 };
 
 
@@ -50,6 +51,7 @@ class CfgRemoteExec
 		class ragePack {};
 		class say3DGlobal {};
 		class createBlur {};
+		class suiExplode{};
 	};
 };
 
@@ -121,6 +123,26 @@ class CfgSounds
 		name = "Points Loot Audio";
 		sound[] = {"\sound\lootPointsAudio.ogg", 15, 1, 100};
 		titles[] = {0,""};
+	};
+
+	class SuicideSound
+	{
+		name = "Suicide Bomber Sound";
+		sound[] = {"\sound\bomber.ogg", 15, 1, 100};
+		titles[] = {0,""};
+	};
+};
+
+//Notification for Special Waves
+class CfgNotifications
+{
+	class SpecialWarning
+	{
+		title = "WARNING!!";
+		iconPicture = "A3\ui_f\data\Map\Markers\Military\warning_CA.paa";
+		description = "%1";
+		color[] = {1,0,0,1};
+		duration = 5;
 	};
 };
 

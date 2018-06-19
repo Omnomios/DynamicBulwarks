@@ -40,7 +40,22 @@ while {runMissionLoop} do {
 	AIstuckcheck = 0;
 	AIStuckCheckArray = [];
 
-	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
+	//determine if suicide bomber round
+	if ((attkWave > 15) && (floor random 10 == 1)) then {
+		suicideWave = true;
+		execVM "hostiles\suicideWave.sqf";
+		execVM "hostiles\suicideAudio.sqf";
+	} else {
+		suicideWave = false;
+	};
+
+	//Notify start of wave and type of wave
+	if (suicideWave) then {
+		["SpecialWarning",["SUICIDE BOMBERS! Don't Let Them Get Close!"]] remoteExec ["BIS_fnc_showNotification", 0];
+		["Alarm"] remoteExec ["playSound", 0];
+	} else {
+		["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
+	};
 	[9999] remoteExec ["setPlayerRespawnTime", 0];
 	if (isServer) then {
 		// Delete
@@ -86,7 +101,11 @@ while {runMissionLoop} do {
 				if ((_x findNearestEnemy _x) == objNull) then {
 					_x setBehaviour "CARELESS";
 				} else {
-					_x setBehaviour "AWARE";
+					if (!suicideWave) then {
+						_x setBehaviour "AWARE";
+					} else {
+						_x setBehaviour "CARELESS";
+					};
 				};
 			};
 		} foreach allUnits;
