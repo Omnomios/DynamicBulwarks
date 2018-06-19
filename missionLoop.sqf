@@ -1,6 +1,7 @@
 sleep 5;
 
 _downTime = ("DOWN_TIME" call BIS_fnc_getParamValue);
+_specialWaves = ("SPECIAL_WAVES" call BIS_fnc_getParamValue);
 
 _CenterPos = _this;
 attkWave = 0;
@@ -55,7 +56,25 @@ while {runMissionLoop} do {
 		publicVariable "RESPAWN_TIME";
 	};
 	[RESPAWN_TIME] remoteExec ["setPlayerRespawnTime", 0];
-	if (isServer) then {
+
+  //determine if suicide bomber round
+	if ((attkWave > 15) && (floor random 10 == 1) && (_specialWaves == 1)) then {
+		suicideWave = true;
+		execVM "hostiles\suicideWave.sqf";
+		execVM "hostiles\suicideAudio.sqf";
+	} else {
+		suicideWave = false;
+	};
+
+	//Notify start of wave and type of wave
+	if (suicideWave) then {
+		["SpecialWarning",["SUICIDE BOMBERS! Don't Let Them Get Close!"]] remoteExec ["BIS_fnc_showNotification", 0];
+		["Alarm"] remoteExec ["playSound", 0];
+	} else {
+		["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
+	};
+
+if (isServer) then {
 		// Delete
 		_final = waveUnits select 2;
 		{deleteVehicle _x} foreach _final;
@@ -105,7 +124,11 @@ while {runMissionLoop} do {
 				if ((_x findNearestEnemy _x) == objNull) then {
 					_x setBehaviour "CARELESS";
 				} else {
-					_x setBehaviour "AWARE";
+					if (!suicideWave) then {
+						_x setBehaviour "AWARE";
+					} else {
+						_x setBehaviour "CARELESS";
+					};
 				};
 			};
 		} foreach allUnits;
