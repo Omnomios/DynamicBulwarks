@@ -200,12 +200,20 @@ class Params
 		default = 3;
 	};
 
-	class PLAYER_STARTMAP
+	class PLAYER_STARTEQUIPMENT
 	{
-		title = "Start with map";
-		values[] = {0, 1};
-		texts[] = {"No", "Yes"};
+		title = "Player Starting Equipment";
+		values[] = {0, 1, 2, 3, 4};
+		texts[] = {"None", "Map", "Map, Watch and Compass", "Map, Watch, Compass and Radio", "Map, Watch, Compass, Radio and GPS"};
 		default = 1;
+	};
+	
+	class PLAYER_STARTVISION
+	{
+		title = "Player Start with Binoculars";
+		values[] = {0, 1, 2, 3};
+		texts[] = {"None", "Binocular", "Range Finder", "Laser Designator"};
+		default = 0;
 	};
 
 	class PLAYER_STARTWEAPON
