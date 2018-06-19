@@ -1,6 +1,7 @@
 sleep 5;
 
 _downTime = ("DOWN_TIME" call BIS_fnc_getParamValue);
+_specialWaves = ("SPECIAL_WAVES" call BIS_fnc_getParamValue);
 
 _CenterPos = _this;
 attkWave = 0;
@@ -41,7 +42,7 @@ while {runMissionLoop} do {
 	AIStuckCheckArray = [];
 
 	//determine if suicide bomber round
-	if ((attkWave > 15) && (floor random 10 == 1)) then {
+	if ((attkWave > 15) && (floor random 10 == 1) && (_specialWaves == 1)) then {
 		suicideWave = true;
 		execVM "hostiles\suicideWave.sqf";
 		execVM "hostiles\suicideAudio.sqf";
