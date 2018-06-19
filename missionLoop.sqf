@@ -21,7 +21,15 @@ sleep 15;
 runMissionLoop = true;
 missionFailure = false;
 
+// start in build phase
+bulwarkBox setVariable ["buildPhase", true, true];
+
+[west, RESPAWN_TICKETS] call BIS_fnc_respawnTickets;
+
 while {runMissionLoop} do {
+
+	[] remoteExec ["killPoints_fnc_updateHud", 0];
+
 	for ("_i") from 0 to 14 do {
 		if(_i > 10) then {"beep_target" remoteExec ["playsound", 0];} else {"readoutClick" remoteExec ["playsound", 0];};
 		[format ["<t>%1</t>", 15-_i], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
@@ -41,7 +49,15 @@ while {runMissionLoop} do {
 	AIstuckcheck = 0;
 	AIStuckCheckArray = [];
 
-	//determine if suicide bomber round
+	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
+	_respawnTickets = [west] call BIS_fnc_respawnTickets;
+	if (_respawnTickets <= 0) then {
+		RESPAWN_TIME = 99999;
+		publicVariable "RESPAWN_TIME";
+	};
+	[RESPAWN_TIME] remoteExec ["setPlayerRespawnTime", 0];
+
+  //determine if suicide bomber round
 	if ((attkWave > 15) && (floor random 10 == 1) && (_specialWaves == 1)) then {
 		suicideWave = true;
 		execVM "hostiles\suicideWave.sqf";
@@ -57,8 +73,8 @@ while {runMissionLoop} do {
 	} else {
 		["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 	};
-	[9999] remoteExec ["setPlayerRespawnTime", 0];
-	if (isServer) then {
+
+if (isServer) then {
 		// Delete
 		_final = waveUnits select 2;
 		{deleteVehicle _x} foreach _final;
@@ -69,6 +85,7 @@ while {runMissionLoop} do {
 		// Spawn
 		_createHostiles = execVM "hostiles\createWave.sqf";
 		waitUntil {scriptDone _createHostiles};
+		bulwarkBox setVariable ["buildPhase", false, true];
 	};
 	if (attkWave > 1 && isServer) then { //if first wave give player extra time before spawning enemies
 		{deleteMarker _x} foreach lootDebugMarkers;
@@ -79,6 +96,10 @@ while {runMissionLoop} do {
 
 	while {runMissionLoop} do {
 
+		// Get all human players in this wave cycle // moved to contain players that respawned in this wave
+		_allHCs = entities "HeadlessClient_F";
+		_allHPs = allPlayers - _allHCs;
+
 		//Check if all hostiles dead
 		if (east countSide allUnits == 0) exitWith {};
 		//check if all players dead or unconscious
@@ -88,8 +109,9 @@ while {runMissionLoop} do {
 				_deadUnconscious pushBack _x;
 			};
 		} foreach _allHPs;
-
-		if (count (_allHPs - _deadUnconscious) <= 0) then {
+		
+		_respawnTickets = [west] call BIS_fnc_respawnTickets;
+		if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
 			runMissionLoop = false;
 			missionFailure = true;
 			"End1" call BIS_fnc_endMissionServer;
@@ -145,6 +167,8 @@ while {runMissionLoop} do {
 			mainZeus addCuratorEditableObjects [[_x], true];
 		} foreach _allHPs;
 	};
+
+	bulwarkBox setVariable ["buildPhase", true, true];
 
 	if(missionFailure) exitWith {};
 

@@ -30,6 +30,7 @@ class CfgFunctions
 	#include "bulwark\Functions.hpp"
 	#include "sound\Functions.hpp"
 	#include "area\Functions.hpp"
+	#include "build\Functions.hpp"
 	#include "hostiles\Functions.hpp"
 };
 
@@ -384,6 +385,22 @@ class Params
 		};
 		default = 2;
 		function = "bis_fnc_paramReviveRequiredItems";
+	};
+
+	class RESPAWN_TICKETS
+	{
+		title = "Tickets";
+		values[] = {0, 5, 10, 15, 20};
+		texts[] = {"0", "5", "10", "15", "20"};
+		default = 0;
+	};
+
+	class RESPAWN_TIME
+	{
+		title = "Respawn Time";
+		values[] = {0, 5, 10, 20, 30};
+		texts[] = {"0", "5", "10", "20", "30"};
+		default = 10;
 	};
 
 };

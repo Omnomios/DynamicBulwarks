@@ -20,7 +20,12 @@ if (!isDedicated) then {
         _attackWave = attkWave;
     };
 
-    _hudText = format ["<t size='1.2' color='#ffffff'>%1</t><br/><t size='1.5' color='#dddddd'>%2</t><br/><t size='0.9' color='#cee5d0'>Wave: %3</t>",(name _player), _killPoints, _attackWave];
+	_respawnTickets = [west] call BIS_fnc_respawnTickets;
+	if(isNil "_respawnTickets") then {
+        _respawnTickets = 0;
+    };
+
+    _hudText = format ["<t size='1.2' color='#ffffff'>%1</t><br/><t size='1.5' color='#dddddd'>%2</t><br/><t size='0.9' color='#cee5d0'>Wave: %3</t><br/><t size='0.9' color='#cee5d0'>Tickets: %4</t>",(name _player), _killPoints, _attackWave, _respawnTickets];
 
     1000 cutRsc ["KillPointsHud","PLAIN"];
     _ui = uiNameSpace getVariable "KillPointsHud";

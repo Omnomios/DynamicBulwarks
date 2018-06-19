@@ -25,3 +25,18 @@ if(PLAYER_STARTNVG) then {
     _player addItem "Integrated_NVG_F";
     _player assignItem "Integrated_NVG_F";
 };
+
+waituntil {alive _player};
+
+_buildPhase = bulwarkBox getVariable ["buildPhase", true];
+
+if (!_buildPhase) then { // free respawn in build phase
+	_respawnTickets = [west, -1] call BIS_fnc_respawnTickets;
+	if (_respawnTickets <= 0 && RESPAWN_TIME < 99999) then {
+		RESPAWN_TIME = 99999;
+		publicVariable "RESPAWN_TIME";
+		[RESPAWN_TIME] remoteExec ["setPlayerRespawnTime", 0];
+	};
+};
+
+[] remoteExec ["killPoints_fnc_updateHud", 0];
