@@ -49,15 +49,7 @@ while {runMissionLoop} do {
 	AIstuckcheck = 0;
 	AIStuckCheckArray = [];
 
-	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
-	_respawnTickets = [west] call BIS_fnc_respawnTickets;
-	if (_respawnTickets <= 0) then {
-		RESPAWN_TIME = 99999;
-		publicVariable "RESPAWN_TIME";
-	};
-	[RESPAWN_TIME] remoteExec ["setPlayerRespawnTime", 0];
-
-  //determine if suicide bomber round
+	//determine if suicide bomber round
 	if ((attkWave > 15) && (floor random 10 == 1) && (_specialWaves == 1)) then {
 		suicideWave = true;
 		execVM "hostiles\suicideWave.sqf";
@@ -73,6 +65,13 @@ while {runMissionLoop} do {
 	} else {
 		["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 	};
+
+	_respawnTickets = [west] call BIS_fnc_respawnTickets;
+	if (_respawnTickets <= 0) then {
+		RESPAWN_TIME = 99999;
+		publicVariable "RESPAWN_TIME";
+	};
+	[RESPAWN_TIME] remoteExec ["setPlayerRespawnTime", 0];
 
 if (isServer) then {
 		// Delete
@@ -109,7 +108,7 @@ if (isServer) then {
 				_deadUnconscious pushBack _x;
 			};
 		} foreach _allHPs;
-		
+
 		_respawnTickets = [west] call BIS_fnc_respawnTickets;
 		if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
 			runMissionLoop = false;
