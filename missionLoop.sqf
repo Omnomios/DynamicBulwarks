@@ -6,7 +6,7 @@ _specialWaves = ("SPECIAL_WAVES" call BIS_fnc_getParamValue);
 _CenterPos = _this;
 attkWave = 0;
 publicVariable "attkWave";
-activeLoot = [];
+//activeLoot = [];
 //mrkrs = [];
 
 waveUnits = [[],[],[]];
@@ -28,71 +28,11 @@ bulwarkBox setVariable ["buildPhase", true, true];
 
 while {runMissionLoop} do {
 
-	[] remoteExec ["killPoints_fnc_updateHud", 0];
-
-	for ("_i") from 0 to 14 do {
-		if(_i > 10) then {"beep_target" remoteExec ["playsound", 0];} else {"readoutClick" remoteExec ["playsound", 0];};
-		[format ["<t>%1</t>", 15-_i], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
-		sleep 1;
-	};
-
-	// Get all human players in this wave cycle
-	_allHCs = entities "HeadlessClient_F";
-	_allHPs = allPlayers - _allHCs;
-
-	[] remoteExec ["killPoints_fnc_updateHud", -2];
-
-	attkWave = (attkWave + 1);
-	publicVariable "attkWave";
-
 	//Reset the AI position checks
 	AIstuckcheck = 0;
 	AIStuckCheckArray = [];
 
-	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
-	_respawnTickets = [west] call BIS_fnc_respawnTickets;
-	if (_respawnTickets <= 0) then {
-		RESPAWN_TIME = 99999;
-		publicVariable "RESPAWN_TIME";
-	};
-	[RESPAWN_TIME] remoteExec ["setPlayerRespawnTime", 0];
-
-  //determine if suicide bomber round
-	if ((attkWave > 15) && (floor random 10 == 1) && (_specialWaves == 1)) then {
-		suicideWave = true;
-		execVM "hostiles\suicideWave.sqf";
-		execVM "hostiles\suicideAudio.sqf";
-	} else {
-		suicideWave = false;
-	};
-
-	//Notify start of wave and type of wave
-	if (suicideWave) then {
-		["SpecialWarning",["SUICIDE BOMBERS! Don't Let Them Get Close!"]] remoteExec ["BIS_fnc_showNotification", 0];
-		["Alarm"] remoteExec ["playSound", 0];
-	} else {
-		["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
-	};
-
-if (isServer) then {
-		// Delete
-		_final = waveUnits select 2;
-		{deleteVehicle _x} foreach _final;
-		// Shuffle
-		waveUnits set [2, waveUnits select 1];
-		waveUnits set [1, waveUnits select 0];
-		waveUnits set [0, []];
-		// Spawn
-		_createHostiles = execVM "hostiles\createWave.sqf";
-		waitUntil {scriptDone _createHostiles};
-		bulwarkBox setVariable ["buildPhase", false, true];
-	};
-	if (attkWave > 1 && isServer) then { //if first wave give player extra time before spawning enemies
-		{deleteMarker _x} foreach lootDebugMarkers;
-		{deleteVehicle _x} foreach activeLoot;
-		_spawnLoot = execVM "loot\spawnLoot.sqf";
-		waitUntil { scriptDone _spawnLoot};
-	};
+	[] call bulwark_fnc_startWave;
 
 	while {runMissionLoop} do {
 
@@ -167,23 +107,9 @@ if (isServer) then {
 			mainZeus addCuratorEditableObjects [[_x], true];
 		} foreach _allHPs;
 	};
-
-	bulwarkBox setVariable ["buildPhase", true, true];
-
+	
 	if(missionFailure) exitWith {};
 
-	["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
-	[0] remoteExec ["setPlayerRespawnTime", 0];
+	[] call bulwark_fnc_endWave;
 
-	{
-		// Try to force the spectator mode off when players are revived.
-		["Terminate"] remoteExec ["BIS_fnc_EGSpectator", _x];
-
-		// Revive players that died at the end of the round.
-		if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
-			forceRespawn _x;
-		};
-	} foreach allPlayers;
-
-	sleep _downTime;
 };

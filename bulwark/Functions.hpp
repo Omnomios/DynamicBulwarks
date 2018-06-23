@@ -9,5 +9,7 @@ class bulwark
         class purchaseGui {};
         class roomCentre {};
         class roomVolume {};
+		class startWave {};
+		class endWave {}
     };
 };
