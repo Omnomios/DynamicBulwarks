@@ -33,7 +33,7 @@ while {runMissionLoop} do {
 	AIStuckCheckArray = [];
 
 	[] call bulwark_fnc_startWave;
-
+  
 	while {runMissionLoop} do {
 
 		// Get all human players in this wave cycle // moved to contain players that respawned in this wave
@@ -49,7 +49,7 @@ while {runMissionLoop} do {
 				_deadUnconscious pushBack _x;
 			};
 		} foreach _allHPs;
-		
+
 		_respawnTickets = [west] call BIS_fnc_respawnTickets;
 		if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
 			runMissionLoop = false;
