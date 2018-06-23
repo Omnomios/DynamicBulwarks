@@ -21,7 +21,7 @@ if (!isDedicated) then {
     };
 
 	_respawnTickets = [west] call BIS_fnc_respawnTickets;
-	if(isNil "_respawnTickets") then {
+	if(isNil "_respawnTickets" || _respawnTickets < 0) then {
         _respawnTickets = 0;
     };
 
