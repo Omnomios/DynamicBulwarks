@@ -24,6 +24,8 @@ while {_isWater} do {
 	_isWater = surfaceIsWater (getPos bulwarkBox);
 };
 
+publicVariable "bulwarkCity";
+
 clearItemCargoGlobal bulwarkBox;
 clearWeaponCargoGlobal bulwarkBox;
 clearMagazineCargoGlobal bulwarkBox;

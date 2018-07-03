@@ -42,3 +42,11 @@ onEachFrame {
         drawIcon3D ["", [1,1,1,0.5], _textPos, 1, 1, 0, "Bulwark", 0, 0.04, "RobotoCondensed", "center", true];
     }
 };
+
+waitUntil {!isNil "bulwarkCity"}; 
+//areaEnforcement
+areaEnforcementTrigger = createTrigger ["EmptyDetector", bulwarkCity];
+areaEnforcementTrigger setTriggerArea [BULWARK_RADIUS * 0.9, BULWARK_RADIUS * 0.9, 0, false];
+areaEnforcementTrigger triggerAttachVehicle [player];
+areaEnforcementTrigger setTriggerActivation ["ANYPLAYER", "NOT PRESENT", true];
+areaEnforcementTrigger setTriggerStatements ["this", "[player] remoteExec ['area_fnc_enforcement', 2];", ""];

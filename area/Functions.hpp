@@ -4,5 +4,6 @@ class area
     {
         file = "area\functions";
         class createBlur {};
+		class enforcement {};
     };
 };

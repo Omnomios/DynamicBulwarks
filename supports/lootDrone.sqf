@@ -14,6 +14,8 @@ _curWave = attkWave;
 
 ["IntelAdded",["Loot locations added to map"]] call BIS_fnc_showNotification;
 
+_loot = [] call loot_fnc_get;
+
 {
 	_displayName = "";
 	_mrkrName = format ["loot%1", _x];
@@ -47,7 +49,7 @@ _curWave = attkWave;
 		_mrkrName setMarkerText (str ((backpackCargo _x) select 0));
 	};
 	lootMrks pushback _mrkrName;
-} forEach activeLoot;
+} forEach _loot;
 
 waitUntil {_curWave != attkWave};
 {deleteMarker _x} forEach lootMrks;

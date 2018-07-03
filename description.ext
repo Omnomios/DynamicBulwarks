@@ -32,6 +32,7 @@ class CfgFunctions
 	#include "area\Functions.hpp"
 	#include "build\Functions.hpp"
 	#include "hostiles\Functions.hpp"
+	#include "loot\Functions.hpp"
 };
 
 
