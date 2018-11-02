@@ -11,6 +11,7 @@ publicVariable "attkWave";
 
 waveUnits = [[],[],[]];
 revivedPlayers = [];
+MIND_CONTROLLED_AI = [];
 
 //spawn start loot
 if (isServer) then {
@@ -64,6 +65,11 @@ while {runMissionLoop} do {
 	};
 
 	if(missionFailure) exitWith {};
+
+	//Kill all mind controlled AI
+	{
+		 _x setDamage 1;
+	}foreach MIND_CONTROLLED_AI;
 
 	[] call bulwark_fnc_endWave;
 
