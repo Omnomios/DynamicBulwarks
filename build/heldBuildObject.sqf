@@ -55,3 +55,4 @@ shopVehic setVehiclePosition [shopVehic, [], 0, "CAN_COLLIDE"];
 
 
 PLAYER_OBJECT_LIST pushBack shopVehic;
+mainZeus addCuratorEditableObjects [[shopVehic], true];
