@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={-32.405602,13.36428,3.1085329};
-		dir[]={0.87327224,-0.48538041,-0.044646226};
-		up[]={0.48488346,0.87421483,-0.024787761};
-		aside[]={-0.051062435,-1.0537151e-006,-0.99879688};
+		pos[]={-32.405602,13.364267,3.1085329};
+		dir[]={0.8731885,-0.48533386,-0.044641491};
+		up[]={0.48470098,0.87432891,-0.02477755};
+		aside[]={-0.051056728,2.304092e-006,-0.99869573};
 	};
 };
 binarizationWanted=0;
@@ -645,7 +645,7 @@ class Mission
 			a=150;
 			b=150;
 			id=84;
-			atlOffset=120.03973;
+			atlOffset=0.00048446655;
 		};
 		class Item2
 		{
@@ -657,7 +657,7 @@ class Mission
 			a=150;
 			b=150;
 			id=85;
-			atlOffset=85.835136;
+			atlOffset=-0.61751747;
 		};
 		class Item3
 		{
@@ -669,7 +669,6 @@ class Mission
 			a=150;
 			b=150;
 			id=86;
-			atlOffset=94.698883;
 		};
 		class Item4
 		{
@@ -681,7 +680,7 @@ class Mission
 			a=150;
 			b=150;
 			id=88;
-			atlOffset=-41.181427;
+			atlOffset=-0.709692;
 		};
 		class Item5
 		{
@@ -693,7 +692,6 @@ class Mission
 			a=150;
 			b=150;
 			id=93;
-			atlOffset=94.543243;
 		};
 		class Item6
 		{
@@ -705,7 +703,6 @@ class Mission
 			a=150;
 			b=150;
 			id=100;
-			atlOffset=141.7623;
 		};
 		class Item7
 		{
@@ -717,7 +714,7 @@ class Mission
 			a=150;
 			b=150;
 			id=101;
-			atlOffset=81.256668;
+			atlOffset=-0.69843292;
 		};
 		class Item8
 		{
@@ -729,7 +726,6 @@ class Mission
 			a=150;
 			b=150;
 			id=102;
-			atlOffset=98.114914;
 		};
 		class Item9
 		{
@@ -741,7 +737,6 @@ class Mission
 			a=150;
 			b=150;
 			id=103;
-			atlOffset=4.1068516;
 		};
 		class Item10
 		{
@@ -752,7 +747,7 @@ class Mission
 			};
 			id=115;
 			type="ModuleCreateDiaryRecord_F";
-			atlOffset=63.53096;
+			atlOffset=185.97;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -863,7 +858,7 @@ class Mission
 			name="mainZeus";
 			id=116;
 			type="ModuleCurator_F";
-			atlOffset=54.350147;
+			atlOffset=189.10609;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -960,7 +955,7 @@ class Mission
 			};
 			id=123;
 			type="Land_Pier_Box_F";
-			atlOffset=65;
+			atlOffset=190.19;
 			class CustomAttributes
 			{
 				class Attribute0

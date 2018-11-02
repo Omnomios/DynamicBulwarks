@@ -23,6 +23,7 @@ publicVariable "PLAYER_STARTMAP";
 publicVariable "PLAYER_STARTNVG";
 publicVariable "PISTOL_HOSTILES";
 publicVariable "DOWN_TIME";
+publicVariable "PLAYER_OBJECT_LIST";
 
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;
@@ -34,3 +35,5 @@ setDate [2018, 7, 1, _timeToSet, 0];
 
 [] execVM "area\areaEnforcement.sqf";
 [] execVM "hostiles\clearStuck.sqf";
+[] execVM "hostiles\solidObjects.sqf";
+[] execVM "hostiles\moveHosToPlayer.sqf";
