@@ -19,12 +19,11 @@ publicVariable "attkWave";
 
 [] remoteExec ["killPoints_fnc_updateHud", 0];
 
-["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
-	_respawnTickets = [west] call BIS_fnc_respawnTickets;
-	if (_respawnTickets <= 0) then {
-		RESPAWN_TIME = 99999;
-		publicVariable "RESPAWN_TIME";
-	};
+_respawnTickets = [west] call BIS_fnc_respawnTickets;
+if (_respawnTickets <= 0) then {
+	RESPAWN_TIME = 99999;
+	publicVariable "RESPAWN_TIME";
+};
 [RESPAWN_TIME] remoteExec ["setPlayerRespawnTime", 0];
 
 bulwarkBox setVariable ["buildPhase", false, true];
