@@ -20,9 +20,10 @@ for [{_i=0}, {_i<15}, {_i=_i+1}] do {
   {
     if (side _x == east && _x isKindOf "Man") then {
       _aiToJoin pushBack _x;
-      MIND_CONTROLLED_AI pushBack _x;
     };
   }foreach _nearAI;
+  MIND_CONTROLLED_AI = MIND_CONTROLLED_AI + _aiToJoin;
+  publicVariable "MIND_CONTROLLED_AI";
   sleep 1;
   _aiToJoin join _player;
 };
