@@ -1,4 +1,4 @@
-sleep 5;
+//sleep 5;
 
 _downTime = ("DOWN_TIME" call BIS_fnc_getParamValue);
 _specialWaves = ("SPECIAL_WAVES" call BIS_fnc_getParamValue);
@@ -6,6 +6,7 @@ _specialWaves = ("SPECIAL_WAVES" call BIS_fnc_getParamValue);
 _CenterPos = _this;
 attkWave = 0;
 publicVariable "attkWave";
+suicideWave = false;
 //activeLoot = [];
 //mrkrs = [];
 
@@ -65,7 +66,7 @@ while {runMissionLoop} do {
 	};
 
 	if(missionFailure) exitWith {};
-		
+
 	[] call bulwark_fnc_endWave;
 
 };

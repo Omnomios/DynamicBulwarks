@@ -10,10 +10,14 @@
 while {true} do{
   allAiNearObjects = [];
   {
-      _playerObject = _x;
-      _nearAI = _x nearEntities 3;
-      allAiNearObjects + _nearAI;
-      {
+    _playerObject = _x;
+    _nearAI = _x nearEntities 3;
+    allAiNearObjects + _nearAI;
+    {
+      if ((suicideWave) && (alive _x)) then {
+        _thisAI setDamage 1;
+        deleteVehicle _playerObject;
+      }else{
         if (side _x == east) then {
           _aiDir = _playerObject getDir _x;
           _aiGoToPos = _playerObject getRelPos [random [10,15,20], _aiDir];
@@ -22,7 +26,8 @@ while {true} do{
           _safePos = [_aiGoToPos, 0, 8, 2, 0] call BIS_fnc_findSafePos;
           _x doMove _safePos;
         };
-      } foreach _nearAI;
+      };
+    } foreach _nearAI;
   }foreach PLAYER_OBJECT_LIST;
   sleep 0.3;
 }
