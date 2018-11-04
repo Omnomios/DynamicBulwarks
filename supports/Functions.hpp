@@ -10,5 +10,6 @@ class supports
         class ragePack {};
         class armaKart {};
         class mindConGas {};
+        class droneControl {};
     };
 };

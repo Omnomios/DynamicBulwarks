@@ -31,4 +31,7 @@ switch (_type) do {
     case ("mindConGas"): {
     [_player, _target] call supports_fnc_mindConGas;
     };
+    case ("droneControl"): {
+    [_player, _target] call supports_fnc_droneControl;
+    };
 };
