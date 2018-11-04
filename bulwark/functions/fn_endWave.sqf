@@ -21,4 +21,11 @@ bulwarkBox setVariable ["buildPhase", true, true];
 	};
 } foreach allPlayers;
 
+//Kill all mind controlled AI
+{
+	 _x setDamage 1;
+}foreach MIND_CONTROLLED_AI;
+MIND_CONTROLLED_AI = [];
+publicVariable "MIND_CONTROLLED_AI";
+
 sleep _downTime;

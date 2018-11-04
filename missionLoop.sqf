@@ -65,12 +65,7 @@ while {runMissionLoop} do {
 	};
 
 	if(missionFailure) exitWith {};
-
-	//Kill all mind controlled AI
-	{
-		 _x setDamage 1;
-	}foreach MIND_CONTROLLED_AI;
-
+		
 	[] call bulwark_fnc_endWave;
 
 };

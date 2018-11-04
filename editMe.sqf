@@ -63,10 +63,11 @@ SCORE_RANDOMBOX = 950;  // Cost to spin the box
 BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",     "reconUAV"],
     [1950, "Paratroopers",  "paraDrop"],
-    [5000, "Mind Control Gas","mindConGas"],
+    [4850, "Mind Control Gas","mindConGas"],
     [5430, "Missle CAS",    "airStrike"],
     [5930, "Rage Stimpack", "ragePack"],
-    [6666, "ARMAKART TM",   "armaKart"]
+    [6666, "ARMAKART TM",   "armaKart"],
+    [3525, "Predator Drone",   "droneControl"]
 ];
 
 /* Price - Display Name - Class Name - Rotation When Held */

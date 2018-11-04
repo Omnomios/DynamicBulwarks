@@ -26,6 +26,7 @@ publicVariable "DOWN_TIME";
 publicVariable "RESPAWN_TICKETS";
 publicVariable "RESPAWN_TIME";
 publicVariable "PLAYER_OBJECT_LIST";
+publicVariable "MIND_CONTROLLED_AI";
 
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;
