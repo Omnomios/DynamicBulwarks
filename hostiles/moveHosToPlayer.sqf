@@ -26,13 +26,21 @@ While {true} do {
     if (side _x == east) then {
       thisNPC = _x;
       gotoPlayerDistance = 9999;
+
+      _aiTargets = [];
+      {
+        if ((alive _x) && (lifeState _x) != "INCAPACITATED") then {
+          _aiTargets pushBack _x;
+        };
+      } forEach _allHPs;
+
       {
         _playerHostDistance = (getPos thisNPC) distance _x;
         if ((_playerHostDistance < gotoPlayerDistance) && (alive _x)) then {
           goToPlayer = _x;
           gotoPlayerDistance = _playerHostDistance;
         };
-      } forEach _allHPs;
+      } forEach _aiTargets;
       _doMovePos = getPos goToPlayer;
 
       // If it's a vehicle move to a place 15m from the player.
