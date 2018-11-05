@@ -10,7 +10,7 @@ _cfgVehicles = configFile >> "CfgVehicles";
 _entries = count _cfgVehicles;  // GO INTO CFGVEHICLES AND CHECK NUMBER OF ENTRIES
 _realentries = _entries - 1;
 _found = false;
-_location = [bulwarkCity, BULWARK_RADIUS, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
+_location = [bulwarkCity, BULWARK_RADIUS, BULWARK_RADIUS + 150,10,0] call BIS_fnc_findSafePos;
 
 _foundVeh = "";
 while {!_found} do {
@@ -27,6 +27,5 @@ while {!_found} do {
 		};
 	};
 };
-_createdVehFnc = [_location, 0, _foundVeh, east] call bis_fnc_spawnvehicle;
-_createdVehFnc select 0 doMove (getPos (selectRandom playableUnits));
-sleep 2;
+createdVehFnc = [_location, 0, _foundVeh, EAST] call bis_fnc_spawnvehicle;
+createdVehFnc select 0 doMove (getPos (selectRandom playableUnits));
