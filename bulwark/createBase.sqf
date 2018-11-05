@@ -10,6 +10,8 @@ PLAYER_OBJECT_LIST =[]; //create empty variable for player placed objects
 
 bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "CAN_COLLIDE"];
+_bulMon allowDamage false;
+bulwarkBox allowDamage false;
 [_bulMon,[0,"preview.paa"]] remoteExec ["setObjectTexture",0,true];
 _bulMon enableSimulation false;
 _bulMon attachTo [bulwarkBox, [0,0.1,0.6]];
