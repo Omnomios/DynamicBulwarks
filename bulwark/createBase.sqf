@@ -88,6 +88,8 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 
 lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
 
+[] execVM "bulwark\fakToMedkit.sqf";
+
 /* Spinner Box */
 /*
 _lootBoxRoom = while {true} do {
