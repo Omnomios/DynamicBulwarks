@@ -15,5 +15,4 @@ while {_wave == attkWave} do {
       } forEach _allHPs;
     };
   } foreach allUnits;
-  sleep(0.05)
 };

@@ -14,8 +14,8 @@ while {true} do{
     _nearAI = _x nearEntities 3;
     allAiNearObjects + _nearAI;
     {
-      if ((suicideWave) && (alive _x)) then {
-        _thisAI setDamage 1;
+      if (suicideWave && (alive _x) && (side _x == east)) then {
+        _x setDamage 1;
         deleteVehicle _playerObject;
       }else{
         if (side _x == east) then {
