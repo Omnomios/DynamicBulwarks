@@ -13,7 +13,7 @@ while {true} do{
   _countFaks = {_x == "FirstAidKit"} count _bulwarkContents;
   if (_countFaks >= 15) then {
     _bulwarkContents = _bulwarkContents - _fakArr;
-    clearItemCargo  bulwarkBox;
+    clearItemCargoGlobal  bulwarkBox;
     bulwarkBox addItemCargoGlobal ["Medikit", 1];
     {
         bulwarkBox addItemCargoGlobal [_x, 1];
