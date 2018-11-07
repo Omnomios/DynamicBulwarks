@@ -29,6 +29,7 @@ if (_respawnTickets <= 0) then {
 bulwarkBox setVariable ["buildPhase", false, true];
 
 //determine if suicide bomber round
+
 if ((attkWave > 15) && (floor random 10 == 1) && (_specialWaves == 1)) then {
 	suicideWave = true;
 	execVM "hostiles\suicideWave.sqf";

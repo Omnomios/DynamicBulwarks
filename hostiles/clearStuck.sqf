@@ -42,7 +42,13 @@ while {true} do {
       _newDistToPlayerPos = _AItoCheck distance2d _OriginalPlayerPos;
       if ((alive _AItoCheck) && (_newDistToPlayerPos > (_OriginalDistToPlayer - 15))) then {
         if (((west knowsAbout _AItoCheck) < 3.5) && (nearestPlayerDistance > 20)) then {
-          deleteVehicle _AItoCheck;
+          if (isNull objectParent _AItoCheck) then {
+            deleteVehicle _AItoCheck;
+          }else{
+            if (nearestPlayerDistance > 70) then {
+              objectParent _AItoCheck setDamage 1;
+            };
+          };
         };
       };
     } forEach AIStuckCheckArray;
