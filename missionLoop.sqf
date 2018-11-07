@@ -43,7 +43,7 @@ while {runMissionLoop} do {
 		_allHPs = allPlayers - _allHCs;
 
 		//Check if all hostiles dead
-		if (east countSide allUnits == 0) exitWith {};
+		if (EAST countSide allUnits == 0) exitWith {};
 		//check if all players dead or unconscious
 		_deadUnconscious = [];
 		{
