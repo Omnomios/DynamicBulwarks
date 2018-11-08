@@ -1,4 +1,4 @@
-["<t size = '.5'>Loading lists.<br/>Please wait.</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
+["<t size = '.5'>Loading lists.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 _hLocation = [] execVM "locationLists.sqf";
 _hLoot     = [] execVM "loot\lists.sqf";
 _hHostiles = [] execVM "hostiles\lists.sqf";
@@ -9,10 +9,12 @@ waitUntil {
 };
 _hConfig   = [] execVM "editMe.sqf";
 waitUntil { scriptDone _hConfig };
-["<t size = '.5'>Loaded.</t>", 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
+["<t size = '.5'>Creating Base...</t>", 0, 0, 30, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 _basepoint = [] execVM "bulwark\createBase.sqf";
 waitUntil { scriptDone _basepoint };
+
+["<t size = '.5'>Ready</t>", 0, 0, 0.5, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
 publicVariable "bulwarkBox";
 publicVariable "PARATROOP_CLASS";
