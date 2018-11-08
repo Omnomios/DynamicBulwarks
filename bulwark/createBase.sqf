@@ -40,6 +40,15 @@ if(BULWARK_MEDIKITS > 0) then {
 [bulwarkBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveBox.sqf","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 [bulwarkBox, ["<t color='#00ff00'>" + "Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1","",1.5,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
+//Add EH for text to explain the FAK to Medkit feature
+[bulwarkBox, ["ContainerOpened", {
+	_playerId = _this select 1;
+	["<t size = '.5'>Place 15 FAKs into the Bulwark to convert them into a Medikit</t>", 0, 1, 60, 0] remoteExec ["BIS_fnc_dynamicText", _playerId];
+}]] remoteExec ["addEventHandler", 0, true];
+[bulwarkBox, ["ContainerClosed", {
+	_playerId = _this select 1;
+	["", 0, 1, 0.05, 0] remoteExec ["BIS_fnc_dynamicText", _playerId];
+}]] remoteExec ["addEventHandler", 0, true];
 
 /* Place a table in the room for the lulz */
 _relPos = [bulwarkRoomPos, 10, 0] call BIS_fnc_relPos;
