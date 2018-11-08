@@ -8,7 +8,7 @@ detach _object;
 	[_object, _x] remoteExec ['enableCollisionWith', 0];
 } forEach playableUnits;
 
-_caller removeAction _action;
+[_caller] remoteExec ["removeAllActions", 0];
 
 _object setVehiclePosition [_object, [], 0, 'CAN_COLLIDE'],
 
