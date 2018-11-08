@@ -6,6 +6,8 @@
 *  Domain: Server
 **/
 
+
+["Terminate"] remoteExec ["BIS_fnc_EGSpectator", 0];
 [] remoteExec ["killPoints_fnc_updateHud", 0];
 
 for ("_i") from 0 to 14 do {

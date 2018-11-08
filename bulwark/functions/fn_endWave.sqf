@@ -12,14 +12,14 @@ bulwarkBox setVariable ["buildPhase", true, true];
 [0] remoteExec ["setPlayerRespawnTime", 0];
 
 {
-	// Try to force the spectator mode off when players are revived.
-	["Terminate"] remoteExec ["BIS_fnc_EGSpectator", _x];
-
 	// Revive players that died at the end of the round.
 	if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
 		forceRespawn _x;
 	};
 } foreach allPlayers;
+
+// Try to force the spectator mode off when players are revived.
+["Terminate"] remoteExec ["BIS_fnc_EGSpectator", 0];
 
 //Kill all mind controlled AI
 {
