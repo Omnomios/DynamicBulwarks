@@ -11,5 +11,6 @@ class supports
         class armaKart {};
         class mindConGas {};
         class droneControl {};
+        class mineField {};
     };
 };

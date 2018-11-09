@@ -61,13 +61,14 @@ SCORE_DAMAGE_BASE = ("SCORE_DAMAGE_BASE" call BIS_fnc_getParamValue);   // Extra
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
 
 BULWARK_SUPPORTITEMS = [
-    [800,  "Recon UAV",     "reconUAV"],
-    [1950, "Paratroopers",  "paraDrop"],
-    [3525, "Predator Drone",   "droneControl"],
-    [4850, "Mind Control Gas","mindConGas"],
-    [5430, "Missle CAS",    "airStrike"],
-    [5930, "Rage Stimpack", "ragePack"],
-    [6666, "ARMAKART TM",   "armaKart"]
+    [800,  "Recon UAV",             "reconUAV"],
+    [1950, "Paratroopers",          "paraDrop"],
+    [3525, "Predator Drone",    "droneControl"],
+    [4850, "Mind Control Gas",    "mindConGas"],
+    [5430, "Missle CAS",           "airStrike"],
+    [5930, "Rage Stimpack",         "ragePack"],
+    [6666, "ARMAKART TM",           "armaKart"],
+    [8450, "Mine Cluster Shell",   "mineField"]
 ];
 
 /*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) *prevents AI glitching through object and triggers suicide bombers*/
@@ -76,6 +77,7 @@ BULWARK_BUILDITEMS = [
     [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F",   0,   2],
     [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F",   0,   2],
     [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0,   3],
+    [250,  "Portable Light",       "Land_PortableLight_double_F",       0,   1],
     [400,  "Ramp",                 "Land_VR_Slope_01_F",                0,   4],
     [500,  "H Barrier",            "Land_HBarrier_3_F",                 0,   4],
     [750,  "Ladder",               "Land_PierLadder_F",                 0,   1],
