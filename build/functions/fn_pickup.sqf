@@ -1,7 +1,6 @@
 _object = _this select 0;
 _caller = _this select 1;
 _pos = _this select 2;
-_dir = _this select 3;
 
 _playerArr = [_caller];
 _allPlayers = playableUnits - _playerArr;
@@ -21,6 +20,7 @@ if (_closestPlayerDist > 5) then {
 	} else {
 		_object attachTo [_caller, _pos, "Pelvis"];
 		_playerDir = _caller getRelDir _object;
+		_dir = _this select 3;
 		_holdDir = _playerDir + _dir;
 		_object setdir _holdDir;
 	};
