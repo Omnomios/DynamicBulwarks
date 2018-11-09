@@ -2,6 +2,7 @@
 
 _downTime = ("DOWN_TIME" call BIS_fnc_getParamValue);
 _specialWaves = ("SPECIAL_WAVES" call BIS_fnc_getParamValue);
+_maxWaves = ("MAX_WAVES" call BIS_fnc_getParamValue);
 
 _CenterPos = _this;
 attkWave = 0;
@@ -66,6 +67,10 @@ while {runMissionLoop} do {
 	};
 
 	if(missionFailure) exitWith {};
+
+	if (attkWave == _maxWaves) exitWith {
+		"End2" call BIS_fnc_endMissionServer;
+	};
 
 	[] call bulwark_fnc_endWave;
 

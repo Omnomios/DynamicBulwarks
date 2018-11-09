@@ -74,6 +74,15 @@ class CfgDebriefing
 		picture = "KIA";
 		pictureColor[] = {0.6,0.1,0.2,1};
 	};
+	class End2
+	{
+		title = "[BULWARK SAFE]";
+		subtitle = "You Won";
+		description = "Your bulwark is secure";
+		pictureBackground = "";
+		picture = "b_inf";
+		pictureColor[] = {0.0,0.3,0.6,1};
+	};
 };
 
 class CfgCommunicationMenu
@@ -191,6 +200,14 @@ class Params
 		values[] = {0, 15, 30, 60, 90, 120, 180, 240, 300};
 		texts[] = {"0", "15 Seconds", "30 Seconds", "1 Minute", "1 Minute 30 Seconds", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
 		default = 30;
+	};
+
+	class MAX_WAVES
+	{
+		title = "How Many Waves";
+		values[] = {"infinite", 20, 30, 40};
+		texts[] = {"Infinite", "20", "30", "40"};
+		default = "infinite";
 	};
 
 	class BULWARK_MEDIKIT
