@@ -57,7 +57,7 @@ if (count _targetPos == 0) then {
   coreGroup = group _player;
   [group _player, _player] remoteExec ["selectLeader", groupOwner group _player];
 
-  for ("_i") from 1 to 3 do {
+  for ("_i") from 1 to PARATROOP_COUNT do {
       _location = getPos _agVehicle;
       _unitClass = selectRandom _classList;
       _unit = objNull;
