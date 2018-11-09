@@ -21,7 +21,7 @@ disableUserInput false;
 //if there's a target place at target otherwise place 30m infront of player
 sleep 1.5;
 if (count _targetPos == 0) then {
-  _targetPos = _player getRelPos [30, 0]
+  _targetPos = _player getRelPos [30, 0]//refund the support if looking at sky when activated
 };
 _smoker = "SmokeShellPurple" createVehicle _targetPos;
 sleep 2;
