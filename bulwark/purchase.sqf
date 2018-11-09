@@ -13,6 +13,7 @@ _shopPrice = (BULWARK_BUILDITEMS select _index) select 0;
 _shopName  = (BULWARK_BUILDITEMS select _index) select 1;
 _shopClass = (BULWARK_BUILDITEMS select _index) select 2;
 _shopDir   = (BULWARK_BUILDITEMS select _index) select 3;
+_VecRadius = (BULWARK_BUILDITEMS select _index) select 4;
 
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};
@@ -21,6 +22,7 @@ if(player getVariable "killPoints" >= _shopPrice) then {
     [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
     shopVehic = _shopClass createVehicle [0,0,0];
 	  shopVehic setVariable ["shopPrice", _shopPrice, true];
+    shopVehic setVariable ["Radius", _VecRadius];
     objPurchase = true;
 } else {
     [format ["<t size='0.6' color='#ff3300'>Not enough points for %1!</t>", _shopName], -0, -0.02, 0.2] call BIS_fnc_dynamicText;

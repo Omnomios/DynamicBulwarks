@@ -11,7 +11,8 @@ while {true} do{
   allAiNearObjects = [];
   {
     _playerObject = _x;
-    _nearAI = _x nearEntities 3;
+    _objRadius = _x getVariable "Radius";
+    _nearAI = _x nearEntities _objRadius;
     allAiNearObjects + _nearAI;
     {
       if (suicideWave && (alive _x) && (side _x == east)) then {
