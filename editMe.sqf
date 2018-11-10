@@ -73,21 +73,25 @@ BULWARK_SUPPORTITEMS = [
 
 /*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) *prevents AI glitching through object and triggers suicide bombers*/
 BULWARK_BUILDITEMS = [
-    [50,   "Junk Barricade",       "Land_Barricade_01_4m_F",            0,   2],
-    [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F",   0,   2],
-    [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F",   0,   2],
-    [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0,   3],
-    [250,  "Portable Light",       "Land_PortableLight_double_F",       0,   1],
+    [25,   "Long Plank",           "Land_Plank_01_8m_F",                0,   4],
+    [50,   "Junk Barricade",       "Land_Barricade_01_4m_F",            0,  1.5],
+    [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F",   0,   1],
+    [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F",   0,   1],
+    [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0,   2],
+    [250,  "Portable Light",       "Land_PortableLight_double_F",     180,   1],
     [400,  "Ramp",                 "Land_VR_Slope_01_F",                0,   4],
-    [500,  "H Barrier",            "Land_HBarrier_3_F",                 0,   4],
+    [500,  "H Barrier",            "Land_HBarrier_3_F",                 0,   2],
     [750,  "Ladder",               "Land_PierLadder_F",                 0,   1],
     [800,  "Storage box small",    "Box_NATO_Support_F",                0,   1],
+    [950,  "Stairs",               "Land_GH_Stairs_F",                180,   4],
     [1000, "Hallogen Lamp",        "Land_LampHalogen_F",               90,   1],
     [1000, "Double H Barrier",     "Land_HBarrierWall4_F",              0,   4],
+    [1000, "Small Platform",       "Land_Sidewalk_01_4m_F",             0,   2],
     [1200, "Storage box large",    "Box_NATO_AmmoVeh_F",                0,   1],
     [2500, "Machine Gun",          "B_HMG_01_F",                        0,   1],
     [2500, "Machine Gun (raised)", "B_HMG_01_high_F",                   0,   1],
-    [3000, "Small Bunker",         "Land_BagBunker_Small_F",            0,   3],
+    [3000, "Small Bunker",         "Land_BagBunker_Small_F",          180,   3],
+    [3800, "Large Platform",       "Land_Pier_addon",                   0,   8],
     [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",          180,   4]
 ];
 
