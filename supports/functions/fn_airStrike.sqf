@@ -8,7 +8,7 @@
 params ["_player", "_targetPos", "_aircraft"];
 
 if (count _targetPos == 0) then {
-  [player, "airStrike"] call BIS_fnc_addCommMenuItem; //refund the support if looking at sky when activated
+  [_player, "airStrike"] remoteExec ["BIS_fnc_addCommMenuItem", _player]; //refund the support if looking at sky when activated
 }else{
   _angle = round random 180;
 
