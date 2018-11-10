@@ -32,12 +32,12 @@ for [{_i=0}, {_i<20}, {_i=_i+1}] do {
   _aiToJoin = [];
   {
     if (side _x == east && _x isKindOf "Man") then {
+      _aiToJoin join _player;
       _aiToJoin pushBack _x;
     };
   }foreach _nearAI;
   MIND_CONTROLLED_AI = MIND_CONTROLLED_AI + _aiToJoin;
   publicVariable "MIND_CONTROLLED_AI";
   sleep 1;
-  _aiToJoin join _player;
 };
 deleteVehicle _smoker;
