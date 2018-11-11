@@ -142,6 +142,13 @@ class CfgSounds
 		sound[] = {"\sound\bomber.ogg", 15, 1, 100};
 		titles[] = {0,""};
 	};
+
+	class comNoise
+	{
+		name = "Com Noise";
+		sound[] = {"\sound\comNoise.ogg", 15, 1, 100};
+		titles[] = {0,""};
+	};
 };
 
 //Notification for Special Waves
@@ -250,6 +257,14 @@ class Params
 		default = 1;
 	};
 
+	class BULWARK_LABEL_SPACE
+	{
+		title = " ";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
+	};
+
 	class BULWARK_LABEL
 	{
 		title = "===== Bulwark Settings ======";
@@ -330,6 +345,14 @@ class Params
 		default = 16;
 	};
 
+	class POWERUP_LABEL_SPACE
+	{
+		title = " ";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
+	};
+
 	class POWERUP_LABEL
 	{
 		title = "====== Powerup Settings =====";
@@ -344,6 +367,14 @@ class Params
 		values[] = {0, 250, 500, 1000, 2500, 5000, 10000};
 		texts[] = {"0", "250", "500", "1000", "2500", "5000", "10000"};
 		default = 0;
+	};
+
+	class SUPPORT_MENU
+	{
+		title = "Find Satellite Dish to Unlock Supports";
+		values[] = {0, 1};
+		texts[] = {"Yes, find the Satellite Dish to unlock the Support Menu", "No, Supports are available from the begining of the mission"};
+		default = 1;
 	};
 
 	class SCORE_KILL
@@ -376,6 +407,14 @@ class Params
 		values[] = {1, 2, 3, 4, 5, 6};
 		texts[] = {"1","2","3","4","5","6"};
 		default = 3;
+	};
+
+	class REVIVE_LABEL_SPACE
+	{
+		title = "";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
 	};
 
 	class REVIVE_LABEL

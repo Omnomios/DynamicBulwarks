@@ -30,6 +30,15 @@ publicVariable "RESPAWN_TIME";
 publicVariable "PLAYER_OBJECT_LIST";
 publicVariable "MIND_CONTROLLED_AI";
 
+//determine if Support Menu is available
+_supportParam = ("SUPPORT_MENU" call BIS_fnc_getParamValue);
+if (_supportParam == 0) then {
+  SUPPORTMENU = false;
+}else{
+  SUPPORTMENU = true;
+};
+publicVariable 'SUPPORTMENU';
+
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;
 _timeToSet = DAY_TIME_FROM + _randTime;
