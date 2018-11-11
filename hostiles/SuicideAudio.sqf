@@ -9,6 +9,7 @@ while {_wave == attkWave} do {
       {
         if (((_thisAI distance2D _x) < 70) && (alive _thisAI)) then {
             [_thisAI, "SuicideSound"] remoteExec ["sound_fnc_say3DGlobal", 0];
+            sleep random 3;
         }
       } forEach _allHPs;
     };
