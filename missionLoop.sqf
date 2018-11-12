@@ -1,4 +1,10 @@
-//sleep 5;
+{
+	[_x, false] remoteExec ["setUnconscious", 0];
+	_X action ["CancelAction", _X];
+	_X switchMove "PlayerStand";
+	[ "#rev", 1, _x ] remoteExecCall ["BIS_fnc_reviveOnState", _x];
+	_x setDamage 0;
+}forEach allPlayers;
 
 _downTime = ("DOWN_TIME" call BIS_fnc_getParamValue);
 _specialWaves = ("SPECIAL_WAVES" call BIS_fnc_getParamValue);
