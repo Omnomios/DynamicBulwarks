@@ -25,7 +25,7 @@ _object setVehiclePosition [_object, [], 0, 'CAN_COLLIDE'],
 	_object,
 	[
 		'<t color="#00ffff">Move Up</t>',
-		'[_this select 0, _this select 3] call build_fnc_move;',
+		'[_this select 0, _this select 3, _this select 1] call build_fnc_move;',
 		[0,0,0.5],2,false,false,'true','true',5
 	]
 ] remoteExec ['addAction', 0];
@@ -34,7 +34,7 @@ _object setVehiclePosition [_object, [], 0, 'CAN_COLLIDE'],
 	_object,
 	[
 		'<t color="#00ff00">Move Down</t>',
-		'[_this select 0, _this select 3] call build_fnc_move;',
+		'[_this select 0, _this select 3, _this select 1] call build_fnc_move;',
 		[0,0,-0.5],2,false,false,'true','true',5
 	]
 ] remoteExec ['addAction', 0];
