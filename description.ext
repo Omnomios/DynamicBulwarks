@@ -132,7 +132,7 @@ class CfgSounds
 	class pointsLootSound
 	{
 		name = "Points Loot Audio";
-		sound[] = {"\sound\lootPointsAudio.ogg", 15, 1, 100};
+		sound[] = {"\sound\lootPointsAudio.ogg", 10, 1, 100};
 		titles[] = {0,""};
 	};
 
@@ -146,7 +146,7 @@ class CfgSounds
 	class comNoise
 	{
 		name = "Com Noise";
-		sound[] = {"\sound\comNoise.ogg", 15, 1, 100};
+		sound[] = {"\sound\comNoise.ogg", 10, 1};
 		titles[] = {0,""};
 	};
 };
