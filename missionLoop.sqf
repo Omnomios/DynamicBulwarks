@@ -51,6 +51,7 @@ while {runMissionLoop} do {
 
 		//Check if all hostiles dead
 		if (EAST countSide allUnits == 0) exitWith {};
+
 		//check if all players dead or unconscious
 		_deadUnconscious = [];
 		{
@@ -58,12 +59,25 @@ while {runMissionLoop} do {
 				_deadUnconscious pushBack _x;
 			};
 		} foreach _allHPs;
-
 		_respawnTickets = [west] call BIS_fnc_respawnTickets;
 		if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
-			runMissionLoop = false;
-			missionFailure = true;
-			"End1" call BIS_fnc_endMissionServer;
+			sleep 1;
+
+			//Check that Players have not been revived
+			_deadUnconscious = [];
+			{
+				if ((!alive _x) || ((lifeState _x) == "INCAPACITATED")) then {
+					_deadUnconscious pushBack _x;
+				};
+			} foreach _allHPs;
+			if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+				sleep 1;
+				if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+					runMissionLoop = false;
+					missionFailure = true;
+					"End1" call BIS_fnc_endMissionServer;
+				};
+			};
 		};
 
 		//Add objects to zeus
