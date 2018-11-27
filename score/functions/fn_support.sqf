@@ -37,4 +37,7 @@ switch (_type) do {
     case ("mineField"): {
     [_player, _target] call supports_fnc_mineField;
     };
+    case ("telePlode"): {
+    [_player] call supports_fnc_telePlode;
+    };
 };
