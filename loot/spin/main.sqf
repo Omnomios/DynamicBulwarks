@@ -50,6 +50,7 @@ if (floor random 15 == 1) then {
   	"
   ]] remoteExec ["addAction", 0, true];
   //lootBox enableSimulationGlobal false;
+  mainZeus addCuratorEditableObjects [[lootBox], true];
 }else{
   // Create weapon holder and position on loot box
   _weapon = createVehicle ["WeaponHolderSimulated_Scripted", _boxPos, [], 0, "can_collide"];

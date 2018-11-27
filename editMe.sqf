@@ -8,14 +8,14 @@
 
 /* Attacker Waves */
 
-// List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper
-HOSTILE_LEVEL_1 = List_Bandits;  // Wave 0 >
-HOSTILE_LEVEL_2 = List_OPFOR;    // Wave 5 >
-HOSTILE_LEVEL_3 = List_Viper;    // Wave 10 >
+/* Available Lists: List_ZombieSpider List_ZombieCrawler List_ZombieFast List_ZombieMedium List_ZombieSlow List_ZombieBoss List_ZombieWalker */
+HOSTILE_LEVEL_1 = List_ZombieSpider;  // Wave 0 >
+HOSTILE_LEVEL_2 = List_ZombieMedium;    // Wave 3 >
+HOSTILE_LEVEL_3 = List_ZombieFast;    // Wave 8 >
+HOSTILE_LEVEL_4 = List_ZombieBoss;    // Wave 15 >
 
 HOSTILE_MULTIPLIER = ("HOSTILE_MULTIPLIER" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
 HOSTILE_TEAM_MULTIPLIER = ("HOSTILE_TEAM_MULTIPLIER" call BIS_fnc_getParamValue) / 100;   // How many extra units are added per player
-PISTOL_HOSTILES = ("PISTOL_HOSTILES" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
 
 // List_LocationMarkers, List_AllCities
 BULWARK_LOCATIONS = List_AllCities;
@@ -45,6 +45,7 @@ LOOT_APPAREL_POOL   = List_AllClothes + List_Vests - LOOT_BLACKLIST;
 LOOT_ITEM_POOL      = List_Optics + List_Items - LOOT_BLACKLIST;
 LOOT_EXPLOSIVE_POOL = List_Mines - LOOT_BLACKLIST;
 LOOT_STORAGE_POOL   = List_Backpacks - LOOT_BLACKLIST;
+LOOT_GRENADE_POOL   = List_Grenades - LOOT_BLACKLIST;
 
 /* Random Loot */
 LOOT_HOUSE_DISTRIBUTION = ("LOOT_HOUSE_DISTRIBUTION" call BIS_fnc_getParamValue);  // Every *th house will spwan loot.
@@ -64,44 +65,39 @@ SCORE_RANDOMBOX = 950;  // Cost to spin the box
 
 BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",             "reconUAV"],
-    [1685, "Emergency Teleport",   "telePlode"],
     [1950, "Paratroopers",          "paraDrop"],
+    [2840, "Emergency Teleport",   "telePlode"],
     [3525, "Predator Drone",    "droneControl"],
     [4850, "Mind Control Gas",    "mindConGas"],
     [5430, "Missle CAS",           "airStrike"],
     [5930, "Rage Stimpack",         "ragePack"],
     [6666, "ARMAKART TM",           "armaKart"],
-    [6942, "Mine Cluster Shell",   "mineField"]
+    [8450, "Mine Cluster Shell",   "mineField"]
 ];
 
 /* Objects the Player can buy */
 
 /* Radius prevents hostiles walking through objects and triggers Zombies to attack the object */
 
-/*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) *prevents AI glitching through object and triggers suicide bombers*/
+/* Health is how many seconds one Zombie will take to destroy the object */
+
+/*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) - Total Health  */
 BULWARK_BUILDITEMS = [
-    [25,   "Long Plank (8m)",      "Land_Plank_01_8m_F",                0,   4],
-    [50,   "Junk Barricade",       "Land_Barricade_01_4m_F",            0, 1.5],
-    [75,   "Small Ramp (1m)",      "Land_Obstacle_Ramp_F",            180, 1.5],
-    [85,   "Flat Triangle (1m)",   "Land_DomeDebris_01_hex_green_F",  180, 1.5],
-    [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F",   0, 1.5],
-    [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F",   0, 1.5],
-    [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0,   2],
-    [250,  "Portable Light",       "Land_PortableLight_double_F",     180,   1],
-    [400,  "Large Ramp",           "Land_VR_Slope_01_F",                0,   4],
-    [500,  "H Barrier",            "Land_HBarrier_3_F",                 0,   2],
-    [750,  "Ladder",               "Land_PierLadder_F",                 0,   1],
-    [800,  "Storage box small",    "Box_NATO_Support_F",                0,   1],
-    [950,  "Stairs",               "Land_GH_Stairs_F",                180,   4],
-    [1000, "Hallogen Lamp",        "Land_LampHalogen_F",               90,   1],
-    [1000, "Double H Barrier",     "Land_HBarrierWall4_F",              0,   4],
-    [1000, "Concrete Platform",    "BlockConcrete_F",                   0, 3.5],
-    [1200, "Storage box large",    "Box_NATO_AmmoVeh_F",                0,   1],
-    [2500, "Machine Gun",          "B_HMG_01_F",                        0,   1],
-    [2500, "Machine Gun (raised)", "B_HMG_01_high_F",                   0,   1],
-    [3000, "Small Bunker",         "Land_BagBunker_Small_F",          180,   3],
-    [3800, "Large Platform",       "Land_Pier_addon",                   0,   8],
-    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",          180,   0]
+    [50,   "Junk Barricade",       "Land_Barricade_01_4m_F",            0,   2,   5],
+    [75,   "Small Ramp (1m)",      "Land_Obstacle_Ramp_F",            180, 1.5,  10],
+    [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F",   0, 1.5,  20],
+    [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F",   0, 1.5,  25],
+    [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0, 1.5,  40],
+    [250,  "Portable Light",       "Land_PortableLight_double_F",     180,   1,  10],
+    [500,  "H Barrier",            "Land_HBarrier_3_F",                 0, 1.5,  60],
+    [800,  "Storage box small",    "Box_NATO_Support_F",                0,   1, 100],
+    [1000, "Hallogen Lamp",        "Land_LampHalogen_F",               90,   1,  15],
+    [1000, "Double H Barrier",     "Land_HBarrierWall4_F",              0, 2.5,  80],
+    [1200, "Storage box large",    "Box_NATO_AmmoVeh_F",                0,   1, 100],
+    [2500, "Machine Gun",          "B_HMG_01_F",                        0,   1,  15],
+    [2500, "Machine Gun (raised)", "B_HMG_01_high_F",                   0,   1,  15],
+    [3000, "Small Bunker",         "Land_BagBunker_Small_F",          180,   3,  85],
+    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",          180, 5.5, 150]
 ];
 
 /* Time of Day*/

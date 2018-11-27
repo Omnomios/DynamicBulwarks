@@ -34,6 +34,9 @@ _unit setSkill ["aimingShake", hosSkill];
 _unit setSkill ["spotTime", hosSkill];
 _unit addEventHandler ["Hit", killPoints_fnc_hit];
 _unit addEventHandler ["Killed", killPoints_fnc_killed];
+if (attkWave <= 40) then {
+	_unit setDamage (1 - (attkWave / 40));
+};
 
 mainZeus addCuratorEditableObjects [[_unit], true];
 

@@ -8,6 +8,7 @@ class supports
         class reconUAV {};
         class airStrike {};
         class ragePack {};
+        class rageInv{};
         class armaKart {};
         class mindConGas {};
         class droneControl {};

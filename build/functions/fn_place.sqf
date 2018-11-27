@@ -61,5 +61,6 @@ _object setVehiclePosition [_object, [], 0, 'CAN_COLLIDE'],
 	]
 ] remoteExec ['addAction', 0];
 
+[_object, _object getVariable "Radius"] remoteExecCall  ["CreateHostiles_fnc_solidObj", 2];
+
 mainZeus addCuratorEditableObjects [[_object], true];
-PLAYER_OBJECT_LIST pushBack _object;

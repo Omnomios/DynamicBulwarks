@@ -3,6 +3,7 @@ _caller = _this select 1;
 _action = _this select 2;
 
 detach _object;
+_radius = _object getVariable "Radius";
 
 {
 	[_object, _x] remoteExec ['enableCollisionWith', 0];
@@ -58,4 +59,3 @@ _object setVehiclePosition [_object, [], 0, 'CAN_COLLIDE'],
 ] remoteExec ['addAction', 0];
 
 mainZeus addCuratorEditableObjects [[_object], true];
-PLAYER_OBJECT_LIST pushBack _object;

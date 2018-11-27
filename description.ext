@@ -54,6 +54,7 @@ class CfgRemoteExec
 		class say3DGlobal {};
 		class createBlur {};
 		class suiExplode{};
+		class telePlode{};
 	};
 };
 
@@ -150,6 +151,13 @@ class CfgSounds
 		titles[] = {0,""};
 	};
 
+	class boomer
+	{
+		name = "boomer";
+		sound[] = {"\sound\boomer.ogg", 5, 1};
+		titles[] = {0,""};
+	};
+
 	class teleport
 	{
 		name = "teleport";
@@ -187,9 +195,9 @@ class Params
 	class HOSTILE_MULTIPLIER
 	{
 		title = "Number of hostiles per wave";
-		values[] = {0.5,1,2,3};
+		values[] = {1,2,3,4};
 		texts[] = {"Low (Easiest)", "Normal", "Double", "Tripple (Hardest)"};
-		default = 1;
+		default = 2;
 	};
 
 	class HOSTILE_TEAM_MULTIPLIER
@@ -198,14 +206,6 @@ class Params
 		values[] = {50, 100, 150, 200};
 		texts[] = {"0.5", "1", "1.5", "2"};
 		default = 50;
-	};
-
-	class PISTOL_HOSTILES
-	{
-		title = "Hostiles only use pistols until wave";
-		values[] = {0, 1, 2, 3, 4, 5, 10, 15, 25, 30};
-		texts[] = {"Start Fully Armed", "One", "Two", "Three", "Four", "Five", "Ten", "Fifteen", "Twenty", "Twenty Five", "Thirty"};
-		default = 3;
 	};
 
 	class DOWN_TIME
@@ -258,9 +258,57 @@ class Params
 
 	class SPECIAL_WAVES
 	{
-		title = "Special Waves - suicide bombers, etc";
+		title = "Special Waves (suicide bombers)";
 		values[] = {0, 1};
 		texts[] = {"No", "Yes"};
+		default = 1;
+	};
+
+	class ZOMBIE_LABEL_SPACE
+	{
+		title = " ";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
+	};
+
+	class ZOMBIE_LABEL
+	{
+		title = "====== Zombie Settings ======";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
+	};
+
+	class ZOMBIE_HEATH
+	{
+		title = "Zombie Health";
+		values[] = {4,3,1,2};
+		texts[] = {"Weakest (Easiest)", "Weak", "Strong", "Strongest (Hardest)"};
+		default = 3;
+	};
+
+	class ZOMBIE_JUMP
+	{
+		title = "Zombies Jumping";
+		values[] = {1,5,4,3,2};
+		texts[] = {"No", "Very Short", "Short", "Normal", "Far"};
+		default = 4;
+	};
+
+	class ZOMBIE_DEMON_JUMP
+	{
+		title = "Demons Jumping";
+		values[] = {1,5,4,3,2};
+		texts[] = {"No", "Very Short", "Short", "Normal", "Far"};
+		default = 4;
+	};
+
+	class ZOMBIE_HEADSHOT_ONLY
+	{
+		title = "Only Headshots Kill Zombies";
+		values[] = {1,2};
+		texts[] = {"No", "yes"};
 		default = 1;
 	};
 
@@ -309,7 +357,7 @@ class Params
 		title = "Minimum number of buildings in Bulwark radius";
 		values[] = {5, 10, 15, 20, 30};
 		texts[] = {"5","10","15","20","30"};
-		default = 15;
+		default = 20;
 	};
 
 	class LOOT_HOUSE_DISTRIBUTION
@@ -325,7 +373,7 @@ class Params
 		title = "Loot density";
 		values[] = {1, 2, 3, 4};
 		texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
-		default = 3;
+		default = 2;
 	};
 
 	class LOOT_SUPPLYDROP
@@ -381,7 +429,7 @@ class Params
 		title = "Find Satellite Dish to Unlock Supports";
 		values[] = {0, 1};
 		texts[] = {"Yes, find the Satellite Dish to unlock the Support Menu", "No, Supports are available from the begining of the mission"};
-		default = 1;
+		default = 0;
 	};
 
 	class SCORE_KILL

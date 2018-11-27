@@ -18,6 +18,5 @@ while {true} do{
     {
         bulwarkBox addItemCargoGlobal [_x, 1];
     } forEach _bulwarkContents;
-    hint "true";
   };
 };

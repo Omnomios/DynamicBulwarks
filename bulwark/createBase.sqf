@@ -54,9 +54,6 @@ if(BULWARK_MEDIKITS > 0) then {
 	};
 ","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
-//Add Bulwark Box to Zeus
-mainZeus addCuratorEditableObjects [[bulwarkBox], true];
-
 //Add EH for text to explain the FAK to Medkit feature
 [bulwarkBox, ["ContainerOpened", {
 	_playerId = _this select 1;
@@ -140,3 +137,7 @@ publicVariable "lootBox";
 		};
 	"
 ]] remoteExec ["addAction", 0, true];
+//lootBox enableSimulationGlobal false;
+mainZeus addCuratorEditableObjects [[lootBox], true];
+
+sleep 2;

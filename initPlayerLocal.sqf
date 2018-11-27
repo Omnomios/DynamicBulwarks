@@ -34,5 +34,3 @@ onEachFrame {
 };
 
 waitUntil {!isNil "bulwarkCity"};
-
-

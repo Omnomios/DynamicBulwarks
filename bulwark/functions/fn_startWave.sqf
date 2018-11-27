@@ -32,7 +32,7 @@ bulwarkBox setVariable ["buildPhase", false, true];
 
 //determine if suicide bomber round
 
-if ((attkWave > 15) && (floor random 10 == 1) && (_specialWaves == 1)) then {
+if ((attkWave > 10) && (floor random 10 == 1) && (_specialWaves == 1)) then {
 	suicideWave = true;
 	execVM "hostiles\suicideWave.sqf";
 	execVM "hostiles\suicideAudio.sqf";
@@ -42,8 +42,8 @@ if ((attkWave > 15) && (floor random 10 == 1) && (_specialWaves == 1)) then {
 
 //Notify start of wave and type of wave
 if (suicideWave) then {
-	["SpecialWarning",["SUICIDE BOMBERS! Don't Let Them Get Close!"]] remoteExec ["BIS_fnc_showNotification", 0];
-	["Alarm"] remoteExec ["playSound", 0];
+	["SpecialWarning",["Boomers! Don't Let Them Get Close!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["boomer"] remoteExec ["playSound", 0];
 } else {
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 };

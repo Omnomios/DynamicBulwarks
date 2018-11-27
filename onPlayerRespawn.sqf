@@ -1,13 +1,15 @@
 waitUntil {!isNil "bulwarkBox"};
 ["Terminate"] call BIS_fnc_EGSpectator;
+params ["_player", "_oldUnit"];
 
-_player = _this select 0;
 removeHeadgear _player:
 removeGoggles _player;
 removeVest _player;
 removeBackpack _player;
 removeAllWeapons _player:
 removeAllAssignedItems _player;
+_resp = selectRandom ["G_Respirator_white_F","G_Respirator_blue_F","G_Respirator_yellow_F"];
+player addGoggles _resp;
 _player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
 
 if(PLAYER_STARTWEAPON) then {

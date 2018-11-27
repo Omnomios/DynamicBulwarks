@@ -7,6 +7,10 @@
 **/
 
 // Screen effects
+
+player setVariable ["invincible", true, true];
+[player] remoteExec ["supports_fnc_rageInv", 2];
+
 0 = ["ColorInversion", 2500, [0.5, 0.5, 0.5]] spawn { params ["_name", "_priority", "_effect", "_handle"];
     while {
         _handle = ppEffectCreate [_name, _priority];
@@ -63,3 +67,4 @@ playSound ["rageSoundInternal", false];
 
     titleText ["", "BLACK IN", 1];
 };
+player setVariable ["invincible", false, true];

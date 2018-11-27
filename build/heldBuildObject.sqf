@@ -7,7 +7,6 @@ _actionID = _this select 2;
 
 mainZeus addCuratorEditableObjects [[shopVehic], true];
 PLAYER_OBJECT_LIST pushBack shopVehic;
-hint "True";
 
 detach shopVehic;
 {[shopVehic, _x] remoteExec ["enableCollisionWith", 0];} forEach playableUnits;
