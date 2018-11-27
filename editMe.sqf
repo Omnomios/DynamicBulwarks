@@ -68,7 +68,7 @@ BULWARK_SUPPORTITEMS = [
     [5430, "Missle CAS",           "airStrike"],
     [5930, "Rage Stimpack",         "ragePack"],
     [6666, "ARMAKART TM",           "armaKart"],
-    [8450, "Mine Cluster Shell",   "mineField"]
+    [7450, "Mine Cluster Shell",   "mineField"]
 ];
 
 /*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) *prevents AI glitching through object and triggers suicide bombers*/
