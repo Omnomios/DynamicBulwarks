@@ -29,6 +29,7 @@ publicVariable "RESPAWN_TICKETS";
 publicVariable "RESPAWN_TIME";
 publicVariable "PLAYER_OBJECT_LIST";
 publicVariable "MIND_CONTROLLED_AI";
+publicVariable "SCORE_RANDOMBOX";
 
 //determine if Support Menu is available
 _supportParam = ("SUPPORT_MENU" call BIS_fnc_getParamValue);
