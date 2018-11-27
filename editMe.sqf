@@ -60,6 +60,8 @@ SCORE_HIT = ("SCORE_HIT" call BIS_fnc_getParamValue);                   // Every
 SCORE_DAMAGE_BASE = ("SCORE_DAMAGE_BASE" call BIS_fnc_getParamValue);   // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
 
+/* Comment out or delete the below support items to prevent the player from buying them */
+
 BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",             "reconUAV"],
     [1685, "Emergency Teleport",   "telePlode"],
@@ -71,6 +73,10 @@ BULWARK_SUPPORTITEMS = [
     [6666, "ARMAKART TM",           "armaKart"],
     [6942, "Mine Cluster Shell",   "mineField"]
 ];
+
+/* Objects the Player can buy */
+
+/* Radius prevents hostiles walking through objects and triggers Zombies to attack the object */
 
 /*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) *prevents AI glitching through object and triggers suicide bombers*/
 BULWARK_BUILDITEMS = [
