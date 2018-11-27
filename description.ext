@@ -149,6 +149,13 @@ class CfgSounds
 		sound[] = {"\sound\comNoise.ogg", 10, 1};
 		titles[] = {0,""};
 	};
+
+	class teleport
+	{
+		name = "teleport";
+		sound[] = {"\sound\teleport.ogg", 5, 1};
+		titles[] = {0,""};
+	};
 };
 
 //Notification for Special Waves
