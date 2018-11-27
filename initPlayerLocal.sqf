@@ -35,9 +35,4 @@ onEachFrame {
 
 waitUntil {!isNil "bulwarkCity"};
 
-// areaEnforcement
-areaEnforcementTrigger = createTrigger ["EmptyDetector", bulwarkCity];
-areaEnforcementTrigger setTriggerArea [BULWARK_RADIUS * 0.9, BULWARK_RADIUS * 0.9, 0, false];
-areaEnforcementTrigger triggerAttachVehicle [player];
-areaEnforcementTrigger setTriggerActivation ["ANYPLAYER", "NOT PRESENT", true];
-areaEnforcementTrigger setTriggerStatements ["this", "[player] spawn area_fnc_enforcement;", ""];
+

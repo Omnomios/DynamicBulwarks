@@ -47,7 +47,7 @@ setDate [2018, 7, 1, _timeToSet, 0];
 [] execVM "revivePlayers.sqf";
 [bulwarkRoomPos] execVM "missionLoop.sqf";
 
-//[] execVM "area\areaEnforcement.sqf";
+[] execVM "area\areaEnforcement.sqf";
 [] execVM "hostiles\clearStuck.sqf";
 [] execVM "hostiles\solidObjects.sqf";
 [] execVM "hostiles\moveHosToPlayer.sqf";
