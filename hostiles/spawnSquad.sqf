@@ -19,7 +19,7 @@ if (_attackWave < 40) then { //determine AI skill based on Wave
 
 sleep 0.5;
 
-_location = [bulwarkCity, BULWARK_RADIUS, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
+_location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 for ("_i") from 1 to _unitCount do {
 	_attGroupBand = createGroup [EAST, true];
 	_unitClass = selectRandom _unitClasses;
@@ -47,6 +47,11 @@ for ("_i") from 1 to _unitCount do {
 		if ((floor random 4) == 1) then {
 			_unit additem "FirstAidKit";
 		};
+	};
+
+	if (suicideWave) then {
+		removeAllWeapons _unit;
+		_unit addEventHandler ["Killed", CreateHostiles_fnc_suiExplode];
 	};
 
 	mainZeus addCuratorEditableObjects [[_unit], true];

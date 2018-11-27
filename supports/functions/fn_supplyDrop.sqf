@@ -53,7 +53,7 @@ sleep 1.5;
 _playerCount = count playableUnits;
 _parachute = "B_Parachute_02_F" CreateVehicle [0,0,0];
 _parachute setPos [getPos _agVehicle select 0, getPos _agVehicle select 1, (getPos _agVehicle select 2)-5];
-_supplyBox = createVehicle ["Cargonet_01_box_F", [0,0,0], [], 0, "CAN_COLLIDE"];
+_supplyBox = createVehicle ["Land_WoodenCrate_01_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 [_supplyBox, _cargo] remoteExec ["addAction", 0, true];
 _supplyBox attachTo [_parachute, [0,0,0]];
 _supplyBox allowDamage false;

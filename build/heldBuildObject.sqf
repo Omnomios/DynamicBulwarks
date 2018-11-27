@@ -1,8 +1,13 @@
+//Script no longer in use
+
 //params ["_buildObject", "_player", "_actionId", "_arguments"];
 _buildObject = _this select 0; // is actually player because action was added to player not the object they are carrying
 _player = _this select 1;
 _actionID = _this select 2;
 
+mainZeus addCuratorEditableObjects [[shopVehic], true];
+PLAYER_OBJECT_LIST pushBack shopVehic;
+hint "True";
 
 detach shopVehic;
 {[shopVehic, _x] remoteExec ["enableCollisionWith", 0];} forEach playableUnits;
@@ -52,7 +57,3 @@ shopVehic setVehiclePosition [shopVehic, [], 0, "CAN_COLLIDE"];
       ['<t color=''#ff0000''>Warning: Other players too close to pick this up</t>', 0, 0.1, 2, 1] remoteExec ['BIS_fnc_dynamicText', _player];
     };
 ", [shopVehic],2,false,false,"true","true",5]] remoteExec ["addAction", 0];
-
-
-PLAYER_OBJECT_LIST pushBack shopVehic;
-mainZeus addCuratorEditableObjects [[shopVehic], true];

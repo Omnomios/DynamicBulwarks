@@ -9,5 +9,9 @@ class supports
         class airStrike {};
         class ragePack {};
         class armaKart {};
+        class mindConGas {};
+        class droneControl {};
+        class mineField {};
+        class telePlode{};
     };
 };

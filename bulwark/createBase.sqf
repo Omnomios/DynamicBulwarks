@@ -10,6 +10,8 @@ PLAYER_OBJECT_LIST =[]; //create empty variable for player placed objects
 
 bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "CAN_COLLIDE"];
+_bulMon allowDamage false;
+bulwarkBox allowDamage false;
 [_bulMon,[0,"preview.paa"]] remoteExec ["setObjectTexture",0,true];
 _bulMon enableSimulation false;
 _bulMon attachTo [bulwarkBox, [0,0.1,0.6]];
@@ -24,7 +26,8 @@ while {_isWater} do {
 	_isWater = surfaceIsWater (getPos bulwarkBox);
 };
 
-bulwarkBox allowDamage false;
+publicVariable "bulwarkCity";
+
 clearItemCargoGlobal bulwarkBox;
 clearWeaponCargoGlobal bulwarkBox;
 clearMagazineCargoGlobal bulwarkBox;
@@ -34,9 +37,35 @@ clearBackpackCargoGlobal bulwarkBox;
 if(BULWARK_MEDIKITS > 0) then {
 	bulwarkBox addItemCargoGlobal ["Medikit", BULWARK_MEDIKITS];
 };
+
+//Add actions to Bulwark Box
 [bulwarkBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveBox.sqf","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 [bulwarkBox, ["<t color='#00ff00'>" + "Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1","",1.5,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
+[bulwarkBox, ["<t color='#ff0000'>" + "Heal Yourself: 500p", "
+	_player = _this select 1;
+	_points = _player getVariable 'killPoints';
+	if (_points >= 500) then {
+		[_player, 0] remoteExec ['setDamage', 0, true];
+		[_player, 500] remoteExec ['killPoints_fnc_spend', 2];
+		[true] remoteExec ['disableUserInput', _player];
+		[_player, 'AinvPercMstpSnonWnonDnon_Putdown_AmovPercMstpSnonWnonDnon'] remoteExec ['switchMove', 0];
+		sleep 1;
+		[false] remoteExec ['disableUserInput', _player];
+	};
+","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
+//Add Bulwark Box to Zeus
+mainZeus addCuratorEditableObjects [[bulwarkBox], true];
+
+//Add EH for text to explain the FAK to Medkit feature
+[bulwarkBox, ["ContainerOpened", {
+	_playerId = _this select 1;
+	["<t size = '.5'>Place 15 FAKs into the Bulwark to convert them into a Medikit</t>", 0, 1, 60, 0] remoteExec ["BIS_fnc_dynamicText", _playerId];
+}]] remoteExec ["addEventHandler", 0, true];
+[bulwarkBox, ["ContainerClosed", {
+	_playerId = _this select 1;
+	["", 0, 1, 0.05, 0] remoteExec ["BIS_fnc_dynamicText", _playerId];
+}]] remoteExec ["addEventHandler", 0, true];
 
 /* Place a table in the room for the lulz */
 _relPos = [bulwarkRoomPos, 10, 0] call BIS_fnc_relPos;
@@ -85,30 +114,29 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 
 lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
 
+[] execVM "bulwark\fakToMedkit.sqf";
+
 /* Spinner Box */
-/*
+
 _lootBoxRoom = while {true} do {
 	_lootBulding = selectRandom lootHouses;
 	_lootRooms = _lootBulding buildingPos -1;
 	_lootRoom = selectRandom _lootRooms;
 	if(!isNil "_lootRoom") exitWith {_lootRoom};
 };
-lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
+lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 4];
 publicVariable "lootBox";
-sleep 2;
-lootBoxPos    = getPos lootBox; publicVariable "lootBoxPos";
-lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
+[lootBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveSpinBox.sqf"]] remoteExec ["addAction", 0, true];
 [lootBox, [
-	    "<t color='#FF0000'>Spin the box!</t>", {
-		//TODO: should use the return from spend call
-		if(player getVariable "killPoints" >= SCORE_RANDOMBOX) then {
-			[player, SCORE_RANDOMBOX] call killPoints_fnc_spend;
-			// Call lootspin script on ALL clients
-			[[lootBoxPos, lootBoxPosATL], "loot\spin\main.sqf"] remoteExec ["BIS_fnc_execVM", player];
-		} else {
-			[format ["<t size='0.6' color='#ff3300'>%1 points required to spin the box</t>", SCORE_RANDOMBOX], -0.6, -0.35] call BIS_fnc_dynamicText;
+	format ["<t color='#FF0000'>Spin the box! %1p</t>", SCORE_RANDOMBOX], "
+		lootBoxPos    = getPos lootBox;
+		lootBoxPosATL = getPosATL lootBox;
+		lootBoxDir    = getDir lootBox;
+		_player = _this select 1;
+		_points = _player getVariable 'killPoints';
+		if(_points >= SCORE_RANDOMBOX) then {
+			[_player, SCORE_RANDOMBOX] remoteExec ['killPoints_fnc_spend', 2];
+			[[lootBoxPos, lootBoxPosATL, lootBoxDir], 'loot\spin\main.sqf'] remoteExec ['execVM', 2];
 		};
-    }
+	"
 ]] remoteExec ["addAction", 0, true];
-lootBox enableSimulationGlobal false;
-*/

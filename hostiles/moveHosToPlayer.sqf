@@ -14,7 +14,7 @@ While {true} do {
   {
     if (side _x == east) then {
       _x allowFleeing 0;
-      if ((_x findNearestEnemy _x) == objNull) then {
+      if ((_x findNearestEnemy _x) == objNull || suicideWave) then {
         _x setBehaviour "CARELESS";
       } else {
         _x setBehaviour "AWARE";
@@ -26,28 +26,38 @@ While {true} do {
     if (side _x == east) then {
       thisNPC = _x;
       gotoPlayerDistance = 9999;
+
+      _aiTargets = [];
+      {
+        if ((alive _x) && (lifeState _x) != "INCAPACITATED") then {
+          _aiTargets pushBack _x;
+        };
+      } forEach _allHPs;
+
       {
         _playerHostDistance = (getPos thisNPC) distance _x;
         if ((_playerHostDistance < gotoPlayerDistance) && (alive _x)) then {
           goToPlayer = _x;
           gotoPlayerDistance = _playerHostDistance;
         };
-      } forEach _allHPs;
+      } forEach _aiTargets;
+
+      //Move inft to within 15 meters of player and move Armor to 15 - 55 meters of player
+      _playerPos = getPos goToPlayer;
       _doMovePos = getPos goToPlayer;
-
-      // If it's a vehicle move to a place 15m from the player.
-      // TODO: check to see if that spot is empty
-      if(thisNPC isKindOf "LandVehicle") then {
-        _dir = thisNPC getDir goToPlayer;
-                _doMovePos = goToPlayer getPos [20, _dir];
+      if (isNull objectParent thisNPC) then {
+        _doMovePos = [goToPlayer, 1, 15] call BIS_fnc_findSafePos;
+        _doMovePos = [_doMovePos select 0, _doMovePos select 1, _playerPos select 2];
+      }else{
+        if (suicideWave) then {
+          _doMovePos = getPos goToPlayer;
+        }else{
+          _doMovePos = [goToPlayer, 15, 55, 5, 0, 30] call BIS_fnc_findSafePos;
+          _doMovePos = [_doMovePos select 0, _doMovePos select 1, 0];
+        };
       };
-
-      if (gotoPlayerDistance > 15) then {
-        thisNPC doMove _doMovePos;
-      } else {
-        thisNPC doMove [(_doMovePos select 0) + (random [-7.5, 7.5, 0]), (_doMovePos select 1) + (random [-7.5, 7.5, 0]), _doMovePos select 2];
-      };
+      thisNPC doMove _doMovePos;
     };
   } foreach allUnits;
-  sleep 10;
+  sleep 15;
 };

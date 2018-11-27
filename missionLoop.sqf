@@ -1,15 +1,25 @@
-sleep 5;
+{
+	[_x, false] remoteExec ["setUnconscious", 0];
+	_X action ["CancelAction", _X];
+	_X switchMove "PlayerStand";
+	[ "#rev", 1, _x ] remoteExecCall ["BIS_fnc_reviveOnState", _x];
+	_x setDamage 0;
+}forEach allPlayers;
 
 _downTime = ("DOWN_TIME" call BIS_fnc_getParamValue);
+_specialWaves = ("SPECIAL_WAVES" call BIS_fnc_getParamValue);
+_maxWaves = ("MAX_WAVES" call BIS_fnc_getParamValue);
 
 _CenterPos = _this;
 attkWave = 0;
 publicVariable "attkWave";
-activeLoot = [];
+suicideWave = false;
+//activeLoot = [];
 //mrkrs = [];
 
 waveUnits = [[],[],[]];
 revivedPlayers = [];
+MIND_CONTROLLED_AI = [];
 
 //spawn start loot
 if (isServer) then {
@@ -20,51 +30,28 @@ sleep 15;
 runMissionLoop = true;
 missionFailure = false;
 
+// start in build phase
+bulwarkBox setVariable ["buildPhase", true, true];
+
+[west, RESPAWN_TICKETS] call BIS_fnc_respawnTickets;
+
 while {runMissionLoop} do {
-	for ("_i") from 0 to 14 do {
-		if(_i > 10) then {"beep_target" remoteExec ["playsound", 0];} else {"readoutClick" remoteExec ["playsound", 0];};
-		[format ["<t>%1</t>", 15-_i], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
-		sleep 1;
-	};
-
-	// Get all human players in this wave cycle
-	_allHCs = entities "HeadlessClient_F";
-	_allHPs = allPlayers - _allHCs;
-
-	[] remoteExec ["killPoints_fnc_updateHud", -2];
-
-	attkWave = (attkWave + 1);
-	publicVariable "attkWave";
 
 	//Reset the AI position checks
 	AIstuckcheck = 0;
 	AIStuckCheckArray = [];
 
-	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
-	[9999] remoteExec ["setPlayerRespawnTime", 0];
-	if (isServer) then {
-		// Delete
-		_final = waveUnits select 2;
-		{deleteVehicle _x} foreach _final;
-		// Shuffle
-		waveUnits set [2, waveUnits select 1];
-		waveUnits set [1, waveUnits select 0];
-		waveUnits set [0, []];
-		// Spawn
-		_createHostiles = execVM "hostiles\createWave.sqf";
-		waitUntil {scriptDone _createHostiles};
-	};
-	if (attkWave > 1 && isServer) then { //if first wave give player extra time before spawning enemies
-		{deleteMarker _x} foreach lootDebugMarkers;
-		{deleteVehicle _x} foreach activeLoot;
-		_spawnLoot = execVM "loot\spawnLoot.sqf";
-		waitUntil { scriptDone _spawnLoot};
-	};
+	[] call bulwark_fnc_startWave;
 
 	while {runMissionLoop} do {
 
+		// Get all human players in this wave cycle // moved to contain players that respawned in this wave
+		_allHCs = entities "HeadlessClient_F";
+		_allHPs = allPlayers - _allHCs;
+
 		//Check if all hostiles dead
-		if (east countSide allUnits == 0) exitWith {};
+		if (EAST countSide allUnits == 0) exitWith {};
+
 		//check if all players dead or unconscious
 		_deadUnconscious = [];
 		{
@@ -72,11 +59,25 @@ while {runMissionLoop} do {
 				_deadUnconscious pushBack _x;
 			};
 		} foreach _allHPs;
+		_respawnTickets = [west] call BIS_fnc_respawnTickets;
+		if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+			sleep 1;
 
-		if (count (_allHPs - _deadUnconscious) <= 0) then {
-			runMissionLoop = false;
-			missionFailure = true;
-			"End1" call BIS_fnc_endMissionServer;
+			//Check that Players have not been revived
+			_deadUnconscious = [];
+			{
+				if ((!alive _x) || ((lifeState _x) == "INCAPACITATED")) then {
+					_deadUnconscious pushBack _x;
+				};
+			} foreach _allHPs;
+			if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+				sleep 1;
+				if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+					runMissionLoop = false;
+					missionFailure = true;
+					"End1" call BIS_fnc_endMissionServer;
+				};
+			};
 		};
 
 		//Add objects to zeus
@@ -87,18 +88,10 @@ while {runMissionLoop} do {
 
 	if(missionFailure) exitWith {};
 
-	["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
-	[0] remoteExec ["setPlayerRespawnTime", 0];
+	if (attkWave == _maxWaves) exitWith {
+		"End2" call BIS_fnc_endMissionServer;
+	};
 
-	{
-		// Try to force the spectator mode off when players are revived.
-		["Terminate"] remoteExec ["BIS_fnc_EGSpectator", _x];
+	[] call bulwark_fnc_endWave;
 
-		// Revive players that died at the end of the round.
-		if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
-			forceRespawn _x;
-		};
-	} foreach allPlayers;
-
-	sleep _downTime;
 };

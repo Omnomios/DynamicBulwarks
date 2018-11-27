@@ -6,7 +6,7 @@
 *  Domain: Server
 **/
 
-activeLoot = [];
+//activeLoot = [];
 lootDebugMarkers = [];
 
 
@@ -20,7 +20,32 @@ _droneRoom = while {true} do {
 _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", _droneRoom, [], 0, "CAN_COLLIDE"];
 [_droneSupport, ["<t color='#ff00ff'>" + "Reveal loot", "[ [],'supports\lootDrone.sqf'] remoteExec ['execVM',0];","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
-activeLoot pushback _droneSupport;
+/* Item to unlock Support Menu (1 spawns every wave until found) */
+if (!SUPPORTMENU) then {
+	_satRoom = while {true} do {
+		_satBulding = selectRandom lootHouses;
+		_satRooms = _satBulding buildingPos -1;
+		_satRoom = selectRandom _satRooms;
+		if(!isNil "_satRoom") exitWith {_satRoom};
+	};
+	_satSupport = createVehicle ["Land_SatelliteAntenna_01_F", _satRoom, [], 0, "CAN_COLLIDE"];
+	[_satSupport, ["<t color='#ff00ff'>" + "Unlock Support Menu", "
+		_satSupport = _this select 0;
+		_player = _this select 1;
+		_pointsMulti = ('SCORE_KILL' call BIS_fnc_getParamValue);
+		if (!SUPPORTMENU) then {
+			['TaskAssigned',['Support','Support Menu Unlocked at Bulwark Box']] remoteExec ['BIS_fnc_showNotification', 0];
+			['comNoise'] remoteExec ['playSound', 0];
+		};
+		SUPPORTMENU = true;
+		publicVariable 'SUPPORTMENU';
+		[_player, (20 * _pointsMulti)] remoteExecCall ['killPoints_fnc_add', 2];
+		deleteVehicle _satSupport;
+	"]] remoteExec ["addAction", 0, true];
+	mainZeus addCuratorEditableObjects [[_satSupport], true];
+};
+
+//activeLoot pushback _droneSupport;
 
 // Item to give KillPoints (1 spawns every wave)
 _pointsLootRoom = while {true} do {
@@ -32,7 +57,7 @@ _pointsLootRoom = while {true} do {
 pointsLoot = createVehicle ["Land_Money_F", _pointsLootRoom, [], 0, "CAN_COLLIDE"];
 [pointsLoot, ["<t color='#00ff00'>" + "Collect Points", "loot\lootPoints.sqf","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
-activeLoot pushback pointsLoot;
+//activeLoot pushback pointsLoot;
 
 /* Master loot spawner */
 _houseCount = floor random 3; // Mix up the loot houses a bit
@@ -85,14 +110,13 @@ _roomCount = 0;
 				};
 				_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];
 
-				activeLoot pushback _lootHolder; // Add object to array for later cleanup
+				//activeLoot pushback _lootHolder; // Add object to array for later cleanup
 
-				[_lootHolder, ["ContainerClosed", { // Add event to delete container if empty
-						params ["_container"];
-						if ((magazineCargo _container isEqualTo []) && (weaponCargo _container isEqualTo []) && (backpackCargo _container isEqualTo [])) exitWith {
-							[_container] remoteExec ["deleteVehicle", 2];
-						};
+				[_lootHolder, ['ContainerClosed', { // Add event to delete container if empty
+						params ['_container','_player'];
+						[_container] call loot_fnc_deleteIfEmpty;
 				}]] remoteExec ['addEventHandler', 0];
+
 			};
 		} forEach _lootRooms;
 	};

@@ -28,4 +28,16 @@ switch (_type) do {
     case ("armaKart"): {
     [_player] call supports_fnc_armaKart;
     };
+    case ("mindConGas"): {
+    [_player, _target] call supports_fnc_mindConGas;
+    };
+    case ("droneControl"): {
+    [_player, _target] call supports_fnc_droneControl;
+    };
+    case ("mineField"): {
+    [_player, _target] call supports_fnc_mineField;
+    };
+    case ("telePlode"): {
+    [_player] call supports_fnc_telePlode;
+    };
 };
