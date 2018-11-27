@@ -62,13 +62,14 @@ SCORE_RANDOMBOX = 950;  // Cost to spin the box
 
 BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",             "reconUAV"],
+    [1685, "Emergency Teleport",   "telePlode"],
     [1950, "Paratroopers",          "paraDrop"],
     [3525, "Predator Drone",    "droneControl"],
     [4850, "Mind Control Gas",    "mindConGas"],
     [5430, "Missle CAS",           "airStrike"],
     [5930, "Rage Stimpack",         "ragePack"],
     [6666, "ARMAKART TM",           "armaKart"],
-    [7450, "Mine Cluster Shell",   "mineField"]
+    [6942, "Mine Cluster Shell",   "mineField"]
 ];
 
 /*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) *prevents AI glitching through object and triggers suicide bombers*/
