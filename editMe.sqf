@@ -77,8 +77,8 @@ BULWARK_BUILDITEMS = [
     [50,   "Junk Barricade",       "Land_Barricade_01_4m_F",            0, 1.5],
     [75,   "Small Ramp (1m)",      "Land_Obstacle_Ramp_F",            180, 1.5],
     [85,   "Flat Triangle (1m)",   "Land_DomeDebris_01_hex_green_F",  180, 1.5],
-    [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F",   0,   1],
-    [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F",   0,   1],
+    [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F",   0, 1.5],
+    [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F",   0, 1.5],
     [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0,   2],
     [250,  "Portable Light",       "Land_PortableLight_double_F",     180,   1],
     [400,  "Large Ramp",           "Land_VR_Slope_01_F",                0,   4],
@@ -94,7 +94,7 @@ BULWARK_BUILDITEMS = [
     [2500, "Machine Gun (raised)", "B_HMG_01_high_F",                   0,   1],
     [3000, "Small Bunker",         "Land_BagBunker_Small_F",          180,   3],
     [3800, "Large Platform",       "Land_Pier_addon",                   0,   8],
-    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",          180,   4]
+    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",          180,   0]
 ];
 
 /* Time of Day*/
