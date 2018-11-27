@@ -100,29 +100,26 @@ lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
 [] execVM "bulwark\fakToMedkit.sqf";
 
 /* Spinner Box */
-/*
+
 _lootBoxRoom = while {true} do {
 	_lootBulding = selectRandom lootHouses;
 	_lootRooms = _lootBulding buildingPos -1;
 	_lootRoom = selectRandom _lootRooms;
 	if(!isNil "_lootRoom") exitWith {_lootRoom};
 };
-lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 0, "CAN_COLLIDE"];
+lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 4];
 publicVariable "lootBox";
-sleep 2;
-lootBoxPos    = getPos lootBox; publicVariable "lootBoxPos";
-lootBoxPosATL = getPosATL lootBox; publicVariable "lootBoxPosATL";
+[lootBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveSpinBox.sqf"]] remoteExec ["addAction", 0, true];
 [lootBox, [
-	    "<t color='#FF0000'>Spin the box!</t>", {
-		//TODO: should use the return from spend call
-		if(player getVariable "killPoints" >= SCORE_RANDOMBOX) then {
-			[player, SCORE_RANDOMBOX] call killPoints_fnc_spend;
-			// Call lootspin script on ALL clients
-			[[lootBoxPos, lootBoxPosATL], "loot\spin\main.sqf"] remoteExec ["BIS_fnc_execVM", player];
-		} else {
-			[format ["<t size='0.6' color='#ff3300'>%1 points required to spin the box</t>", SCORE_RANDOMBOX], -0.6, -0.35] call BIS_fnc_dynamicText;
+	format ["<t color='#FF0000'>Spin the box! %1p</t>", SCORE_RANDOMBOX], "
+		lootBoxPos    = getPos lootBox;
+		lootBoxPosATL = getPosATL lootBox;
+		lootBoxDir    = getDir lootBox;
+		_player = _this select 1;
+		_points = _player getVariable 'killPoints';
+		if(_points >= SCORE_RANDOMBOX) then {
+			[_player, SCORE_RANDOMBOX] remoteExec ['killPoints_fnc_spend', 2];
+			[[lootBoxPos, lootBoxPosATL, lootBoxDir], 'loot\spin\main.sqf'] remoteExec ['execVM', 2];
 		};
-    }
+	"
 ]] remoteExec ["addAction", 0, true];
-lootBox enableSimulationGlobal false;
-*/
