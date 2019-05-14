@@ -41,11 +41,11 @@ for ("_i") from 1 to _unitCount do {
 
 	if(_attackWave <= PISTOL_HOSTILES) then {
 		removeAllWeapons _unit;
-		_unit addMagazine "16Rnd_9x21_Mag";
-	  _unit addMagazine "16Rnd_9x21_Mag";
-	  _unit addWeapon "hgun_P07_F";
+		_unit addMagazine "gm_8rnd_9x19mm_b_dm11_p1_blk";
+	  _unit addMagazine "gm_8rnd_9x19mm_b_dm11_p1_blk";
+	  _unit addWeapon "gm_p1_blk";
 		if ((floor random 4) == 1) then {
-			_unit additem "FirstAidKit";
+			_unit additem "gm_gc_army_gauzeBandage";
 		};
 	};
 

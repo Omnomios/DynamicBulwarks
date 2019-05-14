@@ -14,19 +14,19 @@ detach shopVehic;
 _player removeAction _actionId; // dropActID may need to be _player
 shopVehic setVehiclePosition [shopVehic, [], 0, "CAN_COLLIDE"];
 
-[shopVehic, ["<t color='#ff0000'>" + "Remove Object", "deleteVehicle (_this select 0)","",1,false,false,"true","true",5]] remoteExec ["addAction", 0];
+[shopVehic, ["<t color='#ff0000'>" + "Remove Object", "deleteVehicle (_this select 0)","",1,false,false,"true","true",7]] remoteExec ["addAction", 0];
 
 [shopVehic, ["<t color='#00ffff'>" + "Move Up", "
     _shopVehicPos = getPosATL (_this select 0);
     _thisShopVehic = _this select 0;
     _thisShopVehic setPosATL [_shopVehicPos select 0, _shopVehicPos select 1, (_shopVehicPos select 2) + 0.5];
-","",2,false,false,"true","true",5]] remoteExec ["addAction", 0];
+","",2,false,false,"true","true",7]] remoteExec ["addAction", 0];
 
 [shopVehic, ["<t color='#00ff00'>" + "Move Down", "
     _shopVehicPos = getPosATL (_this select 0);
     _thisShopVehic = _this select 0;
     _thisShopVehic setPosATL [_shopVehicPos select 0, _shopVehicPos select 1, (_shopVehicPos select 2) - 0.5];
-","",2,false,false,"true","true",5]] remoteExec ["addAction", 0];
+","",2,false,false,"true","true",7]] remoteExec ["addAction", 0];
 
 //check if players within 5m 2D
 [shopVehic, ["<t color='#ffffff'>" + "Pickup", "
@@ -56,4 +56,4 @@ shopVehic setVehiclePosition [shopVehic, [], 0, "CAN_COLLIDE"];
     } else {
       ['<t color=''#ff0000''>Warning: Other players too close to pick this up</t>', 0, 0.1, 2, 1] remoteExec ['BIS_fnc_dynamicText', _player];
     };
-", [shopVehic],2,false,false,"true","true",5]] remoteExec ["addAction", 0];
+", [shopVehic],2,false,false,"true","true",7]] remoteExec ["addAction", 0];

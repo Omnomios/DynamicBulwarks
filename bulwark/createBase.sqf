@@ -35,7 +35,7 @@ clearBackpackCargoGlobal bulwarkBox;
 //bulwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
 //bulwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 if(BULWARK_MEDIKITS > 0) then {
-	bulwarkBox addItemCargoGlobal ["Medikit", BULWARK_MEDIKITS];
+	bulwarkBox addItemCargoGlobal ["gm_ge_army_medkit_80", BULWARK_MEDIKITS];
 };
 
 //Add actions to Bulwark Box
@@ -58,14 +58,14 @@ if(BULWARK_MEDIKITS > 0) then {
 mainZeus addCuratorEditableObjects [[bulwarkBox], true];
 
 //Add EH for text to explain the FAK to Medkit feature
-[bulwarkBox, ["ContainerOpened", {
+/*[bulwarkBox, ["ContainerOpened", {
 	_playerId = _this select 1;
 	["<t size = '.5'>Place 15 FAKs into the Bulwark to convert them into a Medikit</t>", 0, 1, 60, 0] remoteExec ["BIS_fnc_dynamicText", _playerId];
 }]] remoteExec ["addEventHandler", 0, true];
 [bulwarkBox, ["ContainerClosed", {
 	_playerId = _this select 1;
 	["", 0, 1, 0.05, 0] remoteExec ["BIS_fnc_dynamicText", _playerId];
-}]] remoteExec ["addEventHandler", 0, true];
+}]] remoteExec ["addEventHandler", 0, true]; */
 
 /* Place a table in the room for the lulz */
 _relPos = [bulwarkRoomPos, 10, 0] call BIS_fnc_relPos;
@@ -114,7 +114,7 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 
 lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
 
-[] execVM "bulwark\fakToMedkit.sqf";
+//[] execVM "bulwark\fakToMedkit.sqf"; -- too many different FAK's
 
 /* Spinner Box */
 

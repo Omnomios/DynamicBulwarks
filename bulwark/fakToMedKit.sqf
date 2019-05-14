@@ -14,7 +14,7 @@ while {true} do{
   if (_countFaks >= 15) then {
     _bulwarkContents = _bulwarkContents - _fakArr;
     clearItemCargoGlobal  bulwarkBox;
-    bulwarkBox addItemCargoGlobal ["Medikit", 1];
+    bulwarkBox addItemCargoGlobal ["gm_ge_army_medkit_80", 1];
     {
         bulwarkBox addItemCargoGlobal [_x, 1];
     } forEach _bulwarkContents;

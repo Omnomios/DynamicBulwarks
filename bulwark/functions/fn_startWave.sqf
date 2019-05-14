@@ -59,7 +59,7 @@ waveUnits set [0, []];
 _createHostiles = execVM "hostiles\createWave.sqf";
 waitUntil {scriptDone _createHostiles};
 
-if (attkWave > 1) then { //if first wave give player extra time before spawning enemies
+if (attkWave > 2) then { //if first wave give player extra time before spawning enemies
 	{deleteMarker _x} foreach lootDebugMarkers;
 	[] call loot_fnc_cleanup;
 	_spawnLoot = execVM "loot\spawnLoot.sqf";

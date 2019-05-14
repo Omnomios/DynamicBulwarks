@@ -1,7 +1,7 @@
-onLoadMission = "dynamicBulwarks";
+onLoadMission = "Dynamic Bulwarks: Cold War";
 onLoadIntro = "Defend yourself";
-onLoadName = "dynamicBulwarks";
-briefingName = "dynamicBulwarks";
+onLoadName = "Dynamic Bulwarks: Cold War";
+briefingName = "Dynamic Bulwarks: Cold War";
 overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
 author = "Hilltop & omNomios";
 overviewPicture = "preview.paa";
@@ -16,6 +16,7 @@ ReviveMode = 1;
 ReviveRequiredItems = 2;
 ReviveBleedOutDelay = 120;
 
+//corpseManagerMode = 0
 corpseLimit = 10;
 wreckLimit = 2;
 corpseRemovalMinTime = 20;
@@ -444,7 +445,7 @@ class Params
 		};
 		texts[] = {
 			"None",
-			"Medikit",
+			"gm_ge_army_medkit_80",
 			"First Aid Kit / Medikit"
 		};
 		default = 2;

@@ -20,8 +20,9 @@ for "_i" from 0 to (floor (attkWave / 10) - 1) do {
 			_vehclass = getText (_checked_veh >> "vehicleClass");
 			_scope = getNumber (_checked_veh >> "scope");
 			_simulation_paracheck = getText (_checked_veh >> "simulation");
-			_actual_vehclass = getText (_checked_veh >> "vehicleClass");
-			if (_vehclass == _vehClass && _scope != 0 && _simulation_paracheck != "parachute" && _classname != "O_MBT_02_arty_F" && _actual_vehclass == "Armored") exitWith {
+			_actual_vehclass = getText (_checked_veh >> "textSingular");
+			_gmCheck = (configname _checked_veh select [0,3]);
+			if (_vehclass == _vehClass && _scope != 0 && _simulation_paracheck != "parachute" && _classname != "O_MBT_02_arty_F" && _actual_vehclass == "tank" && _gmCheck == "gm_") exitWith {
 				_foundVeh = _classname;
 				_found = true;
 			};

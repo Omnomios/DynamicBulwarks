@@ -122,3 +122,102 @@ for "_x" from 0 to (_count-1) do {
     };
 };
 List_Viper = _viper;
+
+_eastSoldierGm = [];
+_groupConfig = configfile >>"CfgGroups" >> "East" >> "gm_gc_army" >> "gm_infantry" >> "gm_gc_army_infantry_squad_win";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=((_groupConfig) select _x);
+    if (isClass _item) then {
+		_eastSoldierGm pushback getText (_item >> "vehicle");
+    };
+};
+List_EastGermanSol = _eastSoldierGm;
+
+_eastSoldierGmWinter = [];
+_groupConfig = configfile >>"CfgGroups" >> "East" >> "gm_gc_army_win" >> "gm_infantry" >> "gm_gc_army_infantry_squad_win";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=((_groupConfig) select _x);
+    if (isClass _item) then {
+		_eastSoldierGmWinter pushback getText (_item >> "vehicle");
+    };
+};
+List_EastGermanSol_Winter = _eastSoldierGmWinter;
+
+_eastBoarderGaurd = [];
+_groupConfig = configfile >> "CfgGroups" >> "East" >> "gm_gc_army" >> "gm_borderguards" >> "gm_gc_bgs_infantry_post_str";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=((_groupConfig) select _x);
+    if (isClass _item) then {
+		_eastBoarderGaurd pushback getText (_item >> "vehicle");
+    };
+};
+List_EastBoarderGaurd = _eastBoarderGaurd;
+
+_eastSoldierGermanMGWin = [];
+_groupConfig = configfile >> "CfgGroups" >> "East" >> "gm_gc_army_win" >> "gm_infantry" >> "gm_ge_army_infantry_mggroup_str";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=((_groupConfig) select _x);
+    if (isClass _item) then {
+		_eastSoldierGermanMGWin pushback getText (_item >> "vehicle");
+    };
+};
+List_EastGermanMG_Winter = _eastSoldierGermanMGWin;
+
+_eastSoldierGermanMG = [];
+_groupConfig = configfile >> "CfgGroups" >> "East" >> "gm_gc_army_win" >> "gm_infantry" >> "gm_ge_army_infantry_mggroup_str";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=((_groupConfig) select _x);
+    if (isClass _item) then {
+		_eastSoldierGermanMG pushback getText (_item >> "vehicle");
+    };
+};
+List_EastGermanMG = _eastSoldierGermanMG;
+
+_DenmarkSoldierWinter = [];
+_groupConfig = configfile >> "CfgGroups" >> "West" >> "gm_dk_army_m84" >> "gm_infantry" >> "gm_dk_army_infantry_squad_84_m84";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=(_groupConfig select _x);
+    if (isClass _item) then {
+		_DenmarkSoldierWinter pushback getText (_item >> "vehicle");
+    };
+};
+List_Denmark = _DenmarkSoldierWinter;
+
+_DenmarkSoldierWinter = [];
+_groupConfig = configfile >> "CfgGroups" >> "West" >> "gm_dk_army_win" >> "gm_infantry" >> "gm_dk_army_infantry_squad_84_win";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=(_groupConfig select _x);
+    if (isClass _item) then {
+		_DenmarkSoldierWinter pushback getText (_item >> "vehicle");
+    };
+};
+List_Denmark_Winter = _DenmarkSoldierWinter;
+
+_WestGermanSoldier = [];
+_groupConfig = configfile >> "CfgGroups" >> "West" >> "gm_ge_army" >> "gm_infantry" >> "gm_ge_army_infantry_squad_80_ols";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=(_groupConfig select _x);
+    if (isClass _item) then {
+		_WestGermanSoldier pushback getText (_item >> "vehicle");
+    };
+};
+List_WestGerman = _WestGermanSoldier;
+
+_WestGermanSoldierWinter = [];
+_groupConfig = configfile >> "CfgGroups" >> "West" >> "gm_ge_army_win" >> "gm_infantry" >> "gm_ge_army_infantry_squad_parka_80_win";
+_count = count (_groupConfig);
+for "_x" from 0 to (_count-1) do {
+    _item=(_groupConfig select _x);
+    if (isClass _item) then {
+		_WestGermanSoldierWinter pushback getText (_item >> "vehicle");
+    };
+};
+List_WestGerman_Winter = _WestGermanSoldierWinter;

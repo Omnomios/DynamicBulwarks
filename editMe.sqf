@@ -8,10 +8,10 @@
 
 /* Attacker Waves */
 
-// List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper
-HOSTILE_LEVEL_1 = List_Bandits;  // Wave 0 >
-HOSTILE_LEVEL_2 = List_OPFOR;    // Wave 5 >
-HOSTILE_LEVEL_3 = List_Viper;    // Wave 10 >
+// List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper, List_EastBoarderGaurd, List_EastGermanSol, List_EastGermanMG, List_EastGermanSol_Winter, List_EastGermanMG_Winter. check hostiles\lists for more
+HOSTILE_LEVEL_1 = List_EastBoarderGaurd;  // Wave 0 >
+HOSTILE_LEVEL_2 = List_EastGermanSol_Winter;    // Wave 5 >
+HOSTILE_LEVEL_3 = List_EastGermanMG_Winter;    // Wave 10 >
 
 HOSTILE_MULTIPLIER = ("HOSTILE_MULTIPLIER" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
 HOSTILE_TEAM_MULTIPLIER = ("HOSTILE_TEAM_MULTIPLIER" call BIS_fnc_getParamValue) / 100;   // How many extra units are added per player
@@ -52,7 +52,8 @@ LOOT_ROOM_DISTRIBUTION = ("LOOT_ROOM_DISTRIBUTION" call BIS_fnc_getParamValue); 
 LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
 LOOT_SUPPLYDROP = ("LOOT_SUPPLYDROP" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
 PARATROOP_COUNT = ("PARATROOP_COUNT" call BIS_fnc_getParamValue);
-PARATROOP_CLASS = List_NATO;
+/* Paratrooper lists: List_Nato, List_WestGerman, List_WestGerman_Winter, List_Denmark, List_Denmark_Winter */
+PARATROOP_CLASS = List_Denmark_Winter;
 
 /* Points */
 SCORE_KILL = ("SCORE_KILL" call BIS_fnc_getParamValue);                 // Every kill
@@ -66,7 +67,6 @@ BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",             "reconUAV"],
     [1685, "Emergency Teleport",   "telePlode"],
     [1950, "Paratroopers",          "paraDrop"],
-    [3525, "Predator Drone",    "droneControl"],
     [4850, "Mind Control Gas",    "mindConGas"],
     [5430, "Missle CAS",           "airStrike"],
     [5930, "Rage Stimpack",         "ragePack"],
@@ -101,7 +101,8 @@ BULWARK_BUILDITEMS = [
     [2500, "Machine Gun (raised)", "B_HMG_01_high_F",                   0,   1],
     [3000, "Small Bunker",         "Land_BagBunker_Small_F",          180,   3],
     [3800, "Large Platform",       "Land_Pier_addon",                   0,   8],
-    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",          180,   0]
+    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",          180,   3],
+    [6500, "Tall Tower",           "land_gm_tower_bt_11_60",           90,   3]
 ];
 
 /* Time of Day*/

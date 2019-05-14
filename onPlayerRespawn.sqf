@@ -11,9 +11,9 @@ removeAllAssignedItems _player;
 _player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
 
 if(PLAYER_STARTWEAPON) then {
-    _player addMagazine "16Rnd_9x21_Mag";
-    _player addMagazine "16Rnd_9x21_Mag";
-    _player addWeapon "hgun_P07_F";
+    _player addMagazine "gm_8rnd_9x19mm_b_dm11_p1_blk";
+    _player addMagazine "gm_8rnd_9x19mm_b_dm11_p1_blk";
+    _player addWeapon "gm_p1_blk";
 };
 
 if(PLAYER_STARTMAP) then {
