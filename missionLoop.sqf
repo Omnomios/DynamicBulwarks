@@ -27,7 +27,7 @@ if (isServer) then {
 	execVM "loot\spawnLoot.sqf";
 };
 
-sleep 15;
+sleep _downTime;
 runMissionLoop = true;
 missionFailure = false;
 
