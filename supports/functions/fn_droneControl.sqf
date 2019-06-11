@@ -1,7 +1,7 @@
 /**
 *  fn_droneControl
 *
-*  Spawns a controlable drone for 1 minute
+*  Spawns a controlable drone for 600 seconds
 *
 *  Domain: Server
 **/
@@ -28,8 +28,8 @@ _uavGroup setCurrentWaypoint _loiterWP;
 sleep 2;
 
 _bool = _player connectTerminalToUAV _supportUav;
-_player remoteControl driver _supportUav;
-driver _supportUav switchCamera "Internal";
+[_player, driver _supportUav] remoteExec ["remoteControl", _player];
+[driver _supportUav, "Internal"] remoteExec ["switchCamera", _player];
 
 sleep 600;
 if (alive _supportUav) then {
