@@ -6,9 +6,12 @@
 *  Domain: Server
 **/
 
-if (attkWave > 15 && (floor random 4) == 1) then {
+if ((attkWave > 10 && (floor random 4) == 1) || wavesSinceArmour == 4) then {
 	_spwnVec = execVM "hostiles\spawnVehicle.sqf";
 	waitUntil {scriptDone _spwnVec};
+	wavesSinceArmour = 0;
+}else{
+	wavesSinceArmour = wavesSinceArmour + 1;
 };
 
 hosSkill = (attkWave / 40);
