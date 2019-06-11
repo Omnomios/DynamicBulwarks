@@ -32,7 +32,7 @@ bulwarkBox setVariable ["buildPhase", false, true];
 
 //determine if suicide bomber round
 
-if ((attkWave > 15) && (floor random 10 == 1) && (_specialWaves == 1)) then {
+if ((attkWave >= 10) && (floor random 10 == 1) && (_specialWaves == 1)) then {
 	suicideWave = true;
 	execVM "hostiles\suicideWave.sqf";
 	execVM "hostiles\suicideAudio.sqf";
@@ -40,11 +40,25 @@ if ((attkWave > 15) && (floor random 10 == 1) && (_specialWaves == 1)) then {
 	suicideWave = false;
 };
 
+if ((attkWave >= 10) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave) then {
+	specMortarWave = true;
+}else{
+	specMortarWave = false;
+};
+
 //Notify start of wave and type of wave
 if (suicideWave) then {
 	["SpecialWarning",["SUICIDE BOMBERS! Don't Let Them Get Close!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	["Alarm"] remoteExec ["playSound", 0];
-} else {
+};
+
+if (specMortarWave) then {
+	["SpecialWarning",["MORTAR! FIND IT BEFORE IT DESTROYS THE BULWARK!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["Alarm"] remoteExec ["playSound", 0];
+	[] execVM "hostiles\specMortar.sqf";
+};
+
+if (!suicideWave && !specMortarWave) then {
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 };
 
