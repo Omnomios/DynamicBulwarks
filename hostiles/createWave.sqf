@@ -5,13 +5,16 @@
 *
 *  Domain: Server
 **/
+_armourStartWave = "ARMOUR_START_WAVE" call BIS_fnc_getParamValue;
 
-if ((attkWave > 10 && (floor random 4) == 1) || wavesSinceArmour == 4) then {
+if ((attkWave >= _armourStartWave && (floor random 4) == 1) || (attkWave >= _armourStartWave && wavesSinceArmour == 4)) then {
 	_spwnVec = execVM "hostiles\spawnVehicle.sqf";
 	waitUntil {scriptDone _spwnVec};
 	wavesSinceArmour = 0;
 }else{
-	wavesSinceArmour = wavesSinceArmour + 1;
+	if (attkWave >= _armourStartWave) then {
+		wavesSinceArmour = wavesSinceArmour + 1;
+	};
 };
 
 hosSkill = (attkWave / 40);
