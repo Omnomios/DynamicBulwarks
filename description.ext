@@ -16,10 +16,11 @@ ReviveMode = 1;
 ReviveRequiredItems = 2;
 ReviveBleedOutDelay = 120;
 
-corpseLimit = 10;
+corpseManagerMode = 2
+corpseLimit = 5;
 wreckLimit = 2;
-corpseRemovalMinTime = 20;
-corpseRemovalMaxTime = 30;
+corpseRemovalMinTime = 180;
+corpseRemovalMaxTime = 181;
 wreckRemovalMinTime = 30;
 wreckRemovalMaxTime = 50;
 
@@ -206,6 +207,14 @@ class Params
 		values[] = {0, 1, 2, 3, 4, 5, 10, 15, 25, 30};
 		texts[] = {"Start Fully Armed", "One", "Two", "Three", "Four", "Five", "Ten", "Fifteen", "Twenty", "Twenty Five", "Thirty"};
 		default = 3;
+	};
+
+	class BODY_CLEANUP
+	{
+		title = "Dead bodies remain for how many waves (dead bodies impact perfomance)";
+		values[] = {0, 1, 2};
+		texts[] = {"0 (until next round begins)", "1", "2"};
+		default = 1;
 	};
 
 	class DOWN_TIME

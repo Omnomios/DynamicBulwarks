@@ -49,7 +49,7 @@ if (suicideWave) then {
 };
 
 // Delete
-_final = waveUnits select 2;
+_final = waveUnits select ("BODY_CLEANUP" call BIS_fnc_getParamValue);
 {deleteVehicle _x} foreach _final;
 // Shuffle
 waveUnits set [2, waveUnits select 1];
