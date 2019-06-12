@@ -12,6 +12,15 @@ bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon allowDamage false;
 bulwarkBox allowDamage false;
+bulwarkFallDamage = {
+_damage = 0;
+if((_this select 4) != "") then
+{
+  _damage = _this select 2;
+};
+_damage
+};
+bulwarkBox addEventHandler ["HandleDamage", { _this call bulwarkFallDamage }];
 [_bulMon,[0,"preview.paa"]] remoteExec ["setObjectTexture",0,true];
 _bulMon enableSimulation false;
 _bulMon attachTo [bulwarkBox, [0,0.1,0.6]];
