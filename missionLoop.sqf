@@ -21,6 +21,7 @@ waveUnits = [[],[],[]];
 revivedPlayers = [];
 MIND_CONTROLLED_AI = [];
 wavesSinceArmour = 0;
+wavesSinceSpecial = 0;
 
 //spawn start loot
 if (isServer) then {

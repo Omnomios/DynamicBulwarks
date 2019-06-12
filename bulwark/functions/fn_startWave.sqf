@@ -45,7 +45,68 @@ bulwarkBox setVariable ["buildPhase", false, true];
 
 //determine if Special wave
 
-if ((attkWave >= 10) && (floor random 7 == 1) && (_specialWaves == 1)) then {
+if ((floor random 4 == 1 || wavesSinceSpecial == 4) && attkWave >= 5 && wavesSinceSpecial >= 1) then {
+	specialWave = true;
+}else{
+	wavesSinceSpecial = wavesSinceSpecial + 1;
+	specialWave = false;
+};
+
+SpecialWaveType = "";
+
+if (specialWave && attkWave >= 5 and attkWave < 10) then {
+	_randWave = floor random 3;
+	switch (_randWave) do
+	{
+		case 0:
+		{
+			SpecialWaveType = "specCivs";
+		};
+		case 1:
+		{
+			SpecialWaveType = "fogWave";
+		};
+		case 2:
+		{
+			SpecialWaveType = "swticharooWave";
+		};
+	};
+	wavesSinceSpecial = 0;
+};
+
+if (specialWave && attkWave >= 10) then {
+	_randWave = floor random 6;
+	switch (_randWave) do
+	{
+		case 0:
+		{
+			SpecialWaveType = "specCivs";
+		};
+		case 1:
+		{
+			SpecialWaveType = "fogWave";
+		};
+		case 2:
+		{
+			SpecialWaveType = "swticharooWave";
+		};
+		case 3:
+		{
+			SpecialWaveType = "suicideWave";
+		};
+		case 4:
+		{
+			SpecialWaveType = "specMortarWave";
+		};
+		case 5:
+		{
+			SpecialWaveType = "nightWave";
+		};
+	};
+	wavesSinceSpecial = 0;
+};
+
+if (SpecialWaveType == "suicideWave") then {
 	suicideWave = true;
 	execVM "hostiles\suicideWave.sqf";
 	execVM "hostiles\suicideAudio.sqf";
@@ -53,21 +114,21 @@ if ((attkWave >= 10) && (floor random 7 == 1) && (_specialWaves == 1)) then {
 	suicideWave = false;
 };
 
-if ((attkWave >= 10) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave) then {
+if (SpecialWaveType == "specMortarWave") then {
 	specMortarWave = true;
 	[] execVM "hostiles\specMortar.sqf";
 }else{
 	specMortarWave = false;
 };
 
-if ((attkWave >= 5) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave && !specMortarWave) then {
+if (SpecialWaveType == "specCivs") then {
 	specCivs = true;
 	[] execVM "hostiles\civWave.sqf";
 }else{
 	specCivs = false;
 };
 
-if ((attkWave >= 8) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave && !specMortarWave && !specCivs) then {
+if (SpecialWaveType == "nightWave") then {
 	nightWave = true;
 	currentTime = daytime;
 	skipTime (24 - currentTime);
@@ -75,14 +136,14 @@ if ((attkWave >= 8) && (floor random 7 == 1) && (_specialWaves == 1) && !suicide
 	nightWave = false;
 };
 
-if ((attkWave >= 5) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave && !specMortarWave && !specCivs && !nightWave) then {
+if (SpecialWaveType == "fogWave") then {
 	fogWave = true;
 	15 setFog 1;
 }else{
 	fogWave = false;
 };
 
-if ((attkWave >= 5) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave && !specMortarWave && !specCivs && !nightWave && !fogWave) then {
+if (SpecialWaveType == "swticharooWave") then {
 	swticharooWave = true;
 	execVM "hostiles\specSwticharooWave.sqf";
 }else{
@@ -121,7 +182,7 @@ if (swticharooWave) then {
 	sleep 60;
 };
 
-if (!suicideWave && !specMortarWave && !specCivs && !nightWave && !fogWave && !swticharooWave) then {
+if (!specialWave) then {
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 };
 
