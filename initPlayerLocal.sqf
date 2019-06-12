@@ -3,12 +3,25 @@ player setUnitRecoilCoefficient 0.5;
 player enableStamina FALSE;
 "START_KILLPOINTS" call BIS_fnc_getParamValue;
 
+//Remove Fall Damage
+fallDamage = {
+_damage = 0;
+if((_this select 4) != "") then
+{
+  _damage = _this select 2;
+};
+_damage
+};
+player addEventHandler ["HandleDamage", { _this call fallDamage }];
+
+// Lower recoil, lower sway, remove stamina on respawn
 player addEventHandler ['Respawn',{
     player setCustomAimCoef 0.2;
     player setUnitRecoilCoefficient 0.5;
     player enableStamina FALSE;
 }];
 
+//setup Kill Points
 _killPoints = player getVariable "killPoints";
 if(isNil "_killPoints") then {
     _killPoints = 0;
@@ -26,6 +39,7 @@ player setVariable ["killPoints", _killPoints, true];
     };
 } foreach allMapMarkers;
 
+//Show the Bulwark label on screen
 onEachFrame {
     if(!isNil "bulwarkBox") then {
         _textPos = getPosATL bulwarkBox vectorAdd [0, 0, 1.5];
@@ -34,5 +48,3 @@ onEachFrame {
 };
 
 waitUntil {!isNil "bulwarkCity"};
-
-
