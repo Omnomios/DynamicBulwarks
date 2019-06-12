@@ -75,11 +75,18 @@ if ((attkWave >= 8) && (floor random 7 == 1) && (_specialWaves == 1) && !suicide
 	nightWave = false;
 };
 
-if ((attkWave >= 5) && (floor random 1 == 0) && (_specialWaves == 1) && !suicideWave && !specMortarWave && !specCivs && !nightWave) then {
+if ((attkWave >= 5) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave && !specMortarWave && !specCivs && !nightWave) then {
 	fogWave = true;
 	15 setFog 1;
 }else{
 	fogWave = false;
+};
+
+if ((attkWave >= 5) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave && !specMortarWave && !specCivs && !nightWave && !fogWave) then {
+	swticharooWave = true;
+	execVM "hostiles\specSwticharooWave.sqf";
+}else{
+	swticharooWave = false;
 };
 
 //Notify start of wave and type of wave
@@ -108,7 +115,13 @@ if (fogWave) then {
 	["Alarm"] remoteExec ["playSound", 0];
 };
 
-if (!suicideWave && !specMortarWave && !specCivs && !nightWave && !fogWave) then {
+if (swticharooWave) then {
+	["SpecialWarning",["You were overrun! Take back the bulwark!! Quickly!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["Alarm"] remoteExec ["playSound", 0];
+	sleep 60;
+};
+
+if (!suicideWave && !specMortarWave && !specCivs && !nightWave && !fogWave && !swticharooWave) then {
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 };
 
