@@ -26,6 +26,12 @@ if(!isNil "nightWave") then {
 	};
 };
 
+if(!isNil "fogWave") then {
+	if (fogWave) then {
+		15 setFog 0;
+	};
+};
+
 [] remoteExec ["killPoints_fnc_updateHud", 0];
 
 _respawnTickets = [west] call BIS_fnc_respawnTickets;
@@ -69,6 +75,13 @@ if ((attkWave >= 8) && (floor random 7 == 1) && (_specialWaves == 1) && !suicide
 	nightWave = false;
 };
 
+if ((attkWave >= 5) && (floor random 1 == 0) && (_specialWaves == 1) && !suicideWave && !specMortarWave && !specCivs && !nightWave) then {
+	fogWave = true;
+	15 setFog 1;
+}else{
+	fogWave = false;
+};
+
 //Notify start of wave and type of wave
 if (suicideWave) then {
 	["SpecialWarning",["SUICIDE BOMBERS! Don't Let Them Get Close!"]] remoteExec ["BIS_fnc_showNotification", 0];
@@ -90,7 +103,12 @@ if (nightWave) then {
 	["Alarm"] remoteExec ["playSound", 0];
 };
 
-if (!suicideWave && !specMortarWave && !specCivs && !nightWave) then {
+if (fogWave) then {
+	["SpecialWarning",["A dense fog is rolling in!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["Alarm"] remoteExec ["playSound", 0];
+};
+
+if (!suicideWave && !specMortarWave && !specCivs && !nightWave && !fogWave) then {
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 };
 
