@@ -76,7 +76,7 @@ BULWARK_SUPPORTITEMS = [
 
 /* Objects the Player can buy */
 
-/* Radius prevents hostiles walking through objects and triggers Zombies to attack the object */
+/* Radius prevents hostiles walking through objects */
 
 /*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) *prevents AI glitching through object and triggers suicide bombers*/
 BULWARK_BUILDITEMS = [
@@ -89,9 +89,11 @@ BULWARK_BUILDITEMS = [
     [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0,   2],
     [250,  "Portable Light",       "Land_PortableLight_double_F",     180,   1],
     [400,  "Large Ramp",           "Land_VR_Slope_01_F",                0,   4],
+    [500,  "Bunker Block",         "Land_Bunker_01_blocks_3_F",         0,   6],
     [500,  "H Barrier",            "Land_HBarrier_3_F",                 0,   2],
     [750,  "Ladder",               "Land_PierLadder_F",                 0,   1],
     [800,  "Storage box small",    "Box_NATO_Support_F",                0,   1],
+    [900,  "Cargo Container",      "Land_Cargo20_Red_F",                0,   3],
     [950,  "Stairs",               "Land_GH_Stairs_F",                180,   4],
     [1000, "Hallogen Lamp",        "Land_LampHalogen_F",               90,   1],
     [1000, "Double H Barrier",     "Land_HBarrierWall4_F",              0,   4],
@@ -100,8 +102,9 @@ BULWARK_BUILDITEMS = [
     [2500, "Machine Gun",          "B_HMG_01_F",                        0,   1],
     [2500, "Machine Gun (raised)", "B_HMG_01_high_F",                   0,   1],
     [3000, "Small Bunker",         "Land_BagBunker_Small_F",          180,   3],
-    [3800, "Large Platform",       "Land_Pier_addon",                   0,   8],
-    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",          180,   0]
+    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",            0,   6],
+    [6500, "Pillbox",              "Land_PillboxBunker_01_hex_F",      90, 2.5],
+    [9500, "Modular Bunker",       "Land_Bunker_01_Small_F",          180, 4.5]
 ];
 
 /* Time of Day*/
