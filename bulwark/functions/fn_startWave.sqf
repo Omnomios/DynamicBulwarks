@@ -19,6 +19,13 @@ for ("_i") from 0 to 14 do {
 attkWave = (attkWave + 1);
 publicVariable "attkWave";
 
+//If last wave was a night time wave then skip back to the time it was previously
+if(!isNil "nightWave") then {
+	if (nightWave) then {
+		skipTime currentTime;
+	};
+};
+
 [] remoteExec ["killPoints_fnc_updateHud", 0];
 
 _respawnTickets = [west] call BIS_fnc_respawnTickets;
@@ -30,7 +37,7 @@ if (_respawnTickets <= 0) then {
 
 bulwarkBox setVariable ["buildPhase", false, true];
 
-//determine if suicide bomber round
+//determine if Special wave
 
 if ((attkWave >= 10) && (floor random 7 == 1) && (_specialWaves == 1)) then {
 	suicideWave = true;
@@ -42,14 +49,24 @@ if ((attkWave >= 10) && (floor random 7 == 1) && (_specialWaves == 1)) then {
 
 if ((attkWave >= 10) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave) then {
 	specMortarWave = true;
+	[] execVM "hostiles\specMortar.sqf";
 }else{
 	specMortarWave = false;
 };
 
 if ((attkWave >= 5) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave && !specMortarWave) then {
 	specCivs = true;
+	[] execVM "hostiles\civWave.sqf";
 }else{
 	specCivs = false;
+};
+
+if ((attkWave >= 8) && (floor random 7 == 1) && (_specialWaves == 1) && !suicideWave && !specMortarWave && !specCivs) then {
+	nightWave = true;
+	currentTime = daytime;
+	skipTime (24 - currentTime);
+}else{
+	nightWave = false;
 };
 
 //Notify start of wave and type of wave
@@ -61,16 +78,19 @@ if (suicideWave) then {
 if (specMortarWave) then {
 	["SpecialWarning",["MORTAR! FIND IT BEFORE IT DESTROYS THE BULWARK!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	["Alarm"] remoteExec ["playSound", 0];
-	[] execVM "hostiles\specMortar.sqf";
 };
 
 if (specCivs) then {
 	["SpecialWarning",["CIVILIANS Are Fleeing! Don't Shoot Them!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	["Alarm"] remoteExec ["playSound", 0];
-	[] execVM "hostiles\civWave.sqf";
 };
 
-if (!suicideWave && !specMortarWave && !specCivs) then {
+if (nightWave) then {
+	["SpecialWarning",["They mostly come at night. Mostly..."]] remoteExec ["BIS_fnc_showNotification", 0];
+	["Alarm"] remoteExec ["playSound", 0];
+};
+
+if (!suicideWave && !specMortarWave && !specCivs && !nightWave) then {
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 };
 
