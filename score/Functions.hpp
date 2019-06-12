@@ -10,5 +10,6 @@ class killPoints
         class killed {};
         class updateHud {};
         class support {};
+        class civKilled {};
     };
 };
