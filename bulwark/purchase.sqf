@@ -30,6 +30,11 @@ if(player getVariable "killPoints" >= _shopPrice) then {
 };
 
 sleep 0.1;
+
+
+
+
+
 if (objPurchase) then {
     closeDialog 0;
 

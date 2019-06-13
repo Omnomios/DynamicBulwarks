@@ -27,6 +27,17 @@ class startBox_Dialog
             w = 0.185 * safezoneW;
             h = 0.3 * safezoneH;
         };
+		
+		class ObjectPicture: RscPicture
+        {
+            idc = 1502;
+			text="preview.paa";
+            x = 0.1 * safezoneW + safezoneX;
+            y = 0.3 * safezoneH + safezoneY;
+            w = 0.2 * safezoneW;
+            h = 0.2 * safezoneH;
+        };
+		
         class startBox_buildButton: RscButton
         {
             idc = 1600;
