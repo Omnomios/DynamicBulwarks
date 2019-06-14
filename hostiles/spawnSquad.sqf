@@ -54,6 +54,19 @@ for ("_i") from 1 to _unitCount do {
 		_unit addEventHandler ["Killed", CreateHostiles_fnc_suiExplode];
 	};
 
+	if (demineWave && (floor random 2 == 0)) then {
+			_aicrew = creategroup EAST;
+			_drone = [_location, 50, "C_IDAP_UAV_06_antimine_F", _aicrew] call BIS_fnc_spawnVehicle;
+			droneSquad pushback _aicrew;
+			_wp1 = _aicrew addWaypoint [position bulwarkBox, 0];
+			_wp1 setWaypointType "SAD";
+			_leadah = leader _aicrew;
+			_leadah flyInHeight 30;
+			_leadah setSkill 1;
+			sleep 0.5;
+			mainZeus addCuratorEditableObjects [[_drone select 0], true];
+	};
+
 	mainZeus addCuratorEditableObjects [[_unit], true];
 
 	_unitArray = waveUnits select 0;

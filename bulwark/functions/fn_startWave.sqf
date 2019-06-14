@@ -19,6 +19,8 @@ for ("_i") from 0 to 14 do {
 attkWave = (attkWave + 1);
 publicVariable "attkWave";
 
+waveSpawned = false;
+
 //If last wave was a night time wave then skip back to the time it was previously
 if(!isNil "nightWave") then {
 	if (nightWave) then {
@@ -26,11 +28,7 @@ if(!isNil "nightWave") then {
 	};
 };
 
-if(!isNil "fogWave") then {
-	if (fogWave) then {
-		15 setFog 0;
-	};
-};
+15 setFog 0;
 
 [] remoteExec ["killPoints_fnc_updateHud", 0];
 
@@ -75,7 +73,7 @@ if (specialWave && attkWave >= 5 and attkWave < 10) then {
 };
 
 if (specialWave && attkWave >= 10) then {
-	_randWave = floor random 6;
+	_randWave = floor random 7;
 	switch (_randWave) do
 	{
 		case 0:
@@ -102,8 +100,14 @@ if (specialWave && attkWave >= 10) then {
 		{
 			SpecialWaveType = "nightWave";
 		};
+		case 6:
+		{
+			SpecialWaveType = "demineWave";
+		};
 	};
 	wavesSinceSpecial = 0;
+//}else{
+//	SpecialWaveType = "demineWave"; //else for testing new special waves: do not remove
 };
 
 if (SpecialWaveType == "suicideWave") then {
@@ -150,6 +154,14 @@ if (SpecialWaveType == "swticharooWave") then {
 	swticharooWave = false;
 };
 
+if (SpecialWaveType == "demineWave") then {
+	demineWave = true;
+	droneSquad = [];
+	execVM "hostiles\droneFire.sqf";
+}else{
+	demineWave = false;
+};
+
 //Notify start of wave and type of wave
 if (suicideWave) then {
 	["SpecialWarning",["SUICIDE BOMBERS! Don't Let Them Get Close!"]] remoteExec ["BIS_fnc_showNotification", 0];
@@ -180,6 +192,11 @@ if (swticharooWave) then {
 	["SpecialWarning",["You were overrun! Take back the bulwark!! Quickly!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	["Alarm"] remoteExec ["playSound", 0];
 	sleep 60;
+};
+
+if (demineWave) then {
+	["SpecialWarning",["Look up! They're sending drones!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["Alarm"] remoteExec ["playSound", 0];
 };
 
 if (!specialWave) then {

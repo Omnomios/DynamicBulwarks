@@ -45,3 +45,5 @@ if (attkWave > 12) then {
 		waitUntil {scriptDone _script};
 	};
 };
+
+waveSpawned = true;
