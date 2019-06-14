@@ -12,8 +12,7 @@
 
 
 //Spawn AI Around Bulwark
-_noOfPlayers = 1 max floor ((playersNumber west) * HOSTILE_TEAM_MULTIPLIER);
-for ("_i") from 1 to (2 + count allPlayers) do {
+for ("_i") from 1 to ((floor attkWave / 2) + (floor count allPlayers * 1.5)) do {
   _location = [bulwarkBox] call bulwark_fnc_findPlaceAround;
 	_attGroupBand = createGroup [EAST, true];
 	_unitClass = selectRandom HOSTILE_LEVEL_1;

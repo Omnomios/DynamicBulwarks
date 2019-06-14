@@ -107,7 +107,7 @@ if (specialWave && attkWave >= 10) then {
 	};
 	wavesSinceSpecial = 0;
 //}else{
-//	SpecialWaveType = "demineWave"; //else for testing new special waves: do not remove
+//	SpecialWaveType = "swticharooWave"; //else for testing new special waves: do not remove
 };
 
 if (SpecialWaveType == "suicideWave") then {
@@ -191,7 +191,36 @@ if (fogWave) then {
 if (swticharooWave) then {
 	["SpecialWarning",["You were overrun! Take back the bulwark!! Quickly!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	["Alarm"] remoteExec ["playSound", 0];
-	sleep 60;
+	_secCount = 0;
+	_deadUnconscious = [];
+	sleep 1;
+	while {EAST countSide allUnits > 0} do {
+		_allHCs = entities "HeadlessClient_F";
+		_allHPs = allPlayers - _allHCs;
+		{
+			if ((!alive _x) || ((lifeState _x) == "INCAPACITATED")) then {
+				_deadUnconscious pushBack _x;
+			};
+		} foreach _allHPs;
+		_respawnTickets = [west] call BIS_fnc_respawnTickets;
+		if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+			sleep 1;
+
+			//Check that Players have not been revived
+			_deadUnconscious = [];
+			{
+				if ((!alive _x) || ((lifeState _x) == "INCAPACITATED")) then {
+					_deadUnconscious pushBack _x;
+				};
+			} foreach _allHPs;
+			if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+				sleep 1;
+				if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+					missionFailure = true;
+				};
+			};
+		};
+	};
 };
 
 if (demineWave) then {
