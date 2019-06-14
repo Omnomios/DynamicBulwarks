@@ -2,17 +2,7 @@ player setCustomAimCoef 0.2;
 player setUnitRecoilCoefficient 0.5;
 player enableStamina FALSE;
 "START_KILLPOINTS" call BIS_fnc_getParamValue;
-
-//Remove Fall Damage
-fallDamage = {
-_damage = 0;
-if((_this select 4) != "") then
-{
-  _damage = _this select 2;
-};
-_damage
-};
-player addEventHandler ["HandleDamage", { _this call fallDamage }];
+player setVariable ["RevByMedikit", false, true];
 
 // Lower recoil, lower sway, remove stamina on respawn
 player addEventHandler ['Respawn',{
@@ -48,3 +38,10 @@ onEachFrame {
 };
 
 waitUntil {!isNil "bulwarkCity"};
+
+//Make player immune to fall damage and immune to all damage while incapacitated
+player removeAllEventHandlers 'HandleDamage';
+player addEventHandler ["HandleDamage", {
+  _beingRevived = player getVariable "RevByMedikit";
+  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived) then {0} else {_this call bis_fnc_reviveEhHandleDamage;};
+}];

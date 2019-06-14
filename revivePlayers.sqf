@@ -6,6 +6,7 @@ while {true} do {
     if ((lifeState _x) == "INCAPACITATED") then {
       _playerItems = items _x;
       if ("Medikit" in _playerItems) then {
+        _playerInvToCheck setVariable ["RevByMedikit", true, true];
         [_playerInvToCheck, false] remoteExec ["setUnconscious", 0];
         [ "#rev", 1, _playerInvToCheck ] remoteExecCall ["BIS_fnc_reviveOnState", _playerInvToCheck];
         _playerInvToCheck switchMove "PlayerStand";
