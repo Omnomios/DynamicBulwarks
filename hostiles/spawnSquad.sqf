@@ -6,10 +6,14 @@
 *  Domain: Server
 **/
 
-
-_unitClasses = _this select 0;
+if (defectorWave) then { //determine if defect wave and spawn from List defined in EditMe.sqf
+	unitClasses = DEFECTOR_CLASS;
+} else {
+	unitClasses = _this select 0;
+};
 _attackWave  = _this select 1;
 _unitCount   = _this select 2;
+
 
 if (_attackWave < 40) then { //determine AI skill based on Wave
 	hosSkill = (_attackWave / 40);
@@ -22,7 +26,7 @@ sleep 0.5;
 _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 for ("_i") from 1 to _unitCount do {
 	_attGroupBand = createGroup [EAST, true];
-	_unitClass = selectRandom _unitClasses;
+	_unitClass = selectRandom unitClasses;
 	_unit = objNull;
 	_unit = _attGroupBand createUnit [_unitClass, _location, [], 0.5, "FORM"];
 	sleep 0.3;

@@ -53,6 +53,7 @@ LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
 LOOT_SUPPLYDROP = ("LOOT_SUPPLYDROP" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
 PARATROOP_COUNT = ("PARATROOP_COUNT" call BIS_fnc_getParamValue);
 PARATROOP_CLASS = List_NATO;
+DEFECTOR_CLASS = List_NATO;
 
 /* Points */
 SCORE_KILL = ("SCORE_KILL" call BIS_fnc_getParamValue);                 // Every kill

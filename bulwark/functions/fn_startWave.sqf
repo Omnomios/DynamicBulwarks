@@ -73,7 +73,7 @@ if (specialWave && attkWave >= 5 and attkWave < 10) then {
 };
 
 if (specialWave && attkWave >= 10) then {
-	_randWave = floor random 7;
+	_randWave = floor random 8;
 	switch (_randWave) do
 	{
 		case 0:
@@ -104,10 +104,14 @@ if (specialWave && attkWave >= 10) then {
 		{
 			SpecialWaveType = "demineWave";
 		};
+		case 7:
+		{
+			SpecialWaveType = "defectorWave";
+		};
 	};
 	wavesSinceSpecial = 0;
 //}else{
-//	SpecialWaveType = "swticharooWave"; //else for testing new special waves: do not remove
+	//SpecialWaveType = "defectorWave"; //else for testing new special waves: do not remove
 };
 
 if (SpecialWaveType == "suicideWave") then {
@@ -160,6 +164,12 @@ if (SpecialWaveType == "demineWave") then {
 	execVM "hostiles\droneFire.sqf";
 }else{
 	demineWave = false;
+};
+
+if (SpecialWaveType == "defectorWave") then {
+	defectorWave = true;
+}else{
+	defectorWave = false;
 };
 
 //Notify start of wave and type of wave
@@ -225,6 +235,11 @@ if (swticharooWave) then {
 
 if (demineWave) then {
 	["SpecialWarning",["Look up! They're sending drones!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["Alarm"] remoteExec ["playSound", 0];
+};
+
+if (defectorWave) then {
+	["SpecialWarning",["NATO Defectors Are Attacking Us!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	["Alarm"] remoteExec ["playSound", 0];
 };
 
