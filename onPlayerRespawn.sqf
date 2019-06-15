@@ -27,6 +27,10 @@ if(PLAYER_STARTNVG) then {
     _player assignItem "Integrated_NVG_F";
 };
 
+if (isClass (configfile >> "CfgVehicles" >> "tf_anarc164")) then {
+  _player addItem "tf_anprc152";
+};
+
 waituntil {alive _player};
 
 _buildPhase = bulwarkBox getVariable ["buildPhase", true];
