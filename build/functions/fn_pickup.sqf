@@ -43,6 +43,8 @@ if (_closestPlayerDist > 5) then {
 		_object
 	];
 
+	 _caller setVariable ["buildItemHeld", true];
+
 } else {
 
 	hint 'players too close';

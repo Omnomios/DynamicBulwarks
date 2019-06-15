@@ -61,5 +61,6 @@ _object setVehiclePosition [_object, [], 0, 'CAN_COLLIDE'],
 	]
 ] remoteExec ['addAction', 0];
 
+_caller setVariable ["buildItemHeld", false];
 mainZeus addCuratorEditableObjects [[_object], true];
 PLAYER_OBJECT_LIST pushBack _object;

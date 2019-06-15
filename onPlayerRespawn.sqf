@@ -1,5 +1,6 @@
 waitUntil {!isNil "bulwarkBox"};
 ["Terminate"] call BIS_fnc_EGSpectator;
+player setVariable ["buildItemHeld", false];
 
 _player = _this select 0;
 removeHeadgear _player:

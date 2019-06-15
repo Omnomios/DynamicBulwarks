@@ -3,6 +3,7 @@ player setUnitRecoilCoefficient 0.5;
 player enableStamina FALSE;
 "START_KILLPOINTS" call BIS_fnc_getParamValue;
 player setVariable ["RevByMedikit", false, true];
+player setVariable ["buildItemHeld", false];
 
 // Lower recoil, lower sway, remove stamina on respawn
 player addEventHandler ['Respawn',{
