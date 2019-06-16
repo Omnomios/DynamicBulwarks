@@ -7,7 +7,31 @@
 **/
 _armourStartWave = "ARMOUR_START_WAVE" call BIS_fnc_getParamValue;
 
-if ((attkWave >= _armourStartWave && (floor random 4) == 1) || (attkWave >= _armourStartWave && wavesSinceArmour == 4)) then {
+if (attkWave < (_armourStartWave + 5)) then {
+	ArmourChance = 4;
+	ArmourMaxSince = 4;
+	ArmourCount = 1;
+};
+
+if (attkWave >= (_armourStartWave + 5) && attkWave < (_armourStartWave + 10)) then {
+	ArmourChance = 3;
+	ArmourMaxSince = 3;
+	ArmourCount = 1 + (floor (playersNumber west / 4));
+};
+
+if (attkWave >= (_armourStartWave + 10) && attkWave < (_armourStartWave + 15)) then {
+	ArmourChance = 2;
+	ArmourMaxSince = 2;
+	ArmourCount = 2 + (floor (playersNumber west / 4));
+};
+
+if (attkWave >= (_armourStartWave + 15)) then {
+	ArmourChance = 2;
+	ArmourMaxSince = 1;
+	ArmourCount = 3 + (floor (playersNumber west / 4));
+};
+
+if ((attkWave >= _armourStartWave && (floor random ArmourChance) == 1) || (attkWave >= _armourStartWave && wavesSinceArmour == ArmourMaxSince)) then {
 	_spwnVec = execVM "hostiles\spawnVehicle.sqf";
 	waitUntil {scriptDone _spwnVec};
 	wavesSinceArmour = 0;
@@ -17,7 +41,6 @@ if ((attkWave >= _armourStartWave && (floor random 4) == 1) || (attkWave >= _arm
 	};
 };
 
-hosSkill = (attkWave / 40);
 _noOfPlayers = 1 max floor ((playersNumber west) * HOSTILE_TEAM_MULTIPLIER);
 _multiplierBase = HOSTILE_MULTIPLIER;
 _SoldierMulti = attkWave / 5;

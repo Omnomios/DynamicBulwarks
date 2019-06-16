@@ -129,7 +129,7 @@ if (specialWave && attkWave >= 10) then {
 	};
 	wavesSinceSpecial = 0;
 //}else{
-	//SpecialWaveType = "defectorWave"; //else for testing new special waves: do not remove
+//	SpecialWaveType = "swticharooWave"; //else for testing new special waves: do not remove
 };
 
 if (SpecialWaveType == "suicideWave") then {

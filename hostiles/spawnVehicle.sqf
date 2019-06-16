@@ -5,7 +5,8 @@
 *
 *  Domain: Server
 **/
-for "_i" from 0 to (floor (attkWave / 10) - 1) do {
+
+for "_i" from 1 to (ArmourCount) do {
 	_cfgVehicles = configFile >> "CfgVehicles";
 	_entries = count _cfgVehicles;  // GO INTO CFGVEHICLES AND CHECK NUMBER OF ENTRIES
 	_realentries = _entries - 1;
