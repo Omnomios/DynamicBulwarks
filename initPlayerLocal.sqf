@@ -46,3 +46,8 @@ player addEventHandler ["HandleDamage", {
   _beingRevived = player getVariable "RevByMedikit";
   if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived) then {0} else {_this call bis_fnc_reviveEhHandleDamage;};
 }];
+
+[player, ['Take', {
+  params ['_unit', '_container', '_item'];
+  [_container] remoteExecCall ["loot_fnc_deleteIfEmpty", 2];
+}]] remoteExec ['addEventHandler', 0, true];
