@@ -73,6 +73,8 @@ for ("_i") from 1 to _unitCount do {
 
 	mainZeus addCuratorEditableObjects [[_unit], true];
 
-	_unitArray = waveUnits select 0;
-	_unitArray append [_unit];
+	if (!swticharooWave) then {
+		unitArray = waveUnits select 0;
+	};
+	unitArray append [_unit];
 };

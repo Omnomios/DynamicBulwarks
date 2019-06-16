@@ -32,4 +32,7 @@ for ("_i") from 1 to ((floor attkWave / 2) + (floor count allPlayers * 1.5)) do 
 	removeAllAssignedItems _unit;
 
 	mainZeus addCuratorEditableObjects [[_unit], true];
+
+  unitArray = waveUnits select 0;
+  unitArray append [_unit];
 };
