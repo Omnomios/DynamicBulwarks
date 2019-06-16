@@ -65,14 +65,14 @@ SCORE_RANDOMBOX = 950;  // Cost to spin the box
 
 BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",             "reconUAV"],
-    [1685, "Emergency Teleport",   "telePlode"],
+    [1680, "Emergency Teleport",   "telePlode"],
     [1950, "Paratroopers",          "paraDrop"],
-    [3525, "Predator Drone",    "droneControl"],
-    [4850, "Mind Control Gas",    "mindConGas"],
-    [5430, "Missle CAS",           "airStrike"],
+    [3550, "Mind Control Gas",    "mindConGas"],
+    [3850, "Missle CAS",           "airStrike"],
     [5930, "Rage Stimpack",         "ragePack"],
+    [6140, "Mine Cluster Shell",   "mineField"],
     [6666, "ARMAKART TM",           "armaKart"],
-    [6942, "Mine Cluster Shell",   "mineField"]
+    [7500, "Predator Drone",    "droneControl"]
 ];
 
 /* Objects the Player can buy */
