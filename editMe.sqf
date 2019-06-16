@@ -68,7 +68,7 @@ BULWARK_SUPPORTITEMS = [
     [1680, "Emergency Teleport",   "telePlode"],
     [1950, "Paratroopers",          "paraDrop"],
     [3550, "Mind Control Gas",    "mindConGas"],
-    [3850, "Missle CAS",           "airStrike"],
+    [3850, "Missile CAS",           "airStrike"],
     [5930, "Rage Stimpack",         "ragePack"],
     [6140, "Mine Cluster Shell",   "mineField"],
     [6666, "ARMAKART TM",           "armaKart"],
