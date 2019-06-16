@@ -43,7 +43,25 @@ bulwarkBox setVariable ["buildPhase", false, true];
 
 //determine if Special wave
 
-if ((floor random 4 == 1 || wavesSinceSpecial == 4) && attkWave >= 5 && wavesSinceSpecial >= 1) then {
+if (attkWave < 10) then {
+	randSpecChance = 4;
+	maxSinceSpecial = 4;
+	maxSpecialLimit = 1;
+};
+
+if (attkWave >= 10 && attkWave < 15) then {
+	randSpecChance = 3;
+	maxSinceSpecial = 3;
+	maxSpecialLimit = 1;
+};
+
+if (attkWave >= 15) then {
+	randSpecChance = 2;
+	maxSinceSpecial = 2;
+	maxSpecialLimit = 0;
+};
+
+if ((floor random randSpecChance == 1 || wavesSinceSpecial == maxSinceSpecial) && attkWave >= 5 && wavesSinceSpecial >= maxSpecialLimit) then {
 	specialWave = true;
 }else{
 	wavesSinceSpecial = wavesSinceSpecial + 1;
