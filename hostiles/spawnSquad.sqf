@@ -14,10 +14,29 @@ if (defectorWave) then { //determine if defect wave and spawn from List defined 
 _attackWave  = _this select 1;
 _unitCount   = _this select 2;
 
-
-if (_attackWave < 40) then { //determine AI skill based on Wave
-	hosSkill = (_attackWave / 40);
-} else {
+hosSkill = 0.05;
+if (_attackWave < 5) then { //determine AI skill based on Wave
+	hosSkill = 0.05;
+};
+if (_attackWave < 10 && _attackWave >= 5) then {
+	hosSkill = 0.075;
+};
+if (_attackWave < 15 && _attackWave >= 10) then {
+	hosSkill = 0.1;
+};
+if (_attackWave < 20 && _attackWave >= 15) then {
+	hosSkill = 0.15;
+};
+if (_attackWave < 25 && _attackWave >= 20) then {
+	hosSkill = 0.2;
+};
+if (_attackWave < 25 && _attackWave >= 20) then {
+	hosSkill = 0.4;
+};
+if (_attackWave < 30 && _attackWave >= 25) then {
+	hosSkill = 0.5;
+};
+if (_attackWave >= 30) then {
 	hosSkill = 1;
 };
 
@@ -35,9 +54,9 @@ for ("_i") from 1 to _unitCount do {
 	[_unit] join _attGroupBand;
 	_unit doMove (getPos (selectRandom playableUnits));
 	_unit setUnitAbility hosSkill; //todo https://community.bistudio.com/wiki/CfgAISkill
-	_unit setSkill ["aimingAccuracy", 0.05];
-	_unit setSkill ["aimingSpeed", 0.05];
-	_unit setSkill ["aimingShake", 0.05];
+	_unit setSkill ["aimingAccuracy", hosSkill];
+	_unit setSkill ["aimingSpeed", hosSkill];
+	_unit setSkill ["aimingShake", hosSkill];
 	_unit setSkill ["spotTime", 0.05];
 	_unit addEventHandler ["Hit", killPoints_fnc_hit];
 	_unit addEventHandler ["Killed", killPoints_fnc_killed];
