@@ -88,6 +88,14 @@ for ("_i") from 1 to _unitCount do {
 			_leadah setSkill 1;
 			sleep 0.5;
 			mainZeus addCuratorEditableObjects [[_drone select 0], true];
+			_leadah addEventHandler ["Hit", killPoints_fnc_hit];
+			_leadah addEventHandler ["Killed", {
+				params ["_unit", "_killer", "_instigator", "_useEffects"];
+				call killPoints_fnc_killed;
+				_scriptedCharge = "HandGrenade" createVehicle (getPos _unit);
+				_scriptedCharge setdamage 1;
+				deleteVehicle _unit;
+			}];
 	};
 
 	mainZeus addCuratorEditableObjects [[_unit], true];
