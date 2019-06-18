@@ -103,7 +103,7 @@ BULWARK_BUILDITEMS = [
     [2500, "Machine Gun",          "B_HMG_01_F",                        0,   1],
     [2500, "Machine Gun (raised)", "B_HMG_01_high_F",                   0,   1],
     [3000, "Small Bunker",         "Land_BagBunker_Small_F",          180,   3],
-    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",            0,   6],
+    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",            0, 3.5],
     [6500, "Pillbox",              "Land_PillboxBunker_01_hex_F",      90, 2.5],
     [9500, "Modular Bunker",       "Land_Bunker_01_Small_F",          180, 4.5]
 ];
