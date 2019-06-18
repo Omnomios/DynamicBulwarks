@@ -8,18 +8,18 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=180;
+		nextID=183;
 	};
 	class MarkerIDProvider
 	{
-		nextID=3;
+		nextID=6;
 	};
 	class Camera
 	{
-		pos[]={-6.0531292,12.443101,15.221081};
-		dir[]={0.18434367,-0.60175705,-0.77711987};
-		up[]={0.13889374,0.7986753,-0.58551115};
-		aside[]={-0.97300243,2.2660824e-006,-0.23081091};
+		pos[]={-0.73058939,21.557926,27.722914};
+		dir[]={-0.047115736,-0.57109576,-0.81954092};
+		up[]={-0.032778699,0.82088178,-0.57015812};
+		aside[]={-0.99836016,-6.519258e-008,0.057396218};
 	};
 };
 binarizationWanted=0;
@@ -228,7 +228,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=13;
+		items=14;
 		class Item0
 		{
 			dataType="Group";
@@ -1238,6 +1238,16 @@ class Mission
 			};
 			id=170;
 			atlOffset=1.9073486e-006;
+		};
+		class Item13
+		{
+			dataType="Marker";
+			position[]={18.680824,74.209961,16.69104};
+			name="specBulwarkLoc";
+			text="Specific Bulwark Pos";
+			type="Select";
+			id=182;
+			atlOffset=260.17996;
 		};
 	};
 };
