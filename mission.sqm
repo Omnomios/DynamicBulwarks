@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=124;
+		nextID=180;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={-32.405602,13.364267,3.1085329};
-		dir[]={0.8731885,-0.48533386,-0.044641491};
-		up[]={0.48470098,0.87432891,-0.02477755};
-		aside[]={-0.051056728,2.304092e-006,-0.99869573};
+		pos[]={-6.0531292,12.443101,15.221081};
+		dir[]={0.18434367,-0.60175705,-0.77711987};
+		up[]={0.13889374,0.7986753,-0.58551115};
+		aside[]={-0.97300243,2.2660824e-006,-0.23081091};
 	};
 };
 binarizationWanted=0;
@@ -228,14 +228,14 @@ class Mission
 	};
 	class Entities
 	{
-		items=12;
+		items=13;
 		class Item0
 		{
 			dataType="Group";
 			side="West";
 			class Entities
 			{
-				items=11;
+				items=25;
 				class Item0
 				{
 					dataType="Object";
@@ -518,6 +518,17 @@ class Mission
 					{
 						description="Survivor";
 						isPlayable=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="U_C_Man_casual_6_F";
+								isBackpack=0;
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							watch="ItemWatch";
+						};
 					};
 					id=72;
 					type="C_Man_casual_6_F";
@@ -597,6 +608,342 @@ class Mission
 						};
 						nAttributes=2;
 					};
+				};
+				class Item11
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-2.9890001,4.227437,3.493};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="U_C_Man_casual_1_F";
+								isBackpack=0;
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							watch="ItemWatch";
+						};
+					};
+					id=151;
+					type="C_Man_casual_1_F";
+					atlOffset=0.00035667419;
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03GRE";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.04;
+								};
+							};
+						};
+						nAttributes=2;
+					};
+				};
+				class Item12
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-3.9309082,4.2270842,4.7786856};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="U_C_Man_casual_2_F";
+								isBackpack=0;
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							watch="ItemWatch";
+						};
+					};
+					id=153;
+					type="C_Man_casual_2_F";
+					atlOffset=3.8146973e-006;
+				};
+				class Item13
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-2.219183,4.2270823,5.5217538};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="U_C_Man_casual_3_F";
+								isBackpack=0;
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							watch="ItemWatch";
+						};
+					};
+					id=155;
+					type="C_Man_casual_3_F";
+					atlOffset=1.9073486e-006;
+				};
+				class Item14
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-3.3137283,4.2270803,6.0670204};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+					};
+					id=157;
+					type="C_man_sport_1_F";
+				};
+				class Item15
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-5.1431613,4.2270842,4.9863892};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+					};
+					id=159;
+					type="C_man_sport_2_F";
+					atlOffset=3.8146973e-006;
+				};
+				class Item16
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-4.7113595,4.2270803,6.022851};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+						class Inventory
+						{
+							class uniform
+							{
+								typeName="U_C_man_sport_3_F";
+								isBackpack=0;
+							};
+							map="ItemMap";
+							compass="ItemCompass";
+							watch="ItemWatch";
+						};
+					};
+					id=161;
+					type="C_man_sport_3_F";
+				};
+				class Item17
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-4.582293,4.2270861,1.208205};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+					};
+					id=163;
+					type="C_Man_casual_5_F";
+					atlOffset=5.7220459e-006;
+				};
+				class Item18
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-1.3185132,4.2270784,6.2217741};
+					};
+					side="West";
+					flags=1;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+					};
+					id=167;
+					type="C_man_polo_1_F";
+					atlOffset=190.19565;
+				};
+				class Item19
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-1.411921,4.2270727,1.0481222};
+					};
+					side="West";
+					flags=1;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+					};
+					id=165;
+					type="C_Man_casual_6_F";
+					atlOffset=190.19563;
+				};
+				class Item20
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-2.3670735,4.2270765,6.7901812};
+					};
+					side="West";
+					flags=1;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+					};
+					id=169;
+					type="C_Man_casual_1_F";
+					atlOffset=190.19563;
+				};
+				class Item21
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-5.4592609,4.2270823,6.0485415};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+					};
+					id=173;
+					type="C_Man_casual_3_F";
+					atlOffset=1.9073486e-006;
+				};
+				class Item22
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-6.9956574,4.2270746,3.827522};
+					};
+					side="West";
+					flags=1;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+					};
+					id=175;
+					type="C_man_sport_2_F";
+					atlOffset=190.19563;
+				};
+				class Item23
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-7.2351694,4.2270765,5.9743414};
+					};
+					side="West";
+					flags=1;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+					};
+					id=177;
+					type="C_man_sport_3_F";
+					atlOffset=190.19563;
+				};
+				class Item24
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-6.5315995,4.2270823,6.9610176};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						description="Survivor";
+						isPlayable=1;
+					};
+					id=179;
+					type="C_Man_casual_4_F";
+					atlOffset=1.9073486e-006;
 				};
 			};
 			class Attributes
@@ -861,6 +1208,36 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item12
+		{
+			dataType="Group";
+			side="Civilian";
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={-4.0815916,4.2270823,6.768549};
+					};
+					side="Civilian";
+					flags=7;
+					class Attributes
+					{
+					};
+					id=171;
+					type="C_Man_casual_2_F";
+					atlOffset=1.9073486e-006;
+				};
+			};
+			class Attributes
+			{
+			};
+			id=170;
+			atlOffset=1.9073486e-006;
 		};
 	};
 };
