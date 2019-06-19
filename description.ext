@@ -16,13 +16,20 @@ ReviveMode = 1;
 ReviveRequiredItems = 2;
 ReviveBleedOutDelay = 120;
 
-corpseManagerMode = 2
+corpseManagerMode = 2;
 corpseLimit = 5;
 wreckLimit = 2;
 corpseRemovalMinTime = 180;
 corpseRemovalMaxTime = 181;
 wreckRemovalMinTime = 30;
 wreckRemovalMaxTime = 50;
+
+class Header
+{
+	gameType =  Defend;
+	minPlayers =  	 1;
+	maxPlayers = 	  25;
+};
 
 class CfgFunctions
 {
