@@ -221,7 +221,7 @@ class Params
 		title = "Dead bodies remain for how many waves (dead bodies impact perfomance)";
 		values[] = {0, 1, 2};
 		texts[] = {"0 (until next round begins)", "1", "2"};
-		default = 1;
+		default = 0;
 	};
 
 	class DOWN_TIME
@@ -229,7 +229,7 @@ class Params
 		title = "Time between rounds";
 		values[] = {0, 15, 30, 60, 90, 120, 180, 240, 300};
 		texts[] = {"0", "15 Seconds", "30 Seconds", "1 Minute", "1 Minute 30 Seconds", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
-		default = 30;
+		default = 60;
 	};
 
 	class MAX_WAVES
@@ -333,7 +333,7 @@ class Params
 		title = "Minimum land area (To avoid spawning on a dock)";
 		values[] = {60, 70, 80, 90, 100};
 		texts[] = {"60%","70%","80%","90%","100%"};
-		default = 90;
+		default = 80;
 	};
 
 	class LOOT_HOUSE_DENSITY
@@ -341,7 +341,7 @@ class Params
 		title = "Minimum number of buildings in Bulwark radius";
 		values[] = {5, 10, 15, 20, 30};
 		texts[] = {"5","10","15","20","30"};
-		default = 15;
+		default = 10;
 	};
 
 	class LOOT_HOUSE_DISTRIBUTION
@@ -357,7 +357,7 @@ class Params
 		title = "Loot density";
 		values[] = {1, 2, 3, 4};
 		texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
-		default = 3;
+		default = 2;
 	};
 
 	class LOOT_SUPPLYDROP
@@ -429,7 +429,7 @@ class Params
 		title = "Points per hit";
 		values[] = {0, 10, 20, 50, 100};
 		texts[] = {"0","10","20","50","100"};
-		default = 10;
+		default = 20;
 	};
 
 	class SCORE_DAMAGE_BASE
