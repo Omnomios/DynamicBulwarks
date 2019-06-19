@@ -72,10 +72,10 @@ BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",             "reconUAV"],
     [1680, "Emergency Teleport",   "telePlode"],
     [1950, "Paratroopers",          "paraDrop"],
-    [3550, "Mind Control Gas",    "mindConGas"],
-    [3850, "Missile CAS",           "airStrike"],
+    [3850, "Missile CAS",          "airStrike"],
+    [4220, "Mine Cluster Shell",   "mineField"],
+    [4690, "Mind Control Gas",    "mindConGas"],
     [5930, "Rage Stimpack",         "ragePack"],
-    [6140, "Mine Cluster Shell",   "mineField"],
     [6666, "ARMAKART TM",           "armaKart"],
     [7500, "Predator Drone",    "droneControl"]
 ];
