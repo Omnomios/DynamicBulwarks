@@ -6,6 +6,8 @@
 *  Domain: Server
 **/
 
+_randWeapons = "RANDOM_WEAPONS" call BIS_fnc_getParamValue;
+
 if (defectorWave) then { //determine if defect wave and spawn from List defined in EditMe.sqf
 	unitClasses = DEFECTOR_CLASS;
 } else {
@@ -61,6 +63,24 @@ for ("_i") from 1 to _unitCount do {
 	_unit addEventHandler ["Hit", killPoints_fnc_hit];
 	_unit addEventHandler ["Killed", killPoints_fnc_killed];
 	removeAllAssignedItems _unit;
+
+	if (_randWeapons == 1) then {
+		_unitPrimaryWeap = primaryWeapon _unit;
+		_primaryAmmoTpyes = getArray (configFile >> "CfgWeapons" >> _unitPrimaryWeap >> "magazines");
+		{
+			if (_x in _primaryAmmoTpyes) then {
+				_unit removeMagazineGlobal _x;
+			};
+		}forEach magazines _unit;
+		_unitPrimaryToAdd = selectRandom List_Primaries;
+		_unitMagToAdd = selectRandom getArray (configFile >> "CfgWeapons" >> _unitPrimaryToAdd >> "magazines");
+		_unit addWeaponGlobal _unitPrimaryToAdd;
+		_unit addPrimaryWeaponItem _unitMagToAdd;
+		_unit addMagazine _unitMagToAdd;
+		_unit addMagazine _unitMagToAdd;
+		_unit addMagazine _unitMagToAdd;
+		_unit selectWeapon _unitPrimaryToAdd;
+	};
 
 	if(_attackWave <= PISTOL_HOSTILES) then {
 		removeAllWeapons _unit;

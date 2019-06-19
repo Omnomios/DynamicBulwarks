@@ -281,6 +281,14 @@ class Params
 		default = 10;
 	};
 
+	class RANDOM_WEAPONS
+	{
+		title = "Randomize Hostile Weapons";
+		values[] = {"true", "false"};
+		texts[] = {"Yes", "No"};
+		default = "No";
+	};
+
 	class BULWARK_LABEL_SPACE
 	{
 		title = " ";
