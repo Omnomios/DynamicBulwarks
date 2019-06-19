@@ -61,7 +61,7 @@ There are also some special loot items that can be found:
 "]];
 
 
-player createDiaryRecord ["DynamicBulwarks", ["Supports", "<br />Supports can be purchased at the Bulwark Box. To use a Support bring up the Support menu <font color='#FFCC00'>(default keys '0' then '8')</font>.
+player createDiaryRecord ["DynamicBulwarks", ["Supports", "<br />Supports can be purchased at the Bulwark Box. To use a Support bring up the Support menu <font color='#FFCC00'>(Default keys '0' then '8')</font>.
 <br />
 <br />
 <br />
@@ -83,7 +83,7 @@ player createDiaryRecord ["DynamicBulwarks", ["Supports", "<br />Supports can be
 <font color='#FFCC00'>Rage Stimpack</font> - No need to reload, unlimited ammo, invicibility and increased speed for a short time.
 <br />
 <br />
-<font color='#FFCC00'>ARMAKART TM</font> - 1 minute in an invincible Go-Kart with an automatically targeting MG
+<font color='#FFCC00'>ARMAKART TM</font> - 1 minute in an invincible Go-Kart with an automatically targeting HMG
 <br />
 <br />
 <font color='#FFCC00'>Emergency Teleport</font> - Teleports you back to the Bulwark Box but it's unstable and will create an explosion at your original position
@@ -93,7 +93,7 @@ player createDiaryRecord ["DynamicBulwarks", ["Supports", "<br />Supports can be
 <br />
 <br />
 <br />
-Some Supports can be targeted by just looking at the target when you call the Support. Alternatively, open your map and bring up your support menu and have the support highlighted, then middle mouse click on the map to have the support target that location."]];
+Some Supports can be targeted by just looking at the target when you call the Support. Alternatively, you can use your map to target the support by openning your map and bring up the support menu. Have the support highlighted and then middle click your mouse on the map to have the support target that location."]];
 
 player createDiaryRecord ["DynamicBulwarks", ["How to Play", "<img image='preview.paa' height=175 width=350/>
 <br />
@@ -101,13 +101,19 @@ player createDiaryRecord ["DynamicBulwarks", ["How to Play", "<img image='previe
 <font color='#FFCC00'>You are unarmed and there are hostile untis moving towards you. Survive for as many waves as possible.</font>
 <br />
 <br />
-Search buildings for weapons, equipment and supplies.
+Search buildings for weapons, equipment and supplies. Build a Bulwark and defend it for as long as you can!
 <br />
 <br />
-Kill enemies to earn points to spend at the Bulwark Box. Points can be used to purchase Building Supplies and Supports. Purchased Supports can be used via the Supports menu (0 - 8 on keyboard).</font>
+Kill enemies to earn points to spend at the Bulwark Box Shop (in the action menu on the Bulwark Box). Points can be used to purchase Building Supplies and Supports. Purchased Supports can be used via the Supports menu (0 - 8 on keyboard).
 <br />
 <br />
-If you are knocked unconscious but you have a Medikit in your inventory you will be automatically resurected within 10 seconds. 15 FAKs can be converted into a Medikit at the Bulwark Box."]];
+Allies will make regular ammo drops! Initially marked with blue smoke, find these wooden crates to get much needed ammo for your weapon.
+<br />
+<br />
+If you are knocked unconscious but you have a Medikit in your inventory you will be automatically resurected within 10 seconds. 15 FAKs can be converted into a Medikit at the Bulwark Box.
+<br />
+<br />
+<font color='#FFCC00'>You won't survive this fight but take as many of the bastards with you as you can!</font>"]];
 
 
 waitUntil {!isNil "bulwarkCity"};
