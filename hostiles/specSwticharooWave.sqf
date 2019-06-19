@@ -3,11 +3,15 @@
 {
   _distToBulwark = 0;
   _distFromBulwark = "BULWARK_RADIUS" call BIS_fnc_getParamValue;
-  while {_distToBulwark < 25} do {
-    telePos = [bulwarkRoomPos, _distFromBulwark / 2 - 10, _distFromBulwark / 2 + 10, 3, 0, 10, 0] call BIS_fnc_findSafePos;
+  telePos = getPos _x;
+  while {_distToBulwark < 30 && {["mine_", str(_x)] call BIS_fnc_inString} count (telePos nearObjects 10) <= 1} do {
+    telePos = [bulwarkRoomPos, 30, _distFromBulwark - 10, 3, 0, 10, 0] call BIS_fnc_findSafePos;
     _distToBulwark = telePos distance bulwarkBox;
   };
-  _x setPos telePos;
+  if (telePos distance _x >= 3 && _x distance bulwarkBox < 30) then {
+    _x setPos telePos;
+  };
+  telePos = [];
 } forEach allPlayers;
 
 
