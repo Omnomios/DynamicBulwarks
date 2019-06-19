@@ -25,7 +25,7 @@ bulwarkBox setVariable ["buildPhase", true, true];
 {
 	// Revive players that are INCAPACITATED.
 	if (lifeState _x == "INCAPACITATED") then {
-		_x setUnconscious false;
+		["#rev", 1, _x] remoteExecCall ["BIS_fnc_reviveOnState",_x];
 	};
 } foreach allPlayers;
 
