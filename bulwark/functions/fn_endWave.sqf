@@ -6,6 +6,10 @@
 *  Domain: Server
 **/
 
+// variable to prevent players rejoining during a wave
+playersInWave = [];
+publicVariable "playersInWave";
+
 bulwarkBox setVariable ["buildPhase", true, true];
 
 ["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
@@ -13,8 +17,15 @@ bulwarkBox setVariable ["buildPhase", true, true];
 
 {
 	// Revive players that died at the end of the round.
-	if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
+	if (lifeState _x == "DEAD") then {
 		forceRespawn _x;
+	};
+} foreach allPlayers;
+
+{
+	// Revive players that are INCAPACITATED.
+	if (lifeState _x == "INCAPACITATED") then {
+		_x setUnconscious false;
 	};
 } foreach allPlayers;
 

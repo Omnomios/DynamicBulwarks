@@ -19,6 +19,9 @@ for ("_i") from 0 to 14 do {
 attkWave = (attkWave + 1);
 publicVariable "attkWave";
 
+playersInWave = allPlayers;
+publicVariable "playersInWave";
+
 waveSpawned = false;
 
 //If last wave was a night time wave then skip back to the time it was previously

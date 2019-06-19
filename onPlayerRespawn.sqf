@@ -47,3 +47,8 @@ if (!_buildPhase) then { // free respawn in build phase
 };
 
 [] remoteExec ["killPoints_fnc_updateHud", 0];
+
+// kill player if they disconnected and rejoined during a wave
+if (player in playersInWave) then {
+  player setDamage 1;
+};

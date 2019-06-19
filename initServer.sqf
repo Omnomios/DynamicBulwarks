@@ -1,3 +1,7 @@
+// variable to prevent players rejoining during a wave
+playersInWave = [];
+publicVariable "playersInWave";
+
 ["<t size = '.5'>Loading lists.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 _hLocation = [] execVM "locationLists.sqf";
 _hLoot     = [] execVM "loot\lists.sqf";
