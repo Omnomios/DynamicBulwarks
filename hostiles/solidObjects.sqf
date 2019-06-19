@@ -12,7 +12,7 @@ while {true} do{
   {
     if (!isNull _x) then {
       _playerObject = _x;
-      _objRadius = _x getVariable "Radius";
+      _objRadius = (_x getVariable "Radius") + 1;
       _nearAI = _x nearEntities _objRadius;
       allAiNearObjects + _nearAI;
       {
