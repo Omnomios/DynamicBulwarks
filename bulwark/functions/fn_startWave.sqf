@@ -272,6 +272,19 @@ _final = waveUnits select ("BODY_CLEANUP" call BIS_fnc_getParamValue);
 waveUnits set [2, waveUnits select 1];
 waveUnits set [1, waveUnits select 0];
 waveUnits set [0, []];
+
+{
+	if (!alive _x) then {
+		deleteVehicle _x;
+	};
+} foreach allMissionObjects "LandVehicle";
+
+{
+	if (!alive _x) then {
+		deleteVehicle _x;
+	};
+} foreach allMissionObjects "Air";
+
 // Spawn
 _createHostiles = execVM "hostiles\createWave.sqf";
 waitUntil {scriptDone _createHostiles};
