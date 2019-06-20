@@ -39,9 +39,10 @@ RESPAWN_TICKETS = ("RESPAWN_TICKETS" call BIS_fnc_getParamValue);
 
 /* Loot Blacklist */
 LOOT_BLACKLIST = [
-    "example_item1",
-    "example_item2",
-    "example_item3"
+    "O_Static_Designator_02_weapon_F", // If players find and place CSAT UAVs they count as hostile units and round will not progress
+    "O_UAV_06_backpack_F",
+    "O_UAV_06_medical_backpack_F",
+    "O_UAV_01_backpack_F"
 ];
 
 /* Loot Spawn */
