@@ -115,9 +115,6 @@ If you are knocked unconscious but you have a Medikit in your inventory you will
 <br />
 <font color='#FFCC00'>You won't survive this fight but take as many of the bastards with you as you can!</font>"]];
 
-
-waitUntil {!isNil "bulwarkCity"};
-
 //Make player immune to fall damage and immune to all damage while incapacitated
 player removeAllEventHandlers 'HandleDamage';
 player addEventHandler ["HandleDamage", {
@@ -125,7 +122,17 @@ player addEventHandler ["HandleDamage", {
   if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived) then {0} else {_this call bis_fnc_reviveEhHandleDamage;};
 }];
 
+waitUntil {!isNil "bulwarkCity"};
+
 [player, ['Take', {
   params ['_unit', '_container', '_item'];
   [_container] remoteExecCall ["loot_fnc_deleteIfEmpty", 2];
 }]] remoteExec ['addEventHandler', 0, true];
+
+
+// kill player if they disconnected and rejoined during a wave
+waitUntil {!isnil "playersInWave"};
+
+if (player in playersInWave) then {
+  [player, 1] remoteExec ["setDamage", 2];
+};
