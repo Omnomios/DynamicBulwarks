@@ -78,34 +78,66 @@ _roomCount = 0;
 				if (!(_x isEqualTo droneRoom) && !(_x isEqualTo satRoom) && !(_x isEqualTo pointsLootRoom)) then {
 					_lootRoomPos = _x;
 					_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
-
-					switch (floor random 6) do {
-						case 0: {
-							_weapon = selectRandom LOOT_WEAPON_POOL;
-							_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-							_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
-							_lootHolder addWeaponCargoGlobal [_weapon, 1];
+					if (LOOT_WHITELIST_MODE != 2) then {
+						switch (floor random 6) do {
+							case 0: {
+								_weapon = selectRandom LOOT_WEAPON_POOL;
+								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
+								_lootHolder addWeaponCargoGlobal [_weapon, 1];
+							};
+							case 1: {
+								_weapon = selectRandom LOOT_WEAPON_POOL;
+								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1 + (floor random 3)];
+							};
+							case 2: {
+								_clothes = selectRandom LOOT_APPAREL_POOL;
+								_lootHolder addItemCargoGlobal [_clothes, 1];
+							};
+							case 3: {
+								_items = selectRandom LOOT_ITEM_POOL;
+								_lootHolder addItemCargoGlobal [_items, 1];
+							};
+							case 4: {
+								_backpack = selectRandom LOOT_STORAGE_POOL;
+								_lootHolder addBackpackCargoGlobal [_backpack, 1];
+							};
+							case 5: {
+								_explosive = selectRandom LOOT_EXPLOSIVE_POOL;
+								_lootHolder addMagazineCargoGlobal [_explosive, 1 + (floor random 3)];
+							};
 						};
-						case 1: {
-							_weapon = selectRandom LOOT_WEAPON_POOL;
-							_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-							_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1 + (floor random 3)];
-						};
-						case 2: {
-							_clothes = selectRandom LOOT_APPAREL_POOL;
-							_lootHolder addItemCargoGlobal [_clothes, 1];
-						};
-						case 3: {
-							_items = selectRandom LOOT_ITEM_POOL;
-							_lootHolder addItemCargoGlobal [_items, 1];
-						};
-						case 4: {
-							_backpack = selectRandom LOOT_STORAGE_POOL;
-							_lootHolder addBackpackCargoGlobal [_backpack, 1];
-						};
-						case 5: {
-							_explosive = selectRandom LOOT_EXPLOSIVE_POOL;
-							_lootHolder addMagazineCargoGlobal [_explosive, 1 + (floor random 3)];
+					};
+					if (LOOT_WHITELIST_MODE > 0) then {
+						switch (floor random 6) do {
+							case 0: {
+								_weapon = selectRandom LOOT_WHITELIST_WEAPON;
+								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
+								_lootHolder addWeaponCargoGlobal [_weapon, 1];
+							};
+							case 1: {
+								_weapon = selectRandom LOOT_WHITELIST_WEAPON;
+								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1 + (floor random 3)];
+							};
+							case 2: {
+								_clothes = selectRandom LOOT_WHITELIST_APPAREL;
+								_lootHolder addItemCargoGlobal [_clothes, 1];
+							};
+							case 3: {
+								_items = selectRandom LOOT_WHITELIST_ITEM;
+								_lootHolder addItemCargoGlobal [_items, 1];
+							};
+							case 4: {
+								_backpack = selectRandom LOOT_WHITELIST_STORAGE;
+								_lootHolder addBackpackCargoGlobal [_backpack, 1];
+							};
+							case 5: {
+								_explosive = selectRandom LOOT_WHITELIST_EXPLOSIVE;
+								_lootHolder addMagazineCargoGlobal [_explosive, 1 + (floor random 3)];
+							};
 						};
 					};
 					_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];

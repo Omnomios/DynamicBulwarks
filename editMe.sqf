@@ -45,6 +45,21 @@ LOOT_BLACKLIST = [
     "O_UAV_01_backpack_F"
 ];
 
+/* Whitelist modes */
+/* 0 = Off */
+/* 1 = Only Whitelist Items will spawn as loot */
+/* 2 = Whitelist items get added to existing loot (increases the chance of loot spawning */
+LOOT_WHITELIST_MODE = 0;
+
+/* Loot Whitelists */
+/* Fill with classname arrays: ["example_item_1", "example_item_2"] */
+/* To use Whitelisting there MUST be at least one applicaple item in each LOOT_WHITELIST array*/
+LOOT_WHITELIST_WEAPON = [];
+LOOT_WHITELIST_APPAREL = [];
+LOOT_WHITELIST_ITEM = [];
+LOOT_WHITELIST_EXPLOSIVE = [];
+LOOT_WHITELIST_STORAGE = [];
+
 /* Loot Spawn */
 LOOT_WEAPON_POOL    = List_AllWeapons - LOOT_BLACKLIST;    // Classnames of Loot items as an array
 LOOT_APPAREL_POOL   = List_AllClothes + List_Vests - LOOT_BLACKLIST;
