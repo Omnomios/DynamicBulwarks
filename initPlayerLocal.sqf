@@ -124,15 +124,10 @@ player addEventHandler ["HandleDamage", {
 
 waitUntil {!isNil "bulwarkCity"};
 
-[player, ['Take', {
-  params ['_unit', '_container', '_item'];
-  [_container] remoteExecCall ["loot_fnc_deleteIfEmpty", 2];
-}]] remoteExec ['addEventHandler', 0, true];
-
 // kill player if they disconnected and rejoined during a wave
-waitUntil {!isnil "playersInWave"};
-waitUntil {alive player};
+_buildPhase = bulwarkBox getVariable ["buildPhase", true];
+waitUntil {alive player && !isnil "playersInWave" && !isnil "attkWave"};
 
-if (getPlayerUID player in playersInWave) then {
+if (getPlayerUID player in playersInWave && attkWave > 0 && !_buildPhase) then {
     player setDamage 1;
 };
