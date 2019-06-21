@@ -16,11 +16,11 @@ for ("_i") from 0 to 14 do {
 	sleep 1;
 };
 
-attkWave = (attkWave + 1);
-publicVariable "attkWave";
-
 playersInWave = allPlayers;
 publicVariable "playersInWave";
+
+attkWave = (attkWave + 1);
+publicVariable "attkWave";
 
 waveSpawned = false;
 

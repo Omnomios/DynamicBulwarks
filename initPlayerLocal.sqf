@@ -132,6 +132,7 @@ waitUntil {!isNil "bulwarkCity"};
 
 // kill player if they disconnected and rejoined during a wave
 waitUntil {!isnil "playersInWave"};
+waitUntil {alive player};
 
 if (player in playersInWave) then {
   [player, 1] remoteExec ["setDamage", 2];
