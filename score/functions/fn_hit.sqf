@@ -12,5 +12,8 @@ if (isServer) then {
     _instigator = _this select 3;
     if (isPlayer _instigator) then {
         [_instigator, SCORE_HIT + (SCORE_DAMAGE_BASE * _dmg)] call killPoints_fnc_add;
+        _pointsArr = _unit getVariable "points";
+        _pointsArr pushBack SCORE_HIT + (SCORE_DAMAGE_BASE * _dmg);
+        _unit setVariable ["points", _pointsArr];
     };
 };

@@ -63,6 +63,7 @@ for ("_i") from 1 to _unitCount do {
 	_unit addEventHandler ["Hit", killPoints_fnc_hit];
 	_unit addEventHandler ["Killed", killPoints_fnc_killed];
 	removeAllAssignedItems _unit;
+	_unit setVariable ["points", []];
 
 	if (_randWeapons == 1) then {
 		_unitPrimaryWeap = primaryWeapon _unit;
