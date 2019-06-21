@@ -45,8 +45,9 @@ while {true} do {
           if (isNull objectParent _AItoCheck) then {
             deleteVehicle _AItoCheck;
           }else{
-            if (nearestPlayerDistance > 70) then {
+            if (nearestPlayerDistance >= BULWARK_RADIUS) then {
               objectParent _AItoCheck setDamage 1;
+              hint "vehicle destoryed";
             };
           };
         };
