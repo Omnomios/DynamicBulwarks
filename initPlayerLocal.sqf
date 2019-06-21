@@ -129,11 +129,10 @@ waitUntil {!isNil "bulwarkCity"};
   [_container] remoteExecCall ["loot_fnc_deleteIfEmpty", 2];
 }]] remoteExec ['addEventHandler', 0, true];
 
-
 // kill player if they disconnected and rejoined during a wave
 waitUntil {!isnil "playersInWave"};
 waitUntil {alive player};
 
-if (player in playersInWave) then {
-  [player, 1] remoteExec ["setDamage", 2];
+if (getPlayerUID player in playersInWave) then {
+    player setDamage 1;
 };

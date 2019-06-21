@@ -16,7 +16,10 @@ for ("_i") from 0 to 14 do {
 	sleep 1;
 };
 
-playersInWave = allPlayers;
+playersInWave = [];
+_allHCs = entities "HeadlessClient_F";
+_allHPs = allPlayers - _allHCs;
+{ playersInWave pushBack getPlayerUID _x; } foreach _allHPs;
 publicVariable "playersInWave";
 
 attkWave = (attkWave + 1);
