@@ -13,7 +13,9 @@ publicVariable "playersInWave";
 bulwarkBox setVariable ["buildPhase", true, true];
 
 ["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
-[0] remoteExec ["setPlayerRespawnTime", 0];
+RESPAWN_TIME = 0;
+publicVariable "RESPAWN_TIME";
+[RESPAWN_TIME] remoteExec ["setPlayerRespawnTime", 0];
 
 {
 	// Revive players that died at the end of the round.
