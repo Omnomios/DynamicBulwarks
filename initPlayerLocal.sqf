@@ -37,7 +37,7 @@ onEachFrame {
     if(!isNil "bulwarkBox") then {
         _textPos = getPosATL bulwarkBox vectorAdd [0, 0, 1.5];
         drawIcon3D ["", [1,1,1,0.5], _textPos, 1, 1, 0, "Bulwark", 0, 0.04, "RobotoCondensed", "center", true];
-    }
+    };
 
     {
         _pos    = _x select 0;
