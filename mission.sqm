@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=183;
+		nextID=186;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={-0.73058939,21.557926,27.722914};
-		dir[]={-0.047115736,-0.57109576,-0.81954092};
-		up[]={-0.032778699,0.82088178,-0.57015812};
-		aside[]={-0.99836016,-6.519258e-008,0.057396218};
+		pos[]={-0.57991213,8.0871811,6.1371446};
+		dir[]={0.0098007303,-0.54822171,-0.83629024};
+		up[]={0.0064242482,0.83633047,-0.54818976};
+		aside[]={-0.99994403,1.4551915e-009,-0.011718201};
 	};
 };
 binarizationWanted=0;
@@ -228,7 +228,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=14;
+		items=13;
 		class Item0
 		{
 			dataType="Group";
@@ -1171,6 +1171,16 @@ class Mission
 		};
 		class Item11
 		{
+			dataType="Marker";
+			position[]={12329.267,62.891907,17768.285};
+			name="specBulwarkLoc";
+			text="Specific Bulwark Pos";
+			type="Select";
+			id=182;
+			atlOffset=35.403633;
+		};
+		class Item12
+		{
 			dataType="Object";
 			class PositionInfo
 			{
@@ -1208,46 +1218,6 @@ class Mission
 				};
 				nAttributes=1;
 			};
-		};
-		class Item12
-		{
-			dataType="Group";
-			side="Civilian";
-			class Entities
-			{
-				items=1;
-				class Item0
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={-4.0815916,4.2270823,6.768549};
-					};
-					side="Civilian";
-					flags=7;
-					class Attributes
-					{
-					};
-					id=171;
-					type="C_Man_casual_2_F";
-					atlOffset=1.9073486e-006;
-				};
-			};
-			class Attributes
-			{
-			};
-			id=170;
-			atlOffset=1.9073486e-006;
-		};
-		class Item13
-		{
-			dataType="Marker";
-			position[]={18.680824,74.209961,16.69104};
-			name="specBulwarkLoc";
-			text="Specific Bulwark Pos";
-			type="Select";
-			id=182;
-			atlOffset=260.17996;
 		};
 	};
 };
