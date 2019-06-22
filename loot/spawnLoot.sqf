@@ -78,7 +78,7 @@ _roomCount = 0;
 				if (!(_x isEqualTo droneRoom) && !(_x isEqualTo satRoom) && !(_x isEqualTo pointsLootRoom)) then {
 					_lootRoomPos = _x;
 					_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
-					if (LOOT_WHITELIST_MODE != 2) then {
+					if (LOOT_WHITELIST_MODE != 1) then {
 						switch (floor random 6) do {
 							case 0: {
 								_weapon = selectRandom LOOT_WEAPON_POOL;
