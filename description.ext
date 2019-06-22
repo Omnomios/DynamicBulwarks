@@ -55,6 +55,7 @@ class CfgRemoteExec
 		class hit {};
 		class killed {};
 		class updateHud {};
+		class hitMarker {};
 		class supplyDrop {};
 		class support {};
 		class airStrike {};

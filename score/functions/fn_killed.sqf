@@ -15,7 +15,8 @@ if (isServer) then {
         _pointsArr = _unit getVariable "points";
         {
           _killPoints = _killPoints + _x;
-        }forEach _pointsArr;
-        [format ["<t size='0.5' color='#ff3300'>KILL %1</t>", (floor _killPoints)], -1, 1, 2.5, 0.1, 0.05] remoteExec ["BIS_fnc_dynamicText", _instigator];
+        } forEach _pointsArr;
+
+        [_unit, round SCORE_KILL] remoteExec ["killPoints_fnc_hitMarker", _instigator];
     };
 };

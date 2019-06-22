@@ -30,12 +30,42 @@ player setVariable ["killPoints", _killPoints, true];
     };
 } foreach allMapMarkers;
 
+hitMarkers = [];
+
 //Show the Bulwark label on screen
 onEachFrame {
     if(!isNil "bulwarkBox") then {
         _textPos = getPosATL bulwarkBox vectorAdd [0, 0, 1.5];
         drawIcon3D ["", [1,1,1,0.5], _textPos, 1, 1, 0, "Bulwark", 0, 0.04, "RobotoCondensed", "center", true];
     }
+
+    {
+        _pos    = _x select 0;
+        _label  = _x select 1;
+        _unit   = _x select 2;
+        _age    = _x select 3;
+        _active = _x select 4;
+
+        if(_active) then {
+            _x set [3, _age + 1];
+
+            _alpha = 1;
+            _scale = 0;
+            if(_age > 0 && _age <= 10) then {
+                _scale = 0.06 * _age / 10;
+            };
+            if(_age > 10) then {
+                _scale = 0.06;
+            };
+            if(_age > 40 && _age <= 50) then {
+                _alpha = 1 - ((_age - 40) / 10);
+            };
+            _textPos = _pos vectorAdd [0, 0, 1 +_age / 100];
+
+            if(_age > 50) then {_x set [4, false];};
+            drawIcon3D ["", [1, 0.2, 0.1, _alpha], _textPos, 1, 1, 0, format ["%1", _label], 0, _scale, "RobotoCondensed", "center", false];
+        };
+    } foreach hitMarkers;
 };
 
 player createDiarySubject ["DynamicBulwarks","Dynamic Bulwarks","preview.paa"];
