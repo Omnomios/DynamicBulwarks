@@ -67,7 +67,7 @@ if (attkWave >= 15) then {
 	maxSpecialLimit = 0;
 };
 
-if ((floor random randSpecChance == 1 || wavesSinceSpecial == maxSinceSpecial) && attkWave >= 5 && wavesSinceSpecial >= maxSpecialLimit) then {
+if ((floor random randSpecChance == 1 || wavesSinceSpecial >= maxSinceSpecial) && attkWave >= 5 && wavesSinceSpecial >= maxSpecialLimit) then {
 	specialWave = true;
 }else{
 	wavesSinceSpecial = wavesSinceSpecial + 1;
