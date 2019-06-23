@@ -43,9 +43,9 @@ while {alive _supportUav} do {
   _uavGroup setCurrentWaypoint _loiterWP;
   sleep 0.5;
   if (magazines _supportUav isEqualTo ["Laserbatteries"]) then {
-    sleep 2;
-    _supportUav setDamage 1;
     sleep 15;
+    _supportUav setDamage 1;
+    sleep 10;
     deleteVehicle _supportUav;
   };
 };
