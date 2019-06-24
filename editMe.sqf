@@ -66,6 +66,7 @@ LOOT_APPAREL_POOL   = List_AllClothes + List_Vests - LOOT_BLACKLIST;
 LOOT_ITEM_POOL      = List_Optics + List_Items - LOOT_BLACKLIST;
 LOOT_EXPLOSIVE_POOL = List_Mines - LOOT_BLACKLIST;
 LOOT_STORAGE_POOL   = List_Backpacks - LOOT_BLACKLIST;
+LOOT_GRENADE_POOL   = List_Grenades - LOOT_BLACKLIST;
 
 /* Random Loot */
 LOOT_HOUSE_DISTRIBUTION = ("LOOT_HOUSE_DISTRIBUTION" call BIS_fnc_getParamValue);  // Every *th house will spwan loot.
