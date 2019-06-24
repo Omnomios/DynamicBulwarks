@@ -79,7 +79,7 @@ _roomCount = 0;
 					_lootRoomPos = _x;
 					_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
 					if (LOOT_WHITELIST_MODE != 1) then {
-						switch (floor random 7) do {
+						switch (floor random 6) do {
 							case 0: {
 								_weapon = selectRandom LOOT_WEAPON_POOL;
 								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
@@ -106,10 +106,6 @@ _roomCount = 0;
 							case 5: {
 								_explosive = selectRandom LOOT_EXPLOSIVE_POOL;
 								_lootHolder addMagazineCargoGlobal [_explosive, 1 + (floor random 3)];
-							};
-							case 6: {
-								_grenade = selectRandom LOOT_GRENADE_POOL;
-								_lootHolder addMagazineCargoGlobal [_grenade, 1 + (floor random 3)];
 							};
 						};
 					};

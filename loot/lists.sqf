@@ -20,6 +20,7 @@ _backpacks = [];
 _glasses = [];
 _faces = [];
 _grenades = [];
+_charges = [];
 _count =  count (configFile >> "CfgWeapons");
 for "_x" from 0 to (_count-1) do {
 	_weap = ((configFile >> "CfgWeapons") select _x);
@@ -100,6 +101,18 @@ for "_x" from 0 to (_count-1) do {
 };
 
 _count =  count (configFile >> "CfgMagazines");
+_chargeType = getText (configfile >> "CfgMagazines" >> "DemoCharge_Remote_Mag" >> "type");
+for "_x" from 0 to (_count-1) do {
+  _item=((configFile >> "CfgMagazines") select _x);
+	if (isClass _item) then {
+		if (gettext (_item >> "type") == _chargeType && ["remote", configName _item] call BIS_fnc_inString) then {
+			_charges = _charges + [configName _item];
+			hint "got charge";
+		};
+	};
+};
+
+_count =  count (configFile >> "CfgMagazines");
 for "_x" from 0 to (_count-1) do {
     _item=((configFile >> "CfgMagazines") select _x);
 	if (isClass _item) then {
@@ -124,7 +137,7 @@ List_Mines = [] + _mines;
 List_Glasses = [] + _glasses;
 List_Faces = [] + _faces;
 List_Grenades = [] + _grenades;
+List_Charges = [] + _charges;
 
 List_AllWeapons = List_Primaries + List_Secondaries + List_Launchers;
 List_AllClothes = List_Hats + List_Uniforms + List_Glasses;
-List_AllGrenades = List_Grenades;

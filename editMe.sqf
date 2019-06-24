@@ -42,7 +42,10 @@ LOOT_BLACKLIST = [
     "O_Static_Designator_02_weapon_F", // If players find and place CSAT UAVs they count as hostile units and round will not progress
     "O_UAV_06_backpack_F",
     "O_UAV_06_medical_backpack_F",
-    "O_UAV_01_backpack_F"
+    "O_UAV_01_backpack_F",
+    "B_IR_Grenade",
+    "O_IR_Grenade",
+    "I_IR_Grenade"
 ];
 
 /* Whitelist modes */
@@ -64,9 +67,8 @@ LOOT_WHITELIST_STORAGE = [];
 LOOT_WEAPON_POOL    = List_AllWeapons - LOOT_BLACKLIST;    // Classnames of Loot items as an array
 LOOT_APPAREL_POOL   = List_AllClothes + List_Vests - LOOT_BLACKLIST;
 LOOT_ITEM_POOL      = List_Optics + List_Items - LOOT_BLACKLIST;
-LOOT_EXPLOSIVE_POOL = List_Mines - LOOT_BLACKLIST;
+LOOT_EXPLOSIVE_POOL = List_Mines + List_Grenades + List_Charges - LOOT_BLACKLIST;
 LOOT_STORAGE_POOL   = List_Backpacks - LOOT_BLACKLIST;
-LOOT_GRENADE_POOL   = List_Grenades - LOOT_BLACKLIST;
 
 /* Random Loot */
 LOOT_HOUSE_DISTRIBUTION = ("LOOT_HOUSE_DISTRIBUTION" call BIS_fnc_getParamValue);  // Every *th house will spwan loot.
