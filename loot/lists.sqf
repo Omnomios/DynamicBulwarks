@@ -107,7 +107,6 @@ for "_x" from 0 to (_count-1) do {
 	if (isClass _item) then {
 		if (gettext (_item >> "type") == _chargeType && ["remote", configName _item] call BIS_fnc_inString) then {
 			_charges = _charges + [configName _item];
-			hint "got charge";
 		};
 	};
 };
