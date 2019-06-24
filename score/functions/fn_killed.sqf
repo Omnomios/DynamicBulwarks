@@ -17,6 +17,6 @@ if (isServer) then {
           _killPoints = _killPoints + _x;
         } forEach _pointsArr;
 
-        [_unit, round SCORE_KILL] remoteExec ["killPoints_fnc_hitMarker", _instigator];
+        [_unit, round SCORE_KILL, [0.1, 1, 0.1]] remoteExec ["killPoints_fnc_hitMarker", _instigator];
     };
 };

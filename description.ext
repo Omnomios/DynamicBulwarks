@@ -297,6 +297,14 @@ class Params
 		default = "No";
 	};
 
+	class HUD_POINT_HITMARKERS
+	{
+		title = "Point Hitmarkers on HUD";
+		values[] = {1, 0};
+		texts[] = {"Yes", "No"};
+		default = "1";
+	};
+
 	class BULWARK_LABEL_SPACE
 	{
 		title = " ";

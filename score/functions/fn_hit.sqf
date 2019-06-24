@@ -16,6 +16,6 @@ if (isServer) then {
         _pointsArr pushBack SCORE_HIT + (SCORE_DAMAGE_BASE * _dmg);
         _unit setVariable ["points", _pointsArr];
 
-        [_unit, round (SCORE_HIT + (SCORE_DAMAGE_BASE * _dmg))] remoteExec ["killPoints_fnc_hitMarker", _instigator];
+        [_unit, round (SCORE_HIT + (SCORE_DAMAGE_BASE * _dmg)), [0.1, 1, 0.1]] remoteExec ["killPoints_fnc_hitMarker", _instigator];
     };
 };

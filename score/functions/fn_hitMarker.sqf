@@ -8,6 +8,7 @@
 
 _unit = _this select 0;
 _value = _this select 1;
+_colour = _this select 2;
 _appended = false;
 
 _markerScrub = [];
@@ -31,6 +32,7 @@ if(!_appended) then {
         _value,
         _unit,
         0,
-        true
+        true,
+        _colour
     ];
 };

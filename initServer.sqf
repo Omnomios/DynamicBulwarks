@@ -44,6 +44,10 @@ if (_supportParam == 0) then {
 };
 publicVariable 'SUPPORTMENU';
 
+//determine if hitmarkers appear on HUD
+HITMARKERPARAM = ("HUD_POINT_HITMARKERS" call BIS_fnc_getParamValue);
+publicVariable 'HITMARKERPARAM';
+
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;
 _timeToSet = DAY_TIME_FROM + _randTime;
