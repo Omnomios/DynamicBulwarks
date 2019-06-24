@@ -55,7 +55,7 @@ pointsLootRoom = while {true} do {
 	if(!isNil "_lootRoom") exitWith {_lootRoom};
 };
 pointsLoot = createVehicle ["Land_Money_F", pointsLootRoom, [], 0, "CAN_COLLIDE"];
-[pointsLoot, ["<t color='#00ff00'>" + "Collect Points", "loot\lootPoints.sqf","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
+[pointsLoot, ["<t color='#00ff00'>" + "Collect Points", "[_this select 0, _this select 1] execVM 'loot\lootPoints.sqf'; [_this select 0] remoteExec ['removeAllActions', 0];","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
 //activeLoot pushback pointsLoot;
 
