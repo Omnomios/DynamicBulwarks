@@ -47,5 +47,6 @@ for "_i" from 1 to (carCount) do {
 	{
 		_x addEventHandler ["Hit", killPoints_fnc_hit];
 		_x addEventHandler ["Killed", killPoints_fnc_killed];
+		_x setVariable ["killPointMulti", HOSTILE_CAR_POINT_SCORE];
 	} forEach units carCrew;
 };

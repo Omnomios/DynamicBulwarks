@@ -82,20 +82,20 @@ if (attkWave <= 2) then {
 
 _squadCount = floor (attkWave * _multiplierBase);
 for ("_i") from 1 to (floor (attkWave * _multiplierBase)) do {
-	_script = [HOSTILE_LEVEL_1, attkWave, _noOfPlayers] execVM "hostiles\spawnSquad.sqf";
+	_script = [HOSTILE_LEVEL_1, attkWave, _noOfPlayers, HOSTILE_LEVEL_1_POINT_SCORE] execVM "hostiles\spawnSquad.sqf";
 	waitUntil {scriptDone _script};
 };
 
 if (attkWave > 6) then {
 	for ("_i") from 0 to (floor (_SoldierMulti)) do {
-		_script = [HOSTILE_LEVEL_2, attkWave, _noOfPlayers] execVM "hostiles\spawnSquad.sqf";
+		_script = [HOSTILE_LEVEL_2, attkWave, _noOfPlayers, HOSTILE_LEVEL_2_POINT_SCORE] execVM "hostiles\spawnSquad.sqf";
 		waitUntil {scriptDone _script};
 	};
 };
 
 if (attkWave > 12) then {
 	for ("_i") from 0 to (floor (_SoldierMulti)) do {
-		_script = [HOSTILE_LEVEL_3, attkWave, _noOfPlayers] execVM "hostiles\spawnSquad.sqf";
+		_script = [HOSTILE_LEVEL_3, attkWave, _noOfPlayers, HOSTILE_LEVEL_3_POINT_SCORE] execVM "hostiles\spawnSquad.sqf";
 		waitUntil {scriptDone _script};
 	};
 };

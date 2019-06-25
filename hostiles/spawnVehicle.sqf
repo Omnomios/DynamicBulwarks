@@ -35,5 +35,6 @@ for "_i" from 1 to (ArmourCount) do {
 	{
 		_x addEventHandler ["Hit", killPoints_fnc_hit];
 		_x addEventHandler ["Killed", killPoints_fnc_killed];
+		_x setVariable ["killPointMulti", HOSTILE_ARMOUR_POINT_SCORE];
 	} forEach units _tankcrew;
 };

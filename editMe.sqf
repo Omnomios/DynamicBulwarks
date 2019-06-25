@@ -80,10 +80,17 @@ PARATROOP_CLASS = List_NATO;
 DEFECTOR_CLASS = List_NATO;
 
 /* Points */
-SCORE_KILL = ("SCORE_KILL" call BIS_fnc_getParamValue);                 // Every kill
+SCORE_KILL = ("SCORE_KILL" call BIS_fnc_getParamValue);                 // Base Points for a kill
 SCORE_HIT = ("SCORE_HIT" call BIS_fnc_getParamValue);                   // Every Bullet hit that doesn't result in a kill
 SCORE_DAMAGE_BASE = ("SCORE_DAMAGE_BASE" call BIS_fnc_getParamValue);   // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
+
+/*Point multipliers of SCORE_KILL for different waves */
+HOSTILE_LEVEL_1_POINT_SCORE = 0.75;
+HOSTILE_LEVEL_2_POINT_SCORE = 1;
+HOSTILE_LEVEL_3_POINT_SCORE = 1.50;
+HOSTILE_CAR_POINT_SCORE = 2;
+HOSTILE_ARMOUR_POINT_SCORE = 4;
 
 /* Comment out or delete the below support items to prevent the player from buying them */
 

@@ -15,6 +15,7 @@ if (defectorWave) then { //determine if defect wave and spawn from List defined 
 };
 _attackWave  = _this select 1;
 _unitCount   = _this select 2;
+_killPointMulti  = _this select 3;
 
 hosSkill = 0.05;
 if (_attackWave < 5) then { //determine AI skill based on Wave
@@ -64,6 +65,7 @@ for ("_i") from 1 to _unitCount do {
 	_unit addEventHandler ["Killed", killPoints_fnc_killed];
 	removeAllAssignedItems _unit;
 	_unit setVariable ["points", []];
+	_unit setVariable ["killPointMulti", _killPointMulti];
 
 	if (_randWeapons == 1) then {
 		_unitPrimaryWeap = primaryWeapon _unit;
@@ -118,6 +120,7 @@ for ("_i") from 1 to _unitCount do {
 				_scriptedCharge setdamage 1;
 				deleteVehicle _unit;
 			}];
+			_leadah setVariable ["killPointMulti", HOSTILE_CAR_POINT_SCORE];
 	};
 
 	mainZeus addCuratorEditableObjects [[_unit], true];
