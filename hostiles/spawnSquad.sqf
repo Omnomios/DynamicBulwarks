@@ -88,8 +88,8 @@ for ("_i") from 1 to _unitCount do {
 	if(_attackWave <= PISTOL_HOSTILES) then {
 		removeAllWeapons _unit;
 		_unit addMagazine "16Rnd_9x21_Mag";
-	  _unit addMagazine "16Rnd_9x21_Mag";
-	  _unit addWeapon "hgun_P07_F";
+		_unit addMagazine "16Rnd_9x21_Mag";
+		_unit addWeapon "hgun_P07_F";
 		if ((floor random 4) == 1) then {
 			_unit additem "FirstAidKit";
 		};
@@ -101,32 +101,28 @@ for ("_i") from 1 to _unitCount do {
 	};
 
 	if (demineWave && (floor random 2 == 0) && droneCount <= 15) then {
-			droneCount = droneCount + 1;
-			_aicrew = creategroup EAST;
-			_drone = [_location, 50, "C_IDAP_UAV_06_antimine_F", _aicrew] call BIS_fnc_spawnVehicle;
-			droneSquad pushback _aicrew;
-			_wp1 = _aicrew addWaypoint [position bulwarkBox, 0];
-			_wp1 setWaypointType "SAD";
-			_leadah = leader _aicrew;
-			_leadah flyInHeight 30;
-			_leadah setSkill 1;
-			sleep 0.5;
-			mainZeus addCuratorEditableObjects [[_drone select 0], true];
-			_leadah addEventHandler ["Hit", killPoints_fnc_hit];
-			_leadah addEventHandler ["Killed", {
-				params ["_unit", "_killer", "_instigator", "_useEffects"];
-				call killPoints_fnc_killed;
-				_scriptedCharge = "HandGrenade" createVehicle (getPos _unit);
-				_scriptedCharge setdamage 1;
-				deleteVehicle _unit;
-			}];
-			_leadah setVariable ["killPointMulti", HOSTILE_CAR_POINT_SCORE];
+		droneCount = droneCount + 1;
+		_aicrew = creategroup EAST;
+		_drone = [_location, 50, "C_IDAP_UAV_06_antimine_F", _aicrew] call BIS_fnc_spawnVehicle;
+		droneSquad pushback _aicrew;
+		_wp1 = _aicrew addWaypoint [position bulwarkBox, 0];
+		_wp1 setWaypointType "SAD";
+		_leadah = leader _aicrew;
+		_leadah flyInHeight 30;
+		_leadah setSkill 1;
+		sleep 0.5;
+		mainZeus addCuratorEditableObjects [[_drone select 0], true];
+		_leadah addEventHandler ["Hit", killPoints_fnc_hit];
+		_leadah addEventHandler ["Killed", {
+			params ["_unit", "_killer", "_instigator", "_useEffects"];
+			call killPoints_fnc_killed;
+			_scriptedCharge = "HandGrenade" createVehicle (getPos _unit);
+			_scriptedCharge setdamage 1;
+			deleteVehicle _unit;
+		}];
+		_leadah setVariable ["killPointMulti", HOSTILE_CAR_POINT_SCORE];
 	};
-
 	mainZeus addCuratorEditableObjects [[_unit], true];
-
-	if (!swticharooWave) then {
-		unitArray = waveUnits select 0;
-	};
+	unitArray = waveUnits select 0;
 	unitArray append [_unit];
 };

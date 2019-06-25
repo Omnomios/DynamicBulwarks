@@ -16,6 +16,14 @@ for ("_i") from 0 to 14 do {
 	sleep 1;
 };
 
+// Delete
+_final = waveUnits select ("BODY_CLEANUP" call BIS_fnc_getParamValue);
+{deleteVehicle _x} foreach _final;
+// Shuffle
+waveUnits set [2, waveUnits select 1];
+waveUnits set [1, waveUnits select 0];
+waveUnits set [0, []];
+
 playersInWave = [];
 _allHCs = entities "HeadlessClient_F";
 _allHPs = allPlayers - _allHCs;
@@ -271,14 +279,6 @@ if (defectorWave) then {
 if (!specialWave) then {
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 };
-
-// Delete
-_final = waveUnits select ("BODY_CLEANUP" call BIS_fnc_getParamValue);
-{deleteVehicle _x} foreach _final;
-// Shuffle
-waveUnits set [2, waveUnits select 1];
-waveUnits set [1, waveUnits select 0];
-waveUnits set [0, []];
 
 {
 	if (!alive _x) then {
