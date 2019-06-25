@@ -98,7 +98,8 @@ for ("_i") from 1 to _unitCount do {
 		_unit addEventHandler ["Killed", CreateHostiles_fnc_suiExplode];
 	};
 
-	if (demineWave && (floor random 2 == 0)) then {
+	if (demineWave && (floor random 2 == 0) && droneCount <= 15) then {
+			droneCount = droneCount + 1;
 			_aicrew = creategroup EAST;
 			_drone = [_location, 50, "C_IDAP_UAV_06_antimine_F", _aicrew] call BIS_fnc_spawnVehicle;
 			droneSquad pushback _aicrew;
