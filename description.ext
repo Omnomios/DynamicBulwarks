@@ -421,7 +421,7 @@ class Params
 	{
 		title = "Find Satellite Dish to Unlock Supports";
 		values[] = {0, 1};
-		texts[] = {"Yes, find the Satellite Dish to unlock the Support Menu", "No, Supports are available from the begining of the mission"};
+		texts[] = {"No, Supports are available from the begining of the mission", "Yes, find the Satellite Dish to unlock the Support Menu"};
 		default = 1;
 	};
 

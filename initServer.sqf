@@ -37,7 +37,7 @@ publicVariable "SCORE_RANDOMBOX";
 
 //determine if Support Menu is available
 _supportParam = ("SUPPORT_MENU" call BIS_fnc_getParamValue);
-if (_supportParam == 0) then {
+if (_supportParam == 1) then {
   SUPPORTMENU = false;
 }else{
   SUPPORTMENU = true;

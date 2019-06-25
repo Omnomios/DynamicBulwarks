@@ -41,8 +41,12 @@ if (!SUPPORTMENU) then {
 		SUPPORTMENU = true;
 		publicVariable 'SUPPORTMENU';
 		[_player, (20 * _pointsMulti)] remoteExecCall ['killPoints_fnc_add', 2];
-		deleteVehicle _satSupport;
+		{
+			[_x] remoteExec ['deleteVehicle', 2];
+		} forEach SatUnlocks;
 	"]] remoteExec ["addAction", 0, true];
+	SatUnlocks pushBack _satSupport;
+	mainZeus addCuratorEditableObjects [[_satSupport], true];
 };
 
 //activeLoot pushback _droneSupport;

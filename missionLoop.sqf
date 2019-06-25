@@ -14,8 +14,6 @@ _CenterPos = _this;
 attkWave = 0;
 publicVariable "attkWave";
 suicideWave = false;
-//activeLoot = [];
-//mrkrs = [];
 
 waveUnits = [[],[],[]];
 revivedPlayers = [];
@@ -23,6 +21,7 @@ MIND_CONTROLLED_AI = [];
 wavesSinceArmour = 0;
 wavesSinceCar = 0;
 wavesSinceSpecial = 0;
+SatUnlocks = [];
 
 //spawn start loot
 if (isServer) then {
