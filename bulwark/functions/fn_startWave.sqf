@@ -75,6 +75,7 @@ if ((floor random randSpecChance == 1 || wavesSinceSpecial >= maxSinceSpecial) &
 };
 
 SpecialWaveType = "";
+droneCount = 0;
 
 if (specialWave && attkWave >= 5 and attkWave < 10) then {
 	_randWave = floor random 3;
@@ -185,7 +186,6 @@ if (SpecialWaveType == "swticharooWave") then {
 if (SpecialWaveType == "demineWave") then {
 	demineWave = true;
 	droneSquad = [];
-	droneCount = 0;
 	execVM "hostiles\droneFire.sqf";
 }else{
 	demineWave = false;
