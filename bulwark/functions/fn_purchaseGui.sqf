@@ -27,7 +27,7 @@ _ctrl = (findDisplay 9999) displayCtrl 1500;
 
 
 _ctrl = (findDisplay 9999) displayCtrl 1501;
-
+SUPPORTMENU = missionNamespace getVariable "SUPPORTMENU";
 if (SUPPORTMENU) then {
   {
       _ctrl lbAdd format [_listFormat, _x select 0, _x select 1],;
@@ -42,13 +42,8 @@ if (SUPPORTMENU) then {
 
 ((findDisplay 9999) displayCtrl 1500) ctrlAddEventHandler ['LBSelChanged', {
 _index = lbCurSel 1500;
-_picture = getText (configFile >> "CfgVehicles" >> ((BULWARK_BUILDITEMS select _index) select 2) >> "editorPreview"); 
+_picture = getText (configFile >> "CfgVehicles" >> ((BULWARK_BUILDITEMS select _index) select 2) >> "editorPreview");
 /**   getText ((BULWARK_BUILDITEMS select _index) select 2)    editorPreview = "EFM_modular_base\data\preview\EFM_beam_wood_v_1_5m.jpg";**/
 ctrlSetText [1502, _picture];
 
 }]
-
-
-
-
-
