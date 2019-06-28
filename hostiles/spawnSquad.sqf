@@ -58,7 +58,7 @@ for ("_i") from 1 to _unitCount do {
 	_unit doMove (getPos (selectRandom playableUnits));
 	_unit setUnitAbility hosSkill; //todo https://community.bistudio.com/wiki/CfgAISkill
 	_unit setSkill ["aimingAccuracy", hosSkill];
-	_unit setSkill ["aimingSpeed", hosSkill];
+	_unit setSkill ["aimingSpeed", (hosSkill * 0.75)];
 	_unit setSkill ["aimingShake", hosSkill];
 	_unit setSkill ["spotTime", 0.05];
 	_unit addEventHandler ["Hit", killPoints_fnc_hit];
