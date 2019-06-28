@@ -22,6 +22,7 @@ wavesSinceArmour = 0;
 wavesSinceCar = 0;
 wavesSinceSpecial = 0;
 SatUnlocks = [];
+publicVariable 'SatUnlocks';
 
 //spawn start loot
 if (isServer) then {

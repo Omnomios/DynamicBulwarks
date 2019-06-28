@@ -33,6 +33,7 @@ if (!SUPPORTMENU) then {
 	[_satSupport, ["<t color='#ff00ff'>" + "Unlock Support Menu", "
 		_satSupport = _this select 0;
 		_player = _this select 1;
+		[_satSupport] remoteExec ['removeAllActions', 0];
 		_pointsMulti = ('SCORE_KILL' call BIS_fnc_getParamValue);
 		if (!SUPPORTMENU) then {
 			['TaskAssigned',['Support','Support Menu Unlocked at Bulwark Box']] remoteExec ['BIS_fnc_showNotification', 0];
@@ -40,10 +41,12 @@ if (!SUPPORTMENU) then {
 		};
 		SUPPORTMENU = true;
 		publicVariable 'SUPPORTMENU';
+		SatUnlocks = missionNamespace getVariable 'SatUnlocks';
 		[_player, (20 * _pointsMulti)] remoteExecCall ['killPoints_fnc_add', 2];
 		{
 			[_x] remoteExec ['deleteVehicle', 2];
 		} forEach SatUnlocks;
+		publicVariable 'SatUnlocks';
 	"]] remoteExec ["addAction", 0, true];
 	SatUnlocks pushBack _satSupport;
 	mainZeus addCuratorEditableObjects [[_satSupport], true];
