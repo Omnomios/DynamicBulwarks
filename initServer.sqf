@@ -53,7 +53,7 @@ _randTime = floor random _dayTimeHours;
 _timeToSet = DAY_TIME_FROM + _randTime;
 setDate [2018, 7, 1, _timeToSet, 0];
 
-[] execVM "revivePlayers.sqf";
+//[] execVM "revivePlayers.sqf";
 [bulwarkRoomPos] execVM "missionLoop.sqf";
 
 [] execVM "area\areaEnforcement.sqf";

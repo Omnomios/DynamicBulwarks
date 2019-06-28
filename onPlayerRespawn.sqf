@@ -2,11 +2,29 @@ waitUntil {!isNil "bulwarkBox"};
 ["Terminate"] call BIS_fnc_EGSpectator;
 player setVariable ["buildItemHeld", false];
 
-//Make player immune to fall damage and immune to all damage while incapacitated
-player removeAllEventHandlers 'HandleDamage';
+//Make player immune to fall damage / immune to all damage while incapacitated / immune with a medikit
 player addEventHandler ["HandleDamage", {
   _beingRevived = player getVariable "RevByMedikit";
-  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived) then {0} else {_this call bis_fnc_reviveEhHandleDamage;};
+  _incDamage = _this select 2;
+  _playerItems = items player;
+  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived) then {
+      0
+  } else {
+    if (_incDamage >= 0.9) then {
+      _playerItems = items player;
+      if ("Medikit" in _playerItems) then {
+        player removeItem "Medikit";
+        player setVariable ["RevByMedikit", true, true];
+        player playActionNow "agonyStart";
+        player playAction "agonyStop";
+        player setDamage 0;
+        [player] remoteExec ["bulwark_fnc_revivePlayer", 2];
+        0;
+      };
+    } else {
+      _this call bis_fnc_reviveEhHandleDamage;
+    };
+  };
 }];
 
 //delete empty continers

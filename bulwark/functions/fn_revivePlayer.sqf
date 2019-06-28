@@ -9,6 +9,6 @@
 
 _player = _this select 0;
 
-sleep 15;
+sleep 10;
 
 _player setVariable ["RevByMedikit", false, true];
