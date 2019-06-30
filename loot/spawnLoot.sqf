@@ -18,7 +18,8 @@ droneRoom = while {true} do {
 	if(!isNil "_lootRoom") exitWith {_lootRoom};
 };
 _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", droneRoom, [], 0, "CAN_COLLIDE"];
-[_droneSupport, ["<t color='#ff00ff'>" + "Reveal loot", "[ [],'supports\lootDrone.sqf'] remoteExec ['execVM',0];","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
+[_droneSupport, ["<t color='#ff00ff'>" + "Reveal loot", "removeAllActions (_this select 0); [ [],'supports\lootDrone.sqf'] remoteExec ['execVM',0];","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
+mainZeus addCuratorEditableObjects [[_droneSupport], true];
 
 /* Item to unlock Support Menu (1 spawns every wave until found) */
 if (!SUPPORTMENU) then {
