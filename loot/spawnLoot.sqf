@@ -21,7 +21,6 @@ _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", droneRoom, [], 0, "CAN_CO
 [_droneSupport, ["<t color='#ff00ff'>" + "Reveal loot", "[ [],'supports\lootDrone.sqf'] remoteExec ['execVM',0];","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
 /* Item to unlock Support Menu (1 spawns every wave until found) */
-satRoom =[];
 if (!SUPPORTMENU) then {
 	satRoom = while {true} do {
 		_satBulding = selectRandom lootHouses;
@@ -46,9 +45,9 @@ if (!SUPPORTMENU) then {
 		{
 			[_x] remoteExec ['deleteVehicle', 2];
 		} forEach SatUnlocks;
-		publicVariable 'SatUnlocks';
 	"]] remoteExec ["addAction", 0, true];
 	SatUnlocks pushBack _satSupport;
+	publicVariable 'SatUnlocks';
 	mainZeus addCuratorEditableObjects [[_satSupport], true];
 };
 
