@@ -149,10 +149,12 @@ If you are knocked unconscious but you have a Medikit in your inventory you will
 <font color='#FFCC00'>You won't survive this fight but take as many of the bastards with you as you can!</font>"]];
 
 //Make player immune to fall damage and immune to all damage while incapacitated
+waitUntil {!isNil "TEAM_DAMAGE"};
 player removeAllEventHandlers 'HandleDamage';
 player addEventHandler ["HandleDamage", {
   _beingRevived = player getVariable "RevByMedikit";
-  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived) then {0} else {_this call bis_fnc_reviveEhHandleDamage;};
+  _players = allPlayers;
+  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !TEAM_DAMAGE && !((_this select 3) isEqualTo player))) then {0} else {_this call bis_fnc_reviveEhHandleDamage;};
 }];
 
 waitUntil {!isNil "bulwarkCity"};

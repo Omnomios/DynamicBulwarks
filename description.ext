@@ -508,4 +508,12 @@ class Params
 		default = 10;
 	};
 
+	class TEAM_DAMAGE
+	{
+		title = "Freindly Fire";
+		values[] = {0, 1};
+		texts[] = {"Off", "On"};
+		default = 1;
+	};
+
 };

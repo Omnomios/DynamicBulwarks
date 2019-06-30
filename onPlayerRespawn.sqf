@@ -9,7 +9,7 @@ player addEventHandler ["HandleDamage", {
   _incDamage = _this select 2;
   _playerItems = items player;
   _players = allPlayers;
-  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !TEAM_DAMAGE)) then {
+  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !TEAM_DAMAGE && !((_this select 3) isEqualTo player))) then {
       0
   } else {
     if (_incDamage >= 0.9) then {

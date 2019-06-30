@@ -44,6 +44,15 @@ if (_supportParam == 1) then {
 };
 publicVariable 'SUPPORTMENU';
 
+//Determine team damage Settings
+_teamDamageParam = ("TEAM_DAMAGE" call BIS_fnc_getParamValue);
+if (_teamDamageParam == 0) then {
+  TEAM_DAMAGE = false;
+}else{
+  TEAM_DAMAGE = true;
+};
+publicVariable 'TEAM_DAMAGE';
+
 //determine if hitmarkers appear on HUD
 HITMARKERPARAM = ("HUD_POINT_HITMARKERS" call BIS_fnc_getParamValue);
 publicVariable 'HITMARKERPARAM';
@@ -58,5 +67,5 @@ setDate [2018, 7, 1, _timeToSet, 0];
 
 [] execVM "area\areaEnforcement.sqf";
 [] execVM "hostiles\clearStuck.sqf";
-[] execVM "hostiles\solidObjects.sqf";
+//[] execVM "hostiles\solidObjects.sqf";
 [] execVM "hostiles\moveHosToPlayer.sqf";
