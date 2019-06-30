@@ -9,6 +9,8 @@
 _ammoBox = _this select 0;
 _ammoPlayer = _this select 1;
 
+[_ammoBox] remoteExec ['removeAllActions', 0];
+
 deleteVehicle _ammoBox;
 
 _pWeap = primaryWeapon _ammoPlayer;

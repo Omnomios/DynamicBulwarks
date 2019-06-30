@@ -45,7 +45,8 @@ if (_closestPlayerDist > 5) then {
 			_object
 		];
 
-		 _caller setVariable ["buildItemHeld", true];
+		 _caller setVariable ["buildItemHeld", true, true];
+		 _object setVariable ["buildItemHeld", true, true];
 
 	} else {
 

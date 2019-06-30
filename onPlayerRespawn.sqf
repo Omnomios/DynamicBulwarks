@@ -5,9 +5,11 @@ player setVariable ["buildItemHeld", false];
 //Make player immune to fall damage / immune to all damage while incapacitated / immune with a medikit
 player addEventHandler ["HandleDamage", {
   _beingRevived = player getVariable "RevByMedikit";
+  TEAM_DAMAGE = missionNamespace getVariable "TEAM_DAMAGE";
   _incDamage = _this select 2;
   _playerItems = items player;
-  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived) then {
+  _players = allPlayers;
+  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !TEAM_DAMAGE)) then {
       0
   } else {
     if (_incDamage >= 0.9) then {

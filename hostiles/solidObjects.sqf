@@ -1,7 +1,7 @@
 /**
 *  solidObjects
 *
-*  Prevents AI from walking through player placed buildings
+*  Prevents AI from walking through player placed buildings: No longer used. Replaced by bulwark\solidobject.sqf
 *
 *  Domain: Server
 **/
