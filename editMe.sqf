@@ -130,7 +130,6 @@ BULWARK_BUILDITEMS = [
     [500,  "H Barrier",            "Land_HBarrier_3_F",                 0,   2],
     [750,  "Ladder",               "Land_PierLadder_F",                 0,   1],
     [800,  "Storage box small",    "Box_NATO_Support_F",                0,   1],
-    [900,  "Cargo Container",      "Land_Cargo20_Red_F",                0,   3],
     [950,  "Stairs",               "Land_GH_Stairs_F",                180,   4],
     [1000, "Hallogen Lamp",        "Land_LampHalogen_F",               90,   1],
     [1000, "Double H Barrier",     "Land_HBarrierWall4_F",              0,   4],
