@@ -51,5 +51,6 @@ _loot = [] call loot_fnc_get;
 	lootMrks pushback _mrkrName;
 } forEach _loot;
 
+waitUntil {attkWave >= 2};
 waitUntil {_curWave != attkWave};
 {deleteMarker _x} forEach lootMrks;

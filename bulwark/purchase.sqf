@@ -18,18 +18,28 @@ _VecRadius = (BULWARK_BUILDITEMS select _index) select 4;
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};
 
-if(player getVariable "killPoints" >= _shopPrice) then {
+if(player getVariable "killPoints" >= _shopPrice && !(player getVariable "buildItemHeld")) then {
     [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
     shopVehic = _shopClass createVehicle [0,0,0];
 	  shopVehic setVariable ["shopPrice", _shopPrice, true];
-    shopVehic setVariable ["Radius", _VecRadius];
+    shopVehic setVariable ["Radius", _VecRadius, true];
     objPurchase = true;
 } else {
-    [format ["<t size='0.6' color='#ff3300'>Not enough points for %1!</t>", _shopName], -0, -0.02, 0.2] call BIS_fnc_dynamicText;
+  if(player getVariable "killPoints" < _shopPrice) then {
+    [format ["<t size='0.6' color='#ff3300'>Not enough points for %1!</t>", _shopName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
     objPurchase = false;
+  }else{
+    [format ["<t size='0.6' color='#ff3300'>You're already carrying an object!</t>", _shopName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
+    objPurchase = false;
+  };
 };
 
 sleep 0.1;
+
+
+
+
+
 if (objPurchase) then {
     closeDialog 0;
 

@@ -12,6 +12,19 @@ bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon allowDamage false;
 bulwarkBox allowDamage false;
+bulwarkFallDamage = {
+_damage = 0;
+if((_this select 4) != "") then
+{
+  _damage = _this select 2;
+};
+_damage
+};
+bulwarkBox addEventHandler ["HandleDamage", { _this call bulwarkFallDamage }];
+clearItemCargoGlobal bulwarkBox;
+clearWeaponCargoGlobal bulwarkBox;
+clearMagazineCargoGlobal bulwarkBox;
+clearBackpackCargoGlobal bulwarkBox;
 [_bulMon,[0,"preview.paa"]] remoteExec ["setObjectTexture",0,true];
 _bulMon enableSimulation false;
 _bulMon attachTo [bulwarkBox, [0,0.1,0.6]];
@@ -28,10 +41,6 @@ while {_isWater} do {
 
 publicVariable "bulwarkCity";
 
-clearItemCargoGlobal bulwarkBox;
-clearWeaponCargoGlobal bulwarkBox;
-clearMagazineCargoGlobal bulwarkBox;
-clearBackpackCargoGlobal bulwarkBox;
 //bulwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
 //bulwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 if(BULWARK_MEDIKITS > 0) then {

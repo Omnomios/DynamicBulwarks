@@ -15,7 +15,10 @@ While {true} do {
     if (side _x == east) then {
       _x allowFleeing 0;
       if ((_x findNearestEnemy _x) == objNull || suicideWave) then {
+        _x playActionNow "FastF";
         _x setBehaviour "CARELESS";
+        _x setUnitPos "UP";
+        _x forceSpeed 6;
       } else {
         _x setBehaviour "AWARE";
       };
@@ -52,7 +55,7 @@ While {true} do {
         if (suicideWave) then {
           _doMovePos = getPos goToPlayer;
         }else{
-          _doMovePos = [goToPlayer, 15, 55, 5, 0, 30] call BIS_fnc_findSafePos;
+          _doMovePos = [goToPlayer, 15, 55, 0.5, 0, 30] call BIS_fnc_findSafePos;
           _doMovePos = [_doMovePos select 0, _doMovePos select 1, 0];
         };
       };

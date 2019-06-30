@@ -9,9 +9,6 @@
 
 _player = _this select 0;
 
-for "_i" from 1 to 15 do {
-  [_player, 0] remoteExec ["setDamage", 0];
-  sleep 1;
-};
+sleep 10;
 
-[_player, true] remoteExec ["allowDamage", 0];
+_player setVariable ["RevByMedikit", false, true];

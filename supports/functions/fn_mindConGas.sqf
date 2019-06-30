@@ -27,7 +27,7 @@ _smoker = "SmokeShellPurple" createVehicle _targetPos;
 sleep 2;
 
 //create smoke grenade and recruit AI
-for [{_i=0}, {_i<20}, {_i=_i+1}] do {
+for [{_i=0}, {_i<8}, {_i=_i+1}] do {
   _nearAI = _smoker nearEntities _i;
   _aiToJoin = [];
   {

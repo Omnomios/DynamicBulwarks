@@ -1,3 +1,7 @@
+// variable to prevent players rejoining during a wave
+playersInWave = [];
+publicVariable "playersInWave";
+
 ["<t size = '.5'>Loading lists.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 _hLocation = [] execVM "locationLists.sqf";
 _hLoot     = [] execVM "loot\lists.sqf";
@@ -33,22 +37,35 @@ publicVariable "SCORE_RANDOMBOX";
 
 //determine if Support Menu is available
 _supportParam = ("SUPPORT_MENU" call BIS_fnc_getParamValue);
-if (_supportParam == 0) then {
+if (_supportParam == 1) then {
   SUPPORTMENU = false;
 }else{
   SUPPORTMENU = true;
 };
 publicVariable 'SUPPORTMENU';
 
+//Determine team damage Settings
+_teamDamageParam = ("TEAM_DAMAGE" call BIS_fnc_getParamValue);
+if (_teamDamageParam == 0) then {
+  TEAM_DAMAGE = false;
+}else{
+  TEAM_DAMAGE = true;
+};
+publicVariable 'TEAM_DAMAGE';
+
+//determine if hitmarkers appear on HUD
+HITMARKERPARAM = ("HUD_POINT_HITMARKERS" call BIS_fnc_getParamValue);
+publicVariable 'HITMARKERPARAM';
+
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;
 _timeToSet = DAY_TIME_FROM + _randTime;
 setDate [2018, 7, 1, _timeToSet, 0];
 
-[] execVM "revivePlayers.sqf";
+//[] execVM "revivePlayers.sqf";
 [bulwarkRoomPos] execVM "missionLoop.sqf";
 
 [] execVM "area\areaEnforcement.sqf";
 [] execVM "hostiles\clearStuck.sqf";
-[] execVM "hostiles\solidObjects.sqf";
+//[] execVM "hostiles\solidObjects.sqf";
 [] execVM "hostiles\moveHosToPlayer.sqf";

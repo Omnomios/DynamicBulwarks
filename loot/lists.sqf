@@ -19,6 +19,8 @@ _mines = [];
 _backpacks = [];
 _glasses = [];
 _faces = [];
+_grenades = [];
+_charges = [];
 _count =  count (configFile >> "CfgWeapons");
 for "_x" from 0 to (_count-1) do {
 	_weap = ((configFile >> "CfgWeapons") select _x);
@@ -48,10 +50,15 @@ for "_x" from 0 to (_count-1) do {
 						case 3: {_secondaries = _secondaries + [configName _weap];};
 						case 4: {_launchers = _launchers + [configName _weap];};
 					};
-                };
-            };
-        };
+    		};
+      };
+			if ( isClass(_weap >> "LinkedItems" >> "LinkedItemsUnder") && !isClass(_weap >> "LinkedItems" >> "LinkedItemsAcc") && !isClass(_weap >> "LinkedItems" >> "LinkedItemsMuzzle") && !isClass(_weap >> "LinkedItems" >> "LinkedItemsOptic")) then {
+				if (count(getarray (_weap >> "magazines")) !=0 ) then {
+					_primaries = _primaries + [configName _weap];
+				};
+			};
     };
+  };
 };
 
 _count =  count (configFile >> "CfgVehicles");
@@ -93,6 +100,28 @@ for "_x" from 0 to (_count-1) do {
 	};
 };
 
+_count =  count (configFile >> "CfgMagazines");
+_chargeType = getText (configfile >> "CfgMagazines" >> "DemoCharge_Remote_Mag" >> "type");
+for "_x" from 0 to (_count-1) do {
+  _item=((configFile >> "CfgMagazines") select _x);
+	if (isClass _item) then {
+		if (gettext (_item >> "type") == _chargeType && ["remote", configName _item] call BIS_fnc_inString) then {
+			_charges = _charges + [configName _item];
+		};
+	};
+};
+
+_count =  count (configFile >> "CfgMagazines");
+for "_x" from 0 to (_count-1) do {
+    _item=((configFile >> "CfgMagazines") select _x);
+	if (isClass _item) then {
+		if(getNumber (_item >> "type") == 16 || getNumber (_item >> "type") == 256) then {
+			if(["grenade", getText (_item >> "displayName")] call BIS_fnc_inString && !(["smoke", getText (_item >> "displayName")] call BIS_fnc_inString)) then {
+				_grenades = _grenades + [configName _item];
+			}
+		};
+	};
+};
 
 List_Hats = [] + _hats;
 List_Uniforms = [] + _uniforms;
@@ -106,6 +135,8 @@ List_Items = [] + _items + ['ItemGPS','ItemCompass','ItemMap', 'ItemWatch', 'Ite
 List_Mines = [] + _mines;
 List_Glasses = [] + _glasses;
 List_Faces = [] + _faces;
+List_Grenades = [] + _grenades;
+List_Charges = [] + _charges;
 
 List_AllWeapons = List_Primaries + List_Secondaries + List_Launchers;
 List_AllClothes = List_Hats + List_Uniforms + List_Glasses;
