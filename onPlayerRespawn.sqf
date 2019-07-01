@@ -45,9 +45,9 @@ removeAllAssignedItems _player;
 _player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
 
 if(PLAYER_STARTWEAPON) then {
-    _player addMagazine "16Rnd_9x21_Mag";
-    _player addMagazine "16Rnd_9x21_Mag";
-    _player addWeapon "hgun_P07_F";
+    _player addMagazine "uns_m1911mag";
+    _player addMagazine "uns_m1911mag";
+    _player addWeapon "uns_MX991_m1911_base";
 };
 
 if(PLAYER_STARTMAP) then {
@@ -56,16 +56,13 @@ if(PLAYER_STARTMAP) then {
     _player linkItem "ItemMap";
 };
 
-if(PLAYER_STARTNVG) then {
-    _player addItem "Integrated_NVG_F";
-    _player assignItem "Integrated_NVG_F";
-    _player linkItem "Integrated_NVG_F";
-};
 
 if (isClass (configfile >> "CfgVehicles" >> "tf_anarc164")) then {
   _player addItem "tf_anprc152";
 };
 
+
 waituntil {alive _player};
 
 [] remoteExec ["killPoints_fnc_updateHud", 0];
+

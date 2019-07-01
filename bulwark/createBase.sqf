@@ -121,8 +121,8 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerSize [BULWARK_RADIUS, BULWARK_RADIUS];
 "Mission Area" setMarkerColor "ColorWhite";
 
-lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
-
+lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS] ;
+{lootHouses pushBackUnique _x;} forEach ( bulwarkCity nearObjects ["Building", BULWARK_RADIUS]);
 [] execVM "bulwark\fakToMedkit.sqf";
 
 /* Spinner Box */
@@ -149,3 +149,4 @@ publicVariable "lootBox";
 		};
 	"
 ]] remoteExec ["addAction", 0, true];
+[] execVM "bulwark\nightFlares.sqf";

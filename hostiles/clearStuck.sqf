@@ -25,7 +25,7 @@ while {true} do {
   };
   AIstuckcheck = AIstuckcheck + 1;
   sleep(1);
-  if (AIstuckcheck == 30) then {
+  if (AIstuckcheck == 90) then {
     _allHCs = entities "HeadlessClient_F";
     _allHPs = allPlayers - _allHCs;
     {
