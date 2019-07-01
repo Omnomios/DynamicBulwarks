@@ -1,3 +1,6 @@
+List_SpecificPoint = [getMarkerPos "specBulwarkLoc", ""];
+deleteMarker "specBulwarkLoc";
+
 _zoneMarkers = [];
 {
     _currMarker = toArray _x;

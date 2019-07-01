@@ -47,8 +47,8 @@
 playSound ["rageSoundInternal", false];
 [] spawn {
     // Turn on RAGE mode
-    player allowDamage false;
-    _unlimitedAmmo = player addeventhandler ["fired", {(_this select 0) setVehicleAmmo 1}];
+    player setVariable ["RevByMedikit", true, true];
+    _unlimitedAmmo = player addeventhandler ["fired", {player setAmmo [currentWeapon player, 999]}];
     player setAnimSpeedCoef 2;
     enableCamShake true;
     addCamShake [4, 30, 15];
@@ -58,7 +58,8 @@ playSound ["rageSoundInternal", false];
     // Turn off RAGE mode
     player setAnimSpeedCoef 1;
     player removeEventHandler ["fired", _unlimitedAmmo];
-    player allowDamage true;
+    player setAmmo [currentWeapon player, 0];
+    player setVariable ["RevByMedikit", false, true];
     player setDamage 0.4;
 
     titleText ["", "BLACK IN", 1];

@@ -57,5 +57,9 @@ _object setVehiclePosition [_object, [], 0, 'CAN_COLLIDE'],
 	]
 ] remoteExec ['addAction', 0];
 
-mainZeus addCuratorEditableObjects [[_object], true];
+_caller setVariable ["buildItemHeld", false, true];
+_object setVariable ["buildItemHeld", false, true];
+[mainZeus, [[_object], true]] remoteExec ["addCuratorEditableObjects", 0, true];
 PLAYER_OBJECT_LIST pushBack _object;
+sleep 0.1;
+[[_object], 'bulwark\solidObject.sqf'] remoteExec ['execVM', 2];

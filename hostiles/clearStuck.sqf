@@ -41,11 +41,11 @@ while {true} do {
       } forEach _allHPs;
       _newDistToPlayerPos = _AItoCheck distance2d _OriginalPlayerPos;
       if ((alive _AItoCheck) && (_newDistToPlayerPos > (_OriginalDistToPlayer - 15))) then {
-        if (((west knowsAbout _AItoCheck) < 3.5) && (nearestPlayerDistance > 20)) then {
+        if (((west knowsAbout _AItoCheck) < 3.5) && (nearestPlayerDistance > 35) && (_AItoCheck distance bulwarkBox > 20)) then {
           if (isNull objectParent _AItoCheck) then {
             deleteVehicle _AItoCheck;
           }else{
-            if (nearestPlayerDistance > 70) then {
+            if (nearestPlayerDistance >= BULWARK_RADIUS) then {
               objectParent _AItoCheck setDamage 1;
             };
           };

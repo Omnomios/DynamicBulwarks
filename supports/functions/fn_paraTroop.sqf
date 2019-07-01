@@ -21,7 +21,7 @@ if (count _targetPos == 0) then {
   _dropTarget = [(_targetPos select 0), (_targetPos select 1), 200];
   _dropEnd    = _targetPos vectorAdd [-_pointX*2, -_pointY*2, _height];;
 
-  _targetSmoker = "SmokeShellGreen" createVehicle (_targetPos vectorAdd [0,0,0.3]);
+  _targetSmoker = "SmokeShellOrange" createVehicle (_targetPos vectorAdd [0,0,0.3]);
 
   _agSpawn = [_dropStart, 0, _aircraft, WEST] call bis_fnc_spawnvehicle;
   _agVehicle = _agSpawn select 0;	//the aircraft

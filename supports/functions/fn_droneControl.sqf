@@ -1,7 +1,7 @@
 /**
 *  fn_droneControl
 *
-*  Spawns a controlable drone for 1 minute
+*  Spawns a controlable drone for 600 seconds
 *
 *  Domain: Server
 **/
@@ -12,6 +12,7 @@ _dirToPlayer = _uavSpawnPos getDir _player;
 _playerPos = getPos _player;
 
 _player addweapon "B_UavTerminal";
+_player linkItem "B_UavTerminal";
 _player connectTerminalToUAV objNull;
 _drone = [[_uavSpawnPos select 0, _uavSpawnPos select 1, (_playerPos select 2) + 500], _dirToPlayer + 35, "B_UAV_02_F", WEST] call BIS_fnc_spawnVehicle;
 _supportUav = _drone select 0;
@@ -28,10 +29,23 @@ _uavGroup setCurrentWaypoint _loiterWP;
 sleep 2;
 
 _bool = _player connectTerminalToUAV _supportUav;
-_player remoteControl driver _supportUav;
-driver _supportUav switchCamera "Internal";
+[_player, driver _supportUav] remoteExec ["remoteControl", _player];
+[driver _supportUav, "Internal"] remoteExec ["switchCamera", _player];
+_loiterWP setWaypointType "LOITER";
+_loiterWP setWaypointLoiterType "CIRCLE_L";
+_loiterWP setWaypointLoiterRadius 600;
+_uavGroup setCurrentWaypoint _loiterWP;
 
-sleep 600;
-if (alive _supportUav) then {
-  _supportUav setDamage 1;
+while {alive _supportUav} do {
+  _loiterWP setWaypointType "LOITER";
+  _loiterWP setWaypointLoiterType "CIRCLE_L";
+  _loiterWP setWaypointLoiterRadius 600;
+  _uavGroup setCurrentWaypoint _loiterWP;
+  sleep 0.5;
+  if (magazines _supportUav isEqualTo ["Laserbatteries"]) then {
+    sleep 15;
+    _supportUav setDamage 1;
+    sleep 10;
+    deleteVehicle _supportUav;
+  };
 };
