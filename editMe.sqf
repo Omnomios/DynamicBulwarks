@@ -66,9 +66,12 @@ BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",             "reconUAV"],
     [1685, "Emergency Teleport",   "telePlode"],
     [1950, "Paratroopers",          "paraDrop"],
-    [3525, "Predator Drone",    "droneControl"],
+    //[3525, "Predator Drone",    "droneControl"],
+	
     [4850, "Mind Control Gas",    "mindConGas"],
-    [5430, "Missle CAS",           "airStrike"],
+    //[5430, "Missle CAS",           "airStrike"],
+	[2500, "Napalm",           "airStrike"],
+	[4550, "Gunship",    "droneControl"],
     [5930, "Rage Stimpack",         "ragePack"],
     [6666, "ARMAKART TM",           "armaKart"],
     [6942, "Mine Cluster Shell",   "mineField"]
@@ -86,22 +89,24 @@ BULWARK_BUILDITEMS = [
     [85,   "Flat Triangle (1m)",   "Land_DomeDebris_01_hex_green_F",  180, 1.5],
     [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F",   0, 1.5],
     [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F",   0, 1.5],
-    [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0,   2],
-    [250,  "Portable Light",       "Land_PortableLight_double_F",     180,   1],
+    //[250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0,   2],
+   // [250,  "Portable Light",       "Land_PortableLight_double_F",     180,   1],
+	[250,  "Burning barrel",			"Land_Camping_Light_F",     		180,   0.5],  //MetalBarrel_burning_F Land_Camping_Light_F
     [400,  "Large Ramp",           "Land_VR_Slope_01_F",                0,   4],
-    [500,  "H Barrier",            "Land_HBarrier_3_F",                 0,   2],
+    [500,  "Sandbag Revetment",            "LAND_Revetment_5",                 0,   2],
     [750,  "Ladder",               "Land_PierLadder_F",                 0,   1],
-    [800,  "Storage box small",    "Box_NATO_Support_F",                0,   1],
+    [800,  "Storage box small",    "uns_US_Ordnance",                0,   1],
     [950,  "Stairs",               "Land_GH_Stairs_F",                180,   4],
-    [1000, "Hallogen Lamp",        "Land_LampHalogen_F",               90,   1],
-    [1000, "Double H Barrier",     "Land_HBarrierWall4_F",              0,   4],
+    [1500,  "SearchLight",			"uns_US_SearchLight",     		180,   0.5],
+    [1000, "5m Trench",     "LAND_t_sb_5",              0,   4],
     [1000, "Concrete Platform",    "BlockConcrete_F",                   0, 3.5],
-    [1200, "Storage box large",    "Box_NATO_AmmoVeh_F",                0,   1],
-    [2500, "Machine Gun",          "B_HMG_01_F",                        0,   1],
-    [2500, "Machine Gun (raised)", "B_HMG_01_high_F",                   0,   1],
-    [3000, "Small Bunker",         "Land_BagBunker_Small_F",          180,   3],
+    [1200, "Storage box large",    "uns_AmmoBoxUS_army",                0,   1],
+	[1800, "M1919 Machine Gun",          "uns_m1919_low",                        0,   1],
+	[2500, "M2 Machine Gun",          "uns_m2_low",                        0,   1],
+    [2500, "M2 Machine Gun (raised)", "uns_m2_high",                   0,   1],
+    [3000, "Small Bunker",         "LAND_uns_westbunker2",          180,   3],
     [3800, "Large Platform",       "Land_Pier_addon",                   0,   8],
-    [5000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",          180,   0]
+    [5000, "Guard Tower",          "Land_Wood_Tower",          180,   0]
 ];
 
 /* Time of Day*/

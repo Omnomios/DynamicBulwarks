@@ -24,8 +24,10 @@ class airStrike
 {
     text = "Missle CAS";
     submenu = "";
-    expression = "[_this select 0, _this select 1, 'airStrike', 'B_Plane_CAS_01_DynamicLoadout_F'] remoteExec ['killPoints_fnc_support', 2];";
-    icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\cas_ca.paa";
+    expression = "[_this select 0, cursorObject, 'airStrike', 'B_Plane_CAS_01_DynamicLoadout_F'] remoteExec ['killPoints_fnc_support', 2];";
+    //_this select 1
+	icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\cas_ca.paa";
+	
     cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
     enable = "1";
     removeAfterExpressionCall = 1;
@@ -64,9 +66,19 @@ class mindConGas
     removeAfterExpressionCall = 1;
 };
 
+// class droneControl
+// {
+    // text = "Predator Drone";
+    // submenu = "";
+    // expression = "[_this select 0, _this select 1, 'droneControl'] remoteExec ['killPoints_fnc_support', 2];";
+    // icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\cas_ca.paa";
+    // cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
+    // enable = "1";
+    // removeAfterExpressionCall = 1;
+// };
 class droneControl
 {
-    text = "Predator Drone";
+    text = "GunShip";
     submenu = "";
     expression = "[_this select 0, _this select 1, 'droneControl'] remoteExec ['killPoints_fnc_support', 2];";
     icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\cas_ca.paa";

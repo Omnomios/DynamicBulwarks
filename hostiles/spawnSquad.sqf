@@ -40,18 +40,22 @@ for ("_i") from 1 to _unitCount do {
 	removeAllAssignedItems _unit;
 
 	if(_attackWave <= PISTOL_HOSTILES) then {
+	[_unit ]spawn {_unit = _this select 0; sleep 3; 
 		removeAllWeapons _unit;
-		_unit addMagazine "16Rnd_9x21_Mag";
-	  _unit addMagazine "16Rnd_9x21_Mag";
-	  _unit addWeapon "hgun_P07_F";
+		_unit addMagazine "uns_nagant_m1895mag";
+	  _unit addMagazine "uns_nagant_m1895mag";
+	  _unit addWeapon "uns_nagant_m1895";
 		if ((floor random 4) == 1) then {
 			_unit additem "FirstAidKit";
 		};
 	};
+	};
 
 	if (suicideWave) then {
+	[_unit ]spawn {_unit = _this select 0; sleep 3; 
 		removeAllWeapons _unit;
 		_unit addEventHandler ["Killed", CreateHostiles_fnc_suiExplode];
+	};
 	};
 
 	mainZeus addCuratorEditableObjects [[_unit], true];

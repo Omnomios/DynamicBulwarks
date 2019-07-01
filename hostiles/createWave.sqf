@@ -6,10 +6,16 @@
 *  Domain: Server
 **/
 
-if (attkWave > 15 && (floor random 4) == 1) then {
-	_spwnVec = execVM "hostiles\spawnVehicle.sqf";
+if (attkWave > 12 && (floor random 6) <= (playersNumber west)) then {
+	_spwnVec = [List_basicVehs] execVM "hostiles\spawnVehicle.sqf";
 	waitUntil {scriptDone _spwnVec};
 };
+
+if (attkWave > 15 && (floor random 4) == 1) then {
+	_spwnVec = [List_scaryVehs] execVM "hostiles\spawnVehicle.sqf";
+	waitUntil {scriptDone _spwnVec};
+};
+
 
 hosSkill = (attkWave / 40);
 _noOfPlayers = 1 max floor ((playersNumber west) * HOSTILE_TEAM_MULTIPLIER);

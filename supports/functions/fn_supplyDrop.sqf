@@ -8,14 +8,14 @@
 params ["_targetPos", "_cargo", "_aircraft"];
 
 _angle = round random 180;
-_height = 300;
+_height = 200;
 _offsX = 0;
-_offsY = 1000;
+_offsY = 2000;
 _pointX = _offsX*(cos _angle) - _offsY*(sin _angle);
 _pointY = _offsX*(sin _angle) + _offsY*(cos _angle);
 
 _dropStart  = _targetPos vectorAdd [_pointX, _pointY, _height];
-_dropTarget = [(_targetPos select 0), (_targetPos select 1), 100];
+_dropTarget = [(_targetPos select 0), (_targetPos select 1), 200];
 _dropEnd    = _targetPos vectorAdd [-_pointX*2, -_pointY*2, _height];;
 
 _agSpawn = [_dropStart, 0, _aircraft, WEST] call bis_fnc_spawnvehicle;
@@ -24,12 +24,12 @@ _agCrew = _agSpawn select 1;	//the units that make up the crew
 _ag = _agSpawn select 2;	//the group
 {_x allowFleeing 0} forEach units _ag;
 
-_agVehicle flyInHeight 100;
+_agVehicle flyInHeight 200;
 _agVehicle setpos [getposATL _agVehicle select 0, getposATL _agVehicle select 1, _height];
 
 _reldir = [_dropStart, _targetPos] call BIS_fnc_dirTo;
 _agVehicle setdir _reldir;
-
+_agVehicle setVelocityModelSpace [0, 150, 0];
 supplyDropLatch = false;
 
 _waypoint0 = _ag addwaypoint[_dropTarget,0];
@@ -57,7 +57,7 @@ _supplyBox = createVehicle ["Land_WoodenCrate_01_F", [0,0,0], [], 0, "CAN_COLLID
 [_supplyBox, _cargo] remoteExec ["addAction", 0, true];
 _supplyBox attachTo [_parachute, [0,0,0]];
 _supplyBox allowDamage false;
-
+[_parachute] spawn {sleep 90; if (!isNull(_this select 0)) then {deleteVehicle (_this select 0);};};
 waitUntil {getpos _supplyBox select 2<4};
 _smoker = "SmokeShellBlue" createVehicle (getpos _supplyBox vectorAdd [0,0,5]);
 detach _supplyBox;

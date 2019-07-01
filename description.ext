@@ -242,19 +242,19 @@ class Params
 
 	class PLAYER_STARTWEAPON
 	{
-		title = "Players start with pistol";
+		title = "Players start with pistol and flashlight";
 		values[] = {0, 1};
 		texts[] = {"No", "Yes"};
-		default = 0;
+		default = 1;
 	};
 
-	class PLAYER_STARTNVG
-	{
-		title = "Players start with NVG";
-		values[] = {0, 1};
-		texts[] = {"No", "Yes"};
-		default = 0;
-	};
+//	class PLAYER_STARTNVG
+//	{
+//		title = "Players start with NVG";
+//		values[] = {0, 1};
+//		texts[] = {"No", "Yes"};
+//		default = 0;
+//	};
 
 	class SPECIAL_WAVES
 	{
@@ -291,9 +291,9 @@ class Params
 	class BULWARK_MINSIZE
 	{
 		title = "Minimum spawn room size";
-		values[] = {10, 13, 15, 18, 20};
-		texts[] = {"10m²", "13m²", "15m²", "18m²", "20m²"};
-		default = 13;
+		values[] = {5,10, 13, 15, 18, 20};
+		texts[] = {"5m²","10m²", "13m²", "15m²", "18m²", "20m²"};
+		default = 5;
 	};
 
 	class BULWARK_LANDRATIO
@@ -309,7 +309,7 @@ class Params
 		title = "Minimum number of buildings in Bulwark radius";
 		values[] = {5, 10, 15, 20, 30};
 		texts[] = {"5","10","15","20","30"};
-		default = 15;
+		default = 10;
 	};
 
 	class LOOT_HOUSE_DISTRIBUTION
@@ -317,7 +317,7 @@ class Params
 		title = "Loot distribution";
 		values[] = {1, 2, 3, 4};
 		texts[] = {"Every building", "Every second building", "Every third building", "Every fourth building"};
-		default = 2;
+		default = 1;
 	};
 
 	class LOOT_ROOM_DISTRIBUTION
@@ -325,7 +325,7 @@ class Params
 		title = "Loot density";
 		values[] = {1, 2, 3, 4};
 		texts[] = {"Every location", "Every second location", "Every third location", "Every fourth location"};
-		default = 3;
+		default = 2;
 	};
 
 	class LOOT_SUPPLYDROP
@@ -351,7 +351,13 @@ class Params
 		texts[] = {"2am","4am","6am","8am","10am","Midday", "2pm", "4pm", "6pm", "8pm", "10pm"};
 		default = 16;
 	};
-
+	class TIME_ACCEL
+	{
+		title = "Time Acceleration (on is 30 min per day)";
+		values[] = {0, 1};
+		texts[] = {"No Acceleration","Acceleration"};
+		default = 1;
+	};
 	class POWERUP_LABEL_SPACE
 	{
 		title = " ";
@@ -468,3 +474,18 @@ class Params
 	};
 
 };
+
+class Extended_Init_EventHandlers {
+	class LandVehicle
+		 {
+		 //postinit = "(_this select 0) addEventHandler [""HandleDamage"",{  if (isPlayer (driver (_this select 0))) exitWith {}; if (_this select 4 == """" ) then {hint ""oops"";(_this select 0) getHit (_this select 1) } }]";
+		 init = " (_this select 0) addEventHandler [""HandleDamage"",{ if (isPlayer (driver (_this select 0))) exitWith {};  if (_this select 4 == """" ) then { 0} }]"; // (_this select 0) setVariable [""VCOM_NOAI"",true];
+		 };
+	class Man
+		 {
+		 //postinit = "(_this select 0) addEventHandler [""HandleDamage"",{  if (isPlayer (driver (_this select 0))) exitWith {}; if (_this select 4 == """" ) then {hint ""oops"";(_this select 0) getHit (_this select 1) } }]";
+		 init = " (_this select 0) setVariable [""VCOM_NOPATHING_Unit"",true];"; // (_this select 0) setVariable [""VCOM_NOAI"",true];
+		 };
+};
+
+//this setVariable ["VCOM_NOPATHING_Unit",1,false];
