@@ -22,6 +22,7 @@ _droneSupport = createVehicle ["Box_C_UAV_06_Swifd_F", droneRoom, [], 0, "CAN_CO
 mainZeus addCuratorEditableObjects [[_droneSupport], true];
 
 /* Item to unlock Support Menu (1 spawns every wave until found) */
+satRoom = [];
 if (!SUPPORTMENU) then {
 	satRoom = while {true} do {
 		_satBulding = selectRandom lootHouses;
