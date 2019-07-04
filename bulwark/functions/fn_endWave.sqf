@@ -10,7 +10,7 @@
 playersInWave = [];
 publicVariable "playersInWave";
 
-bulwarkBox setVariable ["buildPhase", true, true];
+missionNamespace setVariable ["buildPhase", true, true];
 
 ["TaskSucceeded",["Complete","Wave " + str attkWave + " complete!"]] remoteExec ["BIS_fnc_showNotification", 0];
 RESPAWN_TIME = 0;
