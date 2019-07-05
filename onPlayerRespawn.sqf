@@ -35,60 +35,37 @@ player addEventHandler ["HandleDamage", {
   [_container] remoteExecCall ["loot_fnc_deleteIfEmpty", 2];
 }]] remoteExec ['addEventHandler', 0, true];
 
-removeHeadgear player;
-removeGoggles player;
-removeVest player;
-removeBackpack player;
-removeAllWeapons player;
-removeAllAssignedItems player;
-player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
+_player = _this select 0;
+removeHeadgear _player;
+removeGoggles _player;
+removeVest _player;
+removeBackpack _player;
+removeAllWeapons _player;
+removeAllAssignedItems _player;
+_player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
 
 if(PLAYER_STARTWEAPON) then {
-    player addMagazine "16Rnd_9x21_Mag";
-    player addMagazine "16Rnd_9x21_Mag";
-    player addWeapon "hgun_P07_F";
+    _player addMagazine "16Rnd_9x21_Mag";
+    _player addMagazine "16Rnd_9x21_Mag";
+    _player addWeapon "hgun_P07_F";
 };
 
 if(PLAYER_STARTMAP) then {
-    player addItem "ItemMap";
-    player assignItem "ItemMap";
-    player linkItem "ItemMap";
+    _player addItem "ItemMap";
+    _player assignItem "ItemMap";
+    _player linkItem "ItemMap";
 };
 
 if(PLAYER_STARTNVG) then {
-    player addItem "Integrated_NVG_F";
-    player assignItem "Integrated_NVG_F";
-    player linkItem "Integrated_NVG_F";
+    _player addItem "Integrated_NVG_F";
+    _player assignItem "Integrated_NVG_F";
+    _player linkItem "Integrated_NVG_F";
 };
 
 if (isClass (configfile >> "CfgVehicles" >> "tf_anarc164")) then {
-  player addItem "tf_anprc152";
+  _player addItem "tf_anprc152";
 };
 
-waituntil {alive player};
-
-_disarm =
-{
-    _explosive = nearestObject [player, "TimeBombCore"];
-	deleteVehicle _explosive;
-    _explosiveClass = typeOf _explosive;
-    _count =  count (configFile >> "CfgMagazines");
-    for "_x" from 0 to (_count-1) do {
-        _item=((configFile >> "CfgMagazines") select _x);
-		if (getText (_item >> "ammo") isEqualTo _explosiveClass) then {
-			player addMagazine configName _item;
-		};
-    };
-	player playAction "PutDown";
-};
-player addAction ["Disarm Explosive",_disarm,nil,2,false,true,"","(player distance2D nearestObject [player, 'TimeBombCore']) <= 1.6"];
-
-_disarmMine =
-{
-    _explosive = nearestObject [player, "mineBase"];
-	deleteVehicle _explosive;
-    player playAction "PutDown";
-};
-player addAction ["Disarm Mine",_disarmMine,nil,2,false,true,"","(player distance2D nearestObject [player, 'mineBase']) <= 1.6"];
+waituntil {alive _player};
 
 [] remoteExec ["killPoints_fnc_updateHud", 0];
