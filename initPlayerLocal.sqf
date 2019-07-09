@@ -13,11 +13,7 @@ player addEventHandler ['Respawn',{
 }];
 
 //setup Kill Points
-_killPoints = player getVariable "killPoints";
-if(isNil "_killPoints") then {
-    _killPoints = 0;
-};
-_killPoints = _killPoints + ("START_KILLPOINTS" call BIS_fnc_getParamValue);
+_killPoints = ("START_KILLPOINTS" call BIS_fnc_getParamValue);
 player setVariable ["killPoints", _killPoints, true];
 [] call killPoints_fnc_updateHud;
 
@@ -152,9 +148,34 @@ If you are knocked unconscious but you have a Medikit in your inventory you will
 waitUntil {!isNil "TEAM_DAMAGE"};
 player removeAllEventHandlers 'HandleDamage';
 player addEventHandler ["HandleDamage", {
-  _beingRevived = player getVariable "RevByMedikit";
-  _players = allPlayers;
-  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !TEAM_DAMAGE && !((_this select 3) isEqualTo player))) then {0} else {_this call bis_fnc_reviveEhHandleDamage;};
+    _beingRevived = player getVariable "RevByMedikit";
+    TEAM_DAMAGE = missionNamespace getVariable "TEAM_DAMAGE";
+    _incDamage = _this select 2;
+    _hitpoint = _this select 5;
+    _currentPointDamage = player getHitIndex _hitpoint;
+    _totalDamage = _incDamage + _currentPointDamage;
+    _playerItems = items player;
+    _players = allPlayers;
+    if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !TEAM_DAMAGE && !((_this select 3) isEqualTo player))) then {
+        0
+    } else {
+        if (_totalDamage >= 0.89) then {
+        _playerItems = items player;
+            if ("Medikit" in _playerItems) then {
+            player removeItem "Medikit";
+            player setVariable ["RevByMedikit", true, true];
+            player playActionNow "agonyStart";
+            player playAction "agonyStop";
+            player setDamage 0;
+            [player] remoteExec ["bulwark_fnc_revivePlayer", 2];
+            0;
+            }else{
+                _this call bis_fnc_reviveEhHandleDamage;
+            };
+        } else {
+            _this call bis_fnc_reviveEhHandleDamage;
+        };
+    };
 }];
 
 waitUntil {!isNil "bulwarkCity"};
