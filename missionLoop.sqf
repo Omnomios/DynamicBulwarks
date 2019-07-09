@@ -23,6 +23,8 @@ wavesSinceCar = 0;
 wavesSinceSpecial = 0;
 SatUnlocks = [];
 publicVariable 'SatUnlocks';
+unitArray = [];
+publicVariable 'unitArray';
 
 //spawn start loot
 if (isServer) then {
@@ -34,7 +36,7 @@ runMissionLoop = true;
 missionFailure = false;
 
 // start in build phase
-bulwarkBox setVariable ["buildPhase", true, true];
+missionNamespace setVariable ["buildPhase", true, true];
 
 [west, RESPAWN_TICKETS] call BIS_fnc_respawnTickets;
 
@@ -52,6 +54,11 @@ while {runMissionLoop} do {
 		_allHCs = entities "HeadlessClient_F";
 		_allHPs = allPlayers - _allHCs;
 
+		_allBluForHP = [];
+		{
+			if(side _x == west) then {_allBluForHP pushBack _x};
+		} foreach _allHPs;
+
 		//Check if all hostiles dead
 		if (EAST countSide allUnits == 0) exitWith {};
 
@@ -61,9 +68,9 @@ while {runMissionLoop} do {
 			if ((!alive _x) || ((lifeState _x) == "INCAPACITATED")) then {
 				_deadUnconscious pushBack _x;
 			};
-		} foreach _allHPs;
+		} foreach _allBluForHP;
 		_respawnTickets = [west] call BIS_fnc_respawnTickets;
-		if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+		if (count (_allBluForHP - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
 			sleep 1;
 
 			//Check that Players have not been revived
@@ -72,10 +79,10 @@ while {runMissionLoop} do {
 				if ((!alive _x) || ((lifeState _x) == "INCAPACITATED")) then {
 					_deadUnconscious pushBack _x;
 				};
-			} foreach _allHPs;
-			if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+			} foreach _allBluForHP;
+			if (count (_allBluForHP - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
 				sleep 1;
-				if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+				if (count (_allBluForHP - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
 					runMissionLoop = false;
 					missionFailure = true;
 					"End1" call BIS_fnc_endMissionServer;
