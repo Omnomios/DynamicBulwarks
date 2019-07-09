@@ -177,6 +177,9 @@ player addEventHandler ["HandleDamage", {
 
 waitUntil {!isNil "bulwarkCity"};
 
+// Set the players 'defection' status.
+player setVariable ["isHostile", false, true];
+
 // kill player if they disconnected and rejoined during a wave
 _buildPhase = missionNamespace getVariable ["buildPhase", true];
 waitUntil {alive player && !isnil "playersInWave" && !isnil "attkWave"};

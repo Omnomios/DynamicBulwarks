@@ -1,6 +1,9 @@
 _player = _this select 0;
 _buildPhase = missionNamespace getVariable "buildPhase";
 
+// Player has died, defect to OPFOR
+_player setVariable ["isHostile", true, true];
+
 if (!_buildPhase) then { // free respawn in build phase
 	_respawnTickets = [west, -1] call BIS_fnc_respawnTickets;
 	if (_respawnTickets <= 0) then {

@@ -97,3 +97,9 @@ _disarmMine =
 player addAction ["Disarm Mine",_disarmMine,nil,2,false,true,"","(player distance2D nearestObject [player, 'mineBase']) <= 1.6"];
 
 [] remoteExec ["killPoints_fnc_updateHud", 0];
+
+// If player has defected, then spawn them as a hostile unit.
+if(player getVariable "isHostile") then {
+    removeAllWeapons player;
+    [player] execVM "hostiles\makePlayerHostile.sqf";
+};
