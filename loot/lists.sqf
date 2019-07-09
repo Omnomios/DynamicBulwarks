@@ -50,8 +50,8 @@ for "_x" from 0 to (_count-1) do {
 						case 3: {_secondaries = _secondaries + [configName _weap];};
 						case 4: {_launchers = _launchers + [configName _weap];};
 					};
-    		};
-      };
+				};
+			};
 			if ( isClass(_weap >> "LinkedItems" >> "LinkedItemsUnder") && !isClass(_weap >> "LinkedItems" >> "LinkedItemsAcc") && !isClass(_weap >> "LinkedItems" >> "LinkedItemsMuzzle") && !isClass(_weap >> "LinkedItems" >> "LinkedItemsOptic")) then {
 				if (count(getarray (_weap >> "magazines")) !=0 ) then {
 					_primaries = _primaries + [configName _weap];
