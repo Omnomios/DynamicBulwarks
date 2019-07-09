@@ -125,4 +125,5 @@ for ("_i") from 1 to _unitCount do {
 	mainZeus addCuratorEditableObjects [[_unit], true];
 	unitArray = waveUnits select 0;
 	unitArray append [_unit];
+	publicVariable 'unitArray';
 };

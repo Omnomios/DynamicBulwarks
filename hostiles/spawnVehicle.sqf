@@ -19,5 +19,6 @@ for "_i" from 1 to (ArmourCount) do {
 		_x select 0 setVariable ["killPointMulti", HOSTILE_ARMOUR_POINT_SCORE];
 		unitArray = waveUnits select 0;
 		unitArray append [_x select 0];
+		publicVariable 'unitArray';
 	} forEach _tankcrew;
 };
