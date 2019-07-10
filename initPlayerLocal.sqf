@@ -163,12 +163,15 @@ player addEventHandler ["HandleDamage", {
         0
     } else {
         if (_totalDamage >= 0.89) then {
-            _playerItems = items player;
+        _playerItems = items player;
             if ("Medikit" in _playerItems) then {
-                player removeItem "Medikit";
-                player setVariable ["RevByMedikit", true, true];
-                [player] remoteExec ["bulwark_fnc_revivePlayer", 2];
-                0;
+            player removeItem "Medikit";
+            player setVariable ["RevByMedikit", true, true];
+            player playActionNow "agonyStart";
+            player playAction "agonyStop";
+            player setDamage 0;
+            [player] remoteExec ["bulwark_fnc_revivePlayer", 2];
+            0;
             }else{
                 _this call bis_fnc_reviveEhHandleDamage;
             };
