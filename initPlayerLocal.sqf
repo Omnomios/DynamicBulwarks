@@ -142,6 +142,9 @@ Allies will make regular ammo drops! Initially marked with blue smoke, find thes
 If you are knocked unconscious but you have a Medikit in your inventory you will be automatically resurected within 10 seconds. 15 FAKs can be converted into a Medikit at the Bulwark Box.
 <br />
 <br />
+You can repack your magazines by pressing CTRL + R.
+<br />
+<br />
 <font color='#FFCC00'>You won't survive this fight but take as many of the bastards with you as you can!</font>"]];
 
 //Make player immune to fall damage and immune to all damage while incapacitated
