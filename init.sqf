@@ -1,1 +1,0 @@
-[] execVM "VCOMAI\init.sqf";

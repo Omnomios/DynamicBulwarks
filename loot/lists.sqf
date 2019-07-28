@@ -24,7 +24,7 @@ _charges = [];
 _count =  count (configFile >> "CfgWeapons");
 for "_x" from 0 to (_count-1) do {
 	_weap = ((configFile >> "CfgWeapons") select _x);
-	if (isClass _weap && ((['uns', ( (configname _weap))] call BIS_fnc_inString))  ) then {
+	if (isClass _weap) then {
 		if (getnumber (_weap >> "scope") == 2) then {
 			if (isClass (_weap >> "ItemInfo")) then {
 				_infoType = (getnumber (_weap >> "ItemInfo" >> "Type"));
@@ -61,14 +61,10 @@ for "_x" from 0 to (_count-1) do {
   };
 };
 
-
-///!((['top', ( (configname _x))] call BIS_fnc_inString)) 
-
-
 _count =  count (configFile >> "CfgVehicles");
 for "_x" from 0 to (_count-1) do {
     _item=((configFile >> "CfgVehicles") select _x);
-    if (isClass _item && ((['uns', ( (configname _item))] call BIS_fnc_inString))) then {
+    if (isClass _item) then {
         if (getnumber (_item >> "scope") == 2) then {
             if (gettext (_item >> "vehicleClass") == "Backpacks") then {
                 _backpacks = _backpacks + [configname _item]
@@ -80,7 +76,7 @@ for "_x" from 0 to (_count-1) do {
 _count =  count (configFile >> "CfgGlasses");
 for "_x" from 0 to (_count-1) do {
     _item=((configFile >> "CfgGlasses") select _x);
-    if (isClass _item && ((['uns', ( (configname _item))] call BIS_fnc_inString)) ) then {
+    if (isClass _item) then {
         if (getnumber (_item >> "scope") == 2) then {
             _glasses = _glasses + [configName _item];
         };
@@ -95,25 +91,11 @@ for "_x" from 0 to (_count-1) do {
 _count =  count (configFile >> "CfgMagazines");
 for "_x" from 0 to (_count-1) do {
     _item=((configFile >> "CfgMagazines") select _x);
-	if (isClass _item && ((['uns', ( (configname _item))] call BIS_fnc_inString)) && !((['base', ( (configname _item))] call BIS_fnc_inString)) && !((configname _item) in ['APERSBoundingMine_Range_Mag','APERSMine_Range_Mag','APERSTripMine_Wire_Mag','ATMine_Range_Mag'])) then {
+	if (isClass _item) then {
 		if(getNumber (_item >> "value") == 5) then {
 			if(["mine", getText (_item >> "displayName")] call BIS_fnc_inString) then {
 				_mines = _mines + [configName _item];
-			};
-			if(["booby", getText (_item >> "displayName")] call BIS_fnc_inString || ((['traps', ( (configname _item))] call BIS_fnc_inString))) then {
-				_mines = _mines + [configName _item];
-			};
-			if(["explosive", getText (_item >> "displayName")] call BIS_fnc_inString ) then {
-				_mines = _mines + [configName _item];
-			};
-			if(["grenade", getText (_item >> "displayName")] call BIS_fnc_inString && !( ["smoke", getText (_item >> "displayName")] call BIS_fnc_inString) ) then {
-				_mines = _mines + [configName _item];
-			};
-		};
-		if(getNumber (_item >> "value") == 1) then {
-			if(["grenade", getText (_item >> "displayName")] call BIS_fnc_inString && !( ["smoke", getText (_item >> "displayName")] call BIS_fnc_inString) ) then {
-				_mines = _mines + [configName _item];
-			};
+			}
 		};
 	};
 };

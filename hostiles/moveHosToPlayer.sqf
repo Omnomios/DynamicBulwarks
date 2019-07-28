@@ -55,15 +55,8 @@ While {true} do {
         if (suicideWave) then {
           _doMovePos = getPos goToPlayer;
         }else{
-
-			_nearRoad = ([_playerPos, 55] call BIS_fnc_nearestRoad );
-			if (! (isNull (_nearRoad)) ) then {
-				_doMovePos = getPos _nearRoad; 
-				} else
-				{
-				_doMovePos = [goToPlayer, 15, 55, 5, 0, 30] call BIS_fnc_findSafePos;
-				_doMovePos = [_doMovePos select 0, _doMovePos select 1, 0];
-				};
+          _doMovePos = [goToPlayer, 15, 55, 0.5, 0, 30] call BIS_fnc_findSafePos;
+          _doMovePos = [_doMovePos select 0, _doMovePos select 1, 0];
         };
       };
       thisNPC doMove _doMovePos;

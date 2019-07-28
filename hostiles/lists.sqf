@@ -68,35 +68,6 @@ for "_x" from 0 to (_count-1) do {
 };
 List_Bandits = _bandits;
 
-_bandits = [];
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_EV_VCG" >> "vclocalInfantry" >> "vc_fourmancell";
-_count = count (_groupConfig);
-for "_x" from 0 to (_count-1) do {
-    _item=((_groupConfig) select _x);
-    if (isClass _item) then {
-		_bandits pushback getText (_item >> "vehicle");
-    };
-};
-
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_EV_VCG" >> "vclocalInfantry" >> "vc_assaultSquad";
-_count = count (_groupConfig);
-for "_x" from 0 to (_count-1) do {
-    _item=((_groupConfig) select _x);
-    if (isClass _item) then {
-		_bandits pushback getText (_item >> "vehicle");
-    };
-};
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_EV_VCG" >> "vclocalInfantry" >> "vc_rifleteam";
-_count = count (_groupConfig);
-for "_x" from 0 to (_count-1) do {
-    _item=((_groupConfig) select _x);
-    if (isClass _item) then {
-		_bandits pushback getText (_item >> "vehicle");
-    };
-};
-List_Bandits = _bandits;
-//List_Bandits = ['CFP_I_TUAREG_Grenadier_01','CFP_I_TUAREG_Rifleman_AT_01','CFP_I_TUAREG_Team_Leader_01','CFP_I_TUAREG_Explosive_Specialist_01','CFP_I_TUAREG_Explosive_Specialist_01'];
-
 _paraBandits = [];
 _groupConfig = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "ParaCombatGroup";
 _count = count (_groupConfig);
@@ -108,38 +79,8 @@ for "_x" from 0 to (_count-1) do {
 };
 List_ParaBandits = _paraBandits;
 
-// _eastSoldier = [];
-// _groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad";
-// _count = count (_groupConfig);
-// for "_x" from 0 to (_count-1) do {
-    // _item=((_groupConfig) select _x);
-    // if (isClass _item) then {
-		// _eastSoldier pushback getText (_item >> "vehicle");
-    // };
-// };
-// List_OPFOR = _eastSoldier;
-
-
 _eastSoldier = [];
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_EV_VC" >> "vcmainforceInfantry" >> "vc_mainweaponsquadtwo";
-_count = count (_groupConfig);
-for "_x" from 0 to (_count-1) do {
-    _item=((_groupConfig) select _x);
-    if (isClass _item) then {
-		_eastSoldier pushback getText (_item >> "vehicle");
-    };
-};
-
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_EV_VC" >> "vcmainforceInfantry" >> "vc_mainriflesquadtwo";
-_count = count (_groupConfig);
-for "_x" from 0 to (_count-1) do {
-    _item=((_groupConfig) select _x);
-    if (isClass _item) then {
-		_eastSoldier pushback getText (_item >> "vehicle");
-    };
-};
-
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_EV_VC" >> "vcmainforceInfantry" >> "vc_mainreconsquad";
+_groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad";
 _count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((_groupConfig) select _x);
@@ -161,7 +102,7 @@ for "_x" from 0 to (_count-1) do {
 List_INDEP = _indSoldier;
 
 _natoSoldier = [];
-_groupConfig = configfile >> "CfgGroups" >> "West" >> "UNSUNG_AUS" >> "SpecOps" >> "uns_SAS_Patrol_1";
+_groupConfig = configfile >> "CfgGroups" >> "West" >> "BLU_F" >> "Infantry" >> "BUS_InfSquad";
 _count = count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=(_groupConfig select _x);
@@ -171,43 +112,8 @@ for "_x" from 0 to (_count-1) do {
 };
 List_NATO = _natoSoldier;
 
-// _viper = [];
-// _groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> "OI_ViperTeam";
-// _count =  count (_groupConfig);
-// for "_x" from 0 to (_count-1) do {
-    // _item=((_groupConfig) select _x);
-    // if (isClass _item) then {
-		// _viper pushback getText (_item >> "vehicle");
-    // };
-// };
-// List_Viper = _viper;
-
 _viper = [];
-// _groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_E_NVA" >> "NVA68Infantry" >> "NVA_68heavyweaponsquad1";
-// _count =  count (_groupConfig);
-// for "_x" from 0 to (_count-1) do {
-    // _item=((_groupConfig) select _x);
-    // if (isClass _item) then {
-		// _viper pushback getText (_item >> "vehicle");
-    // };
-// };
-// _groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_E_NVA" >> "NVA68Infantry" >> "NVA_68Reconsquadone";
-// _count =  count (_groupConfig);
-// for "_x" from 0 to (_count-1) do {
-    // _item=((_groupConfig) select _x);
-    // if (isClass _item) then {
-		// _viper pushback getText (_item >> "vehicle");
-    // };
-// };
-// _groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_E_NVA" >> "NVA68Infantry" >> "NVA_68riflesquadone";
-// _count =  count (_groupConfig);
-// for "_x" from 0 to (_count-1) do {
-    // _item=((_groupConfig) select _x);
-    // if (isClass _item) then {
-		// _viper pushback getText (_item >> "vehicle");
-    // };
-// };
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_E_NVA" >> "DacCongInfantry" >> "NVA_DacCongcovert";
+_groupConfig = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> "OI_ViperTeam";
 _count =  count (_groupConfig);
 for "_x" from 0 to (_count-1) do {
     _item=((_groupConfig) select _x);
@@ -215,25 +121,7 @@ for "_x" from 0 to (_count-1) do {
 		_viper pushback getText (_item >> "vehicle");
     };
 };
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_E_NVA" >> "DacCongInfantry" >> "NVA_DacCongquadone";
-_count =  count (_groupConfig);
-for "_x" from 0 to (_count-1) do {
-    _item=((_groupConfig) select _x);
-    if (isClass _item) then {
-		_viper pushback getText (_item >> "vehicle");
-    };
-};
-_groupConfig = configfile >> "CfgGroups" >> "East" >> "UNSUNG_E_NVA" >> "DacCongInfantry" >> "NVA_DacCongquadtwo";
-_count =  count (_groupConfig);
-for "_x" from 0 to (_count-1) do {
-    _item=((_groupConfig) select _x);
-    if (isClass _item) then {
-		_viper pushback getText (_item >> "vehicle");
-    };
-};
-
 List_Viper = _viper;
-
 
 _armouredVehicles = [];
 _cfgVehicles = configFile >> "CfgVehicles";
@@ -283,4 +171,3 @@ for "_x" from 0 to (_realentries) do {
   };
 };
 List_ArmedCars = _armedCars;
-

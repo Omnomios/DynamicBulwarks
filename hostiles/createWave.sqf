@@ -7,7 +7,6 @@
 **/
 _armourStartWave = "ARMOUR_START_WAVE" call BIS_fnc_getParamValue;
 
-
 if (attkWave < (_armourStartWave + 5)) then {
 	ArmourChance = 0;
 	ArmourMaxSince = 0;
@@ -55,7 +54,6 @@ if (attkWave >= (_armourStartWave + 20)) then {
 
 if ((attkWave >= _armourStartWave && (floor random ArmourChance) == 1) || (attkWave >= _armourStartWave && wavesSinceArmour >= ArmourMaxSince)) then {
 	_spwnVec = execVM "hostiles\spawnVehicle.sqf";
-
 	waitUntil {scriptDone _spwnVec};
 	wavesSinceArmour = 0;
 }else{
@@ -73,7 +71,6 @@ if ((attkWave >= _armourStartWave && (floor random carChance) == 1) || (attkWave
 		wavesSinceCar = wavesSinceCar + 1;
 	};
 };
-
 
 _noOfPlayers = 1 max floor ((playersNumber west) * HOSTILE_TEAM_MULTIPLIER);
 _multiplierBase = HOSTILE_MULTIPLIER;

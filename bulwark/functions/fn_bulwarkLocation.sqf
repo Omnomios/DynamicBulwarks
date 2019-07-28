@@ -7,7 +7,7 @@ _finalCity = nil;
 _probe = createVehicle ["Sign_Arrow_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 while {isNil "_finalPos"} do {
 	_city = selectRandom _locations;
-	_houses = nearestObjects [_city, ["house","Building"], 500];
+	_houses = nearestObjects [_city, ["house"], 300];
 
 	_options = [];
 
@@ -16,8 +16,7 @@ while {isNil "_finalPos"} do {
 		_house = _x;
 		_largestVolume = 0;
 		_largestPos = [0,0,0];
-		//debug
-		houseCheck = _house;
+
 		// Go through the positions in the house to find the largest
 		{
 			_probe setPos _x;
@@ -51,10 +50,8 @@ while {isNil "_finalPos"} do {
 			if(_landPercent > BULWARK_LANDRATIO) then {
 				_options append [_largestPos];
 			};
-			// debug 
-			OPTIONSCHECK = _options; 
 		};
-	
+
 	} forEach _houses;
 
 	if(count _options > 0) exitWith {
