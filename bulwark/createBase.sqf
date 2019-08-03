@@ -50,7 +50,8 @@ if(BULWARK_MEDIKITS > 0) then {
 //Add actions to Bulwark Box
 [bulwarkBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveBox.sqf","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 [bulwarkBox, ["<t color='#00ff00'>" + "Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1","",1.5,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
-[bulwarkBox, ["<t color='#550E5E'>" + "Medkit2Ticket", "bulwark\MKitToTicket.sqf"]] remoteExec ["addAction", 0, true];
+[bulwarkBox, ["<t color='#2ECC71'>" + "X Medkits for 5 Tickets", "bulwark\MKitToTicket.sqf"]] remoteExec ["addAction", 0, true];
+[bulwarkBox, ["<t color='#F39C12'>" + "Maintainer Training", "bulwark\MaintainerTraining.sqf"]] remoteExec ["addAction", 0, true];
 [bulwarkBox, ["<t color='#ff0000'>" + "Heal Yourself: 500p", "
 	_player = _this select 1;
 	_points = _player getVariable 'killPoints';
