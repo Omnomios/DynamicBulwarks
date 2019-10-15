@@ -77,74 +77,38 @@ if (attkWave >= 15) then {
 
 if ((floor random randSpecChance == 1 || wavesSinceSpecial >= maxSinceSpecial) && attkWave >= 5 && wavesSinceSpecial >= maxSpecialLimit) then {
 	specialWave = true;
-}else{
+	}
+	else
+	{
 	wavesSinceSpecial = wavesSinceSpecial + 1;
-	specialWave = false;
+	if (everyWaveSpecial) then {
+		specialWave = true;
+	}
+	else
+	{
+		specialWave = false;
+	};
 };
 
 SpecialWaveType = "";
 droneCount = 0;
 
-if (specialWave && attkWave >= 5 and attkWave < 10) then {
-	_randWave = floor random 3;
-	switch (_randWave) do
-	{
-		case 0:
+//special wave selection
+if (specialWave && attkWave >= lowSpecialWaveStart) then {
+	if (isNil "specialWavePool" || {count specialWavePool == 0}) then {
+		if (attkWave < SpecialWaveStart) then {
+			specialWavePool = lowSpecialWave_list;
+		}
+		else
 		{
-			SpecialWaveType = "specCivs";
-		};
-		case 1:
-		{
-			SpecialWaveType = "fogWave";
-		};
-		case 2:
-		{
-			SpecialWaveType = "swticharooWave";
+			specialWavePool = SpecialWave_list;
 		};
 	};
+	specialWaveType = selectRandom specialWavePool;
 	wavesSinceSpecial = 0;
-};
-
-if (specialWave && attkWave >= 10) then {
-	_randWave = floor random 8;
-	switch (_randWave) do
-	{
-		case 0:
-		{
-			SpecialWaveType = "specCivs";
-		};
-		case 1:
-		{
-			SpecialWaveType = "fogWave";
-		};
-		case 2:
-		{
-			SpecialWaveType = "swticharooWave";
-		};
-		case 3:
-		{
-			SpecialWaveType = "suicideWave";
-		};
-		case 4:
-		{
-			SpecialWaveType = "specMortarWave";
-		};
-		case 5:
-		{
-			SpecialWaveType = "nightWave";
-		};
-		case 6:
-		{
-			SpecialWaveType = "demineWave";
-		};
-		case 7:
-		{
-			SpecialWaveType = "defectorWave";
-		};
+	if (!specialWaveRepeat)  then {
+		specialWavePool = specialWavePool - [specialWaveType];
 	};
-	wavesSinceSpecial = 0;
-//}else{
-	//SpecialWaveType = "swticharooWave"; //else for testing new special waves: do not remove
 };
 
 if (SpecialWaveType == "suicideWave") then {

@@ -94,6 +94,36 @@ HOSTILE_LEVEL_3_POINT_SCORE = 1.50;
 HOSTILE_CAR_POINT_SCORE = 2;
 HOSTILE_ARMOUR_POINT_SCORE = 4;
 
+/* Special Waves */
+//comment out the waves you don't like. Don't forget to remove the , behind the last entry
+//list of special waves you can get early on
+lowSpecialWave_list = [
+	"fogWave",
+	"swticharooWave",
+    "specCivs"
+	];
+//comment out the waves you don't like. Don't forget to remove the , behind the last entry
+//list of all special waves you can get on higher waves
+specialWave_list= [
+	"specCivs",
+	"fogWave",
+	"demineWave",
+	"swticharooWave",
+	"suicideWave",
+	"specMortarWave",
+	"nightWave",
+	"defectorWave"
+];
+//starting from this wave the lowSpecialWaveList is used
+lowSpecialWaveStart = 5;
+//starting from this wave the specialWaveList is used
+SpecialWaveStart = 10;
+//If true, every time special waves spawn it could be any of the set special waves
+//If false, you can't get a repeat of the same special wave type, until  all special waves happend once
+specialWaveRepeat = false;
+//if true, every wave starting with the lowSpecialWaveStart will be a special wave
+everyWaveSpecial = false;
+
 /* Comment out or delete the below support items to prevent the player from buying them */
 
 BULWARK_SUPPORTITEMS = [
