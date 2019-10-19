@@ -165,7 +165,7 @@ BULWARK_BUILDITEMS = [
     [1000,  "Hallogen Lamp",          "Land_LampHalogen_F",               90,        1,        0,        0],
     [1000,  "Double H Barrier",       "Land_HBarrierWall4_F",              0,        4,        0,        0],
     [1000,  "Concrete Platform",      "BlockConcrete_F",                   0,      3.5,        0,        0],
-    [1200,  "Storage box large",      "Box_NATO_AmmoVeh_F",                0,        1,        0,        0],
+    [1200,  "Storage box large",      "Box_NATO_AmmoVeh_F",                0,        1,        0,        1],    //invincible
     [2500,  "Static HMG",             "B_HMG_01_high_F",                   0,        1,        0,        0],
     [3000,  "Small Bunker",           "Land_BagBunker_Small_F",          180,        3,        0,        0],
     [4500,  "Pillbox",                "Land_PillboxBunker_01_hex_F",      90,      2.5,        0,        0],
