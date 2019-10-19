@@ -18,6 +18,13 @@ if (_pWeap != "") then {
   _ammoArray = getArray (configFile >> "CfgWeapons" >> _pWeap >> "magazines");
   _ammoToAdd = selectRandom _ammoArray;
   _ammoPlayer addMagazines [_ammoToAdd, 3];
+  _muzzles = getArray (configfile >> "CfgWeapons" >> _pWeap >> "muzzles");
+  _gl = _muzzles select 1;
+  if (!isnil "_gl") then {
+    _glMag = getArray (configFile >> "CfgWeapons" >> _pWeap >> _gl >> "magazines");
+    _glToAdd = _glMag select 0;
+    _ammoPlayer addMagazines [_glToAdd, 3];
+  };
 };
 
 _sWeap = secondaryWeapon _ammoPlayer;
