@@ -142,34 +142,35 @@ BULWARK_SUPPORTITEMS = [
 
 /* Radius prevents hostiles walking through objects */
 
-/*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) *prevents AI glitching through object and triggers suicide bombers*/
+/*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) - explosive - invincible	*/
 BULWARK_BUILDITEMS = [
-    [25,   "Long Plank (8m)",      "Land_Plank_01_8m_F",                0,   4],
-    [50,   "Junk Barricade",       "Land_Barricade_01_4m_F",            0, 1.5],
-    [75,   "Small Ramp (1m)",      "Land_Obstacle_Ramp_F",            180, 1.5],
-    [85,   "Flat Triangle (1m)",   "Land_DomeDebris_01_hex_green_F",  180, 1.5],
-    [100,  "Short Sandbag Wall",   "Land_SandbagBarricade_01_half_F",   0, 1.5],
-    [150,  "Sandbag Barricade",    "Land_SandbagBarricade_01_hole_F",   0, 1.5],
-    [180,  "Concrete Shelter",     "Land_CncShelter_F",                 0,   1],
-    [200,  "Concrete Walkway",     "Land_GH_Platform_F",                0, 3.5],
-    [250,  "Tall Concrete Wall",   "Land_Mil_WallBig_4m_F",             0,   2],
-    [260,  "Portable Light",       "Land_PortableLight_double_F",     180,   1],
-    [300,  "Long Concrete Wall",   "Land_CncBarrierMedium4_F",          0,   3],
-    [400,  "Large Ramp",           "Land_VR_Slope_01_F",                0,   4],
-    [500,  "Bunker Block",         "Land_Bunker_01_blocks_3_F",         0,   2],
-    [500,  "H Barrier",            "Land_HBarrier_3_F",                 0,   2],
-    [750,  "Ladder",               "Land_PierLadder_F",                 0,   1],
-    [800,  "Storage box small",    "Box_NATO_Support_F",                0,   1],
-    [950,  "Stairs",               "Land_GH_Stairs_F",                180,   4],
-    [1000, "Hallogen Lamp",        "Land_LampHalogen_F",               90,   1],
-    [1000, "Double H Barrier",     "Land_HBarrierWall4_F",              0,   4],
-    [1000, "Concrete Platform",    "BlockConcrete_F",                   0, 3.5],
-    [1200, "Storage box large",    "Box_NATO_AmmoVeh_F",                0,   1],
-    [2500, "Static HMG",           "B_HMG_01_high_F",                   0,   1],
-    [3000, "Small Bunker",         "Land_BagBunker_Small_F",          180,   3],
-    [4500, "Pillbox",              "Land_PillboxBunker_01_hex_F",      90, 2.5],
-    [6000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",            0, 3.5],
-    [9500, "Modular Bunker",       "Land_Bunker_01_Small_F",          180, 3.5]
+    [25,    "Long Plank (8m)",        "Land_Plank_01_8m_F",                0,        4,        0,        0],
+    [50,    "Junk Barricade",         "Land_Barricade_01_4m_F",            0,      1.5,        0,        0],
+    [75,    "Small Ramp (1m)",        "Land_Obstacle_Ramp_F",            180,      1.5,        0,        0],
+    [85,    "Flat Triangle (1m)",     "Land_DomeDebris_01_hex_green_F",  180,      1.5,        0,        0],
+    [100,   "Short Sandbag Wall",     "Land_SandbagBarricade_01_half_F",   0,      1.5,        0,        0],
+    [150,   "Sandbag Barricade",      "Land_SandbagBarricade_01_hole_F",   0,      1.5,        0,        0],
+    [180,   "Concrete Shelter",       "Land_CncShelter_F",                 0,        1,        0,        0],
+    [200,   "Concrete Walkway",       "Land_GH_Platform_F",                0,      3.5,        0,        0],
+    [250,   "Tall Concrete Wall",     "Land_Mil_WallBig_4m_F",             0,        2,        0,        0],
+    [260,   "Portable Light",         "Land_PortableLight_double_F",     180,        1,        0,        0],
+    [300,   "Long Concrete Wall",     "Land_CncBarrierMedium4_F",          0,        3,        0,        0],
+    [400,   "Large Ramp",             "Land_VR_Slope_01_F",                0,        4,        0,        0],
+    [500,   "Bunker Block",           "Land_Bunker_01_blocks_3_F",         0,        2,        0,        0],
+    [500,   "H Barrier",              "Land_HBarrier_3_F",                 0,        2,        0,        0],
+    [500,   "Explosive Barrel",       "Land_MetalBarrel_F",                0,        1,        1,        0],	//explosive
+    [750,   "Ladder",                 "Land_PierLadder_F",                 0,        1,        0,        0],
+    [800,   "Storage box small",      "Box_NATO_Support_F",                0,        1,        0,        0],
+    [950,   "Stairs",                 "Land_GH_Stairs_F",                180,        4,        0,        0],
+    [1000,  "Hallogen Lamp",          "Land_LampHalogen_F",               90,        1,        0,        0],
+    [1000,  "Double H Barrier",       "Land_HBarrierWall4_F",              0,        4,        0,        0],
+    [1000,  "Concrete Platform",      "BlockConcrete_F",                   0,      3.5,        0,        0],
+    [1200,  "Storage box large",      "Box_NATO_AmmoVeh_F",                0,        1,        0,        0],
+    [2500,  "Static HMG",             "B_HMG_01_high_F",                   0,        1,        0,        0],
+    [3000,  "Small Bunker",           "Land_BagBunker_Small_F",          180,        3,        0,        0],
+    [4500,  "Pillbox",                "Land_PillboxBunker_01_hex_F",      90,      2.5,        0,        0],
+    [6000,  "Guard Tower",            "Land_Cargo_Patrol_V3_F",            0,      3.5,        0,        0],
+    [9500,  "Modular Bunker",         "Land_Bunker_01_Small_F",          180,      3.5,        0,        0]
 ];
 
 /* Time of Day*/
