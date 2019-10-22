@@ -108,7 +108,7 @@ _roomCount = 0;
 							};
 							case "weapons": {
 								//determine what type of weapon should be spawned
-								_randWeapType = ["launcher","assault","smg","sniper","mg"] selectRandomWeighted [launcherWeapTypeChance,assaultWeapTypeChance,smgWeapTypeChance,sniperWeapTypeChance,mgWeapTypeChance];
+								_randWeapType = ["launcher","assault","smg","sniper","mg","handgun"] selectRandomWeighted [launcherWeapTypeChance,assaultWeapTypeChance,smgWeapTypeChance,sniperWeapTypeChance,mgWeapTypeChance,handgunWeapTypeChance];
 								switch (_randWeapType) do {
 									case "launcher": {
 										_weapon = selectRandom LOOT_WEAPON_LAUNCHER_POOL;
@@ -151,7 +151,7 @@ _roomCount = 0;
 										_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, (floor random (_maxMag - _minMag +1)) + _minMag];
 									};
 									case "handgun": {
-										_weapon = selectRandom LOOT_WEAPON_MG_POOL;
+										_weapon = selectRandom LOOT_WEAPON_HANDGUN_POOL;
 										_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
 										_lootHolder addWeaponCargoGlobal [_weapon, 1];
 										_minMag = magHANDGUN select 0;
@@ -161,7 +161,6 @@ _roomCount = 0;
 								};
 							};
 						};
-
 					};
 					if (LOOT_WHITELIST_MODE > 0) then {
 						switch (floor random 6) do {
