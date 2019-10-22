@@ -140,3 +140,21 @@ List_Charges = [] + _charges;
 
 List_AllWeapons = List_Primaries + List_Secondaries + List_Launchers;
 List_AllClothes = List_Hats + List_Uniforms + List_Glasses;
+List_Sniper = [];
+List_Assault = [];
+List_SMG = [];
+List_MG = [];
+List_Launcher = [];
+_count =  count List_AllWeapons;
+for "_x" from 0 to (_count-1) do {
+    _item = List_AllWeapons select _x;
+	_type = getText (configFile >> "CfgWeapons" >> _item >> "cursor");
+	systemchat str _type;
+	switch (_type) do {
+		case "srifle": {List_Sniper append [_item];};
+		case "arifle": {List_Assault append [_item];};
+		case "smg": {List_SMG append [_item];};
+		case "sgun": {List_SMG append [_item];};	//shotguns included in SMG array since there aren't that many
+		case "mg": {List_MG append [_item];};
+	};
+};

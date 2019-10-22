@@ -49,7 +49,26 @@ LOOT_BLACKLIST = [
     "O_IR_Grenade",
     "I_IR_Grenade"
 ];
-
+//chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
+launcherWeapTypeChance =    10;
+assaultWeapTypeChance =     30;
+smgWeapTypeChance =         35;
+sniperWeapTypeChance =      10;
+mgWeapTypeChance =          10;
+handgunWeapTypeChance =		5;
+//chances in % for what type of item spawns -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
+clothesTypeChance = 		15;
+itemsTypeChance =			15;
+weaponsTypeChance =			30;
+backpacksTypeChance =		15;
+explosivesTypeChance =		25;
+//how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3:
+magLAUNCHER =	[1,3];
+magASSAULT =	[1,3];
+magSMG =		[4,6];
+magSNIPER =		[4,8];
+magMG =			[1,1];
+magHANDGUN =	[2,4];
 /* Whitelist modes */
 /* 0 = Off */
 /* 1 = Only Whitelist Items will spawn as loot */
