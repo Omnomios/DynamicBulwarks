@@ -52,23 +52,24 @@ LOOT_BLACKLIST = [
 //chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
 launcherWeapTypeChance =    10;
 assaultWeapTypeChance =     30;
-smgWeapTypeChance =         35;
-sniperWeapTypeChance =      10;
+smgWeapTypeChance =         30;
+sniperWeapTypeChance =      20;
 mgWeapTypeChance =          10;
-handgunWeapTypeChance =		5;
+handgunWeapTypeChance =		0;  //handguns don't spawn currently
 //chances in % for what type of item spawns -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
 clothesTypeChance = 		15;
-itemsTypeChance =			15;
-weaponsTypeChance =			30;
-backpacksTypeChance =		15;
-explosivesTypeChance =		25;
+itemsTypeChance =			10;
+weaponsTypeChance =			20;
+backpacksTypeChance =		20;
+explosivesTypeChance =		15;
+ammoTypeChance =            20;
 //how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3:
 magLAUNCHER =	[1,3];
 magASSAULT =	[1,3];
 magSMG =		[4,6];
 magSNIPER =		[4,8];
 magMG =			[1,1];
-magHANDGUN =	[2,4];
+magHANDGUN =	[2,4];  //handguns don't spawn currently
 /* Whitelist modes */
 /* 0 = Off */
 /* 1 = Only Whitelist Items will spawn as loot */
@@ -90,7 +91,7 @@ LOOT_APPAREL_POOL   = List_AllClothes + List_Vests - LOOT_BLACKLIST;
 LOOT_ITEM_POOL      = List_Optics + List_Items - LOOT_BLACKLIST;
 LOOT_EXPLOSIVE_POOL = List_Mines + List_Grenades + List_Charges - LOOT_BLACKLIST;
 LOOT_STORAGE_POOL   = List_Backpacks - LOOT_BLACKLIST;
-LOOT_WEAPON_MG_POOL = List_MG;
+LOOT_WEAPON_MG_POOL = List_MG - LOOT_BLACKLIST;
 LOOT_WEAPON_HANDGUN_POOL = List_Secondaries - LOOT_BLACKLIST;
 LOOT_WEAPON_SNIPER_POOL = List_Sniper - LOOT_BLACKLIST;
 LOOT_WEAPON_SMG_POOL = List_SMG - LOOT_BLACKLIST;

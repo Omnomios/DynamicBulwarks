@@ -64,9 +64,16 @@ pointsLootRoom = while {true} do {
 };
 pointsLoot = createVehicle ["Land_Money_F", pointsLootRoom, [], 0, "CAN_COLLIDE"];
 [pointsLoot, ["<t color='#00ff00'>" + "Collect Points", "[_this select 0, _this select 1] execVM 'loot\lootPoints.sqf'; [_this select 0] remoteExec ['removeAllActions', 0];","",1,true,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
-
 //activeLoot pushback pointsLoot;
 
+DBW_selectWeapon = {
+	params["_type"];
+	_type = toUpper _type;
+	_typeString = format ["LOOT_WEAPON_%1_POOL",_type];
+	_pool = call compile _typeString;
+	_weapon = selectRandom _pool;
+	_weapon
+};
 /* Master loot spawner */
 _houseCount = floor random 3; // Mix up the loot houses a bit
 _houseLoot = 0;
@@ -87,8 +94,7 @@ _roomCount = 0;
 					_lootRoomPos = _x;
 					_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
 					if (LOOT_WHITELIST_MODE != 1) then {
-						//determine what type of item should be spawned
-						_randItemType = ["clothes","items","backpacks","explosives","weapons"] selectRandomWeighted [clothesTypeChance,itemsTypeChance,backpacksTypeChance,explosivesTypeChance,weaponsTypeChance];
+						_randItemType = ["clothes","items","backpacks","explosives","weapons","ammo"] selectRandomWeighted [clothesTypeChance,itemsTypeChance,backpacksTypeChance,explosivesTypeChance,weaponsTypeChance,ammoTypeChance];
 						switch (_randItemType) do {
 							case "clothes": {
 								_clothes = selectRandom LOOT_APPAREL_POOL;
@@ -107,58 +113,21 @@ _roomCount = 0;
 								_lootHolder addMagazineCargoGlobal [_explosive, 1 + (floor random 3)];
 							};
 							case "weapons": {
-								//determine what type of weapon should be spawned
-								_randWeapType = ["launcher","assault","smg","sniper","mg","handgun"] selectRandomWeighted [launcherWeapTypeChance,assaultWeapTypeChance,smgWeapTypeChance,sniperWeapTypeChance,mgWeapTypeChance,handgunWeapTypeChance];
-								switch (_randWeapType) do {
-									case "launcher": {
-										_weapon = selectRandom LOOT_WEAPON_LAUNCHER_POOL;
-										_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-										_lootHolder addWeaponCargoGlobal [_weapon, 1];
-										_minMag = magLAUNCHER select 0;
-										_maxMag = magLAUNCHER select 1;
-										_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, (floor random (_maxMag - _minMag +1)) + _minMag];
-									};
-									case "assault": {
-										_weapon = selectRandom LOOT_WEAPON_ASSAULT_POOL;
-										_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-										_lootHolder addWeaponCargoGlobal [_weapon, 1];
-										_minMag = magASSAULT select 0;
-										_maxMag = magASSAULT select 1;
-										_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, (floor random (_maxMag - _minMag +1)) + _minMag];
-									};
-									case "smg": {
-										_weapon = selectRandom LOOT_WEAPON_SMG_POOL;
-										_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-										_lootHolder addWeaponCargoGlobal [_weapon, 1];
-										_minMag = magSMG select 0;
-										_maxMag = magSMG select 1;
-										_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, (floor random (_maxMag - _minMag +1)) + _minMag];
-									};
-									case "sniper": {
-										_weapon = selectRandom LOOT_WEAPON_SNIPER_POOL;
-										_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-										_lootHolder addWeaponCargoGlobal [_weapon, 1];
-										_minMag = magSNIPER select 0;
-										_maxMag = magSNIPER select 1;
-										_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, (floor random (_maxMag - _minMag +1)) + _minMag];
-									};
-									case "mg": {
-										_weapon = selectRandom LOOT_WEAPON_MG_POOL;
-										_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-										_lootHolder addWeaponCargoGlobal [_weapon, 1];
-										_minMag = magMG select 0;
-										_maxMag = magMG select 1;
-										_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, (floor random (_maxMag - _minMag +1)) + _minMag];
-									};
-									case "handgun": {
-										_weapon = selectRandom LOOT_WEAPON_HANDGUN_POOL;
-										_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-										_lootHolder addWeaponCargoGlobal [_weapon, 1];
-										_minMag = magHANDGUN select 0;
-										_maxMag = magHANDGUN select 1;
-										_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, (floor random (_maxMag - _minMag +1)) + _minMag];
-									};
-								};
+								_type = ["launcher","assault","smg","sniper","mg"] selectRandomWeighted [launcherWeapTypeChance,assaultWeapTypeChance,smgWeapTypeChance,sniperWeapTypeChance,mgWeapTypeChance,handgunWeapTypeChance];
+								_weapon = [_type] call DBW_selectWeapon;
+								_lootHolder addWeaponCargoGlobal [_weapon, 1];
+								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
+							};
+							case "ammo": {
+								_type = selectRandom ["launcher","assault","smg","sniper","mg"];
+								_type = toUpper _type;
+								_magString = format ["mag%1",_type];
+								_getMag = call compile _magString; 
+								_getMag params ["_minMag","_maxMag"];
+								_weapon = [_type] call DBW_selectWeapon;
+								_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+								_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, (floor random (_maxMag - _minMag +1)) + _minMag];
 							};
 						};
 					};
