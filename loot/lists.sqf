@@ -47,7 +47,7 @@ for "_x" from 0 to (_count-1) do {
 					_type = getnumber (_weap >> "type");
 					switch (_type) do {
 						case 1: {_primaries = _primaries + [configName _weap];};
-						case 3: {_secondaries = _secondaries + [configName _weap];};
+						case 2: {_secondaries = _secondaries + [configName _weap];};
 						case 4: {_launchers = _launchers + [configName _weap];};
 					};
     		};
@@ -144,15 +144,13 @@ List_Sniper = [];
 List_Assault = [];
 List_SMG = [];
 List_MG = [];
-_count =  count List_AllWeapons;
-for "_x" from 0 to (_count-1) do {
-    _item = List_AllWeapons select _x;
-	_type = getText (configFile >> "CfgWeapons" >> _item >> "cursor");
+{
+ 	_type = getText (configFile >> "CfgWeapons" >> _x >> "cursor");
 	switch (_type) do {
-		case "srifle": {List_Sniper append [_item];};
-		case "arifle": {List_Assault append [_item];};
-		case "smg": {List_SMG append [_item];};
-		case "sgun": {List_SMG append [_item];};	//shotguns included in SMG array since there aren't that many
-		case "mg": {List_MG append [_item];};
+		case "srifle": {List_Sniper append [_x];};
+		case "arifle": {List_Assault append [_x];};
+		case "smg": {List_SMG append [_x];};
+		case "sgun": {List_SMG append [_x];};	//shotguns included in SMG array since there aren't that many
+		case "mg": {List_MG append [_x];};
 	};
-};
+} forEach List_AllWeapons;

@@ -112,14 +112,14 @@ _roomCount = 0;
 							_lootHolder addMagazineCargoGlobal [_explosive, 1 + (floor random 3)];
 						};
 						case "weapons": {
-							_type = ["launcher","assault","smg","sniper","mg"] selectRandomWeighted [launcherWeapTypeChance,assaultWeapTypeChance,smgWeapTypeChance,sniperWeapTypeChance,mgWeapTypeChance,handgunWeapTypeChance];
+							_type = ["launcher","assault","smg","sniper","mg","handgun"] selectRandomWeighted [launcherWeapTypeChance,assaultWeapTypeChance,smgWeapTypeChance,sniperWeapTypeChance,mgWeapTypeChance,handgunWeapTypeChance];
 							_weapon = [_type] call DBW_selectWeapon;
 							_lootHolder addWeaponCargoGlobal [_weapon, 1];
 							_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
 							_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
 						};
 						case "ammo": {
-							_type = selectRandom ["launcher","assault","smg","sniper","mg"];
+							_type = selectRandom ["launcher","assault","smg","sniper","mg","handgun"];
 							_type = toUpper _type;
 							_magString = format ["mag%1",_type];
 							_getMag = call compile _magString; 

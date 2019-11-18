@@ -50,26 +50,26 @@ LOOT_BLACKLIST = [
     "I_IR_Grenade"
 ];
 //chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
-launcherWeapTypeChance =    10;
+launcherWeapTypeChance =    15;
 assaultWeapTypeChance =     30;
-smgWeapTypeChance =         30;
+smgWeapTypeChance =         25;
 sniperWeapTypeChance =      20;
-mgWeapTypeChance =          10;
-handgunWeapTypeChance =		0;  //handguns don't spawn currently
+mgWeapTypeChance =          5;
+handgunWeapTypeChance =		5;
 //chances in % for what type of item spawns -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
 clothesTypeChance = 		15;
 itemsTypeChance =			10;
-weaponsTypeChance =			20;
-backpacksTypeChance =		20;
+weaponsTypeChance =			15;
+backpacksTypeChance =		15;
 explosivesTypeChance =		15;
-ammoTypeChance =            20;
-//how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3:
+ammoTypeChance =            30;
+//how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3, the maximum is also used to determine how much ammo you get from ammo drops:
 magLAUNCHER =	[1,3];
 magASSAULT =	[1,3];
-magSMG =		[4,6];
-magSNIPER =		[4,8];
+magSMG =		[2,5];
+magSNIPER =		[3,6];
 magMG =			[1,1];
-magHANDGUN =	[2,4];  //handguns don't spawn currently
+magHANDGUN =	[2,4];
 /* Whitelist modes */
 /* 0 = Off */
 /* 1 = Only Whitelist Items will spawn as loot */
@@ -84,7 +84,7 @@ LOOT_WHITELIST_WEAPON_SNIPER = [];
 LOOT_WHITELIST_WEAPON_SMG = [];
 LOOT_WHITELIST_WEAPON_ASSAULT = [];
 LOOT_WHITELIST_WEAPON_LAUNCHER = [];
-LOOT_WHITELIST_WEAPON_HANDGUN = []; //doesn't work currently
+LOOT_WHITELIST_WEAPON_HANDGUN = [];
 LOOT_WHITELIST_APPAREL = [];
 LOOT_WHITELIST_ITEM = [];
 LOOT_WHITELIST_EXPLOSIVE = [];
