@@ -169,6 +169,18 @@ if (SpecialWaveType == "defectorWave") then {
 	defectorWave = false;
 };
 
+if (SpecialWaveType == "mgWave") then {
+	mgWave = true;
+} else {
+	mgWave = false;
+};
+
+if (SpecialWaveType == "sniperWave") then {
+	sniperWave = true;
+} else {
+	sniperWave = false;
+};
+
 //Notify start of wave and type of wave
 if (suicideWave) then {
 	["SpecialWarning",["SUICIDE BOMBERS! Don't Let Them Get Close!"]] remoteExec ["BIS_fnc_showNotification", 0];
@@ -237,6 +249,16 @@ if (demineWave) then {
 
 if (defectorWave) then {
 	["SpecialWarning",["NATO Defectors Are Attacking Us!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["Alarm"] remoteExec ["playSound", 0];
+};
+
+if (mgWave) then {
+	["SpecialWarning",["MG Wave, take cover!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["Alarm"] remoteExec ["playSound", 0];
+};
+
+if (sniperWave) then {
+	["SpecialWarning",["Sniper Wave, take cover!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	["Alarm"] remoteExec ["playSound", 0];
 };
 

@@ -67,7 +67,7 @@ for ("_i") from 1 to _unitCount do {
 	_unit setVariable ["points", []];
 	_unit setVariable ["killPointMulti", _killPointMulti];
 
-	if (_randWeapons == 1) then {
+	if (_randWeapons == 1 && {specialWave == false}) then {
 		_unitPrimaryWeap = primaryWeapon _unit;
 		_primaryAmmoTpyes = getArray (configFile >> "CfgWeapons" >> _unitPrimaryWeap >> "magazines");
 		{
@@ -87,9 +87,11 @@ for ("_i") from 1 to _unitCount do {
 
 	if(_attackWave <= PISTOL_HOSTILES) then {
 		removeAllWeapons _unit;
-		_unit addMagazine "16Rnd_9x21_Mag";
-		_unit addMagazine "16Rnd_9x21_Mag";
-		_unit addWeapon "hgun_P07_F";
+		_weap = selectRandom LOOT_WEAPON_HANDGUN_POOL;
+		_ammo = selectRandom getArray (configFile >> "CfgWeapons" >> _weap >> "magazines");
+		for "_i" from 1 to 4 do {_unit addMagazine _ammo;};
+		_unit addWeapon _weap;
+		_unit selectWeapon _weap;
 		if ((floor random 4) == 1) then {
 			_unit additem "FirstAidKit";
 		};
@@ -98,6 +100,25 @@ for ("_i") from 1 to _unitCount do {
 	if (suicideWave) then {
 		removeAllWeapons _unit;
 		_unit addEventHandler ["Killed", CreateHostiles_fnc_suiExplode];
+	};
+
+	if (mgWave) then {
+		removeAllWeapons _unit;
+		_weap = selectRandom LOOT_WEAPON_MG_POOL;
+		_ammo = selectRandom getArray (configFile >> "CfgWeapons" >> _weap >> "magazines");
+		for "_i" from 1 to 3 do {_unit addMagazine _ammo;};
+		_unit addWeaponGlobal _weap;
+		_unit selectWeapon _weap;
+	};
+
+	if (sniperWave) then {
+		removeAllWeapons _unit;
+		_weap = selectRandom LOOT_WEAPON_SNIPER_POOL;
+		_ammoArray = getArray (configFile >> "CfgWeapons" >> _weap >> "magazines");
+		_ammo = selectRandom _ammoArray;
+		for "_i" from 1 to 8 do {_unit addMagazine _ammo;};
+		_unit addWeaponGlobal _weap;
+		_unit selectWeapon _weap;
 	};
 
 	if (demineWave && (floor random 2 == 0) && droneCount <= 15) then {

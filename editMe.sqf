@@ -49,6 +49,7 @@ LOOT_BLACKLIST = [
     "O_IR_Grenade",
     "I_IR_Grenade"
 ];
+/* Loot Chances */
 //chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
 launcherWeapTypeChance =    15;
 assaultWeapTypeChance =     30;
@@ -63,6 +64,7 @@ weaponsTypeChance =			15;
 backpacksTypeChance =		15;
 explosivesTypeChance =		15;
 ammoTypeChance =            30;
+/* Ammo amount */
 //how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3, the maximum is also used to determine how much ammo you get from ammo drops:
 magLAUNCHER =	[1,3];
 magASSAULT =	[1,3];
@@ -130,7 +132,9 @@ specialWave_list= [
 	"suicideWave",
 	"specMortarWave",
 	"nightWave",
-	"defectorWave"
+	"defectorWave",
+    "mgWave",
+    "sniperWave"
 ];
 //starting from this wave the lowSpecialWaveList is used
 lowSpecialWaveStart = 5;
@@ -184,7 +188,7 @@ BULWARK_BUILDITEMS = [
     [1000,  "Double H Barrier",       "Land_HBarrierWall4_F",              0,        4,        0,        0],
     [1000,  "Concrete Platform",      "BlockConcrete_F",                   0,      3.5,        0,        0],
     [1200,  "Storage box large",      "Box_NATO_AmmoVeh_F",                0,        1,        0,        1],    //invincible
-    [2500,  "Static HMG",             "B_HMG_01_high_F",                   0,        1,        0,        0],
+    [2500,  "Static HMG",             "B_HMG_01_high_F",                   0,        1,        0,        1],
     [3000,  "Small Bunker",           "Land_BagBunker_Small_F",          180,        3,        0,        0],
     [4500,  "Pillbox",                "Land_PillboxBunker_01_hex_F",      90,      2.5,        0,        0],
     [6000,  "Guard Tower",            "Land_Cargo_Patrol_V3_F",            0,      3.5,        0,        0],
@@ -203,7 +207,7 @@ if (DAY_TIME_FROM > DAY_TIME_TO) then {
 /* Starter MediKits */
 BULWARK_MEDIKITS = ("BULWARK_MEDIKIT" call BIS_fnc_getParamValue);
 
-//do not edit below unless you know what your doing!
+//DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOUR DOING!
 /* Loot Spawn */
 if (LOOT_WHITELIST_MODE != 1) then {
     LOOT_WEAPON_POOL    = List_AllWeapons - LOOT_BLACKLIST;

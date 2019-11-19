@@ -119,10 +119,10 @@ _roomCount = 0;
 							_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
 						};
 						case "ammo": {
-							_type = selectRandom ["launcher","assault","smg","sniper","mg","handgun"];
+							_type = selectRandom ["launcher","assault","smg","sniper","mg","handgun"];	//could use the weighted random here, not sure what's better for gameplay/balance
 							_type = toUpper _type;
 							_magString = format ["mag%1",_type];
-							_getMag = call compile _magString; 
+							_getMag = call compile _magString;
 							_getMag params ["_minMag","_maxMag"];
 							_weapon = [_type] call DBW_selectWeapon;
 							_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
