@@ -185,6 +185,20 @@ class CfgNotifications
 
 class Params
 {
+	class FILTER_LABEL
+	{
+		title = "======= Mod and DLC settings =======";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
+	};
+	class FILTER_DLC
+	{
+		title = "Exclude DLC content";
+		values[] = {0,1};
+		texts[] = {"None","Exclude Contact"};
+		default = 0;
+	};
 	class HOSTILE_LABEL
 	{
 		title = "======= Wave Settings =======";

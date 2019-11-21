@@ -7,8 +7,13 @@
 **/
 //check if item has modTag
 /*Exclude DLC content or limit to mod*/
-dlcCheck = []; //"enoch","Contact"
-modTag = ["LIB"];
+_dlcParameter = "FILTER_DLC" call BIS_fnc_getParamValue;
+//"enoch","Contact"
+switch (_dlcParameter) do {
+	case 0: {dlcCheck = [];};
+	case 1: {dlcCheck = ["enoch","Contact"];};
+};
+modTag = [];
 DBW_filter = {
 params ["_item"];
 _filter = true;
