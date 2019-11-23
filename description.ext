@@ -59,6 +59,9 @@ class CfgRemoteExec
 		class supplyDrop {};
 		class support {};
 		class airStrike {};
+		class pawneeCas {}; 
+		class ghostHawkCas {}; 
+		class blackfootCas {}; 
 		class ragePack {};
 		class say3DGlobal {};
 		class createBlur {};

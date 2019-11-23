@@ -21,6 +21,9 @@ switch (_type) do {
     case ("airStrike"): {
         [_player, _target, _aircraft] call supports_fnc_airStrike;
     };
+    case ("heliCas"): {
+        [_player, _aircraft] call supports_fnc_heliCas;
+    };  
     case ("ragePack"): {
         // Ragepack is a local effect so it needs to be executed locally
         [] remoteExec ["supports_fnc_ragePack", _player];
