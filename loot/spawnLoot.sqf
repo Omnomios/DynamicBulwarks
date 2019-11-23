@@ -93,7 +93,7 @@ _roomCount = 0;
 				if (!(_x isEqualTo droneRoom) && !(_x isEqualTo satRoom) && !(_x isEqualTo pointsLootRoom)) then {
 					_lootRoomPos = _x;
 					_lootHolder = "WeaponHolderSimulated_Scripted" createVehicle _lootRoomPos;
-					_randItemType = ["clothes","items","backpacks","explosives","weapons","ammo"] selectRandomWeighted [clothesTypeChance,itemsTypeChance,backpacksTypeChance,explosivesTypeChance,weaponsTypeChance,ammoTypeChance];
+					_randItemType = ["clothes","items","backpacks","explosives","weapons"] selectRandomWeighted [clothesTypeChance,itemsTypeChance,backpacksTypeChance,explosivesTypeChance,weaponsTypeChance];
 					switch (_randItemType) do {
 						case "clothes": {
 							_clothes = selectRandom LOOT_APPAREL_POOL;
@@ -116,18 +116,14 @@ _roomCount = 0;
 							_weapon = [_type] call DBW_selectWeapon;
 							_lootHolder addWeaponCargoGlobal [_weapon, 1];
 							_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-							_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, 1];
-						};
-						case "ammo": {
-							_type = selectRandom ["launcher","assault","smg","sniper","mg","handgun"];	//could use the weighted random here, not sure what's better for gameplay/balance
-							_type = toUpper _type;
+							_ammo = selectRandom _ammoArray;
+							_lootHolder addMagazineCargoGlobal [_ammo, 1];
 							_magString = format ["mag%1",_type];
 							_getMag = call compile _magString;
 							_getMag params ["_minMag","_maxMag"];
-							_weapon = [_type] call DBW_selectWeapon;
-							_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-							_lootHolder addMagazineCargoGlobal [selectRandom _ammoArray, (floor random (_maxMag - _minMag +1)) + _minMag];
+							_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
 						};
+
 					};
 					_lootHolder setPos [_lootRoomPos select 0, _lootRoomPos select 1, (_lootRoomPos select 2) + 0.1];
 

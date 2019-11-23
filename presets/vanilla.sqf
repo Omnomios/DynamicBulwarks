@@ -45,10 +45,9 @@ handgunWeapTypeChance =		5;
 //chances in % for what type of item spawns -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
 clothesTypeChance = 		15;
 itemsTypeChance =			10;
-weaponsTypeChance =			15;
-backpacksTypeChance =		15;
-explosivesTypeChance =		15;
-ammoTypeChance =            30;
+weaponsTypeChance =			25;
+backpacksTypeChance =		35;
+explosivesTypeChance =		25;
 //Ammo amount - how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3, the maximum is also used to determine how much ammo you get from ammo drops:
 magLAUNCHER =	[1,3];
 magASSAULT =	[1,3];
@@ -90,7 +89,7 @@ lowSpecialWave_list = [
 	"fogWave",
 	"swticharooWave",
     "specCivs"
-	];
+];
 //comment out the waves you don't like. Don't forget to remove the , behind the last entry
 //list of all special waves you can get on higher waves
 specialWave_list= [
