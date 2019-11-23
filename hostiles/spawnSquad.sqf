@@ -9,7 +9,7 @@
 _randWeapons = "RANDOM_WEAPONS" call BIS_fnc_getParamValue;
 
 if (defectorWave) then { //determine if defect wave and spawn from List defined in EditMe.sqf
-	unitClasses = DEFECTOR_CLASS;
+	unitClasses = LIST_DEFECTOR_CLASS;
 } else {
 	unitClasses = _this select 0;
 };

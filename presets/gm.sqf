@@ -5,19 +5,18 @@
 *
 *  Domain: Client, Server
 **/
-
+/* MOD FILTER */
+modTag = ["gm"]; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class name, use that. For example modTag = ["LIB"] would only spawn Iron Front Weapons. Can use multiple for example:modTag = ["LIB,"NORTH"];
 /* Attacker Waves */
-
-// List_Bandits, List_ParaBandits, List_OPFOR, List_INDEP, List_NATO, List_Viper
-HOSTILE_LEVEL_1 = List_Bandits;  // Wave 0 >
-HOSTILE_LEVEL_2 = List_OPFOR;    // Wave 5 >
-HOSTILE_LEVEL_3 = List_Viper;    // Wave 10 >
-HOSTILE_ARMED_CARS = List_Armour;//expects vehicles
-HOSTILE_ARMOUR = List_ArmedCars; //expects vehicles
-
-HOSTILE_MULTIPLIER = ("HOSTILE_MULTIPLIER" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
-HOSTILE_TEAM_MULTIPLIER = ("HOSTILE_TEAM_MULTIPLIER" call BIS_fnc_getParamValue) / 100;   // How many extra units are added per player
-PISTOL_HOSTILES = ("PISTOL_HOSTILES" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
+// Use group class names
+HOSTILE_LEVEL_1 = ["gm_gc_bgs_infantry_post_str"];    //wave 0
+HOSTILE_LEVEL_2 = ["gm_gc_army_infantry_squad_win"];         //wave 5
+HOSTILE_LEVEL_3 = ["gm_ge_army_infantry_mggroup_str"];         //wave 10
+DEFECTOR_CLASS = ["gm_dk_army_infantry_squad_84_m84"];          //defector special wave units
+PARATROOP_CLASS = ["gm_dk_army_infantry_squad_84_m84"];          //friendly units called in via support
+//use vehicle class names
+HOSTILE_ARMED_CARS = [];    //expects vehicles, generates array of vehicles from config if empty
+HOSTILE_ARMOUR = [];    //expects vehicles, generates array of vehicles from config if empty
 
 /* LOCATION LIST OPTIONS */
 // List_AllCities - for any random City
@@ -26,20 +25,7 @@ PISTOL_HOSTILES = ("PISTOL_HOSTILES" call BIS_fnc_getParamValue);  //What wave e
 // *IMPORTANT* If you get an error using List_SpecificPoint it means that there isn't a building that qualifies. Turning down the "Minimum spawn room size" parameter might help.
 BULWARK_LOCATIONS = List_AllCities;
 
-BULWARK_RADIUS = ("BULWARK_RADIUS" call BIS_fnc_getParamValue);
-BULWARK_MINSIZE = ("BULWARK_MINSIZE" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
-BULWARK_LANDRATIO = ("BULWARK_LANDRATIO" call BIS_fnc_getParamValue);
-LOOT_HOUSE_DENSITY = ("LOOT_HOUSE_DENSITY" call BIS_fnc_getParamValue);
-
-PLAYER_STARTWEAPON = if ("PLAYER_STARTWEAPON" call BIS_fnc_getParamValue == 1) then {true} else {false};
-PLAYER_STARTMAP    = if ("PLAYER_STARTMAP" call BIS_fnc_getParamValue == 1) then {true} else {false};
-PLAYER_STARTNVG    = if ("PLAYER_STARTNVG" call BIS_fnc_getParamValue == 1) then {true} else {false};
-
-/* Respawn */
-RESPAWN_TIME = ("RESPAWN_TIME" call BIS_fnc_getParamValue);
-RESPAWN_TICKETS = ("RESPAWN_TICKETS" call BIS_fnc_getParamValue);
-
-/* Loot Blacklist */
+/* LOOT */
 LOOT_BLACKLIST = [
     "O_Static_Designator_02_weapon_F", // If players find and place CSAT UAVs they count as hostile units and round will not progress
     "O_UAV_06_backpack_F",
@@ -49,11 +35,10 @@ LOOT_BLACKLIST = [
     "O_IR_Grenade",
     "I_IR_Grenade"
 ];
-/* Loot Chances */
-//chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
+//Loot Chances - chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
 launcherWeapTypeChance =    15;
 assaultWeapTypeChance =     30;
-smgWeapTypeChance =         25;
+smgWeapTypeChance =         25;    //shotguns included in SMG array since there aren't that many
 sniperWeapTypeChance =      20;
 mgWeapTypeChance =          5;
 handgunWeapTypeChance =		5;
@@ -64,26 +49,23 @@ weaponsTypeChance =			15;
 backpacksTypeChance =		15;
 explosivesTypeChance =		15;
 ammoTypeChance =            30;
-/* Ammo amount */
-//how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3, the maximum is also used to determine how much ammo you get from ammo drops:
+//Ammo amount - how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3, the maximum is also used to determine how much ammo you get from ammo drops:
 magLAUNCHER =	[1,3];
 magASSAULT =	[1,3];
-magSMG =		[2,5];
+magSMG =		[2,5];      //shotguns included in SMG array since there aren't that many
 magSNIPER =		[3,6];
 magMG =			[1,1];
 magHANDGUN =	[2,4];
 /* Whitelist modes */
 /* 0 = Off */
 /* 1 = Only Whitelist Items will spawn as loot */
-/* 2 = Whitelist items get added to existing loot (increases the chance of loot spawning */
 LOOT_WHITELIST_MODE = 0;
-
 /* Loot Whitelists */
 /* Fill with classname arrays: ["example_item_1", "example_item_2"] */
 /* To use Whitelisting there MUST be at least one applicaple item in each LOOT_WHITELIST array*/
 LOOT_WHITELIST_WEAPON_MG = [];
 LOOT_WHITELIST_WEAPON_SNIPER = [];
-LOOT_WHITELIST_WEAPON_SMG = [];
+LOOT_WHITELIST_WEAPON_SMG = [];     //shotguns included in SMG array since there aren't that many
 LOOT_WHITELIST_WEAPON_ASSAULT = [];
 LOOT_WHITELIST_WEAPON_LAUNCHER = [];
 LOOT_WHITELIST_WEAPON_HANDGUN = [];
@@ -92,29 +74,16 @@ LOOT_WHITELIST_ITEM = [];
 LOOT_WHITELIST_EXPLOSIVE = [];
 LOOT_WHITELIST_STORAGE = [];
 
-/* Random Loot */
-LOOT_HOUSE_DISTRIBUTION = ("LOOT_HOUSE_DISTRIBUTION" call BIS_fnc_getParamValue);  // Every *th house will spwan loot.
-LOOT_ROOM_DISTRIBUTION = ("LOOT_ROOM_DISTRIBUTION" call BIS_fnc_getParamValue);   // Every *th position, within that house will spawn loot.
-LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
-LOOT_SUPPLYDROP = ("LOOT_SUPPLYDROP" call BIS_fnc_getParamValue) / 100;        // Radius of supply drop
-PARATROOP_COUNT = ("PARATROOP_COUNT" call BIS_fnc_getParamValue);
-PARATROOP_CLASS = List_NATO;
-DEFECTOR_CLASS = List_NATO;
-
-/* Points */
-SCORE_KILL = ("SCORE_KILL" call BIS_fnc_getParamValue);                 // Base Points for a kill
-SCORE_HIT = ("SCORE_HIT" call BIS_fnc_getParamValue);                   // Every Bullet hit that doesn't result in a kill
-SCORE_DAMAGE_BASE = ("SCORE_DAMAGE_BASE" call BIS_fnc_getParamValue);   // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
+/* POINTS */
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
-
-/*Point multipliers of SCORE_KILL for different waves */
+//Point multipliers of SCORE_KILL for different waves
 HOSTILE_LEVEL_1_POINT_SCORE = 0.75;
 HOSTILE_LEVEL_2_POINT_SCORE = 1;
 HOSTILE_LEVEL_3_POINT_SCORE = 1.50;
 HOSTILE_CAR_POINT_SCORE = 2;
 HOSTILE_ARMOUR_POINT_SCORE = 4;
 
-/* Special Waves */
+/* SPECIAL WAVES */
 //comment out the waves you don't like. Don't forget to remove the , behind the last entry
 //list of special waves you can get early on
 lowSpecialWave_list = [
@@ -146,8 +115,8 @@ specialWaveRepeat = false;
 //if true, every wave starting with the lowSpecialWaveStart will be a special wave
 everyWaveSpecial = false;
 
-/* Comment out or delete the below support items to prevent the player from buying them */
-
+/* SUPPORT */
+//Comment out or delete the below support items to prevent the player from buying them
 BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",             "reconUAV"],
     [1680, "Emergency Teleport",   "telePlode"],
@@ -188,51 +157,10 @@ BULWARK_BUILDITEMS = [
     [1000,  "Double H Barrier",       "Land_HBarrierWall4_F",              0,        4,        0,        0],
     [1000,  "Concrete Platform",      "BlockConcrete_F",                   0,      3.5,        0,        0],
     [1200,  "Storage box large",      "Box_NATO_AmmoVeh_F",                0,        1,        0,        1],    //invincible
-    [2500,  "Static HMG",             "B_HMG_01_high_F",                   0,        1,        0,        1],
+    [2500,  "Static HMG",             "B_HMG_01_high_F",                   0,        1,        0,        1],    //invincible
     [3000,  "Small Bunker",           "Land_BagBunker_Small_F",          180,        3,        0,        0],
     [4500,  "Pillbox",                "Land_PillboxBunker_01_hex_F",      90,      2.5,        0,        0],
-    [6000,  "Guard Tower",            "Land_Cargo_Patrol_V3_F",            0,      3.5,        0,        0],
+    [5000, "Guard Tower",            "Land_Cargo_Patrol_V3_F",           180,        3,        0,        0],
+    [6500, "Tall Tower",              "land_gm_tower_bt_11_60",           90,        3,        0,        0],
     [9500,  "Modular Bunker",         "Land_Bunker_01_Small_F",          180,      3.5,        0,        0]
 ];
-
-/* Time of Day*/
-DAY_TIME_FROM = ("DAY_TIME_FROM" call BIS_fnc_getParamValue);
-DAY_TIME_TO = ("DAY_TIME_TO" call BIS_fnc_getParamValue);
-
-// Check for sneaky inverted configuration. FROM should always be before TO.
-if (DAY_TIME_FROM > DAY_TIME_TO) then {
-    DAY_TIME_FROM = DAY_TIME_TO - 2;
-};
-
-/* Starter MediKits */
-BULWARK_MEDIKITS = ("BULWARK_MEDIKIT" call BIS_fnc_getParamValue);
-
-//DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOUR DOING!
-/* Loot Spawn */
-if (LOOT_WHITELIST_MODE != 1) then {
-    LOOT_WEAPON_POOL    = List_AllWeapons - LOOT_BLACKLIST;
-    LOOT_APPAREL_POOL   = List_AllClothes + List_Vests - LOOT_BLACKLIST;
-    LOOT_ITEM_POOL      = List_Optics + List_Items - LOOT_BLACKLIST;
-    LOOT_EXPLOSIVE_POOL = List_Mines + List_Grenades + List_Charges - LOOT_BLACKLIST;
-    LOOT_STORAGE_POOL   = List_Backpacks - LOOT_BLACKLIST;
-    LOOT_WEAPON_MG_POOL = List_MG - LOOT_BLACKLIST;
-    LOOT_WEAPON_HANDGUN_POOL = List_Secondaries - LOOT_BLACKLIST;
-    LOOT_WEAPON_SNIPER_POOL = List_Sniper - LOOT_BLACKLIST;
-    LOOT_WEAPON_SMG_POOL = List_SMG - LOOT_BLACKLIST;
-    LOOT_WEAPON_ASSAULT_POOL = List_Assault - LOOT_BLACKLIST;
-    LOOT_WEAPON_LAUNCHER_POOL = List_Launchers - LOOT_BLACKLIST;
-}
-else
-{
-    LOOT_WEAPON_POOL    = LOOT_WHITELIST_WEAPON_MG + LOOT_WHITELIST_WEAPON_SNIPER + LOOT_WHITELIST_WEAPON_SMG + LOOT_WHITELIST_WEAPON_ASSAULT + LOOT_WHITELIST_WEAPON_LAUNCHER + LOOT_WHITELIST_WEAPON_HANDGUN;
-    LOOT_APPAREL_POOL   = LOOT_WHITELIST_APPAREL;
-    LOOT_ITEM_POOL      = LOOT_WHITELIST_ITEM;
-    LOOT_EXPLOSIVE_POOL = LOOT_WHITELIST_EXPLOSIVE;
-    LOOT_STORAGE_POOL   = LOOT_WHITELIST_STORAGE;
-    LOOT_WEAPON_MG_POOL = LOOT_WHITELIST_WEAPON_MG;
-    LOOT_WEAPON_HANDGUN_POOL = LOOT_WHITELIST_WEAPON_HANDGUN;
-    LOOT_WEAPON_SNIPER_POOL = LOOT_WHITELIST_WEAPON_SNIPER;
-    LOOT_WEAPON_SMG_POOL = LOOT_WHITELIST_WEAPON_SMG;
-    LOOT_WEAPON_ASSAULT_POOL = LOOT_WHITELIST_WEAPON_ASSAULT;
-    LOOT_WEAPON_LAUNCHER_POOL = LOOT_WHITELIST_WEAPON_LAUNCHER;
-};

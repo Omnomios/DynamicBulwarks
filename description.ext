@@ -199,6 +199,13 @@ class Params
 		texts[] = {"None","Exclude Contact"};
 		default = 0;
 	};
+	class FILTER_PRESET
+	{
+		title = "Presets";
+		values[] = {0,1,2,3};
+		texts[] = {"Normal","WW2 (IFA3)","Global Mobilization","Custom"};
+		default = 0;
+	};
 	class HOSTILE_LABEL
 	{
 		title = "======= Wave Settings =======";
