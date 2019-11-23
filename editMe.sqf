@@ -97,18 +97,15 @@ HOSTILE_ARMOUR_POINT_SCORE = 4;
 /* Comment out or delete the below support items to prevent the player from buying them */
 
 BULWARK_SUPPORTITEMS = [
-    [800,  "Recon UAV",						    "reconUAV"],
-    [1680, "Emergency Teleport",	 		    "telePlode"],
-    [1950, "Paratroopers",						"paraDrop"],
-    [3850, "Missile CAS",						"airStrike"],
-    [4220, "Mine Cluster Shell",				"mineField"],
-    [4690, "Rage Stimpack",						"ragePack"],
-	[5000, "Helicopter CAS (Pawnee)",			"pawneeCas"],
-    [5930, "Mind Control Gas",				    "mindConGas"],
-    [6666, "ARMAKART TM",						"armaKart"],
-	[7500, "Helicopter CAS (Ghost Hawk)",		"ghostHawkCas"],
-    [7500, "Predator Drone",					"droneControl"],
-    [10000, "Helicopter CAS (Blackfoot)",		"blackfootCas"]
+    [800,  "Recon UAV",             "reconUAV"],
+    [1680, "Emergency Teleport",   "telePlode"],
+    [1950, "Paratroopers",          "paraDrop"],
+    [3850, "Missile CAS",          "airStrike"],
+    [4220, "Mine Cluster Shell",   "mineField"],
+    [4690, "Rage Stimpack",         "ragePack"],
+    [5930, "Mind Control Gas",    "mindConGas"],
+    [6666, "ARMAKART TM",           "armaKart"],
+    [7500, "Predator Drone",    "droneControl"]
 ];
 
 /* Objects the Player can buy */
