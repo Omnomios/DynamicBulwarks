@@ -62,7 +62,9 @@ class CfgRemoteExec
 		class ragePack {};
 		class say3DGlobal {};
 		class createBlur {};
-		class suiExplode{};
+		class suiExplode {};
+		class artillery {};
+		class artilleryBarage {};
 	};
 };
 
