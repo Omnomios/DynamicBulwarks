@@ -321,6 +321,44 @@ class Params
 		default = 0;
 	};
 
+	class BULWARK_STARTLOCATION
+	{		
+		title = "Starting Location";
+		values[] = { 
+			0,
+			99,
+			1,
+			2,
+			3,
+			4,
+			5,
+			6,
+			7,
+			8,
+			9,
+			10,
+			11,
+			12
+		};
+		texts[] = {
+			"Completely Random",
+			"Random From List",
+			"Athira", 
+			"Factory 1", 
+			"Factory 2", 
+			"Gravia", 
+			"Ifestiona",
+			"Kavala 1",
+			"Kavala 2",
+			"Military 1",
+			"Military 2",
+			"Military 3",
+			"Rodopoli",
+			"Topolia"
+		};
+		default = 99;
+	};
+
 	class BULWARK_RADIUS
 	{
 		title = "Mission area size";
