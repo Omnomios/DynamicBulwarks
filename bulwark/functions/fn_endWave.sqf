@@ -37,7 +37,7 @@ publicVariable "RESPAWN_TIME";
 //Kill all mind controlled AI
 {
 	 _x setDamage 1;
-}foreach MIND_CONTROLLED_AI;<
+}foreach MIND_CONTROLLED_AI;
 MIND_CONTROLLED_AI = [];
 publicVariable "MIND_CONTROLLED_AI";
 
