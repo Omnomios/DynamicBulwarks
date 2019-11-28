@@ -131,7 +131,8 @@ HOSTILE_ARMOUR_POINT_SCORE = 4;
 lowSpecialWave_list = [
 	"fogWave",
 	"switcharooWave",
-    "specCivs"
+    "specCivs",
+	"ptrdWave"
 	];
 //comment out the waves you don't like. Don't forget to remove the , behind the last entry
 //list of all special waves you can get on higher waves
@@ -146,7 +147,8 @@ specialWave_list= [
 	"defectorWave",
     "mgWave",
     "sniperWave",
-	"flameWave"
+	"flameWave",
+	"ptrdWave"
 ];
 //starting from this wave the lowSpecialWaveList is used
 lowSpecialWaveStart = 5;

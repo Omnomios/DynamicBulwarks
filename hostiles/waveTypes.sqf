@@ -345,4 +345,42 @@ DBW_FLAMEWAVE = {
 	};
 	waveSpawned = true;
 };
+
+DBW_PTRDWAVE = {
+	["SpecialWarning",["MG Wave, take cover!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["Alarm"] remoteExec ["playSound", 0];
+	[] call DBW_determineAndSpawnIfVehicleWave;
+	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];
+	_amount = call DBW_getHostileAmount;
+	_amountGroups = floor (_amount / 5);
+	_amountLeftovers = _amount - (_amountGroups * 5);
+	_skill = attkWave * 0.02 * 2;
+	for ("_i") from 1 to _amountGroups do {
+		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
+		private _group = [_classArray,5,_location] call DBW_spawnGroup;
+		waitUntil {sleep 0.5;!isNil "_group"};
+		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
+		private _init = [_group,_scoreMulti] call DBW_initGroup;
+		private _givePTRD = [_group,["LIB_PTRD"]] call DBW_giveGroupRandPriWeap;
+		{
+			for ("_i") from 1 to 6 do {
+				_x addMagazine "LIB_1Rnd_145x114";
+			};
+		} forEach (units _group);
+	};
+	for ("_i") from 1 to _amountLeftovers do {
+		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
+		private _group = [_classArray,1,_location] call DBW_spawnGroup;
+		waitUntil {sleep 0.5;!isNil "_group"};
+		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
+		private _init = [_group,_scoreMulti] call DBW_initGroup;
+		private _givePTRD = [_group,["LIB_PTRD"]] call DBW_giveGroupRandPriWeap;
+		{
+			for ("_i") from 1 to 6 do {
+				_x addMagazine "LIB_1Rnd_145x114";
+			};
+		} forEach (units _group);
+	};
+	waveSpawned = true;
+};
 //Requires IFA3_AIO_LITE end
