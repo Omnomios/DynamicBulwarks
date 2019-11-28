@@ -1,13 +1,13 @@
 /*
 *All functions with the DBW_ tag used in this file can be found in hostiles\createWave.sqf. Here is a list of what parameters these functions expect and/or return:
-* DBW_determineAndSpawnIfVehicleWave - expects nothing and returns nothing. If you don't want vehicles spawning in your special wave leave it out.
-* DBW_getHostileListsAndKillMulti - Expects nothing. Returns Array of Clasnames, NUMBER (KillpointsMultiplier). First is an array of classnames. Second one is score mutliplier for killpoints. If you want to use another list of classNames or a specific one: Use the function to just grab the score multi. Example: Defector Wave
-* DBW_initGroup - Expects Group,KillpointsMultiplier (NUMBER) -- Function initializes units in the group. Gives them waypoints, adds to Zeus and so on.
-* DBW_getHostileAmount - expects nothing and returns NUMBER of hostiles that should spawn in the wave. 
-* DBW_spawnGroup - Expects: Array of classnames, NUMBER (groupsize), Position. Returns: The created group. -- spawns a group.
-* DBW_setGroupSkill - Expects Group,NUMBER (Skill) -- sets units skill values
-* DBW_giveGroupRandPriWeap - Expects Group, ARRAY (Weapons) -- gives units in group random primary weapons
-* DBW_giveGroupRandSecWeap - Expects Group, ARRAY (Weapons) -- gives units in group random secondary weapons (pistols)
+* DBW_determineAndSpawnIfVehicleWave - Expects nothing and returns nothing. If you don't want vehicles spawning in your special wave leave it out.
+* DBW_getHostileListsAndKillMulti -    Expects nothing. Returns Array of Clasnames, NUMBER (KillpointsMultiplier). First is an array of classnames. Second one is score mutliplier for killpoints. If you want to use another list of classNames or a specific one: Use the function to just grab the score multi. Example: Defector Wave
+* DBW_initGroup -                      Expects Group,KillpointsMultiplier (NUMBER) -- Function initializes units in the group. Gives them waypoints, adds to Zeus and so on.
+* DBW_getHostileAmount -               Expects nothing and returns NUMBER of hostiles that should spawn in the wave. 
+* DBW_spawnGroup -                     Expects Array of classnames, NUMBER (groupsize), Position. Returns: The created group. -- spawns a group.
+* DBW_setGroupSkill -                  Expects Group,NUMBER (Skill) Returns Nothing -- sets units skill values
+* DBW_giveGroupRandPriWeap -           Expects Group, ARRAY (Weapons) Returns nothing -- gives units in group random primary weapons
+* DBW_giveGroupRandSecWeap -           Expects Group, ARRAY (Weapons) Returns nothing -- gives units in group random secondary weapons (pistols)
 */
 
 
@@ -270,7 +270,7 @@ DBW_PISTOLWAVE = {
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		private _randWeap = [_group,List_Secondaries] call DBW_giveGroupRandSecWeap;
 		{
-			if ((floor random 4) == 1) then {
+			if ((floor random 3) == 1) then {
 				_x additem "FirstAidKit";
 			};
 		} forEach (units _group);
@@ -282,6 +282,11 @@ DBW_PISTOLWAVE = {
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		private _randWeap = [_group,List_Secondaries] call DBW_giveGroupRandSecWeap;
+		{
+			if ((floor random 3) == 1) then {
+				_x additem "FirstAidKit";
+			};
+		} forEach (units _group);
 	};
 	waveSpawned = true;
 };
@@ -307,12 +312,9 @@ DBW_FLAMEWAVE = {
 			removeAllItems _unit;
 			removeAllAssignedItems _unit;
 			removeBackpack _unit;
-			// "Add weapons";
 			_unit addWeapon "LIB_M2_Flamethrower";
 			_unit addPrimaryWeaponItem "LIB_M2_Flamethrower_Mag";
-			// "Add containers";
 			_unit addBackpack "B_LIB_US_M2Flamethrower";
-			// "Add items to containers";
 			_unit addItemToVest "FirstAidKit";
 			for "_i" from 1 to 5 do {_unit addItemToVest "LIB_No77";};
 			for "_i" from 1 to 20 do {_unit addItemToBackpack "LIB_No77";};
@@ -331,12 +333,9 @@ DBW_FLAMEWAVE = {
 			removeAllItems _unit;
 			removeAllAssignedItems _unit;
 			removeBackpack _unit;
-			// "Add weapons";
 			_unit addWeapon "LIB_M2_Flamethrower";
 			_unit addPrimaryWeaponItem "LIB_M2_Flamethrower_Mag";
-			// "Add containers";
 			_unit addBackpack "B_LIB_US_M2Flamethrower";
-			// "Add items to containers";
 			_unit addItemToVest "FirstAidKit";
 			for "_i" from 1 to 5 do {_unit addItemToVest "LIB_No77";};
 			for "_i" from 1 to 20 do {_unit addItemToBackpack "LIB_No77";};
@@ -347,7 +346,7 @@ DBW_FLAMEWAVE = {
 };
 
 DBW_PTRDWAVE = {
-	["SpecialWarning",["MG Wave, take cover!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["SpecialWarning",["PTRD Wave, incoming!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	["Alarm"] remoteExec ["playSound", 0];
 	[] call DBW_determineAndSpawnIfVehicleWave;
 	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];

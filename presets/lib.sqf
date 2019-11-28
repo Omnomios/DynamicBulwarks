@@ -89,14 +89,14 @@ handgunWeapTypeChance =		5;
 clothesTypeChance = 		15;
 itemsTypeChance =			10;
 weaponsTypeChance =			25;
-backpacksTypeChance =		35;
-explosivesTypeChance =		25;
+backpacksTypeChance =		20;
+explosivesTypeChance =		30;
 //Ammo amount - how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3, the maximum is also used to determine how much ammo you get from ammo drops:
-magLAUNCHER =	[1,3];
-magASSAULT =	[1,3];
-magSMG =		[2,5];      //shotguns included in SMG array since there aren't that many
-magSNIPER =		[3,6];
-magMG =			[1,1];
+magLAUNCHER =	[3,6];
+magASSAULT =	[2,5];
+magSMG =		[4,6];      //shotguns included in SMG array since there aren't that many
+magSNIPER =		[2,4];
+magMG =			[2,4];
 magHANDGUN =	[2,4];
 /* Whitelist modes */
 /* 0 = Off */
@@ -131,7 +131,7 @@ HOSTILE_ARMOUR_POINT_SCORE = 4;
 lowSpecialWave_list = [
 	"fogWave",
 	"switcharooWave",
-    "specCivs",
+//  "specCivs",
 	"ptrdWave"
 	];
 //comment out the waves you don't like. Don't forget to remove the , behind the last entry
@@ -147,8 +147,8 @@ specialWave_list= [
 	"defectorWave",
     "mgWave",
     "sniperWave",
-	"flameWave",
-	"ptrdWave"
+	"flameWave",	//only works if IFA_AIO_LITE loaded
+	"ptrdWave"		//only works if IFA_AIO_LITE loaded
 ];
 //starting from this wave the lowSpecialWaveList is used
 lowSpecialWaveStart = 5;
@@ -184,7 +184,7 @@ BULWARK_BUILDITEMS = [
     [50,  	"Junk Barricade",       		"Land_Barricade_01_4m_F",         			   	0, 		1.5,	0,	0],
 	[50, 	"Hedgehog",						"Land_I44_HedgeHog",							0,		2,		0,	0],
 	[50, 	"ConcreteKerb",					"Land_ConcreteKerb_02_2m_F",					0,		1,		0,	0],
-    [75,   	"Small Ramp (1m)",      		"Land_Obstacle_Ramp_F",          				180,	1.5,	0,	0],
+    [75,   	"Small Ramp (1m)",      		"Land_Obstacle_Ramp_F",          				180,	1.5,	0,	1], //invincible
     [85,   	"Flat Triangle (1m)",   		"Land_DomeDebris_01_hex_green_F",  				180,	1.5,	0,	0],
     [100,  	"Short Sandbag Wall",   		"Land_SandbagBarricade_01_half_F",   			0,		1.5,	0,	0],
 	[100,  	"Gate",  						"Land_TinWall_01_m_gate_v1_F",					0,		1.5,	0,	0],
