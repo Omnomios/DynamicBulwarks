@@ -285,3 +285,64 @@ DBW_PISTOLWAVE = {
 	};
 	waveSpawned = true;
 };
+//Requires IFA3_AIO_LITE start
+DBW_FLAMEWAVE = {
+	["SpecialWarning",["FLAMETHROWER WAVE, INCOMING!"]] remoteExec ["BIS_fnc_showNotification", 0];
+	["Alarm"] remoteExec ["playSound", 0];
+	[] call DBW_determineAndSpawnIfVehicleWave;
+	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];
+	_amount = call DBW_getHostileAmount;
+	_amountGroups = floor (_amount / 5);
+	_amountLeftovers = _amount - (_amountGroups * 5);
+	_skill = attkWave * 0.02;
+	for ("_i") from 1 to _amountGroups do {
+		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
+		private _group = [_classArray,5,_location] call DBW_spawnGroup;
+		waitUntil {sleep 0.5;!isNil "_group"};
+		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
+		private _init = [_group,_scoreMulti] call DBW_initGroup;
+		{
+			_unit = _x;
+			removeAllWeapons _unit;
+			removeAllItems _unit;
+			removeAllAssignedItems _unit;
+			removeBackpack _unit;
+			// "Add weapons";
+			_unit addWeapon "LIB_M2_Flamethrower";
+			_unit addPrimaryWeaponItem "LIB_M2_Flamethrower_Mag";
+			// "Add containers";
+			_unit addBackpack "B_LIB_US_M2Flamethrower";
+			// "Add items to containers";
+			_unit addItemToVest "FirstAidKit";
+			for "_i" from 1 to 5 do {_unit addItemToVest "LIB_No77";};
+			for "_i" from 1 to 20 do {_unit addItemToBackpack "LIB_No77";};
+			_unit enableStamina false;
+		} forEach (units _group);
+	};
+	for ("_i") from 1 to _amountLeftovers do {
+		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
+		private _group = [_classArray,1,_location] call DBW_spawnGroup;
+		waitUntil {sleep 0.5;!isNil "_group"};
+		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
+		private _init = [_group,_scoreMulti] call DBW_initGroup;
+		{
+			_unit = _x;
+			removeAllWeapons _unit;
+			removeAllItems _unit;
+			removeAllAssignedItems _unit;
+			removeBackpack _unit;
+			// "Add weapons";
+			_unit addWeapon "LIB_M2_Flamethrower";
+			_unit addPrimaryWeaponItem "LIB_M2_Flamethrower_Mag";
+			// "Add containers";
+			_unit addBackpack "B_LIB_US_M2Flamethrower";
+			// "Add items to containers";
+			_unit addItemToVest "FirstAidKit";
+			for "_i" from 1 to 5 do {_unit addItemToVest "LIB_No77";};
+			for "_i" from 1 to 20 do {_unit addItemToBackpack "LIB_No77";};
+			_unit enableStamina false;
+		} forEach (units _group);
+	};
+	waveSpawned = true;
+};
+//Requires IFA3_AIO_LITE end

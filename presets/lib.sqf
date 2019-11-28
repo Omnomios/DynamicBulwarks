@@ -145,7 +145,8 @@ specialWave_list= [
 	"nightWave",
 	"defectorWave",
     "mgWave",
-    "sniperWave"
+    "sniperWave",
+	"flameWave"
 ];
 //starting from this wave the lowSpecialWaveList is used
 lowSpecialWaveStart = 5;
