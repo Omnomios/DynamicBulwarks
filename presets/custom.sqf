@@ -14,11 +14,11 @@ modTag = []; //limits loot and vehicles to a specific mod. Mods usually have a t
 HOSTILE_LEVEL_1 = ["BanditCombatGroup"];    //wave 0
 HOSTILE_LEVEL_2 = ["OIA_InfSquad"];         //wave 5
 HOSTILE_LEVEL_3 = ["OI_ViperTeam"];         //wave 10
+HOSTILE_LEVEL_4 = ["OI_ViperTeam"];         //wave 15
 DEFECTOR_CLASS = ["BUS_InfSquad"];          //defector special wave units
 PARATROOP_CLASS = ["BUS_InfSquad"];          //friendly units called in via support
-//use vehicle class names
-HOSTILE_ARMED_CARS = [];    //expects vehicles, generates array of vehicles from config if empty
-HOSTILE_ARMOUR = [];    //expects vehicles, generates array of vehicles from config if empty
+
+/* Vehicle Whitelist and Blacklists */   //not done yet
 
 /* LOCATION LIST OPTIONS */
 // List_AllCities - for any random City
@@ -89,7 +89,7 @@ HOSTILE_ARMOUR_POINT_SCORE = 4;
 //list of special waves you can get early on
 lowSpecialWave_list = [
 	"fogWave",
-	"swticharooWave",
+	"switcharooWave",
     "specCivs"
 	];
 //comment out the waves you don't like. Don't forget to remove the , behind the last entry
@@ -98,7 +98,7 @@ specialWave_list= [
 	"specCivs",
 	"fogWave",
 	"demineWave",
-	"swticharooWave",
+	"switcharooWave",
 	"suicideWave",
 	"specMortarWave",
 	"nightWave",

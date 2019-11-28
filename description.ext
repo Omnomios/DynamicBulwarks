@@ -313,9 +313,9 @@ class Params
 	class RANDOM_WEAPONS
 	{
 		title = "Randomize Hostile Weapons";
-		values[] = {"true", "false"};
-		texts[] = {"Yes", "No"};
-		default = "No";
+		values[] = {0,1};
+		texts[] = {"No","Yes"};
+		default = 0;
 	};
 
 	class HUD_POINT_HITMARKERS

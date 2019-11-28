@@ -1,6 +1,7 @@
 HOSTILE_MULTIPLIER = ("HOSTILE_MULTIPLIER" call BIS_fnc_getParamValue);  // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
 HOSTILE_TEAM_MULTIPLIER = ("HOSTILE_TEAM_MULTIPLIER" call BIS_fnc_getParamValue) / 100;   // How many extra units are added per player
 PISTOL_HOSTILES = ("PISTOL_HOSTILES" call BIS_fnc_getParamValue);  //What wave enemies stop only using pistols
+RANDOM_WEAPONS = if ("RANDOM_WEAPONS" call BIS_fnc_getParamValue == 1) then {true} else {false};
 BULWARK_RADIUS = ("BULWARK_RADIUS" call BIS_fnc_getParamValue);
 BULWARK_MINSIZE = ("BULWARK_MINSIZE" call BIS_fnc_getParamValue);   // Spawn room must be bigger than x square metres
 BULWARK_LANDRATIO = ("BULWARK_LANDRATIO" call BIS_fnc_getParamValue);
@@ -29,3 +30,6 @@ if (DAY_TIME_FROM > DAY_TIME_TO) then {
 };
 /* Starter MediKits */
 BULWARK_MEDIKITS = ("BULWARK_MEDIKIT" call BIS_fnc_getParamValue);
+
+
+

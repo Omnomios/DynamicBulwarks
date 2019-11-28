@@ -6,17 +6,17 @@
 *  Domain: Client, Server
 **/
 /* MOD FILTER */
-modTag = []; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class name, use that. For example modTag = ["LIB"] would only spawn Iron Front Weapons. Can use multiple for example:modTag = ["LIB,"NORTH"];
+modTag = []; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class names, use that. For example modTag = ["LIB"] would only spawn Iron Front Weapons. Can use multiple for example:modTag = ["LIB,"NORTH"];
 /* Attacker Waves */
 // Use group class names
 HOSTILE_LEVEL_1 = ["BanditCombatGroup"];    //wave 0
 HOSTILE_LEVEL_2 = ["OIA_InfSquad"];         //wave 5
 HOSTILE_LEVEL_3 = ["OI_ViperTeam"];         //wave 10
+HOSTILE_LEVEL_4 = ["OI_ViperTeam"];         //wave 15
 DEFECTOR_CLASS = ["BUS_InfSquad"];          //defector special wave units
-PARATROOP_CLASS = ["BUS_InfSquad"];          //friendly units called in via support
-//use vehicle class names
-HOSTILE_ARMED_CARS = [];    //expects vehicles, generates array of vehicles from config if empty
-HOSTILE_ARMOUR = [];    //expects vehicles, generates array of vehicles from config if empty
+PARATROOP_CLASS = ["BUS_InfSquad"];         //friendly units called in via support
+
+/* Vehicle Whitelist and Blacklists */   //not done yet
 
 /* LOCATION LIST OPTIONS */
 // List_AllCities - for any random City
@@ -79,6 +79,7 @@ SCORE_RANDOMBOX = 950;  // Cost to spin the box
 HOSTILE_LEVEL_1_POINT_SCORE = 0.75;
 HOSTILE_LEVEL_2_POINT_SCORE = 1;
 HOSTILE_LEVEL_3_POINT_SCORE = 1.50;
+HOSTILE_LEVEL_4_POINT_SCORE = 1.75;
 HOSTILE_CAR_POINT_SCORE = 2;
 HOSTILE_ARMOUR_POINT_SCORE = 4;
 
@@ -87,7 +88,7 @@ HOSTILE_ARMOUR_POINT_SCORE = 4;
 //list of special waves you can get early on
 lowSpecialWave_list = [
 	"fogWave",
-	"swticharooWave",
+	"switcharooWave",
     "specCivs"
 ];
 //comment out the waves you don't like. Don't forget to remove the , behind the last entry
@@ -96,7 +97,7 @@ specialWave_list= [
 	"specCivs",
 	"fogWave",
 	"demineWave",
-	"swticharooWave",
+	"switcharooWave",
 	"suicideWave",
 	"specMortarWave",
 	"nightWave",

@@ -12,11 +12,11 @@ modTag = ["gm"]; //limits loot and vehicles to a specific mod. Mods usually have
 HOSTILE_LEVEL_1 = ["gm_gc_bgs_infantry_post_str"];    //wave 0
 HOSTILE_LEVEL_2 = ["gm_gc_army_infantry_squad_win"];         //wave 5
 HOSTILE_LEVEL_3 = ["gm_ge_army_infantry_mggroup_str"];         //wave 10
+HOSTILE_LEVEL_4 = ["gm_ge_army_infantry_mggroup_str"];      //wave 15
 DEFECTOR_CLASS = ["gm_dk_army_infantry_squad_84_m84"];          //defector special wave units
 PARATROOP_CLASS = ["gm_dk_army_infantry_squad_84_m84"];          //friendly units called in via support
-//use vehicle class names
-HOSTILE_ARMED_CARS = [];    //expects vehicles, generates array of vehicles from config if empty
-HOSTILE_ARMOUR = [];    //expects vehicles, generates array of vehicles from config if empty
+
+/* Vehicle Whitelist and Blacklists */   //not done yet
 
 /* LOCATION LIST OPTIONS */
 // List_AllCities - for any random City
@@ -87,7 +87,7 @@ HOSTILE_ARMOUR_POINT_SCORE = 4;
 //list of special waves you can get early on
 lowSpecialWave_list = [
 	"fogWave",
-	"swticharooWave",
+	"switcharooWave",
     "specCivs"
 	];
 //comment out the waves you don't like. Don't forget to remove the , behind the last entry
@@ -96,7 +96,7 @@ specialWave_list= [
 	"specCivs",
 	"fogWave",
 	"demineWave",
-	"swticharooWave",
+	"switcharooWave",
 	"suicideWave",
 	"specMortarWave",
 	"nightWave",

@@ -19,14 +19,14 @@ for [{_i = 0}, {_i < _cfgVehiclesConfigCount}, {_i = _i + 1}] do
       if (_side == _civSide) then
       {
         civClassArr set [count civClassArr, configName _config];
-      }
-    }
+      };
+    };
   };
 };
 
 for [{_i=0}, {_i<20}, {_i=_i+1}] do {
   //find random location for Civ to spawn
-  _civRoom = while {true} do {
+  while {true} do {
     _civBulding = selectRandom lootHouses;
     _civRooms = _civBulding buildingPos -1;
     _civRoom = selectRandom _civRooms;

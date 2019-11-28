@@ -77,7 +77,7 @@ if (count _targetPos == 0) then {
       _self = _this select 0;
       removeVest _self;
       removeBackpack _self;
-      removeAllWeapons _self:
+      removeAllWeapons _self;
       removeAllAssignedItems _self;
       }];
   };

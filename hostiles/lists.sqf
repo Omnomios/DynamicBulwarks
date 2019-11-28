@@ -8,8 +8,11 @@
 LIST_HOSTILE_LEVEL_1 = [];
 LIST_HOSTILE_LEVEL_2 = [];
 LIST_HOSTILE_LEVEL_3 = [];
+LIST_HOSTILE_LEVEL_4 = [];
 LIST_DEFECTOR_CLASS = [];
 LIST_PARATROOP_CLASS = [];
+HOSTILE_ARMED_CARS = [];
+HOSTILE_ARMOUR = [];
 _allHostiles = HOSTILE_LEVEL_1 + HOSTILE_LEVEL_2 + HOSTILE_LEVEL_3 + DEFECTOR_CLASS + PARATROOP_CLASS;
 private _allSides = (configFile >> "CfgGroups") call BIS_fnc_getCfgSubClasses;
 {
@@ -31,6 +34,7 @@ private _allSides = (configFile >> "CfgGroups") call BIS_fnc_getCfgSubClasses;
 						if (_group in HOSTILE_LEVEL_1) then {LIST_HOSTILE_LEVEL_1 append [_unitClass];};
 						if (_group in HOSTILE_LEVEL_2) then {LIST_HOSTILE_LEVEL_2 append [_unitClass];};
 						if (_group in HOSTILE_LEVEL_3) then {LIST_HOSTILE_LEVEL_3 append [_unitClass];};
+            if (_group in HOSTILE_LEVEL_4) then {LIST_HOSTILE_LEVEL_4 append [_unitClass];};
             if (_group in DEFECTOR_CLASS) then {LIST_DEFECTOR_CLASS append [_unitClass];};
             if (_group in PARATROOP_CLASS) then {LIST_PARATROOP_CLASS append [_unitClass];};
 					} forEach _units;
@@ -40,7 +44,6 @@ private _allSides = (configFile >> "CfgGroups") call BIS_fnc_getCfgSubClasses;
 	} forEach _factions;
 } forEach _allSides;
 
-if (count HOSTILE_ARMED_CARS == 0 && {count HOSTILE_ARMOUR == 0}) then {
 //armour
   _armouredVehicles = [];
   _cfgVehicles = configFile >> "CfgVehicles";
@@ -95,4 +98,4 @@ if (count HOSTILE_ARMED_CARS == 0 && {count HOSTILE_ARMOUR == 0}) then {
     };
   };
   HOSTILE_ARMED_CARS = _armedCars;
-};
+

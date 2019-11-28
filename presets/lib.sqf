@@ -12,11 +12,11 @@ modTag = ["LIB"]; //limits loot and vehicles to a specific mod. Mods usually hav
 HOSTILE_LEVEL_1 = ["LIB_GER_sentry_squad_3"];    //wave 0
 HOSTILE_LEVEL_2 = ["LIB_GER_infantry_squad"];         //wave 5
 HOSTILE_LEVEL_3 = ["LIB_GER_infantry_squad"];         //wave 10
+HOSTILE_LEVEL_4 = ["LIB_GER_infantry_squad"]; 		//wave 15
 DEFECTOR_CLASS = ["LIB_US_AT_Squad"];          //defector special wave units
 PARATROOP_CLASS = ["LIB_US_AT_Squad"];          //friendly units called in via support
-//use vehicle class names
-HOSTILE_ARMED_CARS = [];    //expects vehicles, generates array of vehicles from config if empty
-HOSTILE_ARMOUR = [];    //expects vehicles, generates array of vehicles from config if empty
+
+/* Vehicle Whitelist and Blacklists */   //not done yet
 
 /* LOCATION LIST OPTIONS */
 // List_AllCities - for any random City
@@ -130,7 +130,7 @@ HOSTILE_ARMOUR_POINT_SCORE = 4;
 //list of special waves you can get early on
 lowSpecialWave_list = [
 	"fogWave",
-	"swticharooWave",
+	"switcharooWave",
     "specCivs"
 	];
 //comment out the waves you don't like. Don't forget to remove the , behind the last entry
@@ -139,7 +139,7 @@ specialWave_list= [
 //	"specCivs",
 //	"fogWave",
 //	"demineWave",
-	"swticharooWave",
+	"switcharooWave",
 	"suicideWave",
 	"specMortarWave",
 	"nightWave",
