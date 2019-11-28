@@ -1,4 +1,5 @@
 /*
+EXAMPLE COMMIT ON HOW TO ADD SPECIAL WAVES: https://github.com/tiwaz1994/DynamicBulwarks/commit/20ebc7b432222ba7a78fbfd41007239389763119
 *All functions with the DBW_ tag used in this file can be found in hostiles\createWave.sqf. Here is a list of what parameters these functions expect and/or return:
 * DBW_determineAndSpawnIfVehicleWave - Expects nothing and returns nothing. If you don't want vehicles spawning in your special wave leave it out.
 * DBW_getHostileListsAndKillMulti -    Expects nothing. Returns Array of Clasnames, NUMBER (KillpointsMultiplier). First is an array of classnames. Second one is score mutliplier for killpoints. If you want to use another list of classNames or a specific one: Use the function to just grab the score multi. Example: Defector Wave
