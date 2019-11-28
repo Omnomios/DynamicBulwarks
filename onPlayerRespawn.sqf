@@ -1,4 +1,4 @@
-waitUntil {!isNil "bulwarkBox"};
+waitUntil {sleep 0.2; !(isNil "bulwarkBox")};
 ["Terminate"] call BIS_fnc_EGSpectator;
 player setVariable ["buildItemHeld", false];
 
