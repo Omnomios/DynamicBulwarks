@@ -8,7 +8,7 @@
 params ["_targetPos", "_cargo", "_aircraft"];
 
 _angle = round random 180;
-_height = 300;
+_height = supportAircraftWaypointHeight;
 _offsX = 0;
 _offsY = 1000;
 _pointX = _offsX*(cos _angle) - _offsY*(sin _angle);
@@ -24,12 +24,20 @@ _agCrew = _agSpawn select 1;	//the units that make up the crew
 _ag = _agSpawn select 2;	//the group
 {_x allowFleeing 0} forEach units _ag;
 
-_agVehicle flyInHeight 100;
+_agVehicle flyInHeight supportAircraftFlyInHeight;
 _agVehicle setpos [getposATL _agVehicle select 0, getposATL _agVehicle select 1, _height];
 
 _reldir = [_dropStart, _targetPos] call BIS_fnc_dirTo;
+_agVehicle setVectorUp [0, 0, 1];
 _agVehicle setdir _reldir;
-
+_vel = velocity _agVehicle;
+_dir = direction _agVehicle;
+_speed = supportAircraftSpeed;
+_agVehicle setVelocity [
+	(_vel select 0) + (sin _dir * _speed), 
+	(_vel select 1) + (cos _dir * _speed), 
+	(_vel select 2)
+];
 supplyDropLatch = false;
 
 _waypoint0 = _ag addwaypoint[_dropTarget,0];

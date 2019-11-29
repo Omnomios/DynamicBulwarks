@@ -127,6 +127,12 @@ BULWARK_SUPPORTITEMS = [
     [6666, "ARMAKART TM",           "armaKart"],
     [7500, "Predator Drone",    "droneControl"]
 ];
+//support settings:
+casAircraft = "B_Plane_CAS_01_DynamicLoadout_F"; //CAS aircraft default: "B_Plane_CAS_01_DynamicLoadout_F"
+supportAircraft = "B_T_VTOL_01_vehicle_F"; //Plane that drops support and paratroopers default: "B_T_VTOL_01_vehicle_F"
+supportAircraftFlyInHeight = 100; //default: 100
+supportAircraftWaypointHeight = 300; //default: 300
+supportAircraftSpeed = 20; // adds speed to the aircraft -- default 20
 
 /* Objects the Player can buy */
 

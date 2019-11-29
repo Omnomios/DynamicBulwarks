@@ -19,6 +19,6 @@ if (count _targetPos == 0) then {
   _group = createGroup WEST;
   _cas = _group createUnit ["ModuleCAS_F", _targetPos , [], 0, ""];
   _cas setDir _angle;
-  _cas setVariable ["vehicle", _aircraft, true];
+  _cas setVariable ["vehicle", casAircraft, true];
   _cas setVariable ["type", 1, true];
 };

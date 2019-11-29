@@ -9,12 +9,12 @@
 modTag = ["LIB"]; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class name, use that. For example modTag = ["LIB"] would only spawn Iron Front Weapons. Can use multiple for example:modTag = ["LIB,"NORTH"];
 /* Attacker Waves */
 // Use group class names
-HOSTILE_LEVEL_1 = ["LIB_GER_sentry_squad_3"];    //wave 0
-HOSTILE_LEVEL_2 = ["LIB_GER_infantry_squad"];         //wave 5
-HOSTILE_LEVEL_3 = ["LIB_GER_infantry_squad"];         //wave 10
-HOSTILE_LEVEL_4 = ["LIB_GER_infantry_squad"]; 		//wave 15
-DEFECTOR_CLASS = ["LIB_US_AT_Squad"];          //defector special wave units
-PARATROOP_CLASS = ["LIB_US_AT_Squad"];          //friendly units called in via support
+HOSTILE_LEVEL_1 = ["LIB_GER_sentry_squad_3"];    		//wave 0
+HOSTILE_LEVEL_2 = ["LIB_GER_infantry_squad"];       	//wave 5
+HOSTILE_LEVEL_3 = ["LIB_GER_infantry_squad"];         	//wave 10
+HOSTILE_LEVEL_4 = ["LIB_GER_infantry_squad"]; 			//wave 15
+DEFECTOR_CLASS = ["LIB_US_AT_Squad"];          			//defector special wave units
+PARATROOP_CLASS = ["LIB_US_AT_Squad"];          		//friendly units called in via support
 
 /* Vehicle Whitelist and Blacklists */   //not done yet
 
@@ -166,13 +166,19 @@ BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",             "reconUAV"],
     [1680, "Emergency Teleport",   "telePlode"],
     [1950, "Paratroopers",          "paraDrop"],
-    [3850, "Missile CAS",          "airStrike"],
+   // [3850, "Missile CAS",          "airStrike"], //doesn't work with IFA planes
     [4220, "Mine Cluster Shell",   "mineField"],
     [4690, "Rage Stimpack",         "ragePack"],
     [5930, "Mind Control Gas",    "mindConGas"]
 //   [6666, "ARMAKART TM",           "armaKart"],
 //    [7500, "Predator Drone",    "droneControl"]
 ];
+//support settings:
+casAircraft = "LIB_Pe2"; //CAS aircraft default: "B_Plane_CAS_01_DynamicLoadout_F"
+supportAircraft = "LIB_C47_Skytrain"; //Plane that drops support and paratroopers default: "B_T_VTOL_01_vehicle_F"
+supportAircraftFlyInHeight = 200; //default: 100
+supportAircraftWaypointHeight = 300; //default: 300
+supportAircraftSpeed = 150; // adds speed to the aircraft -- default 0
 
 /* Objects the Player can buy */
 
