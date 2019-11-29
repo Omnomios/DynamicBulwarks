@@ -4,5 +4,7 @@ switch (presetParameter) do {
 	case 0: {_preset = [] execVM "presets\vanilla.sqf";};
 	case 1: {_preset = [] execVM "presets\lib.sqf";};
 	case 2: {_preset = [] execVM "presets\gm.sqf";};
-	case 3: {_preset = [] execVM "presets\custom.sqf";};
+	case 3: {_preset = [] execVM "presets\unsung.sqf";};
+	case 4: {_preset = [] execVM "presets\custom.sqf";};
+
 };

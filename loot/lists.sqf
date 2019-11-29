@@ -15,12 +15,16 @@ switch (_dlcParameter) do {
 };
 DBW_filter = {
 	params ["_item"];
-	_filter = true;
+	_filter = false;
 	if (count modTag != 0) then {
 		{
 		_className = configName (_item);
-		if !(_x in (_className splitString "_")) then {_filter = false;};
+		if ((toUpper _x) in (toUpper _className splitString "_")) then {_filter = true;};
 		} forEach modTag;
+	}
+	else
+	{
+		_filter = true;
 	};
 	if (count dlcCheck != 0) then {
 		{
