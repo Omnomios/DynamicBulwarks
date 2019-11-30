@@ -18,14 +18,18 @@ if (_pWeap != "") then {
   _ammoArray = getArray (configFile >> "CfgWeapons" >> _pWeap >> "magazines");
   _ammoToAdd = selectRandom _ammoArray;
   _amount = 1;
-  if (_pWeap in LOOT_WEAPON_MG_POOL) then {_amount = magMG select 1;};
-  if (_pWeap in LOOT_WEAPON_SNIPER_POOL) then {_amount = magSNIPER select 1;};
-  if (_pWeap in LOOT_WEAPON_SMG_POOL) then {_amount = magSMG select 1;};
-  if (_pWeap in LOOT_WEAPON_ASSAULT_POOL) then {_amount = magASSAULT select 1;};
+  _type = getText (configFile >> "CfgWeapons" >> _pWeap >> "cursor");
+  switch (_type) do {
+    case "srifle": {_amount = magSNIPER select 1;};
+    case "arifle": {_amount = magASSAULT select 1;};
+    case "smg": {_amount = magSMG select 1;};
+    case "sgun": {_amount = magSMG select 1;};	//shotguns included in SMG array since there aren't that many
+    case "mg": {_amount = magMG select 1;};
+  };
   _ammoPlayer addMagazines [_ammoToAdd, _amount];
   _muzzles = getArray (configfile >> "CfgWeapons" >> _pWeap >> "muzzles");
   _gl = _muzzles select 1;
-  if (!isnil "_gl") then {
+  if !(isnil "_gl" || {_gl == "SAFE"}) then {
     _glMag = getArray (configFile >> "CfgWeapons" >> _pWeap >> _gl >> "magazines");
     _glToAdd = _glMag select 0;
     _ammoPlayer addMagazines [_glToAdd, 5];

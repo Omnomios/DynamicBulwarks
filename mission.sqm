@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={-3.0339575,24.28578,21.95533};
-		dir[]={0.012008007,-0.54482526,-0.83846366};
-		up[]={0.0078018815,0.83854961,-0.54476935};
-		aside[]={-0.99989748,4.6566129e-010,-0.014319971};
+		pos[]={0.001396656,26.529005,21.578854};
+		dir[]={-0.96398091,-0.26594296,0.0044051106};
+		up[]={-0.26594102,0.96398813,0.0012152897};
+		aside[]={0.0045696497,-8.0303835e-008,0.99999046};
 	};
 };
 binarizationWanted=0;
@@ -835,7 +835,7 @@ class Mission
 					};
 					id=167;
 					type="C_man_polo_1_F";
-					atlOffset=190.19565;
+					atlOffset=64.488983;
 				};
 				class Item19
 				{
@@ -853,7 +853,7 @@ class Mission
 					};
 					id=165;
 					type="C_Man_casual_6_F";
-					atlOffset=190.19563;
+					atlOffset=64.923119;
 				};
 				class Item20
 				{
@@ -871,7 +871,7 @@ class Mission
 					};
 					id=169;
 					type="C_Man_casual_1_F";
-					atlOffset=190.19563;
+					atlOffset=64.440475;
 				};
 				class Item21
 				{
@@ -907,7 +907,7 @@ class Mission
 					};
 					id=175;
 					type="C_man_sport_2_F";
-					atlOffset=190.19563;
+					atlOffset=64.693283;
 				};
 				class Item23
 				{
@@ -925,7 +925,7 @@ class Mission
 					};
 					id=177;
 					type="C_man_sport_3_F";
-					atlOffset=190.19563;
+					atlOffset=64.510094;
 				};
 				class Item24
 				{
@@ -984,7 +984,7 @@ class Mission
 			a=150;
 			b=150;
 			id=84;
-			atlOffset=0.00048446655;
+			atlOffset=120.03973;
 		};
 		class Item2
 		{
@@ -996,7 +996,7 @@ class Mission
 			a=150;
 			b=150;
 			id=85;
-			atlOffset=-0.61751747;
+			atlOffset=85.835136;
 		};
 		class Item3
 		{
@@ -1008,6 +1008,7 @@ class Mission
 			a=150;
 			b=150;
 			id=86;
+			atlOffset=94.698883;
 		};
 		class Item4
 		{
@@ -1019,7 +1020,7 @@ class Mission
 			a=150;
 			b=150;
 			id=88;
-			atlOffset=-0.709692;
+			atlOffset=-41.181427;
 		};
 		class Item5
 		{
@@ -1031,6 +1032,7 @@ class Mission
 			a=150;
 			b=150;
 			id=93;
+			atlOffset=94.543243;
 		};
 		class Item6
 		{
@@ -1042,6 +1044,7 @@ class Mission
 			a=150;
 			b=150;
 			id=100;
+			atlOffset=141.7623;
 		};
 		class Item7
 		{
@@ -1053,7 +1056,7 @@ class Mission
 			a=150;
 			b=150;
 			id=101;
-			atlOffset=-0.69843292;
+			atlOffset=81.256668;
 		};
 		class Item8
 		{
@@ -1065,6 +1068,7 @@ class Mission
 			a=150;
 			b=150;
 			id=102;
+			atlOffset=98.114914;
 		};
 		class Item9
 		{
@@ -1076,6 +1080,7 @@ class Mission
 			a=150;
 			b=150;
 			id=103;
+			atlOffset=4.1068516;
 		};
 		class Item10
 		{
@@ -1087,7 +1092,7 @@ class Mission
 			name="mainZeus";
 			id=116;
 			type="ModuleCurator_F";
-			atlOffset=189.10609;
+			atlOffset=54.350147;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1177,7 +1182,7 @@ class Mission
 			text="Specific Bulwark Pos";
 			type="Select";
 			id=182;
-			atlOffset=24.178188;
+			atlOffset=42.681244;
 		};
 		class Item12
 		{
@@ -1194,7 +1199,7 @@ class Mission
 			};
 			id=123;
 			type="Land_Pier_Box_F";
-			atlOffset=190.19;
+			atlOffset=65;
 			class CustomAttributes
 			{
 				class Attribute0

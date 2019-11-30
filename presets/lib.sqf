@@ -76,7 +76,8 @@ LOOT_BLACKLIST = [
 	"LIB_M2_60_Tripod_Deployed",
 	"LIB_Faustpatrone",
 	"LIB_PIAT_Rifle",
-	"B_LIB_US_TypeA3"
+	"B_LIB_US_TypeA3",
+	"LIB_HandGrenade_base"
 ];
 //Loot Chances - chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
 launcherWeapTypeChance =    15;

@@ -41,6 +41,12 @@ publicVariable "RESPAWN_TIME";
 publicVariable "PLAYER_OBJECT_LIST";
 publicVariable "MIND_CONTROLLED_AI";
 publicVariable "SCORE_RANDOMBOX";
+publicVariable "magLAUNCHER";
+publicVariable "magASSAULT";
+publicVariable "magSMG";
+publicVariable "magSNIPER";
+publicVariable "magMG";
+publicVariable "magHANDGUN";
 
 //determine if Support Menu is available
 _supportParam = ("SUPPORT_MENU" call BIS_fnc_getParamValue);
