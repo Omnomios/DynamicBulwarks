@@ -25,7 +25,7 @@ DBW_SUICIDEWAVE = {
 	for ("_i") from 1 to _amountGroups do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		{
 			removeAllWeapons _x;
@@ -36,7 +36,7 @@ DBW_SUICIDEWAVE = {
 	for ("_i") from 1 to _amountLeftovers do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 	};
@@ -155,15 +155,15 @@ DBW_DEFECTORWAVE = {
 	_skill = attkWave * 0.02;
 	for ("_i") from 1 to _amountGroups do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		private _group = [DEFECTOR_CLASS,5,_location] call DBW_spawnGroup;
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 	};
 	for ("_i") from 1 to _amountLeftovers do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		private _group = [DEFECTOR_CLASS,1,_location] call DBW_spawnGroup;
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 	};
@@ -182,7 +182,7 @@ DBW_MGWAVE = {
 	for ("_i") from 1 to _amountGroups do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		private _giveSniper = [_group,List_MG] call DBW_giveGroupRandPriWeap;
@@ -190,7 +190,7 @@ DBW_MGWAVE = {
 	for ("_i") from 1 to _amountLeftovers do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		private _giveSniper = [_group,List_MG] call DBW_giveGroupRandPriWeap;
@@ -210,7 +210,7 @@ DBW_SNIPERWAVE = {
 	for ("_i") from 1 to _amountGroups do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		private _giveSniper = [_group,List_Sniper] call DBW_giveGroupRandPriWeap;
@@ -218,7 +218,7 @@ DBW_SNIPERWAVE = {
 	for ("_i") from 1 to _amountLeftovers do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		private _giveSniper = [_group,List_Sniper] call DBW_giveGroupRandPriWeap;
@@ -236,7 +236,7 @@ DBW_NORMALWAVE = {	//could probably break this into one more functions to remove
 	for ("_i") from 1 to _amountGroups do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		_group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		if (RANDOM_WEAPONS) then {
@@ -246,7 +246,7 @@ DBW_NORMALWAVE = {	//could probably break this into one more functions to remove
 	for ("_i") from 1 to _amountLeftovers do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		if (RANDOM_WEAPONS) then {
@@ -266,7 +266,7 @@ DBW_PISTOLWAVE = {
 	for ("_i") from 1 to _amountGroups do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		private _randWeap = [_group,List_Secondaries] call DBW_giveGroupRandSecWeap;
@@ -279,7 +279,7 @@ DBW_PISTOLWAVE = {
 	for ("_i") from 1 to _amountLeftovers do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		private _randWeap = [_group,List_Secondaries] call DBW_giveGroupRandSecWeap;
@@ -304,7 +304,7 @@ DBW_FLAMEWAVE = {
 	for ("_i") from 1 to _amountGroups do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		{
@@ -325,7 +325,7 @@ DBW_FLAMEWAVE = {
 	for ("_i") from 1 to _amountLeftovers do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		{
@@ -358,7 +358,7 @@ DBW_PTRDWAVE = {
 	for ("_i") from 1 to _amountGroups do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		private _givePTRD = [_group,["LIB_PTRD"]] call DBW_giveGroupRandPriWeap;
@@ -371,7 +371,7 @@ DBW_PTRDWAVE = {
 	for ("_i") from 1 to _amountLeftovers do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
 		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group"};
+		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
 		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
 		private _init = [_group,_scoreMulti] call DBW_initGroup;
 		private _givePTRD = [_group,["LIB_PTRD"]] call DBW_giveGroupRandPriWeap;

@@ -39,6 +39,7 @@ waveSpawned = false;
 if(!isNil "nightWave") then {
 	if (nightWave) then {
 		skipTime currentTime;
+		nightWave = false;
 	};
 };
 
