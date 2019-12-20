@@ -3,12 +3,12 @@ EXAMPLE COMMIT ON HOW TO ADD SPECIAL WAVES: https://github.com/tiwaz1994/Dynamic
 *All functions with the DBW_ tag used in this file can be found in hostiles\createWave.sqf. Here is a list of what parameters these functions expect and/or return:
 * DBW_determineAndSpawnIfVehicleWave - Expects nothing and returns nothing. If you don't want vehicles spawning in your special wave leave it out.
 * DBW_getHostileListsAndKillMulti -    Expects nothing. Returns Array of Clasnames, NUMBER (KillpointsMultiplier). First is an array of classnames. Second one is score mutliplier for killpoints. If you want to use another list of classNames or a specific one: Use the function to just grab the score multi. Example: Defector Wave
-* DBW_initGroup -                      Expects Group,KillpointsMultiplier (NUMBER) -- Function initializes units in the group. Gives them waypoints, adds to Zeus and so on.
+* DBW_initUnit -                       Expects UNIT, NUMBER (KillpointsMultiplier) -- Function initializes UNIT. Gives them waypoints, adds to Zeus and so on.
 * DBW_getHostileAmount -               Expects nothing and returns NUMBER of hostiles that should spawn in the wave. 
-* DBW_spawnGroup -                     Expects Array of classnames, NUMBER (groupsize), Position. Returns: The created group. -- spawns a group.
-* DBW_setGroupSkill -                  Expects Group,NUMBER (Skill) Returns Nothing -- sets units skill values
-* DBW_giveGroupRandPriWeap -           Expects Group, ARRAY (Weapons) Returns nothing -- gives units in group random primary weapons
-* DBW_giveGroupRandSecWeap -           Expects Group, ARRAY (Weapons) Returns nothing -- gives units in group random secondary weapons (pistols)
+* DBW_spawnHostile -                   Expects ARRAY of classnames, ARRAY (Position). Returns: The created UNIT.
+* DBW_setSkill -                       Expects UNIT, NUMBER (Skill) Returns Nothing -- sets units skill values
+* DBW_giveRandPriWeap -                Expects UNIT, ARRAY (Weapons) Returns nothing -- gives UNIT random primary weapons
+* DBW_giveRandSecWeap -                Expects UNIT, ARRAY (Weapons) Returns nothing -- gives UNIT random secondary weapons (pistols)
 */
 
 
@@ -19,26 +19,14 @@ DBW_SUICIDEWAVE = {
 	["Alarm"] remoteExec ["playSound", 0];
 	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];
 	_amount = call DBW_getHostileAmount;
-	_amountGroups = floor (_amount / 5);
-	_amountLeftovers = _amount - (_amountGroups * 5);
 	_skill = attkWave * 0.02;
-	for ("_i") from 1 to _amountGroups do {
+	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		{
-			removeAllWeapons _x;
-			_x addEventHandler ["Killed", CreateHostiles_fnc_suiExplode];
-		} forEach (units _group);
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-	};
-	for ("_i") from 1 to _amountLeftovers do {
-		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
+		_unit = [_classArray,_location] call DBW_spawnHostile;
+		private _setSkill = [_unit,_skill] call DBW_setSkill;
+		removeAllWeapons _unit;
+		_unit addEventHandler ["Killed", CreateHostiles_fnc_suiExplode];
+		private _init = [_unit,_scoreMulti] call DBW_initUnit;
 	};
 	waveSpawned = true;
 };
@@ -150,22 +138,12 @@ DBW_DEFECTORWAVE = {
 	[] call DBW_determineAndSpawnIfVehicleWave;
 	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];
 	_amount = call DBW_getHostileAmount;
-	_amountGroups = floor (_amount / 5);
-	_amountLeftovers = _amount - (_amountGroups * 5);
 	_skill = attkWave * 0.02;
-	for ("_i") from 1 to _amountGroups do {
+	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [DEFECTOR_CLASS,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-	};
-	for ("_i") from 1 to _amountLeftovers do {
-		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [DEFECTOR_CLASS,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
+		private _unit = [DEFECTOR_CLASS,_location] call DBW_spawnHostile;
+		private _setSkill = [_unit,_skill] call DBW_setSkill;
+		private _init = [_unit,_scoreMulti] call DBW_initUnit;
 	};
 	waveSpawned = true;
 };
@@ -176,24 +154,13 @@ DBW_MGWAVE = {
 	[] call DBW_determineAndSpawnIfVehicleWave;
 	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];
 	_amount = call DBW_getHostileAmount;
-	_amountGroups = floor (_amount / 5);
-	_amountLeftovers = _amount - (_amountGroups * 5);
 	_skill = attkWave * 0.02;
-	for ("_i") from 1 to _amountGroups do {
+	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		private _giveSniper = [_group,List_MG] call DBW_giveGroupRandPriWeap;
-	};
-	for ("_i") from 1 to _amountLeftovers do {
-		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		private _giveSniper = [_group,List_MG] call DBW_giveGroupRandPriWeap;
+		_unit = [_classArray,_location] call DBW_spawnHostile;
+		private _setSkill = [_unit,_skill] call DBW_setSkill;
+		private _init = [_unit,_scoreMulti] call DBW_initUnit;
+		private _giveSniper = [_unit,List_MG] call DBW_giveRandPriWeap;
 	};
 	waveSpawned = true;
 };
@@ -204,53 +171,29 @@ DBW_SNIPERWAVE = {
 	[] call DBW_determineAndSpawnIfVehicleWave;
 	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];
 	_amount = call DBW_getHostileAmount;
-	_amountGroups = floor (_amount / 5);
-	_amountLeftovers = _amount - (_amountGroups * 5);
 	_skill = attkWave * 0.02;
-	for ("_i") from 1 to _amountGroups do {
+	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		private _giveSniper = [_group,List_Sniper] call DBW_giveGroupRandPriWeap;
-	};
-	for ("_i") from 1 to _amountLeftovers do {
-		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		private _giveSniper = [_group,List_Sniper] call DBW_giveGroupRandPriWeap;
+		_unit = [_classArray,_location] call DBW_spawnHostile;
+		private _setSkill = [_unit,_skill] call DBW_setSkill;
+		private _init = [_unit,_scoreMulti] call DBW_initUnit;
+		private _giveSniper = [_unit,List_Sniper] call DBW_giveRandPriWeap;
 	};
 	waveSpawned = true;
 };
 
-DBW_NORMALWAVE = {	//could probably break this into one more functions to remove repeating code between special waves and make creating new special waves easier
+DBW_NORMALWAVE = {
 	[] call DBW_determineAndSpawnIfVehicleWave;
 	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];
 	_amount = call DBW_getHostileAmount;
-	_amountGroups = floor (_amount / 5);
-	_amountLeftovers = _amount - (_amountGroups * 5);
 	_skill = attkWave * 0.02;
-	for ("_i") from 1 to _amountGroups do {
+	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		_group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
+		_unit = [_classArray,_location] call DBW_spawnHostile;
+		private _setSkill = [_unit,_skill] call DBW_setSkill;
+		private _init = [_unit,_scoreMulti] call DBW_initUnit;
 		if (RANDOM_WEAPONS) then {
-			[_group,List_Primaries] call DBW_giveGroupRandPriWeap;
-		};
-	};
-	for ("_i") from 1 to _amountLeftovers do {
-		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		if (RANDOM_WEAPONS) then {
-			[_group,List_Primaries] call DBW_giveGroupRandPriWeap;
+			[_unit,List_Primaries] call DBW_giveRandPriWeap;
 		};
 	};
 	waveSpawned = true;
@@ -260,34 +203,17 @@ DBW_PISTOLWAVE = {
 	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
 	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];
 	_amount = call DBW_getHostileAmount;
-	_amountGroups = floor (_amount / 5);
-	_amountLeftovers = _amount - (_amountGroups * 5);
 	_skill = attkWave * 0.02;
-	for ("_i") from 1 to _amountGroups do {
+	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		private _randWeap = [_group,List_Secondaries] call DBW_giveGroupRandSecWeap;
-		{
-			if ((floor random 3) == 1) then {
-				_x additem "FirstAidKit";
-			};
-		} forEach (units _group);
-	};
-	for ("_i") from 1 to _amountLeftovers do {
-		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		private _randWeap = [_group,List_Secondaries] call DBW_giveGroupRandSecWeap;
-		{
-			if ((floor random 3) == 1) then {
-				_x additem "FirstAidKit";
-			};
-		} forEach (units _group);
+		_unit = [_classArray,_location] call DBW_spawnHostile;
+		private _setSkill = [_unit,_skill] call DBW_setSkill;
+		private _init = [_unit,_scoreMulti] call DBW_initUnit;
+		private _randWeap = [_unit,List_Secondaries] call DBW_giveRandSecWeap;
+		if ((floor random 3) == 1) then {
+			_unit additem "FirstAidKit";
+		};
+
 	};
 	waveSpawned = true;
 };
@@ -298,17 +224,12 @@ DBW_FLAMEWAVE = {
 	[] call DBW_determineAndSpawnIfVehicleWave;
 	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];
 	_amount = call DBW_getHostileAmount;
-	_amountGroups = floor (_amount / 5);
-	_amountLeftovers = _amount - (_amountGroups * 5);
 	_skill = attkWave * 0.02;
-	for ("_i") from 1 to _amountGroups do {
+	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		{
-			_unit = _x;
+		_unit = [_classArray,_location] call DBW_spawnHostile;
+		private _setSkill = [_unit,_skill] call DBW_setSkill;
+		private _init = [_unit,_scoreMulti] call DBW_initUnit;
 			removeAllWeapons _unit;
 			removeAllItems _unit;
 			removeAllAssignedItems _unit;
@@ -320,28 +241,6 @@ DBW_FLAMEWAVE = {
 			for "_i" from 1 to 5 do {_unit addItemToVest "LIB_No77";};
 			for "_i" from 1 to 20 do {_unit addItemToBackpack "LIB_No77";};
 			_unit enableStamina false;
-		} forEach (units _group);
-	};
-	for ("_i") from 1 to _amountLeftovers do {
-		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		{
-			_unit = _x;
-			removeAllWeapons _unit;
-			removeAllItems _unit;
-			removeAllAssignedItems _unit;
-			removeBackpack _unit;
-			_unit addWeapon "LIB_M2_Flamethrower";
-			_unit addPrimaryWeaponItem "LIB_M2_Flamethrower_Mag";
-			_unit addBackpack "B_LIB_US_M2Flamethrower";
-			_unit addItemToVest "FirstAidKit";
-			for "_i" from 1 to 5 do {_unit addItemToVest "LIB_No77";};
-			for "_i" from 1 to 20 do {_unit addItemToBackpack "LIB_No77";};
-			_unit enableStamina false;
-		} forEach (units _group);
 	};
 	waveSpawned = true;
 };
@@ -352,34 +251,16 @@ DBW_PTRDWAVE = {
 	[] call DBW_determineAndSpawnIfVehicleWave;
 	[] call DBW_getHostileListsAndKillMulti params ["_classArray","_scoreMulti"];
 	_amount = call DBW_getHostileAmount;
-	_amountGroups = floor (_amount / 5);
-	_amountLeftovers = _amount - (_amountGroups * 5);
-	_skill = attkWave * 0.02 * 2;
-	for ("_i") from 1 to _amountGroups do {
+	_skill = attkWave * 0.02;
+	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,5,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 5}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		private _givePTRD = [_group,["LIB_PTRD"]] call DBW_giveGroupRandPriWeap;
-		{
-			for ("_i") from 1 to 6 do {
-				_x addMagazine "LIB_1Rnd_145x114";
-			};
-		} forEach (units _group);
-	};
-	for ("_i") from 1 to _amountLeftovers do {
-		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _group = [_classArray,1,_location] call DBW_spawnGroup;
-		waitUntil {sleep 0.5;!isNil "_group" && {count (units _group) == 1}};
-		private _setSkill = [_group,_skill] call DBW_setGroupSkill;
-		private _init = [_group,_scoreMulti] call DBW_initGroup;
-		private _givePTRD = [_group,["LIB_PTRD"]] call DBW_giveGroupRandPriWeap;
-		{
-			for ("_i") from 1 to 6 do {
-				_x addMagazine "LIB_1Rnd_145x114";
-			};
-		} forEach (units _group);
+		_unit = [_classArray,_location] call DBW_spawnHostile;
+		private _setSkill = [_unit,_skill] call DBW_setSkill;
+		private _init = [_unit,_scoreMulti] call DBW_initUnit;
+		private _givePTRD = [_unit,["LIB_PTRD"]] call DBW_giveRandPriWeap;
+		for ("_i") from 1 to 6 do {
+			_unit addMagazine "LIB_1Rnd_145x114";
+		};
 	};
 	waveSpawned = true;
 };

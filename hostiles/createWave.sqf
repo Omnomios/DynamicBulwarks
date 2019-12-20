@@ -94,84 +94,73 @@ DBW_getHostileListsAndKillMulti = {
 DBW_getHostileAmount = { //determines how many units need to be spawned
 	_playerAmountMulti = ((playersNumber west) * HOSTILE_TEAM_MULTIPLIER) - HOSTILE_TEAM_MULTIPLIER; //Hostile_TEAM_MULTIPLIER only has an effect if 2 or more people are online this way
 	_difficultyMulti = HOSTILE_MULTIPLIER; //multiplies everything
-	_waveScaleBase = 2; //adds 2 to base value each wave
-	_baseValue = _waveScaleBase + _playerAmountMulti; //base value based on player amount and wave level
+	_waveScaleBase = 1; //adds 2 to base value each wave
+	_baseValue = _waveScaleBase + _playerAmountMulti; //actual base value with player amount
 	_amountTotal = floor (_baseValue * attkWave * _difficultyMulti);
 	_amountTotal
 };
-DBW_spawnGroup = {
-	params["_classArr","_groupSize","_pos"];
-	_groupClassArr = [];
-	for ("_i") from 1 to _groupSize do { //select random class for each unit in group
-		private _unitClass = selectRandom _classArr;
-		_groupClassArr append [_unitClass];
-	};
-	_group = [_pos,EAST,_groupClassArr] call BIS_fnc_spawnGroup;
-	_group //return
+DBW_spawnHostile = {
+	params["_classArr","_pos"];
+	_group = createGroup [EAST,true];
+	_unitClass  = selectRandom _classArr;
+	_unit = _group createUnit [_unitClass, _pos, [], 0.5, "FORM"];
+	sleep 0.3;
+	waitUntil {!isNull _unit};
+	[_unit] join _group;
+	_unit //return
 };
-DBW_giveGroupRandPriWeap = {
-	params ["_group","_weaponsArr"];
+DBW_giveRandPriWeap = {
+	params ["_unit","_weaponsArr"];
+	_unitPrimaryWeap = primaryWeapon _unit;
+	_primaryAmmoTpyes = getArray (configFile >> "CfgWeapons" >> _unitPrimaryWeap >> "magazines");
 	{
-		_unit = _x;
-		_unitPrimaryWeap = primaryWeapon _unit;
-		_primaryAmmoTpyes = getArray (configFile >> "CfgWeapons" >> _unitPrimaryWeap >> "magazines");
-		{
-			if (_x in _primaryAmmoTpyes) then {
-				_unit removeMagazineGlobal _x;
-			};
-		} forEach magazines _unit;
-		_weap = selectRandom _weaponsArr;
-		_unitPrimaryToAdd = _weap;
-		_unitMagToAdd = selectRandom getArray (configFile >> "CfgWeapons" >> _unitPrimaryToAdd >> "magazines");
-		_unit addWeaponGlobal _unitPrimaryToAdd;
-		_unit addPrimaryWeaponItem _unitMagToAdd;
-		_unit addMagazine _unitMagToAdd;
-		_unit addMagazine _unitMagToAdd;
-		_unit addMagazine _unitMagToAdd;
-		_unit selectWeapon _unitPrimaryToAdd;
-	} forEach (units _group);
+		if (_x in _primaryAmmoTpyes) then {
+		_unit removeMagazineGlobal _x;
+		};
+	} forEach magazines _unit;
+	_weap = selectRandom _weaponsArr;
+	_unitPrimaryToAdd = _weap;
+	_unitMagToAdd = selectRandom getArray (configFile >> "CfgWeapons" >> _unitPrimaryToAdd >> "magazines");
+	_unit addWeaponGlobal _unitPrimaryToAdd;
+	_unit addPrimaryWeaponItem _unitMagToAdd;
+	_unit addMagazine _unitMagToAdd;
+	_unit addMagazine _unitMagToAdd;
+	_unit addMagazine _unitMagToAdd;
+	_unit selectWeapon _unitPrimaryToAdd;
 };
 
-DBW_giveGroupRandSecWeap = {
-	params ["_group","_weaponsArr"];
-	{
-		_unit = _x;
-		removeAllWeapons _unit;
-		_unitSecondaryToAdd = selectRandom _weaponsArr;
-		_unitMagToAdd = selectRandom getArray (configFile >> "CfgWeapons" >> _unitSecondaryToAdd >> "magazines");
-		_unit addWeaponGlobal _unitSecondaryToAdd;
-		_unit addPrimaryWeaponItem _unitMagToAdd;
-		_unit addMagazine _unitMagToAdd;
-		_unit addMagazine _unitMagToAdd;
-		_unit addMagazine _unitMagToAdd;
-		_unit selectWeapon _unitSecondaryToAdd;
-	} forEach (units _group);
+DBW_giveRandSecWeap = {
+	params ["_unit","_weaponsArr"];
+	removeAllWeapons _unit;
+	_unitSecondaryToAdd = selectRandom _weaponsArr;
+	_unitMagToAdd = selectRandom getArray (configFile >> "CfgWeapons" >> _unitSecondaryToAdd >> "magazines");
+	_unit addWeaponGlobal _unitSecondaryToAdd;
+	_unit addPrimaryWeaponItem _unitMagToAdd;
+	_unit addMagazine _unitMagToAdd;
+	_unit addMagazine _unitMagToAdd;
+	_unit addMagazine _unitMagToAdd;
+	_unit selectWeapon _unitSecondaryToAdd;
 };
 
-DBW_setGroupSkill = {	//WIP - setSkill general,reloadSpeed,spotDistance could be used
-	params["_group","_value"];
-	{
-	_x setSkill ["aimingAccuracy", _value];
-	_x setSkill ["aimingSpeed", (_value * 0.75)];
-	_x setSkill ["aimingShake", _value];
-	_x setSkill ["spotTime", 0.05];
-	} forEach (units _group);
+DBW_setSkill = {	//WIP - setSkill general,reloadSpeed,spotDistance could be used
+	params["_unit","_value"];
+	_unit setSkill ["aimingAccuracy", _value];
+	_unit setSkill ["aimingSpeed", (_value * 0.75)];
+	_unit setSkill ["aimingShake", _value];
+	_unit setSkill ["spotTime", 0.05];
 };
 //gives units required eventhandler and makes them move towards the player
-DBW_initGroup = {
-	params["_group","_killpointsMulti"];
-	{
-	_x addEventHandler ["Hit", killPoints_fnc_hit];
-	_x addEventHandler ["Killed", killPoints_fnc_killed];
-	removeAllAssignedItems _x;
-	_x setVariable ["points", []];
-	_x setVariable ["killPointMulti", _killpointsMulti];
-	mainZeus addCuratorEditableObjects [[_x], true];
+DBW_initUnit = {
+	params["_unit","_killpointsMulti"];
+	_unit addEventHandler ["Hit", killPoints_fnc_hit];
+	_unit addEventHandler ["Killed", killPoints_fnc_killed];
+	removeAllAssignedItems _unit;
+	_unit setVariable ["points", []];
+	_unit setVariable ["killPointMulti", _killpointsMulti];
+	mainZeus addCuratorEditableObjects [[_unit], true];
 	unitArray = waveUnits select 0;
-	unitArray append [_x];
-	} forEach (units _group);
-	_groupLeader = leader _group;
-	_groupLeader doMove (getPos (selectRandom playableUnits));
+	unitArray append [_unit];
+	_unit doMove (getPos (selectRandom playableUnits));
 };
 
 /* need function to limit amount of AI active at the same time, 
