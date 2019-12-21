@@ -53,14 +53,17 @@ private _allSides = (configFile >> "CfgGroups") call BIS_fnc_getCfgSubClasses;
     _checked_veh = _cfgVehicles select _x;
     _classname = configName _checked_veh;
     if (isClass _checked_veh) then { // CHECK IF THE SELECTED ENTRY IS A CLASS
-      _vehclass = getText (_checked_veh >> "vehicleClass");
-      _scope = getNumber (_checked_veh >> "scope");
-      _simulation_paracheck = getText (_checked_veh >> "simulation");
-      _actual_vehclass = getText (_checked_veh >> "vehicleClass");
       _filter = [_checked_veh] call DBW_filter;
       if (_filter) then {
-        if (_vehclass == _vehClass && _scope != 0 && _simulation_paracheck != "parachute" && _classname != "O_MBT_02_arty_F" && _actual_vehclass == "Armored") exitWith {
-          _armouredVehicles pushback _classname;
+        _vehclass = getText (_checked_veh >> "vehicleClass");
+        _scope = getNumber (_checked_veh >> "scope");
+        _simulation_paracheck = getText (_checked_veh >> "simulation");
+        _actual_vehclass = getText (_checked_veh >> "vehicleClass");
+        _textSing = getText (_checked_veh >> "textSingular");
+        if (_actual_vehclass == "Armored" || _textSing == "APC" || _textSing == "tank") then {
+          if (_vehclass == _vehClass && _scope != 0 && _simulation_paracheck != "parachute") exitWith {
+            _armouredVehicles pushback _classname;
+          };
         };
       };
     };
@@ -75,24 +78,27 @@ private _allSides = (configFile >> "CfgGroups") call BIS_fnc_getCfgSubClasses;
     _checked_veh = _cfgVehicles select _x;
     _classname = configName _checked_veh;
     if (isClass _checked_veh) then {
-      _vehclass = getText (_checked_veh >> "vehicleClass");
-      _scope = getNumber (_checked_veh >> "scope");
-      _simulation_paracheck = getText (_checked_veh >> "simulation");
-      _actual_vehclass = getText (_checked_veh >> "vehicleClass");
       _filter = [_checked_veh] call DBW_filter;
       if (_filter) then {
-        turretWeap = false;
-        if (isClass (_checked_veh >> "Turrets")) then {
-          _vechTurrets = _checked_veh >> "Turrets";
-          for "_turretIter" from 0 to (count _vechTurrets - 1) do {
-            _weapsOnTurret = _vechTurrets select _turretIter;
-            if (!(getarray (_weapsOnTurret >> "weapons") isEqualTo [])) then {
-              turretWeap = true;
+        _vehclass = getText (_checked_veh >> "vehicleClass");
+        _scope = getNumber (_checked_veh >> "scope");
+        _simulation_paracheck = getText (_checked_veh >> "simulation");
+        _actual_vehclass = getText (_checked_veh >> "vehicleClass");
+        _textSing = getText (_checked_veh >> "textSingular");
+        if (_actual_vehclass == "Car" || _textSing == "car") then {
+          turretWeap = false;
+          if (isClass (_checked_veh >> "Turrets")) then {
+            _vechTurrets = _checked_veh >> "Turrets";
+            for "_turretIter" from 0 to (count _vechTurrets - 1) do {
+              _weapsOnTurret = _vechTurrets select _turretIter;
+              if (!(getarray (_weapsOnTurret >> "weapons") isEqualTo [])) then {
+                turretWeap = true;
+              };
             };
           };
-        };
-        if (_vehclass == _vehClass && _scope != 0 && _actual_vehclass == "Car" && turretWeap) exitWith {
-          _armedCars pushback _classname;
+          if (_vehclass == _vehClass && _scope != 0 && turretWeap) exitWith {
+            _armedCars pushback _classname;
+          };
         };
       };
     };

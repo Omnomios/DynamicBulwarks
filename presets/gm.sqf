@@ -36,16 +36,16 @@ LOOT_BLACKLIST = [
     "I_IR_Grenade"
 ];
 //Loot Chances - chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
-launcherWeapTypeChance =    15;
-assaultWeapTypeChance =     30;
-smgWeapTypeChance =         25;    //shotguns included in SMG array since there aren't that many
-sniperWeapTypeChance =      20;
-mgWeapTypeChance =          5;
-handgunWeapTypeChance =		5;
+launcherWeapTypeChance =    20;
+assaultWeapTypeChance =     55;
+smgWeapTypeChance =         0;    //shotguns included in SMG array since there aren't that many - GM DOESN'T HAVE SMG's
+sniperWeapTypeChance =      0;   //GM DOESN'T HAVE SNIPER
+mgWeapTypeChance =          10;
+handgunWeapTypeChance =		15;
 //chances in % for what type of item spawns -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
-clothesTypeChance = 		15;
+clothesTypeChance = 		20;
 itemsTypeChance =			10;
-weaponsTypeChance =			25;
+weaponsTypeChance =			20;
 backpacksTypeChance =		35;
 explosivesTypeChance =		25;
 //Ammo amount - how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3, the maximum is also used to determine how much ammo you get from ammo drops:
@@ -53,7 +53,7 @@ magLAUNCHER =	[1,3];
 magASSAULT =	[1,3];
 magSMG =		[2,5];      //shotguns included in SMG array since there aren't that many
 magSNIPER =		[3,6];
-magMG =			[1,1];
+magMG =			[1,2];
 magHANDGUN =	[2,4];
 /* Whitelist modes */
 /* 0 = Off */

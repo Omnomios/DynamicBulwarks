@@ -37,8 +37,8 @@ LOOT_BLACKLIST = [
 ];
 //Loot Chances - chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
 launcherWeapTypeChance =    15;
-assaultWeapTypeChance =     30;
-smgWeapTypeChance =         25;    //shotguns included in SMG array since there aren't that many
+assaultWeapTypeChance =     35;
+smgWeapTypeChance =         20;    //shotguns included in SMG array since there aren't that many
 sniperWeapTypeChance =      20;
 mgWeapTypeChance =          5;
 handgunWeapTypeChance =		5;
@@ -53,7 +53,7 @@ magLAUNCHER =	[1,3];
 magASSAULT =	[1,3];
 magSMG =		[2,5];      //shotguns included in SMG array since there aren't that many
 magSNIPER =		[3,6];
-magMG =			[1,1];
+magMG =			[1,3];
 magHANDGUN =	[2,4];
 /* Whitelist modes */
 /* 0 = Off */
