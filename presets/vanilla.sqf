@@ -11,8 +11,8 @@ modTag = []; //limits loot and vehicles to a specific mod. Mods usually have a t
 // Use group class names
 HOSTILE_LEVEL_1 = ["BanditCombatGroup"];    //wave 0
 HOSTILE_LEVEL_2 = ["OIA_InfSquad"];         //wave 5
-HOSTILE_LEVEL_3 = ["OI_ViperTeam"];         //wave 10
-HOSTILE_LEVEL_4 = ["OI_ViperTeam"];         //wave 15
+HOSTILE_LEVEL_3 = ["OIA_InfSquad"];         //wave 10
+HOSTILE_LEVEL_4 = ["OI_ViperTeam","OIA_InfSquad"];         //wave 15
 DEFECTOR_CLASS = ["BUS_InfSquad"];          //defector special wave units
 PARATROOP_CLASS = ["BUS_InfSquad"];         //friendly units called in via support
 
@@ -26,6 +26,7 @@ PARATROOP_CLASS = ["BUS_InfSquad"];         //friendly units called in via suppo
 BULWARK_LOCATIONS = List_AllCities;
 
 /* LOOT */
+Medkit = "Medikit";
 LOOT_BLACKLIST = [
     "O_Static_Designator_02_weapon_F", // If players find and place CSAT UAVs they count as hostile units and round will not progress
     "O_UAV_06_backpack_F",

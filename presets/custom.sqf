@@ -28,6 +28,7 @@ PARATROOP_CLASS = ["BUS_InfSquad"];          //friendly units called in via supp
 BULWARK_LOCATIONS = List_AllCities;
 
 /* LOOT */
+Medkit = "Medikit";
 LOOT_BLACKLIST = [
     "O_Static_Designator_02_weapon_F", // If players find and place CSAT UAVs they count as hostile units and round will not progress
     "O_UAV_06_backpack_F",
