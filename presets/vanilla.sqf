@@ -1,22 +1,35 @@
 /**
-*  editMe
-*
+*  Preset
 *  Defines all global config for the mission
-*
+*  Required mods:
 *  Domain: Client, Server
 **/
 /* MOD FILTER */
 modTag = []; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class names, use that. For example modTag = ["LIB"] would only spawn Iron Front Weapons. Can use multiple for example:modTag = ["LIB,"NORTH"];
 /* Attacker Waves */
-// Use group class names
-HOSTILE_LEVEL_1 = ["BanditCombatGroup"];    //wave 0
-HOSTILE_LEVEL_2 = ["OIA_InfSquad"];         //wave 5
-HOSTILE_LEVEL_3 = ["OIA_InfSquad"];         //wave 10
-HOSTILE_LEVEL_4 = ["OI_ViperTeam","OIA_InfSquad"];         //wave 15
+// Use group class names - To leave empty do: HOSTILE_LEVEL_1 = [];
+HOSTILE_LEVEL_1 = ["BanditCombatGroup"];                                       //wave 0
+HOSTILE_LEVEL_2 = ["OIA_InfSquad","BanditCombatGroup"];                        //wave 5
+HOSTILE_LEVEL_3 = ["OIA_InfSquad","BanditCombatGroup"];                        //wave 10
+HOSTILE_LEVEL_4 = ["OI_ViperTeam","OIA_InfSquad","BanditCombatGroup"];         //wave 15
 DEFECTOR_CLASS = ["BUS_InfSquad"];          //defector special wave units
 PARATROOP_CLASS = ["BUS_InfSquad"];         //friendly units called in via support
 
-/* Vehicle Whitelist and Blacklists */   //not done yet
+//Unit Whitelist - fill with unit classnames example: HOSTILE_LEVEL_1_WHITELIST = ["B_Soldier_F","B_RangeMaster_F"];
+HOSTILE_LEVEL_1_WHITELIST = []; //adds these units to the hostile levels, if you only want to use the whitelist and not the above groups, leave the groups empty : [];
+HOSTILE_LEVEL_2_WHITELIST = [];
+HOSTILE_LEVEL_3_WHITELIST = [];
+HOSTILE_LEVEL_4_WHITELIST = [];
+DEFECTOR_CLASS_WHITELIST = [];
+PARATROOP_CLASS_WHITELIST = [];
+//Vehicle Whitelist
+/* 0 = Adds Whitelist Vehicles to spawn. */
+/* 1 = Only Whitelist Vehicles will spawn */
+VEHICLE_WHITELIST_MODE = 0;
+HOSTILE_ARMED_CARS_WHITELIST = []; // HOSTILE_ARMED_CARS_WHITELIST = []; to leave empty
+HOSTILE_ARMOUR_WHITELIST = [];
+//Vehicle Blacklist
+HOSTILE_VEHICLE_BLACKLIST = [];
 
 /* LOCATION LIST OPTIONS */
 // List_AllCities - for any random City
@@ -56,13 +69,15 @@ magSMG =		[2,5];      //shotguns included in SMG array since there aren't that m
 magSNIPER =		[3,6];
 magMG =			[1,3];
 magHANDGUN =	[2,4];
+
 /* Whitelist modes */
-/* 0 = Off */
+/* 0 = Adds Whitelist Items to loot spawn */
 /* 1 = Only Whitelist Items will spawn as loot */
+//There must be at least 1 element in each array for Whitelist mode 1, or set the spawn chance of the ones you left empty to 0
+//Adding items multiple times increases the chance of them to be spawned.
 LOOT_WHITELIST_MODE = 0;
 /* Loot Whitelists */
 /* Fill with classname arrays: ["example_item_1", "example_item_2"] */
-/* To use Whitelisting there MUST be at least one applicaple item in each LOOT_WHITELIST array*/
 LOOT_WHITELIST_WEAPON_MG = [];
 LOOT_WHITELIST_WEAPON_SNIPER = [];
 LOOT_WHITELIST_WEAPON_SMG = [];     //shotguns included in SMG array since there aren't that many

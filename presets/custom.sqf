@@ -1,24 +1,35 @@
 /**
-*  editMe
-*
+*  Preset
 *  Defines all global config for the mission
-*
+*  Required mods:
 *  Domain: Client, Server
 **/
-//CUSTOM PRESET FOR WHATEVER YOU WANT TO DO YOURSELF, BY DEFAULT THIS IS JUST THE VANILLA PRESET
 /* MOD FILTER */
-modTag = []; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class name, use that. For example modTag = "LIB" would only spawn Iron Front Weapons.
-
+modTag = []; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class names, use that. For example modTag = ["LIB"] would only spawn Iron Front Weapons. Can use multiple for example:modTag = ["LIB,"NORTH"];
 /* Attacker Waves */
-// Use group class names
-HOSTILE_LEVEL_1 = ["BanditCombatGroup"];    //wave 0
-HOSTILE_LEVEL_2 = ["OIA_InfSquad"];         //wave 5
-HOSTILE_LEVEL_3 = ["OI_ViperTeam"];         //wave 10
-HOSTILE_LEVEL_4 = ["OI_ViperTeam"];         //wave 15
+// Use group class names - To leave empty do: HOSTILE_LEVEL_1 = [];
+HOSTILE_LEVEL_1 = ["BanditCombatGroup"];                                       //wave 0
+HOSTILE_LEVEL_2 = ["OIA_InfSquad","BanditCombatGroup"];                        //wave 5
+HOSTILE_LEVEL_3 = ["OIA_InfSquad","BanditCombatGroup"];                        //wave 10
+HOSTILE_LEVEL_4 = ["OI_ViperTeam","OIA_InfSquad","BanditCombatGroup"];         //wave 15
 DEFECTOR_CLASS = ["BUS_InfSquad"];          //defector special wave units
-PARATROOP_CLASS = ["BUS_InfSquad"];          //friendly units called in via support
+PARATROOP_CLASS = ["BUS_InfSquad"];         //friendly units called in via support
 
-/* Vehicle Whitelist and Blacklists */   //not done yet
+//Unit Whitelist
+HOSTILE_LEVEL_1_WHITELIST = []; //adds these units to the hostile levels, if you only want to use the whitelist and not the above groups, to leave empty do [];
+HOSTILE_LEVEL_2_WHITELIST = [];
+HOSTILE_LEVEL_3_WHITELIST = [];
+HOSTILE_LEVEL_4_WHITELIST = [];
+DEFECTOR_CLASS_WHITELIST = [];
+PARATROOP_CLASS_WHITELIST = [];
+//Vehicle Whitelist
+/* 0 = Adds Whitelist Vehicles to spawn. */
+/* 1 = Only Whitelist Vehicles will spawn */
+VEHICLE_WHITELIST_MODE = 0;
+HOSTILE_ARMED_CARS_WHITELIST = []; // HOSTILE_ARMED_CARS_WHITELIST = []; to leave empty
+HOSTILE_ARMOUR_WHITELIST = [];
+//Vehicle Blacklist
+HOSTILE_VEHICLE_BLACKLIST = [];
 
 /* LOCATION LIST OPTIONS */
 // List_AllCities - for any random City
@@ -40,8 +51,8 @@ LOOT_BLACKLIST = [
 ];
 //Loot Chances - chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
 launcherWeapTypeChance =    15;
-assaultWeapTypeChance =     30;
-smgWeapTypeChance =         25;    //shotguns included in SMG array since there aren't that many
+assaultWeapTypeChance =     35;
+smgWeapTypeChance =         20;    //shotguns included in SMG array since there aren't that many
 sniperWeapTypeChance =      20;
 mgWeapTypeChance =          5;
 handgunWeapTypeChance =		5;
@@ -56,15 +67,17 @@ magLAUNCHER =	[1,3];
 magASSAULT =	[1,3];
 magSMG =		[2,5];      //shotguns included in SMG array since there aren't that many
 magSNIPER =		[3,6];
-magMG =			[1,1];
+magMG =			[1,3];
 magHANDGUN =	[2,4];
+
 /* Whitelist modes */
-/* 0 = Off */
+/* 0 = Adds Whitelist Items to loot spawn */
 /* 1 = Only Whitelist Items will spawn as loot */
+//There must be at least 1 element in each array for Whitelist mode 1, or set the spawn chance of the ones you left empty to 0
+//Adding items multiple times increases the chance of them to be spawned.
 LOOT_WHITELIST_MODE = 0;
 /* Loot Whitelists */
 /* Fill with classname arrays: ["example_item_1", "example_item_2"] */
-/* To use Whitelisting there MUST be at least one applicaple item in each LOOT_WHITELIST array*/
 LOOT_WHITELIST_WEAPON_MG = [];
 LOOT_WHITELIST_WEAPON_SNIPER = [];
 LOOT_WHITELIST_WEAPON_SMG = [];     //shotguns included in SMG array since there aren't that many
@@ -82,6 +95,7 @@ SCORE_RANDOMBOX = 950;  // Cost to spin the box
 HOSTILE_LEVEL_1_POINT_SCORE = 0.75;
 HOSTILE_LEVEL_2_POINT_SCORE = 1;
 HOSTILE_LEVEL_3_POINT_SCORE = 1.50;
+HOSTILE_LEVEL_4_POINT_SCORE = 1.75;
 HOSTILE_CAR_POINT_SCORE = 2;
 HOSTILE_ARMOUR_POINT_SCORE = 4;
 
@@ -92,7 +106,7 @@ lowSpecialWave_list = [
 	"fogWave",
 	"switcharooWave",
     "specCivs"
-	];
+];
 //comment out the waves you don't like. Don't forget to remove the , behind the last entry
 //list of all special waves you can get on higher waves
 specialWave_list= [
@@ -148,14 +162,20 @@ BULWARK_BUILDITEMS = [
     [75,    "Small Ramp (1m)",        "Land_Obstacle_Ramp_F",            180,      1.5,        0,        0],
     [85,    "Flat Triangle (1m)",     "Land_DomeDebris_01_hex_green_F",  180,      1.5,        0,        0],
     [100,   "Short Sandbag Wall",     "Land_SandbagBarricade_01_half_F",   0,      1.5,        0,        0],
-    [150,   "Sandbag Barricade",      "Land_SandbagBarricade_01_hole_F",   0,      1.5,        0,        0],
+    [150,   "Sandbag Tall (hole)",    "Land_SandbagBarricade_01_hole_F",   0,      1.5,        0,        0],
+    [150,   "Sandbag Tall",           "Land_SandbagBarricade_01_F",        0,      1.5,        0,        0],
     [180,   "Concrete Shelter",       "Land_CncShelter_F",                 0,        1,        0,        0],
+    [180,   "Timber Pile",            "Land_TimberPile_04_F",              0,      3.5,        0,        0],
+    [200,   "Timber Pile (sloped)",   "Land_TimberPile_02_F",              0,      3.5,        0,        0],
     [200,   "Concrete Walkway",       "Land_GH_Platform_F",                0,      3.5,        0,        0],
     [250,   "Tall Concrete Wall",     "Land_Mil_WallBig_4m_F",             0,        2,        0,        0],
+    [250,   "Guard Box",              "Land_GuardBox_01_brown_F",          0,        2,        0,        0],
     [260,   "Portable Light",         "Land_PortableLight_double_F",     180,        1,        0,        0],
     [300,   "Long Concrete Wall",     "Land_CncBarrierMedium4_F",          0,        3,        0,        0],
+    [300,   "Obstacle Bridge",        "Land_Obstacle_Bridge_F",            0,        3,        0,        1],
     [400,   "Large Ramp",             "Land_VR_Slope_01_F",                0,        4,        0,        0],
     [500,   "Bunker Block",           "Land_Bunker_01_blocks_3_F",         0,        2,        0,        0],
+    [500,   "Guard Tower (small)",    "Land_GuardTower_02_F",              0,        2,        0,        0],
     [500,   "H Barrier",              "Land_HBarrier_3_F",                 0,        2,        0,        0],
     [500,   "Explosive Barrel",       "Land_MetalBarrel_F",                0,        1,        1,        0],	//explosive
     [750,   "Ladder",                 "Land_PierLadder_F",                 0,        1,        0,        0],
@@ -168,6 +188,11 @@ BULWARK_BUILDITEMS = [
     [2500,  "Static HMG",             "B_HMG_01_high_F",                   0,        1,        0,        1],
     [3000,  "Small Bunker",           "Land_BagBunker_Small_F",          180,        3,        0,        0],
     [4500,  "Pillbox",                "Land_PillboxBunker_01_hex_F",      90,      2.5,        0,        0],
+    [5000,  "Metal Guard Tower",      "Land_GuardTower_01_F",             90,      2.5,        0,        0],
+    [5000,  "Concrete Platform",      "Land_Rail_ConcreteRamp_F",         90,      2.5,        0,        0],
     [6000,  "Guard Tower",            "Land_Cargo_Patrol_V3_F",            0,      3.5,        0,        0],
-    [9500,  "Modular Bunker",         "Land_Bunker_01_Small_F",          180,      3.5,        0,        0]
+    [7000,  "Static GMG",             "B_GMG_01_high_F",                   0,      3.5,        0,        1],
+    [9500,  "Modular Bunker",         "Land_Bunker_01_Small_F",          180,        4,        0,        1],
+    [12000, "Control Tower",          "Land_ControlTower_01_F",          180,      3.5,        0,        0],
+    [25000, "Mortar",                 "B_Mortar_01_F",                   180,      3.5,        0,        1]
 ];

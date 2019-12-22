@@ -1,14 +1,14 @@
 /**
-*  editMe
-*
+*  Preset
 *  Defines all global config for the mission
-*
+*  Required mods: IFA3_AIO_LITE
+*  https://steamcommunity.com/workshop/filedetails/?id=660460283
 *  Domain: Client, Server
 **/
 /* MOD FILTER */
 modTag = ["LIB"]; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class name, use that. For example modTag = ["LIB"] would only spawn Iron Front Weapons. Can use multiple for example:modTag = ["LIB,"NORTH"];
 /* Attacker Waves */
-// Use group class names
+// Use group class names - To leave empty do: HOSTILE_LEVEL_1 = [];
 HOSTILE_LEVEL_1 = ["LIB_GER_sentry_squad_3"];    		//wave 0
 HOSTILE_LEVEL_2 = ["LIB_GER_infantry_squad"];       	//wave 5
 HOSTILE_LEVEL_3 = ["LIB_GER_infantry_squad"];         	//wave 10
@@ -16,7 +16,21 @@ HOSTILE_LEVEL_4 = ["LIB_GER_infantry_squad"]; 			//wave 15
 DEFECTOR_CLASS = ["LIB_US_AT_Squad"];          			//defector special wave units
 PARATROOP_CLASS = ["LIB_US_AT_Squad"];          		//friendly units called in via support
 
-/* Vehicle Whitelist and Blacklists */   //not done yet
+//Unit Whitelist
+HOSTILE_LEVEL_1_WHITELIST = []; //adds these units to the hostile levels, if you only want to use the whitelist and not the above groups, leave the groups empty : [];
+HOSTILE_LEVEL_2_WHITELIST = [];
+HOSTILE_LEVEL_3_WHITELIST = [];
+HOSTILE_LEVEL_4_WHITELIST = [];
+DEFECTOR_CLASS_WHITELIST = [];
+PARATROOP_CLASS_WHITELIST = [];
+//Vehicle Whitelist
+/* 0 = Adds Whitelist Vehicles to spawn. */
+/* 1 = Only Whitelist Vehicles will spawn */
+VEHICLE_WHITELIST_MODE = 0;
+HOSTILE_ARMED_CARS_WHITELIST = []; // HOSTILE_ARMED_CARS_WHITELIST = []; to leave empty
+HOSTILE_ARMOUR_WHITELIST = [];
+//Vehicle Blacklist
+HOSTILE_VEHICLE_BLACKLIST = [];
 
 /* LOCATION LIST OPTIONS */
 // List_AllCities - for any random City
@@ -100,13 +114,15 @@ magSMG =		[4,6];      //shotguns included in SMG array since there aren't that m
 magSNIPER =		[2,4];
 magMG =			[2,4];
 magHANDGUN =	[2,4];
+
 /* Whitelist modes */
-/* 0 = Off */
+/* 0 = Adds Whitelist Items to loot spawn */
 /* 1 = Only Whitelist Items will spawn as loot */
+//There must be at least 1 element in each array for Whitelist mode 1, or set the spawn chance of the ones you left empty to 0
+//Adding items multiple times increases the chance of them to be spawned.
 LOOT_WHITELIST_MODE = 0;
 /* Loot Whitelists */
 /* Fill with classname arrays: ["example_item_1", "example_item_2"] */
-/* To use Whitelisting there MUST be at least one applicaple item in each LOOT_WHITELIST array*/
 LOOT_WHITELIST_WEAPON_MG = [];
 LOOT_WHITELIST_WEAPON_SNIPER = [];
 LOOT_WHITELIST_WEAPON_SMG = [];     //shotguns included in SMG array since there aren't that many
@@ -124,6 +140,7 @@ SCORE_RANDOMBOX = 950;  // Cost to spin the box
 HOSTILE_LEVEL_1_POINT_SCORE = 0.75;
 HOSTILE_LEVEL_2_POINT_SCORE = 1;
 HOSTILE_LEVEL_3_POINT_SCORE = 1.50;
+HOSTILE_LEVEL_4_POINT_SCORE = 1.75;
 HOSTILE_CAR_POINT_SCORE = 2;
 HOSTILE_ARMOUR_POINT_SCORE = 4;
 

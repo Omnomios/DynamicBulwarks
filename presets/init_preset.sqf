@@ -1,5 +1,5 @@
 presetParameter = "FILTER_PRESET" call BIS_fnc_getParamValue;
-//to add more presets you need to add another preset in this switch, to add it to the parameter edit line 198,199 in description.ext
+//to add more presets you need to add another preset in this switch, to add it to the parameter edit line 205,206 in description.ext
 switch (presetParameter) do {
 	case 0: {_preset = [] execVM "presets\vanilla.sqf";};
 	case 1: {_preset = [] execVM "presets\lib.sqf";};
