@@ -32,7 +32,6 @@ if(player getVariable "killPoints" >= _shopPrice && !(player getVariable "buildI
 		};
 		//check if invincible
 		if (_invincible == 1) then {
-		shopVehic enableSimulation false;
 		shopVehic allowDamage false;
 		};
     objPurchase = true;
