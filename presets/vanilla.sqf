@@ -189,10 +189,8 @@ BULWARK_BUILDITEMS = [
     [3000,  "Small Bunker",           "Land_BagBunker_Small_F",          180,        3,        0,        0],
     [4500,  "Pillbox",                "Land_PillboxBunker_01_hex_F",      90,      2.5,        0,        0],
     [5000,  "Metal Guard Tower",      "Land_GuardTower_01_F",             90,      2.5,        0,        0],
-    [5000,  "Concrete Platform",      "Land_Rail_ConcreteRamp_F",         90,      2.5,        0,        0],
     [6000,  "Guard Tower",            "Land_Cargo_Patrol_V3_F",            0,      3.5,        0,        0],
     [7000,  "Static GMG",             "B_GMG_01_high_F",                   0,      3.5,        0,        1],
     [9500,  "Modular Bunker",         "Land_Bunker_01_Small_F",          180,        4,        0,        1],
-    [12000, "Control Tower",          "Land_ControlTower_01_F",          180,      3.5,        0,        0],
     [25000, "Mortar",                 "B_Mortar_01_F",                   180,      3.5,        0,        1]
 ];
