@@ -16,7 +16,7 @@ HOSTILE_LEVEL_4 = ["gm_ge_army_infantry_mggroup_str"];      //wave 15
 DEFECTOR_CLASS = ["gm_dk_army_infantry_squad_84_m84"];          //defector special wave units
 PARATROOP_CLASS = ["gm_dk_army_infantry_squad_84_m84"];          //friendly units called in via support
 
-//Unit Whitelist
+//Unit Whitelist - unit classnames are expected for example: HOSTILE_LEVEL_1_WHITELIST = ["B_Soldier_A_F","B_support_MG_F"];
 HOSTILE_LEVEL_1_WHITELIST = []; //adds these units to the hostile levels, if you only want to use the whitelist and not the above groups, leave the groups empty : [];
 HOSTILE_LEVEL_2_WHITELIST = [];
 HOSTILE_LEVEL_3_WHITELIST = [];
@@ -31,13 +31,6 @@ HOSTILE_ARMED_CARS_WHITELIST = []; // HOSTILE_ARMED_CARS_WHITELIST = []; to leav
 HOSTILE_ARMOUR_WHITELIST = [];
 //Vehicle Blacklist
 HOSTILE_VEHICLE_BLACKLIST = [];
-
-/* LOCATION LIST OPTIONS */
-// List_AllCities - for any random City
-// List_SpecificPoint - will start the mission on the "Specific Bulwark Pos" marker (move with mission editor). Location must meet BULWARK_LANDRATIO and LOOT_HOUSE_DENSITY, BULWARK_MINSIZE, etc requirements
-// List_LocationMarkers - for a location selected randomly from the Bulwark Zones in editor (Currently broken)
-// *IMPORTANT* If you get an error using List_SpecificPoint it means that there isn't a building that qualifies. Turning down the "Minimum spawn room size" parameter might help.
-BULWARK_LOCATIONS = List_AllCities;
 
 /* LOOT */
 Medkit = "gm_ge_army_medkit_80";

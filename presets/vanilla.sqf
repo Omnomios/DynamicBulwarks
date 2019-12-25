@@ -10,13 +10,13 @@ modTag = []; //limits loot and vehicles to a specific mod. Mods usually have a t
 // Use group class names - To leave empty do: HOSTILE_LEVEL_1 = [];
 HOSTILE_LEVEL_1 = ["BanditCombatGroup"];                                       //wave 0
 HOSTILE_LEVEL_2 = ["OIA_InfSquad","BanditCombatGroup"];                        //wave 5
-HOSTILE_LEVEL_3 = ["OIA_InfSquad","BanditCombatGroup"];                        //wave 10
-HOSTILE_LEVEL_4 = ["OI_ViperTeam","OIA_InfSquad","BanditCombatGroup"];         //wave 15
+HOSTILE_LEVEL_3 = ["OIA_InfSquad","BanditCombatGroup","OI_SniperTeam"];                        //wave 10
+HOSTILE_LEVEL_4 = ["OI_ViperTeam","OIA_InfSquad","BanditCombatGroup","OI_SniperTeam"];         //wave 15
 DEFECTOR_CLASS = ["BUS_InfSquad"];          //defector special wave units
 PARATROOP_CLASS = ["BUS_InfSquad"];         //friendly units called in via support
 
-//Unit Whitelist - fill with unit classnames example: HOSTILE_LEVEL_1_WHITELIST = ["B_Soldier_F","B_RangeMaster_F"];
-HOSTILE_LEVEL_1_WHITELIST = []; //adds these units to the hostile levels, if you only want to use the whitelist and not the above groups, leave the groups empty : [];
+//Unit Whitelist - unit classnames are expected for example: HOSTILE_LEVEL_1_WHITELIST = ["B_Soldier_A_F","B_support_MG_F"];
+HOSTILE_LEVEL_1_WHITELIST = []; //adds these units to the hostile levels, if you only want to use the whitelist and not the above groups, to leave empty do [];
 HOSTILE_LEVEL_2_WHITELIST = [];
 HOSTILE_LEVEL_3_WHITELIST = [];
 HOSTILE_LEVEL_4_WHITELIST = [];
@@ -30,13 +30,6 @@ HOSTILE_ARMED_CARS_WHITELIST = []; // HOSTILE_ARMED_CARS_WHITELIST = []; to leav
 HOSTILE_ARMOUR_WHITELIST = [];
 //Vehicle Blacklist
 HOSTILE_VEHICLE_BLACKLIST = [];
-
-/* LOCATION LIST OPTIONS */
-// List_AllCities - for any random City
-// List_SpecificPoint - will start the mission on the "Specific Bulwark Pos" marker (move with mission editor). Location must meet BULWARK_LANDRATIO and LOOT_HOUSE_DENSITY, BULWARK_MINSIZE, etc requirements
-// List_LocationMarkers - for a location selected randomly from the Bulwark Zones in editor (Currently broken)
-// *IMPORTANT* If you get an error using List_SpecificPoint it means that there isn't a building that qualifies. Turning down the "Minimum spawn room size" parameter might help.
-BULWARK_LOCATIONS = List_AllCities;
 
 /* LOOT */
 Medkit = "Medikit";

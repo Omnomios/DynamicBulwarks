@@ -203,7 +203,7 @@ class Params
 	{
 		title = "Presets";
 		values[] = {0,1,2,3,4};
-		texts[] = {"Normal","WW2 (IFA3_AIO_LITE)","Global Mobilization","Unsung WIP (The_Unsung_Vietnam_War_Mod) crashes sometimes","Custom"};
+		texts[] = {"Normal","WW2 (IFA3_AIO_LITE)","Global Mobilization","Unsung WIP (The_Unsung_Vietnam_War_Mod) crashes sometimes","Custom (same as Normal by default, its for you to mess around in)"};
 		default = 0;
 	};
 	class HOSTILE_LABEL
@@ -364,6 +364,14 @@ class Params
 		values[] = {60, 70, 80, 90, 100};
 		texts[] = {"60%","70%","80%","90%","100%"};
 		default = 80;
+	};
+
+	class BULWARK_POSITION
+	{
+		title = "Position";
+		values[] = {0,1};
+		texts[] = {"Ignore marker","Use location marker if any exist (selects random between markers you can place in the editor)"};
+		defaukt = 0;
 	};
 
 	class LOOT_HOUSE_DENSITY
