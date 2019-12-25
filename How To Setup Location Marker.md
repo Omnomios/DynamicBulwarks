@@ -8,4 +8,4 @@ To use your placed markers select "Position" > "Use location markers" in the mis
 Keep in mind:\
 The Bulwark will be on the exact location where the marker is.\
 Make sure there is loot nearby or place some houses in editor that can spawn loot.\
-You can't spawn on buildings with this, always place it on the ground.\
+You can't spawn on buildings with this, always places you on ground.
