@@ -203,7 +203,7 @@ class Params
 	{
 		title = "Presets";
 		values[] = {0,1,2,3,4};
-		texts[] = {"Normal","WW2 (IFA3_AIO_LITE)","Global Mobilization","Unsung WIP (The_Unsung_Vietnam_War_Mod) crashes sometimes","Custom (same as Normal by default, its for you to mess around in)"};
+		texts[] = {"Normal","WW2 (IFA3_AIO_LITE)","Global Mobilization","WW2 Winter (IFA_AIO_LITE)","Custom (same as Normal by default, its for you to mess around in)"};
 		default = 0;
 	};
 	class HOSTILE_LABEL

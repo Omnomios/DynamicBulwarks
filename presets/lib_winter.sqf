@@ -17,18 +17,18 @@ DEFECTOR_CLASS = [];          			//defector special wave units
 PARATROOP_CLASS = [];          		//friendly units called in via support
 
 //Unit Whitelist - unit classnames are expected for example: HOSTILE_LEVEL_1_WHITELIST = ["B_Soldier_A_F","B_support_MG_F"];
-HOSTILE_LEVEL_1_WHITELIST = ["LIB_GER_rifleman"]; //adds these units to the hostile levels, if you only want to use the whitelist and not the above groups, leave the groups empty : [];
-HOSTILE_LEVEL_2_WHITELIST = ["LIB_GER_rifleman","LIB_GER_ober_grenadier","LIB_GER_LAT_Rifleman","LIB_GER_rifleman","LIB_GER_medic","LIB_GER_unterofficer"];
-HOSTILE_LEVEL_3_WHITELIST = ["LIB_GER_ober_rifleman","LIB_GER_ober_grenadier","LIB_GER_ober_grenadier","LIB_GER_LAT_Rifleman","LIB_GER_ober_rifleman","LIB_GER_medic","LIB_GER_unterofficer","LIB_GER_mgunner2"];
-HOSTILE_LEVEL_4_WHITELIST = ["SG_sturmtrooper_mgunner","SG_sturmtrooper_mgunner2","LNRD_Luftwaffe_medic","LNRD_Luftwaffe_AT_soldier","LIB_GER_AT_grenadier","LIB_FSJ_Soldier_2","SG_sturmtrooper_ober_grenadier","SG_sturmtrooper_sniper"];
-DEFECTOR_CLASS_WHITELIST = ["LIB_US_Sniper","LIB_US_AT_Soldier","LIB_US_SMGunner","LIB_US_Grenadier","LIB_US_MGunner"];
-PARATROOP_CLASS_WHITELIST = ["LIB_US_AT_Soldier"];
+HOSTILE_LEVEL_1_WHITELIST = ["LIB_GER_rifleman_w"]; //adds these units to the hostile levels, if you only want to use the whitelist and not the above groups, leave the groups empty : [];
+HOSTILE_LEVEL_2_WHITELIST = ["LIB_GER_rifleman_w","LIB_GER_ober_grenadier_w","LIB_GER_LAT_Rifleman_w","LIB_GER_rifleman_w","LIB_GER_medic_w","LIB_GER_unterofficer_w"];
+HOSTILE_LEVEL_3_WHITELIST = ["LIB_GER_ober_rifleman_w","LIB_GER_ober_grenadier_w","LIB_GER_ober_grenadier_w","LIB_GER_LAT_Rifleman_w","LIB_GER_ober_rifleman_w","LIB_GER_medic_w","LIB_GER_unterofficer_w","LIB_GER_Scout_mgunner_w"];
+HOSTILE_LEVEL_4_WHITELIST = ["LIB_GER_AT_grenadier_w","LIB_GER_ober_grenadier_w","LIB_GER_Scout_sniper_w","LIB_GER_Mgunner_w","LIB_GER_LAT_Rifleman_w","LIB_GER_AT_soldier_w"];
+DEFECTOR_CLASS_WHITELIST = ["LIB_US_Sniper_w","LIB_US_AT_soldier_w","LIB_US_Smgunner_w","LIB_US_Grenadier_w","LIB_US_Mgunner_w"];
+PARATROOP_CLASS_WHITELIST = ["LIB_US_AT_soldier_w"];
 //Vehicle Whitelist
 /* 0 = Adds Whitelist Vehicles to spawn. */
 /* 1 = Only Whitelist Vehicles will spawn */
 VEHICLE_WHITELIST_MODE = 1;
-HOSTILE_ARMED_CARS_WHITELIST = ["LIB_SdKfz222","LIB_Kfz1_MG42_sernyt","LIB_SdKfz251_FFV","LIB_SdKfz_7_AA"]; // HOSTILE_ARMED_CARS_WHITELIST = []; to leave empty
-HOSTILE_ARMOUR_WHITELIST = ["LIB_PzKpfwIV_H_tarn51d","LIB_SdKfz234_3","LIB_PzKpfwIV_H_tarn51d","LIB_FlakPanzerIV_Wirbelwind","LIB_PzKpfwVI_E_1","LIB_PzKpfwVI_B_tarn51d","LIB_PzKpfwV","LIB_SdKfz234_2","LIB_SdKfz234_3"];
+HOSTILE_ARMED_CARS_WHITELIST = ["LIB_SdKfz_7_AA_w","LIB_SdKfz251_FFV_w","LIB_Kfz1_MG42_sernyt"]; // HOSTILE_ARMED_CARS_WHITELIST = []; to leave empty
+HOSTILE_ARMOUR_WHITELIST = ["LIB_SdKfz222","LIB_SdKfz222","LIB_SdKfz222","LIB_FlakPanzerIV_Wirbelwind_w","LIB_PzKpfwIV_H_w","LIB_PzKpfwIV_H_w","LIB_PzKpfwV_w","LIB_PzKpfwVI_B_camo_w","LIB_PzKpfwVI_E_w"];
 //Vehicle Blacklist
 HOSTILE_VEHICLE_BLACKLIST = [];
 
@@ -199,7 +199,7 @@ supportAircraftSpeed = 150; // adds speed to the aircraft -- default 0
 /*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) - explosive - invincible	*/
 BULWARK_BUILDITEMS = [
     [25,   	"Long Plank (8m)",      		"Land_Plank_01_8m_F",             			   	0,		4,		0,	0],
-    [50,  	"Junk Barricade",       		"Land_Ind_Timbers",         			    	90,		1.5,	0,	0],
+    [50,  	"Junk Barricade",       		"Land_CUP_Ind_Timbers_w",     			    	90,		1.5,	0,	0],
 	[50, 	"Hedgehog",						"Land_I44_HedgeHog",							0,		2,		0,	0],
 	[50, 	"ConcreteKerb",					"Land_ConcreteKerb_02_2m_F",					0,		1,		0,	0],
     [75,   	"Small Ramp",           		"Land_WoodenRamp",          			    	180,	1.5,	0,	1], //invincible
@@ -217,30 +217,30 @@ BULWARK_BUILDITEMS = [
 	[250,  	"Shoot House (Crouch)",			"Land_Shoot_House_Tunnel_Crouch_F",				0,		2,		0,	1], //invincible
 	[250,  	"Shoot House (Stand)",			"Land_Shoot_House_Tunnel_Stand_F",				0,		2,		0,	1], //invincible
 	[250,  	"Wood Light Pole",				"Land_PowLines_WoodL",							0,		2,		0,	1],
-	[250, 	"Unterstand",         	    	"Land_WW2_BET_Holzverhau",          			90,  	3,		0,	0],
+	[250, 	"Unterstand",         	    	"Land_WW2_BET_Holzverhau_Snow",          		90,  	3,		0,	0],
     [300, 	"Long Concrete Wall",   		"Land_CncBarrierMedium4_F",          			0,  	3,		0,	0],
 	[300,	"Stairs Concrete",             	"Land_Podesta_1_stairs4",						0,		1,		0,	1],
 	[350,   "Ramp Concrete",		    	"RampConcrete",							    	180,	1,		0,	1],
-    [400,  	"Trench Corner",     	    	"Land_WW2_Fortification_Trench_Corner_X2",      0, 		4,	    0,	0],
-    [400,  	"Trench Bridge",     	    	"Land_WW2_Fortification_Trench_Bridge",         0, 		4,  	0,	0],
-    [400,  	"Trench Corner 90",    	    	"Land_WW2_Fortification_Trench_Corner_90",      0, 		4,  	0,	0],
-    [400,  	"Trench Wall",    	         	"Land_WW2_Fortification_Trench_Wall",           0, 		4,  	0,	0],
-    [400,  	"Trench Wide",    	         	"Land_WW2_Fortification_Trench_Wide",           0, 		4,  	0,	0],
+    [400,  	"Trench Corner",     	    	"Land_WW2_Fortification_Trench_Corner_X2_w",    0, 		4,	    0,	0],
+    [400,  	"Trench Bridge",     	    	"Land_WW2_Fortification_Trench_Bridge_w",       0, 		4,  	0,	0],
+    [400,  	"Trench Corner 90",    	    	"Land_WW2_Fortification_Trench_Corner_90_w",    0, 		4,  	0,	0],
+    [400,  	"Trench Wall",    	         	"Land_WW2_Fortification_Trench_Wall_w",         0, 		4,  	0,	0],
+    [400,  	"Trench Wide",    	         	"Land_WW2_Fortification_Trench_Wide_w",         0, 		4,  	0,	0],
     [400, 	"Large Ramp",           		"Land_ConcreteRamp",                			0,  	4,		0,	0],
 	[400,	"Wooden Watchtower",		   	"Land_Posed",							    	0,		1,		0,	1],
 	[500, 	"Fuel Barrel",					"Land_MetalBarrel_F",		    				0,  	1,		1,	0],	//explosive
     [500, 	"Bunker Block",         		"Land_Bunker_01_blocks_3_F",         			0,  	2,		0,	0],
-	[650, 	"Tank Trench",         	    	"Land_WW2_TrenchTank",          				0,   	3,		0,	0],
+	[650, 	"Tank Trench",         	    	"Land_WW2_TrenchTank_w",          				0,   	3,		0,	0],
     [750, 	"Ladder",               		"Land_PierLadder_F",                 			0,  	1,		0,	0],
     [750,  	"Trench Bunker",   	         	"Land_WW2_Fortification_Trench_Bunker_FFP",     180, 	4,  	0,	0],
 	[750, 	"Static MG42",         			"LIB_MG42_Lafette_Deployed",         			0,  	1,		0,	1],	//invincible
 	[750, 	"Static M1919A4 low",   		"LIB_M1919_M2",  				    			0,  	1,		0,	1],	//invincible
 	[750, 	"Obstacle - Bridge",   			"Land_prebehlavka",  				   			0,  	1,		0,	1],	//invincible
-    [800, 	"Trench Long",   	         	"Land_WW2_Fortification_Trench_Long_X3",        0, 		6,  	0,	0],
+    [800, 	"Trench Long",   	         	"Land_WW2_Fortification_Trench_Long_X3_w",      0, 		6,  	0,	0],
     [800, 	"Ammo box",    					"LIB_BasicAmmunitionBox_US",                	0,  	1,		0,	1], //invincible
     [950, 	"Stairs",               		"Land_GH_Stairs_F",                  			0,  	4,		0,	1],	//invincible
     [1000, 	"Metal Watchtower",     		"Land_Hlaska",		                			0,		3.5,	0,	0],
-    [1000,  "Trench Bunker",   	            "Land_WW2_BET_MG_Nest_Splinter_B",              0,  	4,  	0,	0],
+    [1000,  "Trench Bunker",   	            "Land_WW2_Fortification_Trench_Bunker_FFP_w",   0,  	4,  	0,	0],
     [1000, 	"Concrete Platform",    		"Land_ConcreteBlock",                  			0,		5,		0,	0],
 	[1000, 	"Bag Bunker",					"Land_Fort_Bagfence_Bunker",		  			0,		4,		0,	0],
     [4500, 	"Pillbox",              		"Land_PillboxBunker_01_hex_F",      			90,		5,		0,	0],
