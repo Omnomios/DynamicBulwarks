@@ -166,11 +166,6 @@ specialWave_list= [
 lowSpecialWaveStart = 5;
 //starting from this wave the specialWaveList is used
 SpecialWaveStart = 10;
-//If true, every time special waves spawn it could be any of the set special waves
-//If false, you can't get a repeat of the same special wave type, until  all special waves happend once
-specialWaveRepeat = false;
-//if true, every wave starting with the lowSpecialWaveStart will be a special wave
-everyWaveSpecial = false;
 
 /* SUPPORT */
 //Comment out or delete the below support items to prevent the player from buying them
