@@ -30,3 +30,6 @@ if (DAY_TIME_FROM > DAY_TIME_TO) then {
 };
 /* Starter MediKits */
 BULWARK_MEDIKITS = ("BULWARK_MEDIKIT" call BIS_fnc_getParamValue);
+/* Special Wave parameters */
+everyWaveSpecial = if ("SPECIAL_WAVES_ONLY" call BIS_fnc_getParamValue == 1) then {true} else {false};
+specialWaveRepeat = if ("SPECIAL_WAVES_VARIETY" call BIS_fnc_getParamValue == 1) then {false} else {true};

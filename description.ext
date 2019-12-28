@@ -302,6 +302,22 @@ class Params
 		default = 1;
 	};
 
+	class SPECIAL_WAVES_ONLY
+	{
+		title = "Only Special Waves";
+		values[] = {0, 1};
+		texts[] = {"No", "Yes (the first few waves are still normal, but after that you will get special waves every wave)"};
+		default = 0;
+	};
+
+	class SPECIAL_WAVES_VARIETY
+	{
+		title = "Increase Special Wave varierty";
+		values[] = {0, 1};
+		texts[] = {"No", "Yes (makes sure you get less repeats of the same special wave)"};
+		default = 1;
+	};
+
 	class ARMOUR_START_WAVE
 	{
 		title = "Vehicles can spawn after wave";
