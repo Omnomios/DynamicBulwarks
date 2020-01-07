@@ -14,6 +14,8 @@ _shopName  = (BULWARK_BUILDITEMS select _index) select 1;
 _shopClass = (BULWARK_BUILDITEMS select _index) select 2;
 _shopDir   = (BULWARK_BUILDITEMS select _index) select 3;
 _VecRadius = (BULWARK_BUILDITEMS select _index) select 4;
+_explosive = (BULWARK_BUILDITEMS select _index) select 5;
+_invincible = (BULWARK_BUILDITEMS select _index) select 6;
 
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};
@@ -23,6 +25,15 @@ if(player getVariable "killPoints" >= _shopPrice && !(player getVariable "buildI
     shopVehic = _shopClass createVehicle [0,0,0];
 	  shopVehic setVariable ["shopPrice", _shopPrice, true];
     shopVehic setVariable ["Radius", _VecRadius, true];
+		//Check if Explosive	
+		if (_explosive == 1) then {
+		shopVehic setDamage 0.9;
+		shopVehic addEventHandler ["Killed", killPoints_fnc_hitBoom];	
+		};
+		//check if invincible
+		if (_invincible == 1) then {
+		shopVehic allowDamage false;
+		};
     objPurchase = true;
 } else {
   if(player getVariable "killPoints" < _shopPrice) then {

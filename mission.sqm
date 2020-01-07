@@ -8,18 +8,18 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=186;
+		nextID=263;
 	};
 	class MarkerIDProvider
 	{
-		nextID=6;
+		nextID=8;
 	};
 	class Camera
 	{
-		pos[]={-3.0339575,24.28578,21.95533};
-		dir[]={0.012008007,-0.54482526,-0.83846366};
-		up[]={0.0078018815,0.83854961,-0.54476935};
-		aside[]={-0.99989748,4.6566129e-010,-0.014319971};
+		pos[]={8380.4258,26.05335,10340.238};
+		dir[]={-0.28095064,-0.95078272,-0.1307985};
+		up[]={-0.8619436,0.30987424,-0.40128282};
+		aside[]={-0.42206383,5.9767626e-007,0.90657794};
 	};
 };
 binarizationWanted=0;
@@ -31,9 +31,9 @@ addons[]=
 	"A3_Weapons_F_Items",
 	"A3_Characters_F_Exp_Civil",
 	"A3_Characters_F_Exp",
-	"A3_Ui_F",
 	"A3_Modules_F_Curator_Curator",
-	"A3_Structures_F_Naval_Piers"
+	"A3_Structures_F_Naval_Piers",
+	"A3_Ui_F"
 };
 class AddonsMetaData
 {
@@ -63,22 +63,22 @@ class AddonsMetaData
 		};
 		class Item3
 		{
-			className="A3_Ui_F";
-			name="Arma 3 - User Interface";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item4
-		{
 			className="A3_Modules_F_Curator";
 			name="Arma 3 Zeus Update - Scripted Modules";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item5
+		class Item4
 		{
 			className="A3_Structures_F";
 			name="Arma 3 - Buildings and Structures";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item5
+		{
+			className="A3_Ui_F";
+			name="Arma 3 - User Interface";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
@@ -228,7 +228,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=13;
+		items=5;
 		class Item0
 		{
 			dataType="Group";
@@ -835,7 +835,7 @@ class Mission
 					};
 					id=167;
 					type="C_man_polo_1_F";
-					atlOffset=190.19565;
+					atlOffset=64.488983;
 				};
 				class Item19
 				{
@@ -853,7 +853,7 @@ class Mission
 					};
 					id=165;
 					type="C_Man_casual_6_F";
-					atlOffset=190.19563;
+					atlOffset=64.923119;
 				};
 				class Item20
 				{
@@ -871,7 +871,7 @@ class Mission
 					};
 					id=169;
 					type="C_Man_casual_1_F";
-					atlOffset=190.19563;
+					atlOffset=64.440475;
 				};
 				class Item21
 				{
@@ -907,7 +907,7 @@ class Mission
 					};
 					id=175;
 					type="C_man_sport_2_F";
-					atlOffset=190.19563;
+					atlOffset=64.693283;
 				};
 				class Item23
 				{
@@ -925,7 +925,7 @@ class Mission
 					};
 					id=177;
 					type="C_man_sport_3_F";
-					atlOffset=190.19563;
+					atlOffset=64.510094;
 				};
 				class Item24
 				{
@@ -976,109 +976,6 @@ class Mission
 		};
 		class Item1
 		{
-			dataType="Marker";
-			position[]={7402.1348,55.849998,15393.67};
-			name="bulwark_zone_1";
-			markerType="ELLIPSE";
-			type="ellipse";
-			a=150;
-			b=150;
-			id=84;
-			atlOffset=0.00048446655;
-		};
-		class Item2
-		{
-			dataType="Marker";
-			position[]={13934.795,22.678057,18720.475};
-			name="bulwark_zone_2";
-			markerType="ELLIPSE";
-			type="ellipse";
-			a=150;
-			b=150;
-			id=85;
-			atlOffset=-0.61751747;
-		};
-		class Item3
-		{
-			dataType="Marker";
-			position[]={14344.489,36.901539,18931.111};
-			name="bulwark_zone_3";
-			markerType="ELLIPSE";
-			type="ellipse";
-			a=150;
-			b=150;
-			id=86;
-		};
-		class Item4
-		{
-			dataType="Marker";
-			position[]={3670.7996,27.896484,12257.543};
-			name="bulwark_zone_5";
-			markerType="ELLIPSE";
-			type="ellipse";
-			a=150;
-			b=150;
-			id=88;
-			atlOffset=-0.709692;
-		};
-		class Item5
-		{
-			dataType="Marker";
-			position[]={18783.699,32.74324,16623.865};
-			name="bulwark_zone_6";
-			markerType="ELLIPSE";
-			type="ellipse";
-			a=150;
-			b=150;
-			id=93;
-		};
-		class Item6
-		{
-			dataType="Marker";
-			position[]={12815.5,88.037025,16676.613};
-			name="bulwark_zone_9";
-			markerType="ELLIPSE";
-			type="ellipse";
-			a=150;
-			b=150;
-			id=100;
-		};
-		class Item7
-		{
-			dataType="Marker";
-			position[]={14485.818,20.029274,17671.791};
-			name="bulwark_zone_10";
-			markerType="ELLIPSE";
-			type="ellipse";
-			a=150;
-			b=150;
-			id=101;
-			atlOffset=-0.69843292;
-		};
-		class Item8
-		{
-			dataType="Marker";
-			position[]={12841.994,43.018955,19643.109};
-			name="bulwark_zone_11";
-			markerType="ELLIPSE";
-			type="ellipse";
-			a=150;
-			b=150;
-			id=102;
-		};
-		class Item9
-		{
-			dataType="Marker";
-			position[]={3689.7898,10.092517,13160.728};
-			name="bulwark_zone_7";
-			markerType="ELLIPSE";
-			type="ellipse";
-			a=150;
-			b=150;
-			id=103;
-		};
-		class Item10
-		{
 			dataType="Logic";
 			class PositionInfo
 			{
@@ -1087,7 +984,7 @@ class Mission
 			name="mainZeus";
 			id=116;
 			type="ModuleCurator_F";
-			atlOffset=189.10609;
+			atlOffset=54.350147;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1169,17 +1066,7 @@ class Mission
 				nAttributes=4;
 			};
 		};
-		class Item11
-		{
-			dataType="Marker";
-			position[]={3759.2314,58.547043,12981.526};
-			name="specBulwarkLoc";
-			text="Specific Bulwark Pos";
-			type="Select";
-			id=182;
-			atlOffset=24.178188;
-		};
-		class Item12
+		class Item2
 		{
 			dataType="Object";
 			class PositionInfo
@@ -1194,7 +1081,7 @@ class Mission
 			};
 			id=123;
 			type="Land_Pier_Box_F";
-			atlOffset=190.19;
+			atlOffset=65;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -1218,6 +1105,29 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item3
+		{
+			dataType="Marker";
+			position[]={15621.061,0,15578.972};
+			name="tanoa";
+			text="This marker needs to have the mapname of the current map, as variable Name for location markers to work";
+			type="mil_warning";
+			colorName="ColorRed";
+			id=217;
+			atlOffset=61.799999;
+		};
+		class Item4
+		{
+			dataType="Marker";
+			position[]={8381.3779,-71.385002,10339.697};
+			name="bulwark_zone_1";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=262;
+			atlOffset=-90.815002;
 		};
 	};
 };

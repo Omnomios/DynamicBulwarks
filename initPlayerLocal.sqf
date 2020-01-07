@@ -21,6 +21,7 @@ _killPoints = _killPoints + ("START_KILLPOINTS" call BIS_fnc_getParamValue);
 player setVariable ["killPoints", _killPoints, true];
 [] call killPoints_fnc_updateHud;
 
+/*
 // Delete all map markers on clients
 {
     _currMarker = toArray _x;
@@ -29,7 +30,7 @@ player setVariable ["killPoints", _killPoints, true];
         if(_currMarker == "bulwark_") then{ deleteMarker _x; };
     };
 } foreach allMapMarkers;
-
+*/
 hitMarkers = [];
 
 //Show the Bulwark label on screen

@@ -35,7 +35,15 @@ while {_isWater} do {
 	_bulwarkLocation = [BULWARK_LOCATIONS, BULWARK_RADIUS] call bulwark_fnc_bulwarkLocation;
 	bulwarkRoomPos = _bulwarkLocation select 0;
 	bulwarkCity = _bulwarkLocation select 1;
+	if (BULWARK_LOCATIONS_MARKER) then {
+	bulwarkRoomPos params ["_posX","_posY","_posZ"];
+    bulwarkBox setPos [_posX,_posY,_posZ +2];
+	vectorUp bulwarkBox; 
+	}
+	else
+	{
 	bulwarkBox setPosASL bulwarkRoomPos;
+	};
 	_isWater = surfaceIsWater (getPos bulwarkBox);
 };
 
@@ -44,7 +52,7 @@ publicVariable "bulwarkCity";
 //bulwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
 //bulwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 if(BULWARK_MEDIKITS > 0) then {
-	bulwarkBox addItemCargoGlobal ["Medikit", BULWARK_MEDIKITS];
+	bulwarkBox addItemCargoGlobal [Medkit, BULWARK_MEDIKITS];
 };
 
 //Add actions to Bulwark Box
@@ -149,3 +157,5 @@ publicVariable "lootBox";
 		};
 	"
 ]] remoteExec ["addAction", 0, true];
+//function to reset bulwark if it falls through the floor
+[] spawn bulwark_fnc_bulwarkReset;

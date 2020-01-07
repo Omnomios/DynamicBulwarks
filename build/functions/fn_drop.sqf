@@ -10,7 +10,7 @@ detach _object;
 
 [_caller] remoteExec ["removeAllActions", 0];
 
-_object setVehiclePosition [_object, [], 0, 'CAN_COLLIDE'],
+_object setVehiclePosition [_object, [], 0, 'CAN_COLLIDE'];
 
 [
 	_object,

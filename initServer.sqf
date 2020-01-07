@@ -1,18 +1,25 @@
 // variable to prevent players rejoining during a wave
 playersInWave = [];
 publicVariable "playersInWave";
-
+//init phase
 ["<t size = '.5'>Loading lists.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
+private _hostileFunctions = [ //could make more efficent init phase with loadingscreen
+  "createWave",
+  "waveTypes"
+];
+{
+	[] call (compileFinal (preprocessFile format ["hostiles\%1.sqf", _x]));
+} forEach _hostileFunctions;
+_hmissionParams = [] execVM "setParams.sqf";
 _hLocation = [] execVM "locationLists.sqf";
+_hpreset =   [] execVM "presets\init_preset.sqf";
+waitUntil {scriptDone _hpreset};
 _hLoot     = [] execVM "loot\lists.sqf";
 _hHostiles = [] execVM "hostiles\lists.sqf";
 waitUntil {
-    scriptDone _hLocation &&
     scriptDone _hLoot &&
     scriptDone _hHostiles
 };
-_hConfig   = [] execVM "editMe.sqf";
-waitUntil { scriptDone _hConfig };
 
 ["<t size = '.5'>Creating Base...</t>", 0, 0, 30, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 _basepoint = [] execVM "bulwark\createBase.sqf";
@@ -34,6 +41,12 @@ publicVariable "RESPAWN_TIME";
 publicVariable "PLAYER_OBJECT_LIST";
 publicVariable "MIND_CONTROLLED_AI";
 publicVariable "SCORE_RANDOMBOX";
+publicVariable "magLAUNCHER";
+publicVariable "magASSAULT";
+publicVariable "magSMG";
+publicVariable "magSNIPER";
+publicVariable "magMG";
+publicVariable "magHANDGUN";
 
 //determine if Support Menu is available
 _supportParam = ("SUPPORT_MENU" call BIS_fnc_getParamValue);
