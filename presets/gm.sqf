@@ -144,39 +144,39 @@ supportAircraftSpeed = 20; // adds speed to the aircraft -- default 20
 
 /* Radius prevents hostiles walking through objects */
 
-/*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) - explosive - invincible	*/
+/*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) - explosive - invincible - with crew (for autonomous)	*/
 BULWARK_BUILDITEMS = [
-    [25,    "Long Plank (8m)",        "Land_Plank_01_8m_F",                0,        4,        0,        0],
-    [25,    "Tank Traps",             "land_gm_tanktrap_01",               0,        4,        0,        0],
-    [25,    "Barbed Wire",            "land_gm_barbedwire_02",             0,        4,        0,        0],
-    [50,    "Junk Barricade",         "Land_Barricade_01_4m_F",            0,      1.5,        0,        0],
-    [50,   "Round Sandbag Low",       "land_gm_sandbags_01_low_01",        0,      1.5,        0,        0],
-    [75,    "Small Ramp (1m)",        "Land_Obstacle_Ramp_F",            180,      1.5,        0,        0],
-    [85,    "Flat Triangle (1m)",     "Land_DomeDebris_01_hex_green_F",  180,      1.5,        0,        0],
-    [100,   "Fence",                  "land_gm_fence_border_gz1_600",      0,      1.5,        0,        0],
-    [100,   "Fence Gate",             "land_gm_fence_border_gz1_gate_350_r",      0,      1.5,        0,        0],
-    [100,   "Sandbag Short",          "land_gm_sandbags_01_short_01",      0,      1.5,        0,        0],
-    [150,   "Sandbag Barricade",      "land_gm_sandbags_01_door_01",       0,      1.5,        0,        0],
-    [150,   "Sandbag Wall",           "land_gm_sandbags_01_wall_01",       0,      1.5,        0,        0],
-    [180,   "Sandbag Half Circle",    "land_gm_sandbags_01_round_01",      0,      1.5,        0,        0],
-    [180,   "Concrete Shelter",       "Land_CncShelter_F",                 0,        1,        0,        0],
-    [200,   "Concrete Walkway",       "Land_GH_Platform_F",                0,      3.5,        0,        0],
-    [250,   "Tall Concrete Wall",     "Land_Mil_WallBig_4m_F",             0,        2,        0,        0],
-    [300,   "Long Concrete Wall",     "Land_CncBarrierMedium4_F",          0,        3,        0,        0],
-    [400,   "Large Ramp",             "Land_VR_Slope_01_F",                0,        4,        0,        0],
-    [500,   "Bunker Block",           "Land_Bunker_01_blocks_3_F",         0,        2,        0,        0],
-    [500,   "H Barrier",              "Land_HBarrier_3_F",                 0,        2,        0,        0],
-    [500,   "Explosive Barrel",       "gm_barrel_rusty",                   0,        1,        1,        0],	//explosive
-    [750,   "Ladder",                 "Land_PierLadder_F",                 0,        1,        0,        0],
-    [800,   "Storage box",            "gm_AmmoBox_3Rnd_40mm_heat_pg7v_rpg7", 0,        1,        0,        0],
-    [950,   "Stairs",                 "Land_GH_Stairs_F",                180,        4,        0,        0],
-    [1000,  "Lamp",                   "land_gm_ge_lamp_06_01",            90,        1,        0,        0],
-    [1000,  "Double H Barrier",       "Land_HBarrierWall4_F",              0,        4,        0,        0],
-    [1000,  "Concrete Platform",      "BlockConcrete_F",                   0,      3.5,        0,        0],
-    [2000, "Viewing Platform",        "land_gm_euro_misc_viewplatform_01", 180,        3,        0,        0],
-    [2500,  "Launcher tripod",        "gm_ge_army_milan_launcher_tripod",  0,        1,        0,        1],    //invincible
-    [3000,  "Small Bunker",           "Land_BagBunker_Small_F",          180,        3,        0,        0],
-    [4500,  "Pillbox",                "Land_PillboxBunker_01_hex_F",      90,      2.5,        0,        0],
-    [6500, "Tall Tower",              "land_gm_tower_bt_11_60",           90,        3,        0,        0],
-    [9500,  "Modular Bunker",         "Land_Bunker_01_Small_F",          180,      3.5,        0,        0]
+    [25,    "Long Plank (8m)",        "Land_Plank_01_8m_F",                     0,        4,        0,        0,     false],
+    [25,    "Tank Traps",             "land_gm_tanktrap_01",                    0,        4,        0,        0,     false],
+    [25,    "Barbed Wire",            "land_gm_barbedwire_02",                  0,        4,        0,        0,     false],
+    [50,    "Junk Barricade",         "Land_Barricade_01_4m_F",                 0,      1.5,        0,        0,     false],
+    [50,   "Round Sandbag Low",       "land_gm_sandbags_01_low_01",             0,      1.5,        0,        0,     false],
+    [75,    "Small Ramp (1m)",        "Land_Obstacle_Ramp_F",                   180,    1.5,        0,        0,     false],
+    [85,    "Flat Triangle (1m)",     "Land_DomeDebris_01_hex_green_F",         180,    1.5,        0,        0,     false],
+    [100,   "Fence",                  "land_gm_fence_border_gz1_600",           0,      1.5,        0,        0,     false],
+    [100,   "Fence Gate",             "land_gm_fence_border_gz1_gate_350_r",    0,      1.5,        0,        0,     false],
+    [100,   "Sandbag Short",          "land_gm_sandbags_01_short_01",           0,      1.5,        0,        0,     false],
+    [150,   "Sandbag Barricade",      "land_gm_sandbags_01_door_01",            0,      1.5,        0,        0,     false],
+    [150,   "Sandbag Wall",           "land_gm_sandbags_01_wall_01",            0,      1.5,        0,        0,     false],
+    [180,   "Sandbag Half Circle",    "land_gm_sandbags_01_round_01",           0,      1.5,        0,        0,     false],
+    [180,   "Concrete Shelter",       "Land_CncShelter_F",                      0,        1,        0,        0,     false],
+    [200,   "Concrete Walkway",       "Land_GH_Platform_F",                     0,      3.5,        0,        0,     false],
+    [250,   "Tall Concrete Wall",     "Land_Mil_WallBig_4m_F",                  0,        2,        0,        0,     false],
+    [300,   "Long Concrete Wall",     "Land_CncBarrierMedium4_F",               0,        3,        0,        0,     false],
+    [400,   "Large Ramp",             "Land_VR_Slope_01_F",                     0,        4,        0,        0,     false],
+    [500,   "Bunker Block",           "Land_Bunker_01_blocks_3_F",              0,        2,        0,        0,     false],
+    [500,   "H Barrier",              "Land_HBarrier_3_F",                      0,        2,        0,        0,     false],
+    [500,   "Explosive Barrel",       "gm_barrel_rusty",                        0,        1,        1,        0,     false],	//explosive
+    [750,   "Ladder",                 "Land_PierLadder_F",                      0,        1,        0,        0,     false],
+    [800,   "Storage box",            "gm_AmmoBox_3Rnd_40mm_heat_pg7v_rpg7",    0,        1,        0,        0,     false],
+    [950,   "Stairs",                 "Land_GH_Stairs_F",                       180,      4,        0,        0,     false],
+    [1000,  "Lamp",                   "land_gm_ge_lamp_06_01",                  90,       1,        0,        0,     false],
+    [1000,  "Double H Barrier",       "Land_HBarrierWall4_F",                   0,        4,        0,        0,     false],
+    [1000,  "Concrete Platform",      "BlockConcrete_F",                        0,      3.5,        0,        0,     false],
+    [2000, "Viewing Platform",        "land_gm_euro_misc_viewplatform_01",      180,      3,        0,        0,     false],
+    [2500,  "Launcher tripod",        "gm_ge_army_milan_launcher_tripod",       0,        1,        0,        1,     false],    //invincible
+    [3000,  "Small Bunker",           "Land_BagBunker_Small_F",                 180,      3,        0,        0,     false],
+    [4500,  "Pillbox",                "Land_PillboxBunker_01_hex_F",            90,     2.5,        0,        0,     false],
+    [6500, "Tall Tower",              "land_gm_tower_bt_11_60",                 90,       3,        0,        0,     false],
+    [9500,  "Modular Bunker",         "Land_Bunker_01_Small_F",                 180,    3.5,        0,        0,     false]
 ];

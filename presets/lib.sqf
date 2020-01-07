@@ -191,57 +191,57 @@ supportAircraftSpeed = 150; // adds speed to the aircraft -- default 0
 
 /* Radius prevents hostiles walking through objects */
 
-/*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) - explosive - invincible	*/
+/*  Price - Display Name - Class Name - Rotation When Bought - Object Radius (meters) - explosive - invincible - with crew (for autonomous)	*/
 BULWARK_BUILDITEMS = [
-    [25,   	"Long Plank (8m)",      		"Land_Plank_01_8m_F",             			   	0,		4,		0,	0],
-    [50,  	"Junk Barricade",       		"Land_Ind_Timbers",         			    	90,		1.5,	0,	0],
-	[50, 	"Hedgehog",						"Land_I44_HedgeHog",							0,		2,		0,	0],
-	[50, 	"ConcreteKerb",					"Land_ConcreteKerb_02_2m_F",					0,		1,		0,	0],
-    [75,   	"Small Ramp",           		"Land_WoodenRamp",          			    	180,	1.5,	0,	1], //invincible
-	[80,   	"Foot Bridge ramp",             "FootBridge_30_ACR",					    	0,		1,		0,	1],
-    [85,   	"Flat Triangle (1m)",   		"Land_DomeDebris_01_hex_green_F",  				180,	1.5,	0,	0],
-    [100,  	"Short Sandbag Wall",   		"Land_SandbagBarricade_01_half_F",   			0,		1.5,	0,	0],
-	[100,  	"Gate",  						"Land_TinWall_01_m_gate_v1_F",					0,		1.5,	0,	0],
-    [100,  	"Barbed Wire /w Tank Trap", 	"Wire",   										0,		2,		0,	0],
-    [150,  	"Sandbag Barricade (hole)", 	"Land_SandbagBarricade_01_hole_F",   			0,		1.5,	0,	0],
-	[150,  	"Sandbag Barricade (Tall)",		"Land_SandbagBarricade_01_F",					0,		1.5,	0,	0],
-    [180,  	"Concrete Shelter",     		"Land_CncShelter_F",                 			0,   	1,		0,	0],
-    [200,  	"Concrete Walkway",     		"Land_GH_Platform_F",                			0, 		3.5,	0,	0],
-    [250,  	"Tall Concrete Wall",   		"Land_Mil_WallBig_4m_F",             			0,		2,		0,	0],
-	[250,  	"Shoot House (Prone)",			"Land_Shoot_House_Tunnel_Prone_F",				0,		2,		0,	1], //invincible
-	[250,  	"Shoot House (Crouch)",			"Land_Shoot_House_Tunnel_Crouch_F",				0,		2,		0,	1], //invincible
-	[250,  	"Shoot House (Stand)",			"Land_Shoot_House_Tunnel_Stand_F",				0,		2,		0,	1], //invincible
-	[250,  	"Wood Light Pole",				"Land_PowLines_WoodL",							0,		2,		0,	1],
-	[250, 	"Unterstand",         	    	"Land_WW2_BET_Holzverhau",          			90,  	3,		0,	0],
-    [300, 	"Long Concrete Wall",   		"Land_CncBarrierMedium4_F",          			0,  	3,		0,	0],
-	[300,	"Stairs Concrete",             	"Land_Podesta_1_stairs4",						0,		1,		0,	1],
-	[350,   "Ramp Concrete",		    	"RampConcrete",							    	180,	1,		0,	1],
-    [400,  	"Trench Corner",     	    	"Land_WW2_Fortification_Trench_Corner_X2",      0, 		4,	    0,	0],
-    [400,  	"Trench Bridge",     	    	"Land_WW2_Fortification_Trench_Bridge",         0, 		4,  	0,	0],
-    [400,  	"Trench Corner 90",    	    	"Land_WW2_Fortification_Trench_Corner_90",      0, 		4,  	0,	0],
-    [400,  	"Trench Wall",    	         	"Land_WW2_Fortification_Trench_Wall",           0, 		4,  	0,	0],
-    [400,  	"Trench Wide",    	         	"Land_WW2_Fortification_Trench_Wide",           0, 		4,  	0,	0],
-    [400, 	"Large Ramp",           		"Land_ConcreteRamp",                			0,  	4,		0,	0],
-	[400,	"Wooden Watchtower",		   	"Land_Posed",							    	0,		1,		0,	1],
-	[500, 	"Fuel Barrel",					"Land_MetalBarrel_F",		    				0,  	1,		1,	0],	//explosive
-    [500, 	"Bunker Block",         		"Land_Bunker_01_blocks_3_F",         			0,  	2,		0,	0],
-	[650, 	"Tank Trench",         	    	"Land_WW2_TrenchTank",          				0,   	3,		0,	0],
-    [750, 	"Ladder",               		"Land_PierLadder_F",                 			0,  	1,		0,	0],
-    [750,  	"Trench Bunker",   	         	"Land_WW2_Fortification_Trench_Bunker_FFP",     180, 	4,  	0,	0],
-	[750, 	"Static MG42",         			"LIB_MG42_Lafette_Deployed",         			0,  	1,		0,	1],	//invincible
-	[750, 	"Static M1919A4 low",   		"LIB_M1919_M2",  				    			0,  	1,		0,	1],	//invincible
-	[750, 	"Obstacle - Bridge",   			"Land_prebehlavka",  				   			0,  	1,		0,	1],	//invincible
-    [800, 	"Trench Long",   	         	"Land_WW2_Fortification_Trench_Long_X3",        0, 		6,  	0,	0],
-    [800, 	"Ammo box",    					"LIB_BasicAmmunitionBox_US",                	0,  	1,		0,	1], //invincible
-    [950, 	"Stairs",               		"Land_GH_Stairs_F",                  			0,  	4,		0,	1],	//invincible
-    [1000, 	"Metal Watchtower",     		"Land_Hlaska",		                			0,		3.5,	0,	0],
-    [1000,  "Trench Bunker",   	            "Land_WW2_BET_MG_Nest_Splinter_B",              0,  	4,  	0,	0],
-    [1000, 	"Concrete Platform",    		"Land_ConcreteBlock",                  			0,		5,		0,	0],
-	[1000, 	"Bag Bunker",					"Land_Fort_Bagfence_Bunker",		  			0,		4,		0,	0],
-    [4500, 	"Pillbox",              		"Land_PillboxBunker_01_hex_F",      			90,		5,		0,	0],
-	[5000,	"FlaK 30",						"LIB_FlaK_30",									0,		1,		0,	1], //invincible
-    [9500, 	"Modular Bunker",       		"Land_Bunker_01_Small_F",          				180,	5,		0,	0],
-	[10000,	"Flakvierling 38",				"LIB_Flakvierling_38",							0,  	1,		0,	1], //invincible
-	[20000,	"M2 60mm Mortar",				"LIB_M2_60",									0,		1,		0,	1], //invincible
-	[20000,	"7.5 cm PaK 40",				"LIB_PAK40",									0,		1,		0,	1]  //invincible
+    [25,   	"Long Plank (8m)",      		"Land_Plank_01_8m_F",             			   	0,		4,		0,	0,     false],
+    [50,  	"Junk Barricade",       		"Land_Ind_Timbers",         			    	90,		1.5,	0,	0,     false],
+	[50, 	"Hedgehog",						"Land_I44_HedgeHog",							0,		2,		0,	0,     false],
+	[50, 	"ConcreteKerb",					"Land_ConcreteKerb_02_2m_F",					0,		1,		0,	0,     false],
+    [75,   	"Small Ramp",           		"Land_WoodenRamp",          			    	180,	1.5,	0,	1,     false], //invincible
+	[80,   	"Foot Bridge ramp",             "FootBridge_30_ACR",					    	0,		1,		0,	1,     false],
+    [85,   	"Flat Triangle (1m)",   		"Land_DomeDebris_01_hex_green_F",  				180,	1.5,	0,	0,     false],
+    [100,  	"Short Sandbag Wall",   		"Land_SandbagBarricade_01_half_F",   			0,		1.5,	0,	0,     false],
+	[100,  	"Gate",  						"Land_TinWall_01_m_gate_v1_F",					0,		1.5,	0,	0,     false],
+    [100,  	"Barbed Wire /w Tank Trap", 	"Wire",   										0,		2,		0,	0,     false],
+    [150,  	"Sandbag Barricade (hole)", 	"Land_SandbagBarricade_01_hole_F",   			0,		1.5,	0,	0,     false],
+	[150,  	"Sandbag Barricade (Tall)",		"Land_SandbagBarricade_01_F",					0,		1.5,	0,	0,     false],
+    [180,  	"Concrete Shelter",     		"Land_CncShelter_F",                 			0,   	1,		0,	0,     false],
+    [200,  	"Concrete Walkway",     		"Land_GH_Platform_F",                			0, 		3.5,	0,	0,     false],
+    [250,  	"Tall Concrete Wall",   		"Land_Mil_WallBig_4m_F",             			0,		2,		0,	0,     false],
+	[250,  	"Shoot House (Prone)",			"Land_Shoot_House_Tunnel_Prone_F",				0,		2,		0,	1,     false], //invincible
+	[250,  	"Shoot House (Crouch)",			"Land_Shoot_House_Tunnel_Crouch_F",				0,		2,		0,	1,     false], //invincible
+	[250,  	"Shoot House (Stand)",			"Land_Shoot_House_Tunnel_Stand_F",				0,		2,		0,	1,     false], //invincible
+	[250,  	"Wood Light Pole",				"Land_PowLines_WoodL",							0,		2,		0,	1,     false],
+	[250, 	"Unterstand",         	    	"Land_WW2_BET_Holzverhau",          			90,  	3,		0,	0,     false],
+    [300, 	"Long Concrete Wall",   		"Land_CncBarrierMedium4_F",          			0,  	3,		0,	0,     false],
+	[300,	"Stairs Concrete",             	"Land_Podesta_1_stairs4",						0,		1,		0,	1,     false],
+	[350,   "Ramp Concrete",		    	"RampConcrete",							    	180,	1,		0,	1,     false],
+    [400,  	"Trench Corner",     	    	"Land_WW2_Fortification_Trench_Corner_X2",      0, 		4,	    0,	0,     false],
+    [400,  	"Trench Bridge",     	    	"Land_WW2_Fortification_Trench_Bridge",         0, 		4,  	0,	0,     false],
+    [400,  	"Trench Corner 90",    	    	"Land_WW2_Fortification_Trench_Corner_90",      0, 		4,  	0,	0,     false],
+    [400,  	"Trench Wall",    	         	"Land_WW2_Fortification_Trench_Wall",           0, 		4,  	0,	0,     false],
+    [400,  	"Trench Wide",    	         	"Land_WW2_Fortification_Trench_Wide",           0, 		4,  	0,	0,     false],
+    [400, 	"Large Ramp",           		"Land_ConcreteRamp",                			0,  	4,		0,	0,     false],
+	[400,	"Wooden Watchtower",		   	"Land_Posed",							    	0,		1,		0,	1,     false],
+	[500, 	"Fuel Barrel",					"Land_MetalBarrel_F",		    				0,  	1,		1,	0,     false],	//explosive
+    [500, 	"Bunker Block",         		"Land_Bunker_01_blocks_3_F",         			0,  	2,		0,	0,     false],
+	[650, 	"Tank Trench",         	    	"Land_WW2_TrenchTank",          				0,   	3,		0,	0,     false],
+    [750, 	"Ladder",               		"Land_PierLadder_F",                 			0,  	1,		0,	0,     false],
+    [750,  	"Trench Bunker",   	         	"Land_WW2_Fortification_Trench_Bunker_FFP",     180, 	4,  	0,	0,     false],
+	[750, 	"Static MG42",         			"LIB_MG42_Lafette_Deployed",         			0,  	1,		0,	1,     false],	//invincible
+	[750, 	"Static M1919A4 low",   		"LIB_M1919_M2",  				    			0,  	1,		0,	1,     false],	//invincible
+	[750, 	"Obstacle - Bridge",   			"Land_prebehlavka",  				   			0,  	1,		0,	1,     false],	//invincible
+    [800, 	"Trench Long",   	         	"Land_WW2_Fortification_Trench_Long_X3",        0, 		6,  	0,	0,     false],
+    [800, 	"Ammo box",    					"LIB_BasicAmmunitionBox_US",                	0,  	1,		0,	1,     false], //invincible
+    [950, 	"Stairs",               		"Land_GH_Stairs_F",                  			0,  	4,		0,	1,     false],	//invincible
+    [1000, 	"Metal Watchtower",     		"Land_Hlaska",		                			0,		3.5,	0,	0,     false],
+    [1000,  "Trench Bunker",   	            "Land_WW2_BET_MG_Nest_Splinter_B",              0,  	4,  	0,	0,     false],
+    [1000, 	"Concrete Platform",    		"Land_ConcreteBlock",                  			0,		5,		0,	0,     false],
+	[1000, 	"Bag Bunker",					"Land_Fort_Bagfence_Bunker",		  			0,		4,		0,	0,     false],
+    [4500, 	"Pillbox",              		"Land_PillboxBunker_01_hex_F",      			90,		5,		0,	0,     false],
+	[5000,	"FlaK 30",						"LIB_FlaK_30",									0,		1,		0,	1,     false], //invincible
+    [9500, 	"Modular Bunker",       		"Land_Bunker_01_Small_F",          				180,	5,		0,	0,     false],
+	[10000,	"Flakvierling 38",				"LIB_Flakvierling_38",							0,  	1,		0,	1,     false], //invincible
+	[20000,	"M2 60mm Mortar",				"LIB_M2_60",									0,		1,		0,	1,     false], //invincible
+	[20000,	"7.5 cm PaK 40",				"LIB_PAK40",									0,		1,		0,	1,     false]  //invincible
 ];
