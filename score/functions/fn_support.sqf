@@ -13,7 +13,7 @@ _aircraft = _this select 3;
 
 switch (_type) do {
     case ("paraTroop"): {
-        [_player, _target, PARATROOP_COUNT, _aircraft, PARATROOP_CLASS] call supports_fnc_paraTroop;
+        [_player, _target, PARATROOP_COUNT, _aircraft, LIST_PARATROOP_CLASS] call supports_fnc_paraTroop;
     };
     case ("reconUAV"): {
         [_player, getPos _player, _aircraft] call supports_fnc_reconUAV;

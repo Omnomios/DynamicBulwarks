@@ -12,5 +12,6 @@ class bulwark
         class startWave {};
     		class endWave {};
         class revivePlayer{};
+        class bulwarkReset{};
     };
 };

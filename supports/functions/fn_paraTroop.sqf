@@ -11,7 +11,7 @@ if (count _targetPos == 0) then {
   [_player, "paraDrop"] remoteExec ["BIS_fnc_addCommMenuItem", _player]; //refund the support if looking at sky when activated
 }else{
   _angle = round random 180;
-  _height = 300;
+  _height = supportAircraftWaypointHeight;
   _offsX = 0;
   _offsY = 1000;
   _pointX = _offsX*(cos _angle) - _offsY*(sin _angle);
@@ -23,17 +23,26 @@ if (count _targetPos == 0) then {
 
   _targetSmoker = "SmokeShellOrange" createVehicle (_targetPos vectorAdd [0,0,0.3]);
 
-  _agSpawn = [_dropStart, 0, _aircraft, WEST] call bis_fnc_spawnvehicle;
+  _agSpawn = [_dropStart, 0, supportAircraft, WEST] call bis_fnc_spawnvehicle;
   _agVehicle = _agSpawn select 0;	//the aircraft
   _agCrew = _agSpawn select 1;	//the units that make up the crew
   _ag = _agSpawn select 2;	//the group
   {_x allowFleeing 0} forEach units _ag;
 
-  _agVehicle flyInHeight 100;
+  _agVehicle flyInHeight supportAircraftFlyInHeight;
   _agVehicle setpos [getposATL _agVehicle select 0, getposATL _agVehicle select 1, _height];
 
   _relDir = [_dropStart, _targetPos] call BIS_fnc_dirTo;
-  _agVehicle setdir _relDir;
+_agVehicle setVectorUp [0, 0, 1];
+_agVehicle setdir _reldir;
+_vel = velocity _agVehicle;
+_dir = direction _agVehicle;
+_speed = supportAircraftSpeed;
+_agVehicle setVelocity [
+	(_vel select 0) + (sin _dir * _speed), 
+	(_vel select 1) + (cos _dir * _speed), 
+	(_vel select 2)
+];
 
   paraTroopLatch = false;
 
@@ -77,7 +86,7 @@ if (count _targetPos == 0) then {
       _self = _this select 0;
       removeVest _self;
       removeBackpack _self;
-      removeAllWeapons _self:
+      removeAllWeapons _self;
       removeAllAssignedItems _self;
       }];
   };
