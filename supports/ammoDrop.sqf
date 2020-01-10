@@ -7,7 +7,7 @@
 **/
 
 _ammoBox = _this select 0;
-ammoPlayer = _this select 1;
+_ammoPlayer = _this select 1;
 
 [_ammoBox] remoteExec ['removeAllActions', 0];
 
@@ -36,14 +36,14 @@ if (_pWeap != "") then {
   };
 };
 
-_sWeap = secondaryWeapon ammoPlayer;
+_sWeap = secondaryWeapon _ammoPlayer;
 if (_sWeap != "") then {
   _ammoArray = getArray (configFile >> "CfgWeapons" >> _sWeap >> "magazines");
   _ammoToAdd = selectRandom _ammoArray;
-  _ammoPlayer addMagazines [_ammoToAdd, magLAUNCHER select 1];
+  ammoPlayer addMagazines [_ammoToAdd, magLAUNCHER select 1];
 };
 
-_hWeap = handgunWeapon ammoPlayer;
+_hWeap = handgunWeapon _ammoPlayer;
 if (_hWeap != "") then {
   _ammoArray = getArray (configFile >> "CfgWeapons" >> _hWeap >> "magazines");
   _ammoToAdd = selectRandom _ammoArray;
