@@ -210,5 +210,5 @@ MY_KEYDOWN_FNC = {
 
 toggled = 0;
 
-waituntil {!(isNull (findDisplay 46))};
-(findDisplay 46) displayAddEventHandler ["KeyDown",{_this call MY_KEYDOWN_FNC}];
+//waituntil {!(isNull (findDisplay 46))};
+//(findDisplay 46) displayAddEventHandler ["KeyDown",{_this call MY_KEYDOWN_FNC}];
