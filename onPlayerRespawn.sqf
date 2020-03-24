@@ -56,6 +56,12 @@ if(PLAYER_STARTMAP) then {
     _player linkItem "ItemMap";
 };
 
+if(PLAYER_STARTRADIO) then {   
+    player addItem "ItemRadio";
+    player assignItem "ItemRadio";
+    player linkItem "ItemMapRadio";
+};
+
 if(PLAYER_STARTCOMPASS) then {
     player addItem "ItemCompass";
     player assignItem "ItemCompass";
