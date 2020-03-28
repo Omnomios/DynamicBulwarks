@@ -202,8 +202,8 @@ class Params
 	class FILTER_PRESET
 	{
 		title = "Presets";
-		values[] = {0,1,2,3,4};
-		texts[] = {"Normal","WW2 (IFA3_AIO_LITE)","Global Mobilization","WW2 Winter (IFA_AIO_LITE)","Custom (same as Normal by default, its for you to mess around in)"};
+		values[] = {0,1,2,3,4,5};
+		texts[] = {"Normal","WW2 (IFA3_AIO_LITE)","Global Mobilization","WW2 Winter (IFA_AIO_LITE)","Custom (same as Normal by default, its for you to mess around in)", "CUP with ACE"};
 		default = 0;
 	};
 	class HOSTILE_LABEL
