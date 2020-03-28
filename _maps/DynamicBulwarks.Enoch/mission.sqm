@@ -8,14 +8,14 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=16;
+		nextID=25;
 	};
 	class Camera
 	{
-		pos[]={1115.432,298.61786,11376.097};
-		dir[]={-0.43180856,-0.38522279,0.81556886};
-		up[]={-0.18025357,0.92282128,0.34044951};
-		aside[]={0.88377261,-5.5879354e-009,0.46792004};
+		pos[]={10605.274,39.103722,11056.535};
+		dir[]={0.072322436,-0.7782886,0.62376696};
+		up[]={0.089636385,0.62790638,0.77310801};
+		aside[]={0.99336964,-1.1408702e-008,-0.11517563};
 	};
 };
 binarizationWanted=0;
@@ -84,7 +84,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=4;
+		items=13;
 		class Item0
 		{
 			dataType="Logic";
@@ -920,6 +920,105 @@ class Mission
 			{
 			};
 			id=3;
+		};
+		class Item4
+		{
+			dataType="Marker";
+			position[]={3135.6294,92.214966,12018.592};
+			name="bulwark_zone_2";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=16;
+		};
+		class Item5
+		{
+			dataType="Marker";
+			position[]={3684.303,81.473549,11816.042};
+			name="bulwark_zone_3";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=17;
+		};
+		class Item6
+		{
+			dataType="Marker";
+			position[]={6482.2729,14.362764,11272.249};
+			name="bulwark_zone_4";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=18;
+		};
+		class Item7
+		{
+			dataType="Marker";
+			position[]={6122.7241,216.39246,4137.6313};
+			name="bulwark_zone_5";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=19;
+		};
+		class Item8
+		{
+			dataType="Marker";
+			position[]={11090.836,176.00999,4328.7202};
+			name="bulwark_zone_6";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=20;
+		};
+		class Item9
+		{
+			dataType="Marker";
+			position[]={11313.799,176.89999,4200.5825};
+			name="bulwark_zone_7";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=21;
+		};
+		class Item10
+		{
+			dataType="Marker";
+			position[]={11513.252,73.038795,7070.8452};
+			name="bulwark_zone_8";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=22;
+		};
+		class Item11
+		{
+			dataType="Marker";
+			position[]={9828.2842,40.028515,8469.8428};
+			name="bulwark_zone_9";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=23;
+		};
+		class Item12
+		{
+			dataType="Marker";
+			position[]={10610.025,9.6433887,11086.428};
+			name="bulwark_zone_10";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=24;
 		};
 	};
 };

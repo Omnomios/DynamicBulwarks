@@ -8,14 +8,14 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=16;
+		nextID=25;
 	};
 	class Camera
 	{
-		pos[]={4909.4692,60.767437,6155.7471};
-		dir[]={0.76356661,-0.64567053,-0.010472256};
-		up[]={0.64561635,0.76361179,-0.0088549415};
-		aside[]={-0.013715691,4.8183574e-007,-0.99992329};
+		pos[]={3830.2761,41.504265,4069.25};
+		dir[]={0.65377074,-0.75524127,0.04725226};
+		up[]={0.75327402,0.65544629,0.054443892};
+		aside[]={0.072090775,-4.1777821e-007,-0.99741805};
 	};
 };
 binarizationWanted=0;
@@ -80,7 +80,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=4;
+		items=13;
 		class Item0
 		{
 			dataType="Logic";
@@ -187,13 +187,14 @@ class Mission
 		class Item2
 		{
 			dataType="Marker";
-			position[]={149.55151,130.36877,-4116.231};
+			position[]={3769.7319,12.650635,4302.1367};
 			name="bulwark_zone_1";
 			markerType="ELLIPSE";
 			type="ellipse";
 			a=150;
 			b=150;
 			id=2;
+			atlOffset=-2.1316442;
 		};
 		class Item3
 		{
@@ -916,6 +917,114 @@ class Mission
 			{
 			};
 			id=3;
+		};
+		class Item4
+		{
+			dataType="Marker";
+			position[]={3987.0313,14.142886,4180.9722};
+			name="bulwark_zone_2";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=16;
+			atlOffset=-2.1316442;
+		};
+		class Item5
+		{
+			dataType="Marker";
+			position[]={4080.6235,23.124756,3605.3516};
+			name="bulwark_zone_3";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=17;
+			atlOffset=-2.1316051;
+		};
+		class Item6
+		{
+			dataType="Marker";
+			position[]={4335.3906,16.050777,3966.6611};
+			name="bulwark_zone_4";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=18;
+			atlOffset=-2.1316452;
+		};
+		class Item7
+		{
+			dataType="Marker";
+			position[]={4296.4048,15.177999,4159.7378};
+			name="bulwark_zone_5";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=19;
+			atlOffset=-2.1316442;
+		};
+		class Item8
+		{
+			dataType="Marker";
+			position[]={4173.9668,13.533019,4672.084};
+			name="bulwark_zone_6";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=20;
+			atlOffset=-2.1316442;
+		};
+		class Item9
+		{
+			dataType="Marker";
+			position[]={4913.5669,27.729843,6143.4058};
+			name="bulwark_zone_7";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=21;
+			atlOffset=-2.1316433;
+		};
+		class Item10
+		{
+			dataType="Marker";
+			position[]={1830.7457,36.810806,4655.7441};
+			name="bulwark_zone_8";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=22;
+			atlOffset=-2.1316452;
+		};
+		class Item11
+		{
+			dataType="Marker";
+			position[]={3944.2639,8.9710398,2770.9795};
+			name="bulwark_zone_9";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=23;
+			atlOffset=-2.1316442;
+		};
+		class Item12
+		{
+			dataType="Marker";
+			position[]={3854.9031,14.278356,4071.7871};
+			name="bulwark_zone_10";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=24;
+			atlOffset=-2.1316442;
 		};
 	};
 };

@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=288;
+		nextID=297;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={1813.17,36.253567,1079.0277};
-		dir[]={-0.17437428,-0.59618449,-0.78370547};
-		up[]={-0.12948613,0.8028447,-0.58195925};
-		aside[]={-0.97614396,1.0657823e-007,0.21719274};
+		pos[]={5063.502,53.220005,8665.6328};
+		dir[]={-0.036291663,-0.7909584,-0.61082184};
+		up[]={-0.046912603,0.61186826,-0.78956938};
+		aside[]={-0.99825871,8.8934758e-007,0.059312675};
 	};
 };
 binarizationWanted=0;
@@ -201,7 +201,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=4;
+		items=13;
 		class Item0
 		{
 			dataType="Logic";
@@ -297,13 +297,13 @@ class Mission
 		class Item1
 		{
 			dataType="Marker";
-			position[]={4391.9707,0,14900.184};
+			position[]={4391.9712,0,14900.184};
 			name="tanoa";
 			text="This marker needs to have the mapname of the current map, as variable Name for location markers to work";
 			type="mil_warning";
 			colorName="ColorRed";
 			id=217;
-			atlOffset=37.289536;
+			atlOffset=37.289532;
 		};
 		class Item2
 		{
@@ -1059,6 +1059,105 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item4
+		{
+			dataType="Marker";
+			position[]={9537.5029,3.4677393,13536.67};
+			name="bulwark_zone_2";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=288;
+		};
+		class Item5
+		{
+			dataType="Marker";
+			position[]={7252.6025,2.6934767,7898.7227};
+			name="bulwark_zone_3";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=289;
+		};
+		class Item6
+		{
+			dataType="Marker";
+			position[]={8857.5957,18.338007,10215.413};
+			name="bulwark_zone_4";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=290;
+		};
+		class Item7
+		{
+			dataType="Marker";
+			position[]={12836.017,6.4664478,7441.4702};
+			name="bulwark_zone_5";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=291;
+		};
+		class Item8
+		{
+			dataType="Marker";
+			position[]={11638.203,3.0599999,2744.7417};
+			name="bulwark_zone_6";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=292;
+		};
+		class Item9
+		{
+			dataType="Marker";
+			position[]={9378.4414,5.9183545,4033.6824};
+			name="bulwark_zone_7";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=293;
+		};
+		class Item10
+		{
+			dataType="Marker";
+			position[]={5476.2612,3.6030395,4053.1797};
+			name="bulwark_zone_8";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=294;
+		};
+		class Item11
+		{
+			dataType="Marker";
+			position[]={965.14917,2.3199999,7699.8721};
+			name="bulwark_zone_9";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=295;
+		};
+		class Item12
+		{
+			dataType="Marker";
+			position[]={5059.2075,3.7212646,8626.6826};
+			name="bulwark_zone_10";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=150;
+			b=150;
+			id=296;
 		};
 	};
 };
