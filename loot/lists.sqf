@@ -172,6 +172,8 @@ if (LOOT_WHITELIST_MODE != 1) then {
 			};
 		};
 	};
+} else {
+	List_Primaries = LOOT_WHITELIST_WEAPON_ASSAULT + LOOT_WHITELIST_WEAPON_MG + LOOT_WHITELIST_WEAPON_SMG + LOOT_WHITELIST_WEAPON_SNIPER;
 };
 List_Hats = [] + _hats;
 List_Uniforms = [] + _uniforms;

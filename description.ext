@@ -1,9 +1,9 @@
-onLoadMission = "dynamicBulwarks";
+author = "Dynamic Bulwarks by Hilltop & omNomios";
+OnLoadMission = Modified by the A3 Community.;
 onLoadIntro = "Defend yourself";
-onLoadName = "dynamicBulwarks";
-briefingName = "dynamicBulwarks";
+onLoadName = "A3 Dynamic Bulwarks";
+briefingName = "A3 Dynamic Bulwarks";
 overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
-author = "Hilltop & omNomios";
 overviewPicture = "preview.paa";
 
 loadScreen = "preview.paa";
@@ -202,8 +202,8 @@ class Params
 	class FILTER_PRESET
 	{
 		title = "Presets";
-		values[] = {0,1,2,3,4};
-		texts[] = {"Normal","WW2 (IFA3_AIO_LITE)","Global Mobilization","WW2 Winter (IFA_AIO_LITE)","Custom (same as Normal by default, its for you to mess around in)"};
+		values[] = {0,1,2,3,4,5,6};
+		texts[] = {"Normal","CUP AFRF","CUP TAKI","CUP SLA","Global Mobilisation", "WW2", "WW2 (Winter)"};
 		default = 0;
 	};
 	class HOSTILE_LABEL
@@ -243,7 +243,7 @@ class Params
 		title = "Dead bodies remain for how many waves (dead bodies impact perfomance)";
 		values[] = {0, 1, 2};
 		texts[] = {"0 (until next round begins)", "1", "2"};
-		default = 0;
+		default = 1;
 	};
 
 	class DOWN_TIME
@@ -251,7 +251,7 @@ class Params
 		title = "Time between rounds";
 		values[] = {0, 15, 30, 60, 90, 120, 180, 240, 300};
 		texts[] = {"0", "15 Seconds", "30 Seconds", "1 Minute", "1 Minute 30 Seconds", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
-		default = 60;
+		default = 30;
 	};
 
 	class MAX_WAVES
@@ -283,7 +283,7 @@ class Params
 		title = "Players start with pistol";
 		values[] = {0, 1};
 		texts[] = {"No", "Yes"};
-		default = 0;
+		default = 1;
 	};
 
 	class PLAYER_STARTNVG
@@ -363,7 +363,7 @@ class Params
 		title = "Mission area size";
 		values[] = {50, 100, 150, 200, 250};
 		texts[] = {"(50m) Tiny", "(100m) Small", "(150m) Normal", "(200m) Large", "(250m) Huge"};
-		default = 150;
+		default = 250;
 	};
 
 	class BULWARK_MINSIZE
@@ -403,7 +403,7 @@ class Params
 		title = "Loot distribution";
 		values[] = {1, 2, 3, 4};
 		texts[] = {"Every building", "Every second building", "Every third building", "Every fourth building"};
-		default = 2;
+		default = 1;
 	};
 
 	class LOOT_ROOM_DISTRIBUTION
@@ -459,7 +459,7 @@ class Params
 		title = "Kill points players start with";
 		values[] = {0, 250, 500, 1000, 2500, 5000, 10000};
 		texts[] = {"0", "250", "500", "1000", "2500", "5000", "10000"};
-		default = 0;
+		default = 250;
 	};
 
 	class SUPPORT_MENU
@@ -467,7 +467,7 @@ class Params
 		title = "Find Satellite Dish to Unlock Supports";
 		values[] = {0, 1};
 		texts[] = {"No, Supports are available from the begining of the mission", "Yes, find the Satellite Dish to unlock the Support Menu"};
-		default = 1;
+		default = 0;
 	};
 
 	class SCORE_KILL
@@ -542,7 +542,7 @@ class Params
 		title = "Tickets";
 		values[] = {0, 5, 10, 15, 20};
 		texts[] = {"0", "5", "10", "15", "20"};
-		default = 0;
+		default = 20;
 	};
 
 	class RESPAWN_TIME
@@ -555,7 +555,7 @@ class Params
 
 	class TEAM_DAMAGE
 	{
-		title = "Freindly Fire";
+		title = "Friendly Fire";
 		values[] = {0, 1};
 		texts[] = {"Off", "On"};
 		default = 1;
