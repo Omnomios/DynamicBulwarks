@@ -185,6 +185,27 @@ class CfgNotifications
 
 class Params
 {
+	class FILTER_LABEL
+	{
+		title = "======= Mod and DLC settings =======";
+		values[] = {0};
+		texts[] = {""};
+		default = 0;
+	};
+	class FILTER_DLC
+	{
+		title = "Exclude DLC content";
+		values[] = {0,1};
+		texts[] = {"None","Exclude Contact"};
+		default = 0;
+	};
+	class FILTER_PRESET
+	{
+		title = "Presets";
+		values[] = {0,1,2,3,4};
+		texts[] = {"Normal","WW2 (IFA3_AIO_LITE)","Global Mobilization","WW2 Winter (IFA_AIO_LITE)","Custom (same as Normal by default, its for you to mess around in)"};
+		default = 0;
+	};
 	class HOSTILE_LABEL
 	{
 		title = "======= Wave Settings =======";
@@ -281,6 +302,22 @@ class Params
 		default = 1;
 	};
 
+	class SPECIAL_WAVES_ONLY
+	{
+		title = "Only Special Waves";
+		values[] = {0, 1};
+		texts[] = {"No", "Yes (the first few waves are still normal, but after that you will get special waves every wave)"};
+		default = 0;
+	};
+
+	class SPECIAL_WAVES_VARIETY
+	{
+		title = "Increase Special Wave varierty";
+		values[] = {0, 1};
+		texts[] = {"No", "Yes (makes sure you get less repeats of the same special wave)"};
+		default = 1;
+	};
+
 	class ARMOUR_START_WAVE
 	{
 		title = "Vehicles can spawn after wave";
@@ -292,9 +329,9 @@ class Params
 	class RANDOM_WEAPONS
 	{
 		title = "Randomize Hostile Weapons";
-		values[] = {"true", "false"};
-		texts[] = {"Yes", "No"};
-		default = "No";
+		values[] = {0,1};
+		texts[] = {"No","Yes"};
+		default = 0;
 	};
 
 	class HUD_POINT_HITMARKERS
@@ -343,6 +380,14 @@ class Params
 		values[] = {60, 70, 80, 90, 100};
 		texts[] = {"60%","70%","80%","90%","100%"};
 		default = 80;
+	};
+
+	class BULWARK_POSITION
+	{
+		title = "Position";
+		values[] = {0,1};
+		texts[] = {"Ignore marker","Use location marker if any exist (selects random between markers you can place in the editor)"};
+		defaukt = 0;
 	};
 
 	class LOOT_HOUSE_DENSITY

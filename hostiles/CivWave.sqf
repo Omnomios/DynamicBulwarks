@@ -19,18 +19,18 @@ for [{_i = 0}, {_i < _cfgVehiclesConfigCount}, {_i = _i + 1}] do
       if (_side == _civSide) then
       {
         civClassArr set [count civClassArr, configName _config];
-      }
-    }
+      };
+    };
   };
 };
-
+_civRoom = "";
 for [{_i=0}, {_i<20}, {_i=_i+1}] do {
   //find random location for Civ to spawn
-  _civRoom = while {true} do {
+  while {true} do {
     _civBulding = selectRandom lootHouses;
     _civRooms = _civBulding buildingPos -1;
     _civRoom = selectRandom _civRooms;
-    if(!isNil "_civRoom") exitWith {_civRoom};
+    if(_civRoom != "") exitWith {_civRoom};
   };
 
   //spawn Civ
@@ -56,7 +56,7 @@ while {EAST countSide allUnits > 0} do {
   _nBuilding = nearestBuilding _x;
   _civRooms = _nBuilding buildingPos -1;
   _civRoom = selectRandom _civRooms;
-  if(!isNil "_civRoom") then {
+  if(_civRoom != "") then {
     _x doMove _civRoom;
   };
 } forEach _spawnedCivs;
