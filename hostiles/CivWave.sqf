@@ -1,7 +1,9 @@
+#include "..\shared\bulwark.hpp"
+
 civClassArr = [];
 _spawnedCivs = [];
 _currentWave = attkWave;
-_distFromBulwark = "BULWARK_RADIUS" call BIS_fnc_getParamValue;
+_distFromBulwark = BULWARK_PARAM_BULWARK_RADIUS call shared_fnc_getCurrentParamValue;
 
 //Create array of all Civ classes
 _civSide = 3;

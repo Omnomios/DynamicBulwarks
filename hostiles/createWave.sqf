@@ -1,5 +1,7 @@
+#include "..\shared\bulwark.hpp"
+
 DBW_determineAndSpawnIfVehicleWave = {
-	_armourStartWave = "ARMOUR_START_WAVE" call BIS_fnc_getParamValue;
+	_armourStartWave = BULWARK_PARAM_ARMOUR_START_WAVE call shared_fnc_getCurrentParamValue;
 
 	if (attkWave < (_armourStartWave + 5)) then {
 		ArmourChance = 0;

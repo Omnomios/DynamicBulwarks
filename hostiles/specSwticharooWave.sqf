@@ -1,8 +1,10 @@
 
+#include "..\shared\bulwark.hpp"
+
 //teleport players away from Bulwark
 {
     _distToBulwark = 0;
-    _distFromBulwark = "BULWARK_RADIUS" call BIS_fnc_getParamValue;
+    _distFromBulwark = BULWARK_PARAM_BULWARK_RADIUS call shared_fnc_getCurrentParamValue;
     telePos = getPos _x;
     while {_distToBulwark < 30 && {["mine_", str(_x)] call BIS_fnc_inString} count (telePos nearObjects 10) <= 1} do {
     telePos = [bulwarkRoomPos, 30, _distFromBulwark - 10, 3, 0, 10, 0] call BIS_fnc_findSafePos;

@@ -1,4 +1,6 @@
-_distFromBulwark = "BULWARK_RADIUS" call BIS_fnc_getParamValue;
+#include "..\shared\bulwark.hpp"
+
+_distFromBulwark = BULWARK_PARAM_BULWARK_RADIUS call shared_fnc_getCurrentParamValue;
 
 _mortarPos = [bulwarkRoomPos, _distFromBulwark - 15, _distFromBulwark - 5, 3, 0, 10, 0] call BIS_fnc_findSafePos;
 specMortar = [_mortarPos, 0, "O_Mortar_01_F", EAST] call bis_fnc_spawnvehicle;

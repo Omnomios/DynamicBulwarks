@@ -1,3 +1,4 @@
+#include "..\..\shared\bulwark.hpp"
 /**
 *  fn_startWave
 *
@@ -17,7 +18,7 @@ for ("_i") from 0 to 14 do {
 };
 
 // Delete
-_final = waveUnits select ("BODY_CLEANUP" call BIS_fnc_getParamValue);
+_final = waveUnits select (BULWARK_PARAM_BODY_CLEANUP call shared_fnc_getCurrentParamValue);
 {deleteVehicle _x} foreach _final;
 // Shuffle
 waveUnits set [2, waveUnits select 1];

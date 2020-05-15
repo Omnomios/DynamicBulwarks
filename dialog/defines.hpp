@@ -2,6 +2,13 @@
 /// Styles
 ///////////////////////////////////////////////////////////////////////////
 
+#include "\a3\3DEN\UI\macros.inc"
+#include "\a3\3DEN\UI\macroexecs.inc"
+#include "\a3\ui_f\hpp\definedikcodes.inc"
+#include "\a3\ui_f\hpp\definecommoncolors.inc"
+#include "\a3\ui_f\hpp\definecommongrids.inc"
+#include "\a3\ui_f\hpp\defineresincl.inc"
+
 // Control types
 #define CT_STATIC           0
 #define CT_BUTTON           1
@@ -288,7 +295,7 @@ class RscCombo
 		1
 	};
 	maxHistoryDelay = 1;
-	class ScrollBar
+	class ComboScrollBar
 	{
 		color[] =
 		{
@@ -1125,4 +1132,64 @@ class RscControlsGroup
 	h = 1;
 	shadow = 0;
 	style = 16;
+};
+
+class ScrollBar
+{
+    arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
+    arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
+    border = "#(argb,8,8,3)color(1,1,1,1)";
+    color[] = {1,1,1,0.6};
+    colorActive[] = {1,1,1,1};
+    colorDisabled[] = {1,1,1,0.3};
+    thumb = "#(argb,8,8,3)color(1,1,1,1)";
+};
+
+class RscControlsTable
+{
+    idc = -1;
+    x = 0;
+    y = 0;
+    w = 1;
+    h = 1;
+
+    type = CT_CONTROLS_TABLE;
+    style = SL_TEXTURES;
+     
+    lineSpacing = 0;
+    rowHeight = 1 * GUI_GRID_H;
+    headerHeight = 1 * GUI_GRID_H;
+     
+    firstIDC = 42000;
+    lastIDC = 44999;
+     
+    // Colours which are used for animation (i.e. change of colour) of the selected line.
+    selectedRowColorFrom[]  = {0.7, 0.85, 1, 0.25};
+    selectedRowColorTo[]    = {0.7, 0.85, 1, 0.5};
+    // Length of the animation cycle in seconds.
+    selectedRowAnimLength = 1.2;
+     
+    class VScrollBar: ScrollBar
+    {
+        width = 0.021;
+        autoScrollEnabled = 0;
+        autoScrollDelay = 1;
+        autoScrollRewind = 1;
+        autoScrollSpeed = 1;
+    };
+ 
+    class HScrollBar: ScrollBar
+    {
+        height = 0.028;
+    };
+     
+    // Template for selectable rows
+    class RowTemplate
+    {
+    };
+     
+    // Template for headers (unlike rows, cannot be selected)
+    class HeaderTemplate
+    {
+    };
 };

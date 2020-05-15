@@ -5,9 +5,12 @@
 *
 *  Domain: Server
 **/
+
+#include "..\shared\bulwark.hpp"
+
 //check if item has modTag
 /*Exclude DLC content or limit to mod*/
-_dlcParameter = "FILTER_DLC" call BIS_fnc_getParamValue;
+_dlcParameter = BULWARK_PARAM_FILTER_DLC call shared_fnc_getCurrentParamValue;
 //"enoch","Contact"
 switch (_dlcParameter) do {
 	case 0: {dlcCheck = [];};

@@ -6,6 +6,8 @@
 *  Domain: Server
 **/
 
+#include "..\shared\bulwark.hpp"
+
 //activeLoot = [];
 lootDebugMarkers = [];
 
@@ -31,11 +33,11 @@ if (!SUPPORTMENU) then {
 		if(!isNil "_satRoom") exitWith {_satRoom};
 	};
 	_satSupport = createVehicle ["Land_SatelliteAntenna_01_F", satRoom, [], 0, "CAN_COLLIDE"];
-	[_satSupport, ["<t color='#ff00ff'>" + "Unlock Support Menu", "
+	[_satSupport, ["<t color='#ff00ff'>" + "Unlock Support Menu", format ["
 		_satSupport = _this select 0;
 		_player = _this select 1;
 		[_satSupport] remoteExec ['removeAllActions', 0];
-		_pointsMulti = ('SCORE_KILL' call BIS_fnc_getParamValue);
+		_pointsMulti = (%1 call shared_fnc_getCurrentParamValue);
 		if (!SUPPORTMENU) then {
 			['TaskAssigned',['Support','Support Menu Unlocked at Bulwark Box']] remoteExec ['BIS_fnc_showNotification', 0];
 			['comNoise'] remoteExec ['playSound', 0];
@@ -47,7 +49,7 @@ if (!SUPPORTMENU) then {
 		{
 			[_x] remoteExec ['deleteVehicle', 2];
 		} forEach SatUnlocks;
-	"]] remoteExec ["addAction", 0, true];
+	", BULWARK_PARAM_SCORE_KILL]]] remoteExec ["addAction", 0, true];
 	SatUnlocks pushBack _satSupport;
 	publicVariable 'SatUnlocks';
 	mainZeus addCuratorEditableObjects [[_satSupport], true];

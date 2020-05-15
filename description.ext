@@ -31,6 +31,8 @@ class Header
 	maxPlayers = 	  25;
 };
 
+#include "shared\defines.hpp"
+
 class CfgFunctions
 {
 	#include "score\Functions.hpp"
@@ -41,6 +43,9 @@ class CfgFunctions
 	#include "build\Functions.hpp"
 	#include "hostiles\Functions.hpp"
 	#include "loot\Functions.hpp"
+
+	#include "shared\Functions.hpp"
+	#include "lobby\Functions.hpp"
 };
 
 
@@ -63,6 +68,9 @@ class CfgRemoteExec
 		class say3DGlobal {};
 		class createBlur {};
 		class suiExplode{};
+
+		class startGame {};
+		class lobby_fnc_startPlayers {};
 	};
 };
 
@@ -88,6 +96,16 @@ class CfgDebriefing
 		title = "[BULWARK SAFE]";
 		subtitle = "You Won";
 		description = "Your bulwark is secure";
+		pictureBackground = "";
+		picture = "b_inf";
+		pictureColor[] = {0.0,0.3,0.6,1};
+	};
+
+	class Abort
+	{
+		title = "[ABORTED]";
+		subtitle = "Mission Aborted";
+		description = "Maybe next time...";
 		pictureBackground = "";
 		picture = "b_inf";
 		pictureColor[] = {0.0,0.3,0.6,1};
@@ -181,7 +199,8 @@ class CfgNotifications
 };
 
 #include "bulwark\dialog.hpp"
-
+#include "lobby\dialog.hpp"
+#include "shared\defines.hpp"
 
 class Params
 {
