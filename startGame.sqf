@@ -1,8 +1,11 @@
 #include "shared\bulwark.hpp"
 
+
 // variable to prevent players rejoining during a wave
 playersInWave = [];
 publicVariable "playersInWave";
+
+["bulwarkSetup", "Entering defense perimeter..."] call BIS_fnc_startLoadingScreen;
 
 // Broadcast the starting killpoints for everyone
 {
@@ -24,9 +27,18 @@ private _hostileFunctions = [ //could make more efficent init phase with loading
 "Setting params and lists" call shared_fnc_log;
 
 call compile preprocessFileLineNumbers "setParams.sqf";
+
+[0.1] call BIS_fnc_progressLoadingScreen;
+
 call compile preprocessFileLineNumbers  "locationLists.sqf";
+
+[0.2] call BIS_fnc_progressLoadingScreen;
 call compile preprocessFileLineNumbers  "presets\init_preset.sqf";
+
+[0.3] call BIS_fnc_progressLoadingScreen;
 call compile preprocessFileLineNumbers  "loot\lists.sqf";
+
+[0.5] call BIS_fnc_progressLoadingScreen;
 call compile preprocessFileLineNumbers  "hostiles\lists.sqf";
 
 // _hmissionParams = [] execVM "setParams.sqf";
@@ -43,6 +55,7 @@ call compile preprocessFileLineNumbers  "hostiles\lists.sqf";
 ["<t size = '.5'>Creating Base...</t>", 0, 0, 30, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 _basepoint = [] execVM "bulwark\createBase.sqf";
 waitUntil { scriptDone _basepoint };
+[0.8] call BIS_fnc_progressLoadingScreen;
 
 ["<t size = '.5'>Ready</t>", 0, 0, 0.5, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
@@ -93,6 +106,8 @@ _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;
 _timeToSet = DAY_TIME_FROM + _randTime;
 setDate [2018, 7, 1, _timeToSet, 0];
+
+"bulwarkSetup" call BIS_fnc_endLoadingScreen;
 
 "Starting mission loop" call shared_fnc_log;
 //[] execVM "revivePlayers.sqf";
