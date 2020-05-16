@@ -5,11 +5,21 @@
 *
 *  Domain: Server
 **/
+#include "..\shared\defines.hpp"
 
 CurrentBulwarkParams = nil;
 if (isNil "CurrentBulwarkParams") then
 {
-  CurrentBulwarkParams = +(call shared_fnc_getDefaultParams);
+	private _selectedParameterSet = call shared_fnc_loadSelectedParameterSet;
+	CurrentBulwarkParams = [_selectedParameterSet, PARAMSET_TYPE_CUSTOM] call shared_fnc_loadParameterSet;
+
+	if (isNil "CurrentBulwarkParams") then {
+		CurrentBulwarkParams = [_selectedParameterSet, PARAMSET_TYPE_BUILTIN] call shared_fnc_loadParameterSet;
+	};
+
+	if (isNil "_params") then {
+		CurrentBulwarkParams = +(call shared_fnc_getDefaultParams);
+	};
 };
 
 
