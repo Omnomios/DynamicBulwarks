@@ -9,7 +9,7 @@ overviewPicture = "preview.paa";
 loadScreen = "preview.paa";
 
 respawn = 2;
-respawnOnStart = 1;
+respawnOnStart = -1;
 respawnDialog = 0;
 respawnTemplates[] = {"Base"};
 ReviveMode = 1;
