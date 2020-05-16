@@ -1,7 +1,7 @@
-onLoadMission = "dynamicBulwarks";
+onLoadMission = "Hold out as long as you can!";
 onLoadIntro = "Defend yourself";
-onLoadName = "dynamicBulwarks";
-briefingName = "dynamicBulwarks";
+onLoadName = "Dynamic Bulwarks";
+briefingName = "Dynamic Bulwarks";
 overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
 author = "Hilltop & omNomios";
 overviewPicture = "preview.paa";
@@ -26,7 +26,7 @@ wreckRemovalMaxTime = 50;
 
 class Header
 {
-	gameType =  Defend;
+	gameType =  Survive;
 	minPlayers =  	 1;
 	maxPlayers = 	  25;
 };

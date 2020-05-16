@@ -97,6 +97,7 @@ randomSeed=13606913;
 class ScenarioData
 {
 	author="Hilltop";
+	overviewText="Defend yourself and your teammates against ever more difficult enemies trying to take your position";
 	briefing=0;
 	debriefing=0;
 	disabledAI=1;
