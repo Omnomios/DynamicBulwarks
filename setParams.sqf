@@ -32,6 +32,9 @@ if (DAY_TIME_FROM > DAY_TIME_TO) then {
 };
 /* Starter MediKits */
 BULWARK_MEDIKITS = (BULWARK_PARAM_BULWARK_MEDIKIT call shared_fnc_getCurrentParamValue);
+DOWN_TIME = (BULWARK_PARAM_DOWN_TIME call shared_fnc_getCurrentParamValue);
+
 /* Special Wave parameters */
+enableSpecialWaves = if ((BULWARK_PARAM_SPECIAL_WAVES call shared_fnc_getCurrentParamValue) == 1) then {true} else {false};
 everyWaveSpecial = if ((BULWARK_PARAM_SPECIAL_WAVES_ONLY call shared_fnc_getCurrentParamValue) == 1) then {true} else {false};
 specialWaveRepeat = if ((BULWARK_PARAM_SPECIAL_WAVES_VARIETY call shared_fnc_getCurrentParamValue) == 1) then {false} else {true};

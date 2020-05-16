@@ -53,9 +53,9 @@ call compile preprocessFileLineNumbers  "hostiles\lists.sqf";
 // };
 
 ["<t size = '.5'>Creating Base...</t>", 0, 0, 30, 0] remoteExec ["BIS_fnc_dynamicText", 0];
-_basepoint = [] execVM "bulwark\createBase.sqf";
-waitUntil { scriptDone _basepoint };
+
 [0.8] call BIS_fnc_progressLoadingScreen;
+_basepoint = call compile preprocessFileLineNumbers "bulwark\createBase.sqf";
 
 ["<t size = '.5'>Ready</t>", 0, 0, 0.5, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
@@ -108,10 +108,10 @@ _timeToSet = DAY_TIME_FROM + _randTime;
 setDate [2018, 7, 1, _timeToSet, 0];
 
 "bulwarkSetup" call BIS_fnc_endLoadingScreen;
-
 "Starting mission loop" call shared_fnc_log;
+
 //[] execVM "revivePlayers.sqf";
-[bulwarkRoomPos] execVM "missionLoop.sqf";
+[] execVM "missionLoop.sqf";
 
 [] execVM "area\areaEnforcement.sqf";
 [] execVM "hostiles\clearStuck.sqf";

@@ -41,4 +41,4 @@ publicVariable "RESPAWN_TIME";
 MIND_CONTROLLED_AI = [];
 publicVariable "MIND_CONTROLLED_AI";
 
-sleep _downTime;
+sleep DOWN_TIME;

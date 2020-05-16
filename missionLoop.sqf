@@ -8,11 +8,8 @@
 	_x setDamage 0;
 }forEach allPlayers;
 
-_downTime = (BULWARK_PARAM_DOWN_TIME call shared_fnc_getCurrentParamValue);
-_specialWaves = (BULWARK_PARAM_SPECIAL_WAVES call shared_fnc_getCurrentParamValue);
-_maxWaves = (BULWARK_PARAM_MAX_WAVES call shared_fnc_getCurrentParamValue);
+private _maxWaves = (BULWARK_PARAM_MAX_WAVES call shared_fnc_getCurrentParamValue);
 
-_CenterPos = _this;
 attkWave = 0;
 publicVariable "attkWave";
 suicideWave = false;

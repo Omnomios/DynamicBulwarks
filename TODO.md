@@ -4,7 +4,8 @@
 * Vehicles stick around based on timer, not wave
 * Player corpses stick around based on timer
 * Guns sometimes get removed when accessing gear
-
+* Are ammo drops happening in the right place?
+  
 # New Features
 * Finish the lobby system
 * Scaling vehicle waves (maybe with a vehicle costing table and wave budget), https://community.bistudio.com/wiki/CfgVehicles_Config_Reference#cost
