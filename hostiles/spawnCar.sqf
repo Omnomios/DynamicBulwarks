@@ -17,7 +17,6 @@ for "_i" from 1 to (carCount) do {
 		_x select 0 addEventHandler ["Hit", killPoints_fnc_hit];
 		_x select 0 addEventHandler ["Killed", killPoints_fnc_killed];
 		_x select 0 setVariable ["killPointMulti", HOSTILE_CAR_POINT_SCORE];
-		unitArray = waveUnits select 0;
-		unitArray append [_x select 0];
+		_x select 0 call hostiles_fnc_addUnitToWaveForCleanup;
 	} forEach carCrew;
 };

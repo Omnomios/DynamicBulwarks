@@ -18,6 +18,8 @@ RESPAWN_TICKETS = (BULWARK_PARAM_RESPAWN_TICKETS call shared_fnc_getCurrentParam
 LOOT_HOUSE_DISTRIBUTION = (BULWARK_PARAM_LOOT_HOUSE_DISTRIBUTION call shared_fnc_getCurrentParamValue);  // Every *th house will spwan loot.
 LOOT_ROOM_DISTRIBUTION = (BULWARK_PARAM_LOOT_ROOM_DISTRIBUTION call shared_fnc_getCurrentParamValue);   // Every *th position, within that house will spawn loot.
 LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
+
+// TODO: This is never actually used.  See fn_supplyDrop.sqf
 LOOT_SUPPLYDROP = (BULWARK_PARAM_LOOT_SUPPLYDROP call shared_fnc_getCurrentParamValue) / 100;        // Radius of supply drop
 PARATROOP_COUNT = (BULWARK_PARAM_PARATROOP_COUNT call shared_fnc_getCurrentParamValue);
 SCORE_KILL = (BULWARK_PARAM_SCORE_KILL call shared_fnc_getCurrentParamValue);                 // Base Points for a kill
@@ -38,3 +40,6 @@ DOWN_TIME = (BULWARK_PARAM_DOWN_TIME call shared_fnc_getCurrentParamValue);
 enableSpecialWaves = if ((BULWARK_PARAM_SPECIAL_WAVES call shared_fnc_getCurrentParamValue) == 1) then {true} else {false};
 everyWaveSpecial = if ((BULWARK_PARAM_SPECIAL_WAVES_ONLY call shared_fnc_getCurrentParamValue) == 1) then {true} else {false};
 specialWaveRepeat = if ((BULWARK_PARAM_SPECIAL_WAVES_VARIETY call shared_fnc_getCurrentParamValue) == 1) then {false} else {true};
+
+/* Other wave parameters */
+BODY_CLEANUP_WAVE = (BULWARK_PARAM_BODY_CLEANUP call shared_fnc_getCurrentParamValue);

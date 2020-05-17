@@ -16,13 +16,9 @@ for ("_i") from 0 to 14 do {
 	sleep 1;
 };
 
-// Delete
-_final = waveUnits select (BULWARK_PARAM_BODY_CLEANUP call shared_fnc_getCurrentParamValue);
-{deleteVehicle _x} foreach _final;
-// Shuffle
-waveUnits set [2, waveUnits select 1];
-waveUnits set [1, waveUnits select 0];
-waveUnits set [0, []];
+"Cleaning up..." call shared_fnc_log;
+
+call hostiles_fnc_cleanupWaveUnits;
 
 playersInWave = [];
 _allHCs = entities "HeadlessClient_F";
@@ -56,6 +52,7 @@ if (_respawnTickets <= 0) then {
 
 missionNamespace setVariable ["buildPhase", false, true];
 
+"Determining special wave..." call shared_fnc_log;
 //determine if Special wave
 SpecialWaveType = "";
 droneCount = 0;
@@ -114,6 +111,7 @@ if (enableSpecialWaves) then {
 	};
 };
 
+"Clean up latent vehicles..." call shared_fnc_log;
 //
 // Clean up any destroyed land or air vehicles
 //
@@ -129,6 +127,7 @@ if (enableSpecialWaves) then {
 	};
 } foreach allMissionObjects "Air";
 
+"Spawn loot..." call shared_fnc_log;
 //
 // Spawn some loot
 //
@@ -139,10 +138,13 @@ if (attkWave > 1) then { //if first wave give player extra time before spawning 
 	waitUntil { scriptDone _spawnLoot};
 };
 
+"Spawn Wave..." call shared_fnc_log;
 // spawn
 if (attkWave <= PISTOL_HOSTILES) then {
 	SpecialWaveType = "pistolWave";
 };
+
+SpecialWaveType = "SPECCIVS";
 if (SpecialWaveType != "") then {
 	[] call call compile format ["DBW_%1",SpecialWaveType]; //call compile toUpper format ["DBW_%1",SpecialWaveType]; //"call compile" compiles the string into the function name. The second "call" runs the function.
 }

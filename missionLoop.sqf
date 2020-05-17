@@ -45,6 +45,9 @@ while {runMissionLoop} do {
 
 	[] call bulwark_fnc_startWave;
 
+	//
+	// TODO: This is a tight loop - should preferably be event driven
+	//
 	while {runMissionLoop} do {
 
 		// Get all human players in this wave cycle // moved to contain players that respawned in this wave

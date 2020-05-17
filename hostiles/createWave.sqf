@@ -160,8 +160,7 @@ DBW_initUnit = {
 	_unit setVariable ["points", []];
 	_unit setVariable ["killPointMulti", _killpointsMulti];
 	mainZeus addCuratorEditableObjects [[_unit], true];
-	unitArray = waveUnits select 0;
-	unitArray append [_unit];
+	_unit call hostiles_fnc_addUnitToWaveForCleanup;
 	_unit doMove (getPos (selectRandom playableUnits));
 };
 

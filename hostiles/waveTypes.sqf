@@ -25,7 +25,7 @@ DBW_SUICIDEWAVE = {
 		_unit = [_classArray,_location] call DBW_spawnHostile;
 		private _setSkill = [_unit,_skill] call DBW_setSkill;
 		removeAllWeapons _unit;
-		_unit addEventHandler ["Killed", CreateHostiles_fnc_suiExplode];
+		_unit addEventHandler ["Killed", hostiles_fnc_suiExplode];
 		private _init = [_unit,_scoreMulti] call DBW_initUnit;
 	};
 	waveSpawned = true;
