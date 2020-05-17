@@ -1,9 +1,8 @@
 "Starting game" call shared_fnc_log;
+publicVariable "CurrentBulwarkParams";
 if (isServer) then {
 
     // Send the current params to all players
-    publicVariable "CurrentBulwarkParams";
-
     //execVM "startGame.sqf";
     call compile preprocessFileLineNumbers "startGame.sqf";
 

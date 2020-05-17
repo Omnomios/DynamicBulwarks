@@ -81,7 +81,7 @@ private _defaultBulwarkParams = [
 	],
 	[
 		BULWARK_PARAM_SPECIAL_WAVES_ONLY,
-		"Special waves?", PARAM_CATEGORY_WAVE, PARAM_TYPE_NUMBER, 0,
+		"Only special waves?", PARAM_CATEGORY_WAVE, PARAM_TYPE_NUMBER, 0,
 		[["No", 0], ["Yes", 1]],
 		0,
 		"Should there be only be special waves after the first few waves?"

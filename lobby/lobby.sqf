@@ -17,7 +17,7 @@ if (isNil "CurrentBulwarkParams") then
 		CurrentBulwarkParams = [_selectedParameterSet, PARAMSET_TYPE_BUILTIN] call shared_fnc_loadParameterSet;
 	};
 
-	if (isNil "_params") then {
+	if (isNil "CurrentBulwarkParams") then {
 		CurrentBulwarkParams = +(call shared_fnc_getDefaultParams);
 	};
 };
