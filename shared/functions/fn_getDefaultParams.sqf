@@ -100,6 +100,13 @@ private _defaultBulwarkParams = [
 		1,
 		"Vehicles will start to spawn after the specified wave?"
 	],
+	[
+		BULWARK_PARAM_ARMOUR_WAVE_SCALING,
+		"Armor spawn budget", PARAM_CATEGORY_WAVE, PARAM_TYPE_NUMBER, 0,
+		[["50%", 0.2], ["100%", 0.4], ["150%", 0.6], ["200%", 0.8]],
+		1,
+		"Controls how much budget is available for spawning vehicles.  Higher means more and more powerful vehicles."
+	],
 
 	//
 	// PARAM_CATEGORY_START

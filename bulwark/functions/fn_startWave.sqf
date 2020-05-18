@@ -144,7 +144,6 @@ if (attkWave <= PISTOL_HOSTILES) then {
 	SpecialWaveType = "pistolWave";
 };
 
-SpecialWaveType = "SPECCIVS";
 if (SpecialWaveType != "") then {
 	[] call call compile format ["DBW_%1",SpecialWaveType]; //call compile toUpper format ["DBW_%1",SpecialWaveType]; //"call compile" compiles the string into the function name. The second "call" runs the function.
 }

@@ -5,6 +5,7 @@ class shared
         file = "shared\functions";
 		class log {};
         class getNumberFromString {};
+        class padString {};
 
         class getProfileParam {};
         class setProfileParam {};

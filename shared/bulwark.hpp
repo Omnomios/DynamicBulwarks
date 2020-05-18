@@ -41,3 +41,4 @@
 #define BULWARK_PARAM_TEAM_DAMAGE               35
 #define BULWARK_PARAM_SPECIAL_WAVES             36
 #define BULWARK_PARAM_FILTER_PRESET             37
+#define BULWARK_PARAM_ARMOUR_WAVE_SCALING       38

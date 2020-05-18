@@ -12,7 +12,7 @@
 
 # New Features
 * DONE: Finish the lobby system
-* Scaling vehicle waves (maybe with a vehicle costing table and wave budget), https://community.bistudio.com/wiki/CfgVehicles_Config_Reference#cost
+* DONE Scaling vehicle waves (maybe with a vehicle costing table and wave budget), https://community.bistudio.com/wiki/CfgVehicles_Config_Reference#cost
 * AI target buildings with grenades/explosives
   * Needs investigation - destroy waypoints
 * Faction-based enemies

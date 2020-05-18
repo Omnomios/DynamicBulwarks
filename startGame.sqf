@@ -41,17 +41,6 @@ call compile preprocessFileLineNumbers  "loot\lists.sqf";
 [0.5] call BIS_fnc_progressLoadingScreen;
 call compile preprocessFileLineNumbers  "hostiles\lists.sqf";
 
-// _hmissionParams = [] execVM "setParams.sqf";
-// _hLocation = [] execVM "locationLists.sqf";
-// _hpreset =   [] execVM "presets\init_preset.sqf";
-// waitUntil {scriptDone _hpreset};
-// _hLoot     = [] execVM "loot\lists.sqf";
-// _hHostiles = [] execVM "hostiles\lists.sqf";
-// waitUntil {
-//     scriptDone _hLoot &&
-//     scriptDone _hHostiles
-// };
-
 ["<t size = '.5'>Creating Base...</t>", 0, 0, 30, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 
 [0.8] call BIS_fnc_progressLoadingScreen;
