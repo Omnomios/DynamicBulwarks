@@ -34,7 +34,7 @@ runMissionLoop = true;
 missionFailure = false;
 
 // start in build phase
-bulwarkBox setVariable ["buildPhase", true, true];
+missionNamespace setVariable ["buildPhase", true, true];
 
 [west, RESPAWN_TICKETS] call BIS_fnc_respawnTickets;
 

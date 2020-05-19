@@ -8,6 +8,10 @@
 
 
 _player = _this select 0;
+_player playActionNow "agonyStart";
+sleep 5;
+_player playAction "agonyStop";
+_player setDamage 0;
 
 sleep 10;
 

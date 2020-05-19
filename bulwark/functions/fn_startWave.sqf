@@ -53,7 +53,7 @@ if (_respawnTickets <= 0) then {
 };
 [RESPAWN_TIME] remoteExec ["setPlayerRespawnTime", 0];
 
-bulwarkBox setVariable ["buildPhase", false, true];
+missionNamespace setVariable ["buildPhase", false, true];
 
 //determine if Special wave
 

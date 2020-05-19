@@ -33,27 +33,16 @@ shopVehic setVehiclePosition [shopVehic, [], 0, "CAN_COLLIDE"];
     thisHeldVehic = _this select 3 select 0;
     _player = _this select 1;
     _playerArr = [_player];
-    _allPlayers = playableUnits - _playerArr;
-    _closestPlayerDist = 9999;
-    {
-      _playerDistance = thisHeldVehic distance2d _x;
-      if ((_playerDistance < _closestPlayerDist)) then {
-        _closestPlayerDist = _playerDistance;
-      };
-    } forEach _allPlayers;
-    if (_closestPlayerDist > 5) then {
-      thisHeldVehic attachTo [_player, [0,3,0.02], 'Pelvis'];
-      {[thisHeldVehic, _x] remoteExec ['disableCollisionWith', 0];} forEach playableUnits;
-      _player addAction ['<t color=''#00ffff''>' + 'Place Object', '
-          _thisPlacedVehic = _this select 3 select 0;
-          _player = _this select 1;
-          _actionId = _this select 2;
-          detach _thisPlacedVehic;
-          {[_thisPlacedVehic, _x] remoteExec [''enableCollisionWith'', 0];} forEach playableUnits;
-          _player removeAction _actionId;
-          _thisPlacedVehic setVehiclePosition [_thisPlacedVehic , [], 0, ''CAN_COLLIDE''];
-      ', [thisHeldVehic]];
-    } else {
-      ['<t color=''#ff0000''>Warning: Other players too close to pick this up</t>', 0, 0.1, 2, 1] remoteExec ['BIS_fnc_dynamicText', _player];
-    };
+    thisHeldVehic attachTo [_player, [0,3,0.02], 'Pelvis'];
+    {[thisHeldVehic, _x] remoteExec ['disableCollisionWith', 0];} forEach playableUnits;
+    _player addAction ['<t color=''#00ffff''>' + 'Place Object', '
+        _thisPlacedVehic = _this select 3 select 0;
+        _player = _this select 1;
+        _actionId = _this select 2;
+        detach _thisPlacedVehic;
+        {[_thisPlacedVehic, _x] remoteExec [''enableCollisionWith'', 0];} forEach playableUnits;
+        _player removeAction _actionId;
+        _thisPlacedVehic setVehiclePosition [_thisPlacedVehic , [], 0, ''CAN_COLLIDE''];
+        ', [thisHeldVehic]];
+    ['<t color=''#ff0000''>Warning: Other players too close to pick this up</t>', 0, 0.1, 2, 1] remoteExec ['BIS_fnc_dynamicText', _player];
 ", [shopVehic],2,false,false,"true","true",5]] remoteExec ["addAction", 0];
