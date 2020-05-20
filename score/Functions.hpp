@@ -12,5 +12,6 @@ class killPoints
         class hitMarker {};
         class support {};
         class civKilled {};
+        class hitBoom {};
     };
 };

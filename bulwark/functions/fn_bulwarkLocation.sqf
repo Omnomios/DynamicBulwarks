@@ -3,7 +3,10 @@ _radius = _this select 1;
 
 _finalPos = nil;
 _finalCity = nil;
-
+if (BULWARK_LOCATIONS_MARKER) then {
+	_finalPos = selectRandom _locations;
+	_finalCity = _finalPos;	
+};
 _probe = createVehicle ["Sign_Arrow_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 while {isNil "_finalPos"} do {
 	_city = selectRandom _locations;
