@@ -166,7 +166,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=2;
+					value=0;
 				};
 			};
 		};
@@ -373,7 +373,7 @@ class Mission
 					};
 					id=269;
 					type="C_man_1_3_F";
-					atlOffset=100;
+					atlOffset=99.998581;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -426,7 +426,7 @@ class Mission
 						angles[]={0,3.113929,0};
 					};
 					side="West";
-					flags=5;
+					flags=1;
 					class Attributes
 					{
 						description="Survivor 3";
@@ -434,7 +434,7 @@ class Mission
 					};
 					id=271;
 					type="C_man_shorts_1_F";
-					atlOffset=0.017339706;
+					atlOffset=99.980263;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -495,7 +495,7 @@ class Mission
 					};
 					id=273;
 					type="C_Man_casual_1_F";
-					atlOffset=100;
+					atlOffset=100.00503;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -548,7 +548,7 @@ class Mission
 						angles[]={0,1.9967963,0};
 					};
 					side="West";
-					flags=5;
+					flags=1;
 					class Attributes
 					{
 						description="Survivor 5";
@@ -556,7 +556,7 @@ class Mission
 					};
 					id=275;
 					type="C_Man_casual_2_F";
-					atlOffset=0.015668869;
+					atlOffset=99.981934;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -609,7 +609,7 @@ class Mission
 						angles[]={0,2.6136482,0};
 					};
 					side="West";
-					flags=5;
+					flags=1;
 					class Attributes
 					{
 						description="Survivor 6";
@@ -617,7 +617,7 @@ class Mission
 					};
 					id=277;
 					type="C_Man_casual_3_F";
-					atlOffset=0.037870407;
+					atlOffset=99.959732;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -670,7 +670,7 @@ class Mission
 						angles[]={0,3.6384704,0};
 					};
 					side="West";
-					flags=5;
+					flags=1;
 					class Attributes
 					{
 						description="Survivor 7";
@@ -678,7 +678,7 @@ class Mission
 					};
 					id=279;
 					type="C_man_sport_1_F";
-					atlOffset=0.037809372;
+					atlOffset=99.959793;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -731,7 +731,7 @@ class Mission
 						angles[]={0,4.2663875,0};
 					};
 					side="West";
-					flags=5;
+					flags=1;
 					class Attributes
 					{
 						description="Survivor 8";
@@ -739,7 +739,7 @@ class Mission
 					};
 					id=281;
 					type="C_man_sport_2_F";
-					atlOffset=0.015829086;
+					atlOffset=99.981773;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -800,7 +800,7 @@ class Mission
 					};
 					id=283;
 					type="C_man_sport_3_F";
-					atlOffset=100;
+					atlOffset=100.00503;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -861,7 +861,7 @@ class Mission
 					};
 					id=285;
 					type="C_Man_casual_4_F";
-					atlOffset=100;
+					atlOffset=100.00503;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -922,7 +922,7 @@ class Mission
 					};
 					id=287;
 					type="C_Man_casual_5_F";
-					atlOffset=100;
+					atlOffset=100.00503;
 					class CustomAttributes
 					{
 						class Attribute0
