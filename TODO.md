@@ -22,6 +22,7 @@
 * Spawns between waves?
 * Play at different times of the year?
 * Slower transition to night time using time acceleration?
+* Team-wide bulwark points
 
 
 # ISSUES
