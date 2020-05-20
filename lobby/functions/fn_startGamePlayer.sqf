@@ -1,5 +1,7 @@
 // This should be a scheduled environment
 
-// TODO: Refactor
-call compile preprocessFileLineNumbers "startPlayer.sqf";
+if (hasInterface) then {
+    // TODO: Refactor
+    call compile preprocessFileLineNumbers "startPlayer.sqf";
+};
 
