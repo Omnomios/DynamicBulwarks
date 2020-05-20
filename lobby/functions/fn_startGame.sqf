@@ -7,5 +7,5 @@ publicVariable "CurrentBulwarkParams";
 remoteExec ["lobby_fnc_startGameServer", 2];
 
 // Start the players
-remoteExec ["lobby_fnc_startGamePlayer", -2, true];
+remoteExec ["lobby_fnc_startGamePlayer", 0, true];
 
