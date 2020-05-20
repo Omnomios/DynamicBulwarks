@@ -1,11 +1,10 @@
 # Bug Fixes
-* Revive issues (maybe add in http://www.armaholic.com/page.php?id=24088)?
+* FIXED Revive issues (maybe add in http://www.armaholic.com/page.php?id=24088)?
 * Long start time for some waves
 * Vehicles stick around based on timer, not wave
 * Player corpses stick around based on timer
 * Guns sometimes get removed when accessing gear
-* Are ammo drops happening in the right place?
-  * No, the target waypoint is always the same location, random drift of the parachute is what causes it to actually end up in random places.
+* FIXED Are ammo drops happening in the right place?
 * missionLoop is a tight while loop
 * FIXED Also it seems the first aid kits dropped by nato allow healing but the others dont when using PIR
 * FIXED Auto-revive with medikits broken
@@ -23,6 +22,7 @@
 * Play at different times of the year?
 * Slower transition to night time using time acceleration?
 * Team-wide bulwark points
+* Progressived spawning (cap on how many units can spawn at once, trickle them in over time)
 
 
 # ISSUES
