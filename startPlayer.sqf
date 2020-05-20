@@ -1,20 +1,58 @@
-#include "shared\bulwark.hpp"
+initStarted = nil;
+gameStarted = nil;
+
+// TODO: Refactor, probably remove initStarted too
+//waitUntil {!isNil "initStarted"};
+
+player setDamage 0;
+
+startLoadingScreen ["Entering defense perimeter..."];
+
+"Player waiting for game start" call shared_fnc_log;
+waitUntil {!isNil "gameStarted"};
 
 "Initializing player" call shared_fnc_log;
 
-player setCustomAimCoef 0.2;
-player setUnitRecoilCoefficient 0.5;
-player enableStamina FALSE;
-BULWARK_PARAM_START_KILLPOINTS call shared_fnc_getCurrentParamValue;
+//Make player immune to fall damage / immune to all damage while incapacitated / immune with a medikit
+player removeAllEventHandlers "HandleDamage";
+player addEventHandler ["HandleDamage", {
+  params ["_unit", "_selection", "_damage", "_source", "_projectile", "_hitIndex", "_instigator", "_hitPoint"];
+  //format ["Dmg: %1 From: %2 At: %3 Part: %4 Projectile: %5", _damage, _source, _selection, _hitIndex, _projectile] call shared_fnc_log;
+  _beingRevived = player getVariable "RevByMedikit";
+  TEAM_DAMAGE = missionNamespace getVariable "TEAM_DAMAGE";
+  _players = allPlayers;
+  if (_projectile == "" || 
+    lifeState player == "INCAPACITATED" || 
+    _beingRevived || 
+    (_source in _players && !TEAM_DAMAGE && !(_source isEqualTo player))) then {
+      0
+  } else {
+    if (_damage + damage player >= 1) then {
+        private _medikit = call CWS_GetMedikitEquivalent;
+      if (!isNil "_medikit") then {
+        format ["Instant revive by medikit for player %1", player] call shared_fnc_log;
+        player removeItem _medikit;
+        player setVariable ["RevByMedikit", true, true];
+        player playActionNow "agonyStart";
+        player playAction "agonyStop";
+        player setDamage 0;
+        [player] remoteExec ["bulwark_fnc_revivePlayer", 2];
+        0;
+      };
+    } else {
+      _this call bis_fnc_reviveEhHandleDamage;
+    };
+  };
+}];
+
+private _newLoc = [bulwarkBox] call bulwark_fnc_findPlaceAround;
+player setPosASL _newLoc;
+
+endLoadingScreen;
+[1, "BLACK", 2, 1] call BIS_fnc_fadeEffect;
+
 player setVariable ["RevByMedikit", false, true];
 player setVariable ["buildItemHeld", false];
-
-// Lower recoil, lower sway, remove stamina on respawn
-player addEventHandler ['Respawn',{
-    player setCustomAimCoef 0.2;
-    player setUnitRecoilCoefficient 0.5;
-    player enableStamina FALSE;
-}];
 
 //setup Kill Points
 _killPoints = player getVariable "killPoints";
@@ -22,8 +60,6 @@ if(isNil "_killPoints") then {
     _killPoints = 0;
 };
 
-// CWS - This should now be broadcast by the server on game start
-// _killPoints = _killPoints + (BULWARK_PARAM_START_KILLPOINTS call shared_fnc_getCurrentParamValue);
 player setVariable ["killPoints", _killPoints, true];
 [] call killPoints_fnc_updateHud;
 
@@ -156,15 +192,49 @@ If you are knocked unconscious but you have a Medikit in your inventory you will
 <font color='#FFCC00'>You won't survive this fight but take as many of the bastards with you as you can!</font>"]];
 
 //Make player immune to fall damage and immune to all damage while incapacitated
-waitUntil {!isNil "TEAM_DAMAGE"};
-player removeAllEventHandlers 'HandleDamage';
-player addEventHandler ["HandleDamage", {
-  _beingRevived = player getVariable "RevByMedikit";
-  _players = allPlayers;
-  if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !TEAM_DAMAGE && !((_this select 3) isEqualTo player))) then {0} else {_this call bis_fnc_reviveEhHandleDamage;};
-}];
+// waitUntil {!isNil "TEAM_DAMAGE"};
+// player removeAllEventHandlers 'HandleDamage';
+// player addEventHandler ["HandleDamage", {
+//   _beingRevived = player getVariable "RevByMedikit";
+//   _players = allPlayers;
+//   if ((_this select 4) == "" || lifeState player == "INCAPACITATED" || _beingRevived || ((_this select 3) in _players && !TEAM_DAMAGE && !((_this select 3) isEqualTo player))) then {0} else {_this call bis_fnc_reviveEhHandleDamage;};
+// }];
 
-waitUntil {!isNil "bulwarkCity"};
+
+//
+// FAK to Medikit conversion
+//
+player addEventHandler ["Put", {
+	params ["_unit", "_container", "_item"];
+	format ["Checking %1 against FAKs", _item] call shared_fnc_log;
+    if (_container == bulwarkBox) then {
+        private _fakEquivalents = ["FirstAidKit", "PiR_bint"];
+        if (_item in _fakEquivalents) then {
+            private _cargoItems = getItemCargo bulwarkBox;
+            private _itemsToRemove = [];
+            private _fakCount = 0;
+            {
+                if (_x in _fakEquivalents) then {
+                    private _storedCount = (_cargoItems select 1) select _forEachIndex;
+                    format ["Found %1 %2 in bulwark", _storedCount, _x] call shared_fnc_log;
+                    private _countToRemove = _storedCount min (15 - _fakCount);
+                    _fakCount = _fakCount + _countToRemove;
+                    if (_countToRemove > 0) then {
+                        _itemsToRemove pushBack [_x, _countToRemove];
+                    };
+                };
+            } forEach (_cargoItems select 0);
+
+            if (_fakCount == 15) then {
+                "Converting FAKs to Medikit" call shared_fnc_log;
+                {
+                    [bulwarkBox, _x select 0, _x select 1, false] call CBA_fnc_removeItemCargo;
+                } forEach _itemsToRemove;
+                bulwarkBox addItemCargoGlobal ["Medikit", 1];
+            };
+        };
+    };
+}];
 
 // kill player if they disconnected and rejoined during a wave
 _buildPhase = bulwarkBox getVariable ["buildPhase", true];

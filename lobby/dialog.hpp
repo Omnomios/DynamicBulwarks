@@ -66,6 +66,11 @@ class bulwarkParams_Dialog
 		x = 0.025; y = 0.075;
 		w = 0.95; h = 0.85;
 		colorBackground[] = COLOR_HALF_PINK;
+
+	    lineSpacing = 0;
+	    rowHeight = 0.05;
+	    headerHeight = 0.05;
+
 		class HeaderTemplate
 		{
 			class HeaderBackground

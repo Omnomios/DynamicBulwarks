@@ -2,13 +2,6 @@
 /// Styles
 ///////////////////////////////////////////////////////////////////////////
 
-#include "\a3\3DEN\UI\macros.inc"
-#include "\a3\3DEN\UI\macroexecs.inc"
-#include "\a3\ui_f\hpp\definedikcodes.inc"
-#include "\a3\ui_f\hpp\definecommoncolors.inc"
-#include "\a3\ui_f\hpp\definecommongrids.inc"
-#include "\a3\ui_f\hpp\defineresincl.inc"
-
 // Control types
 #define CT_STATIC           0
 #define CT_BUTTON           1
@@ -27,6 +20,7 @@
 #define CT_CONTEXT_MENU     14
 #define CT_CONTROLS_GROUP   15
 #define CT_SHORTCUTBUTTON   16
+#define CT_CONTROLS_TABLE   19
 #define CT_XKEYDESC         40
 #define CT_XBUTTON          41
 #define CT_XLISTBOX         42
@@ -1157,12 +1151,12 @@ class RscControlsTable
     style = SL_TEXTURES;
      
     lineSpacing = 0;
-    rowHeight = 1 * GUI_GRID_H;
-    headerHeight = 1 * GUI_GRID_H;
+    rowHeight = 1;
+    headerHeight = 1;
      
     firstIDC = 42000;
     lastIDC = 44999;
-     
+    
     // Colours which are used for animation (i.e. change of colour) of the selected line.
     selectedRowColorFrom[]  = {0.7, 0.85, 1, 0.25};
     selectedRowColorTo[]    = {0.7, 0.85, 1, 0.5};
@@ -1181,15 +1175,5 @@ class RscControlsTable
     class HScrollBar: ScrollBar
     {
         height = 0.028;
-    };
-     
-    // Template for selectable rows
-    class RowTemplate
-    {
-    };
-     
-    // Template for headers (unlike rows, cannot be selected)
-    class HeaderTemplate
-    {
     };
 };

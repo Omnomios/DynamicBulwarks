@@ -1,12 +1,11 @@
 "Starting game" call shared_fnc_log;
 publicVariable "CurrentBulwarkParams";
-if (isServer) then {
+// TODO: Move this function and the ones below into a
+// game section - they don't belong in the lobby.
 
-    // Send the current params to all players
-    //execVM "startGame.sqf";
-    call compile preprocessFileLineNumbers "startGame.sqf";
+// Start the server
+remoteExec ["lobby_fnc_startGameServer", 2];
 
-    format ["Initializing players %1", allPlayers] call shared_fnc_log;
-    remoteExec ["lobby_fnc_startPlayers", allPlayers, true];
-};
+// Start the players
+remoteExec ["lobby_fnc_startGamePlayer", -2, true];
 

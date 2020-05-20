@@ -16,6 +16,7 @@ class lobby
 		class btnDoSaveAs {};
 
 		class startGame {};
-		class startPlayers {};
+		class startGameServer {};
+		class startGamePlayer {};
     };
 };

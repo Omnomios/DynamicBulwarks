@@ -12,16 +12,20 @@ PLAYER_OBJECT_LIST =[]; //create empty variable for player placed objects
 bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon allowDamage false;
+
+// REVIEW: Well, are we supposed to allow damage or not??
 bulwarkBox allowDamage false;
-bulwarkFallDamage = {
-_damage = 0;
-if((_this select 4) != "") then
-{
-  _damage = _this select 2;
-};
-_damage
-};
-bulwarkBox addEventHandler ["HandleDamage", { _this call bulwarkFallDamage }];
+bulwarkBox addEventHandler ["HandleDamage", {
+	params ["_unit", "_selection", "_damage", "_source", "_projectile", "_hitIndex", "_instigator", "_hitPoint"];
+
+	// Invulnerable to falling
+	if (_projectile != "") then {
+		_damage;
+	} else {
+		0;
+	};
+}];
+
 clearItemCargoGlobal bulwarkBox;
 clearWeaponCargoGlobal bulwarkBox;
 clearMagazineCargoGlobal bulwarkBox;
@@ -134,8 +138,6 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerColor "ColorWhite";
 
 lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
-
-[] execVM "bulwark\fakToMedkit.sqf";
 
 /* Spinner Box */
 

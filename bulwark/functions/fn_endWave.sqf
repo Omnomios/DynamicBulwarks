@@ -27,7 +27,9 @@ publicVariable "RESPAWN_TIME";
 {
 	// Revive players that are INCAPACITATED.
 	if (lifeState _x == "INCAPACITATED") then {
-		["#rev", 1, _x] remoteExecCall ["BIS_fnc_reviveOnState",_x];
+		// REVIEW Revive
+		//["#rev", 1, _x] remoteExecCall ["BIS_fnc_reviveOnState",_x];
+		["#rev", 1, _x]  call BIS_fnc_reviveOnState;
 	};
 } foreach allPlayers;
 

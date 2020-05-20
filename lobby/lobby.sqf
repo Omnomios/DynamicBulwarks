@@ -7,9 +7,8 @@
 **/
 #include "..\shared\defines.hpp"
 
-CurrentBulwarkParams = nil;
-if (isNil "CurrentBulwarkParams") then
-{
+if (!isNil "leadSurvivor") then {
+	format ["Loading parameters from player: %1", player] call shared_fnc_log;
 	private _selectedParameterSet = call shared_fnc_loadSelectedParameterSet;
 	CurrentBulwarkParams = [_selectedParameterSet, PARAMSET_TYPE_CUSTOM] call shared_fnc_loadParameterSet;
 
@@ -20,8 +19,9 @@ if (isNil "CurrentBulwarkParams") then
 	if (isNil "CurrentBulwarkParams") then {
 		CurrentBulwarkParams = +(call shared_fnc_getDefaultParams);
 	};
-};
 
+	publicVariable "CurrentBulwarkParams";
+};
 
 //
 // Lead Survivor actions
@@ -35,18 +35,18 @@ lobbyCrate addAction [
 	false, // showWindow
 	true, // hideOnUse
 	"", // shortCut
-	"_this == leadSurvivor" // Confition
+	"!isNil 'leadSurvivor'" // Confition
 ];
 
 lobbyCrate addAction [
 	"<t color='#00FF00'>GO! GO! GO!</t>", // title
-	{ [] remoteExec ["lobby_fnc_startGame", 2]},
+	{call lobby_fnc_startGame},
 	nil, // arguments
 	2, // priority
 	false, // showWindow
 	true, // hideOnUse
 	"", // shortCut
-	"_this == leadSurvivor" // Confition
+	"!isNil 'leadSurvivor'" // Confition
 ];
 
 lobbyCrate addAction [
@@ -57,7 +57,7 @@ lobbyCrate addAction [
 	false, // showWindow
 	true, // hideOnUse
 	"", // shortCut
-	"_this == leadSurvivor" // Condition
+	"!isNil 'leadSurvivor'" // Condition
 ];
 
 
@@ -72,5 +72,5 @@ lobbyCrate addAction [
 	true, // showWindow
 	true, // hideOnUse
 	"", // shortCut
-	"_this != leadSurvivor" // condition
+	"isNil 'leadSurvivor'" // condition
 ];

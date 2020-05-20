@@ -25,8 +25,8 @@ private _currentCategory = "";
   // Add the header if needed
   if (_currentCategory != PARAM_GET_CATEGORY(_param)) then {
     _currentCategory = PARAM_GET_CATEGORY(_param);
-    _header = ctAddHeader _paramsConfigTable;
-    _headerControls = (_header select 1);
+    private _header = ctAddHeader _paramsConfigTable;
+    private _headerControls = (_header select 1);
     (_headerControls select 0) ctrlSetBackgroundColor [1, 1, 1, 0.5];
     (_headerControls select 1) ctrlSetText _currentCategory;
     (_headerControls select 2) ctrlSetText "Value";

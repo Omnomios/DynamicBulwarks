@@ -78,7 +78,7 @@ DBW_SWITCHAROOWAVE = { //want to add garrisoned units in surrounding buildings. 
 			};
 		} foreach _allHPs;
 		_respawnTickets = [west] call BIS_fnc_respawnTickets;
-		if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+		if ((count (_allHPs - _deadUnconscious)) <= 0 && (_respawnTickets <= 0)) then {
 			sleep 1;
 
 			//Check that Players have not been revived
@@ -88,9 +88,9 @@ DBW_SWITCHAROOWAVE = { //want to add garrisoned units in surrounding buildings. 
 					_deadUnconscious pushBack _x;
 				};
 			} foreach _allHPs;
-			if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+			if ((count (_allHPs - _deadUnconscious)) <= 0 && (_respawnTickets <= 0)) then {
 				sleep 1;
-				if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
+				if ((count (_allHPs - _deadUnconscious)) <= 0 && (_respawnTickets <= 0)) then {
 					missionFailure = true;
 				};
 			};
