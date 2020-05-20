@@ -16,33 +16,39 @@ waitUntil {!isNil "gameStarted"};
 //Make player immune to fall damage / immune to all damage while incapacitated / immune with a medikit
 player removeAllEventHandlers "HandleDamage";
 player addEventHandler ["HandleDamage", {
-  params ["_unit", "_selection", "_damage", "_source", "_projectile", "_hitIndex", "_instigator", "_hitPoint"];
-  //format ["Dmg: %1 From: %2 At: %3 Part: %4 Projectile: %5", _damage, _source, _selection, _hitIndex, _projectile] call shared_fnc_log;
-  _beingRevived = player getVariable "RevByMedikit";
-  TEAM_DAMAGE = missionNamespace getVariable "TEAM_DAMAGE";
-  _players = allPlayers;
-  if (_projectile == "" || 
-    lifeState player == "INCAPACITATED" || 
-    _beingRevived || 
-    (_source in _players && !TEAM_DAMAGE && !(_source isEqualTo player))) then {
-      0
-  } else {
-    if (_damage + damage player >= 1) then {
-        private _medikit = call CWS_GetMedikitEquivalent;
-      if (!isNil "_medikit") then {
-        format ["Instant revive by medikit for player %1", player] call shared_fnc_log;
-        player removeItem _medikit;
-        player setVariable ["RevByMedikit", true, true];
-        player playActionNow "agonyStart";
-        player playAction "agonyStop";
-        player setDamage 0;
-        [player] remoteExec ["bulwark_fnc_revivePlayer", 2];
-        0;
-      };
+    params ["_unit", "_selection", "_damage", "_source", "_projectile", "_hitIndex", "_instigator", "_hitPoint"];
+    format ["Dmg: %1 From: %2 At: %3 Part: %4 Projectile: %5", _damage, _source, _selection, _hitIndex, _projectile] call shared_fnc_log;
+    TEAM_DAMAGE = missionNamespace getVariable "TEAM_DAMAGE";
+    private _beingRevived = player getVariable "RevByMedikit";
+    private _players = allPlayers;
+    private _soakDamage = false;
+    if (_projectile == "" || 
+        lifeState player == "INCAPACITATED" || 
+        _beingRevived || 
+        (_source in _players && !TEAM_DAMAGE && !(_source isEqualTo player))) then {
+        // "Invulnerable by status" call shared_fnc_log;
+        _soakDamage = true;
     } else {
-      _this call bis_fnc_reviveEhHandleDamage;
+        if (_damage + damage player >= 1) then {
+            private _medikit = call CWS_GetMedikitEquivalent;
+            if (!isNil "_medikit") then {
+                format ["Instant revive by medikit for player %1", player] call shared_fnc_log;
+                player removeItem _medikit;
+                player setVariable ["RevByMedikit", true, true];
+                player playActionNow "agonyStart";
+                player playAction "agonyStop";
+                player setDamage 0;
+                [player] remoteExec ["bulwark_fnc_revivePlayer", 2];
+                _soakDamage = true;
+            };
+        };
     };
-  };
+    if(!_soakDamage) then {
+        //"Normal damage handling" call shared_fnc_log;
+        _this call bis_fnc_reviveEhHandleDamage;
+    } else {
+        0
+    };
 }];
 
 private _newLoc = [bulwarkBox] call bulwark_fnc_findPlaceAround;
