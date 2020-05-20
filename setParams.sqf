@@ -19,8 +19,7 @@ LOOT_HOUSE_DISTRIBUTION = (BULWARK_PARAM_LOOT_HOUSE_DISTRIBUTION call shared_fnc
 LOOT_ROOM_DISTRIBUTION = (BULWARK_PARAM_LOOT_ROOM_DISTRIBUTION call shared_fnc_getCurrentParamValue);   // Every *th position, within that house will spawn loot.
 LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
 
-// TODO: This is never actually used.  See fn_supplyDrop.sqf
-LOOT_SUPPLYDROP = (BULWARK_PARAM_LOOT_SUPPLYDROP call shared_fnc_getCurrentParamValue) / 100;        // Radius of supply drop
+LOOT_SUPPLYDROP = (BULWARK_PARAM_LOOT_SUPPLYDROP call shared_fnc_getCurrentParamValue) / 100; // Radius of supply drop as a percentage of BULWARK_RADIUS
 PARATROOP_COUNT = (BULWARK_PARAM_PARATROOP_COUNT call shared_fnc_getCurrentParamValue);
 SCORE_KILL = (BULWARK_PARAM_SCORE_KILL call shared_fnc_getCurrentParamValue);                 // Base Points for a kill
 SCORE_HIT = (BULWARK_PARAM_SCORE_HIT call shared_fnc_getCurrentParamValue);                   // Every Bullet hit that doesn't result in a kill
