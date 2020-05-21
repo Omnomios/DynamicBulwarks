@@ -42,3 +42,9 @@
 #define BULWARK_PARAM_SPECIAL_WAVES             36
 #define BULWARK_PARAM_FILTER_PRESET             37
 #define BULWARK_PARAM_ARMOUR_WAVE_SCALING       38
+#define BULWARK_PARAM_KILLPOINTS_MODE           39
+
+
+#define KILLPOINTS_MODE_PRIVATE    0  // Killpoints are per-player
+#define KILLPOINTS_MODE_SHARED     1  // Killpoints are shared by all players
+#define KILLPOINTS_MODE_SHAREABLE  2  // Killpoint can be shared by players manually

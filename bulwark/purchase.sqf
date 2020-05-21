@@ -21,7 +21,8 @@ _vechAi    = (BULWARK_BUILDITEMS select _index) select 7;
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};
 
-if(player getVariable "killPoints" >= _shopPrice && !(player getVariable "buildItemHeld")) then {
+private _killPoints = call killPoints_fnc_get;
+if(_killPoints >= _shopPrice && !(player getVariable "buildItemHeld")) then {
     [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
     if (_vechAi) then {
         _vechWithAi = [[0,0,300], 0, _shopClass, west] call BIS_fnc_spawnVehicle;
@@ -42,7 +43,7 @@ if(player getVariable "killPoints" >= _shopPrice && !(player getVariable "buildI
 		};
     objPurchase = true;
 } else {
-    if(player getVariable "killPoints" < _shopPrice) then {
+    if(_killPoints < _shopPrice) then {
         [format ["<t size='0.6' color='#ff3300'>Not enough points for %1!</t>", _shopName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
         objPurchase = false;
     }else{

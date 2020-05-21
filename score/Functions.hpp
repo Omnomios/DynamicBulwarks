@@ -4,6 +4,7 @@ class killPoints
     {
         file = "score\functions";
         class init {postInit = 1;};
+        class get {};
         class add {};
         class spend {};
         class hit {};

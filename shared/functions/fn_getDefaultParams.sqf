@@ -247,6 +247,13 @@ private _defaultBulwarkParams = [
 		"Do upgrades require the Satellite dish to have been found?"
 	],
 	[
+		BULWARK_PARAM_KILLPOINTS_MODE,
+		"How kill points are distributed", PARAM_CATEGORY_UPGRADES, PARAM_TYPE_NUMBER, 0,
+		[["Personal", KILLPOINTS_MODE_PRIVATE], ["Shared", KILLPOINTS_MODE_SHARED], ["Shareable", KILLPOINTS_MODE_SHAREABLE]],
+		0,
+		"Kill points can either be personal, shared among all players, or shared manually by players."
+	],
+	[
 		BULWARK_PARAM_START_KILLPOINTS,
 		"Points to start with", PARAM_CATEGORY_UPGRADES, PARAM_TYPE_NUMBER, 0,
 		[],

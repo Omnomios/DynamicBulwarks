@@ -8,7 +8,7 @@
 * missionLoop is a tight while loop
 * FIXED Also it seems the first aid kits dropped by nato allow healing but the others dont when using PIR
 * FIXED Auto-revive with medikits broken
-* Mag Repack might conflict with existing mods, we should check
+* FIXED Mag Repack might conflict with existing mods, we should check
 
 
 # New Features

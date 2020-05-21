@@ -21,6 +21,7 @@ LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
 
 LOOT_SUPPLYDROP = (BULWARK_PARAM_LOOT_SUPPLYDROP call shared_fnc_getCurrentParamValue) / 100; // Radius of supply drop as a percentage of BULWARK_RADIUS
 PARATROOP_COUNT = (BULWARK_PARAM_PARATROOP_COUNT call shared_fnc_getCurrentParamValue);
+KILLPOINTS_MODE = (BULWARK_PARAM_KILLPOINTS_MODE call shared_fnc_getCurrentParamValue);
 SCORE_KILL = (BULWARK_PARAM_SCORE_KILL call shared_fnc_getCurrentParamValue);                 // Base Points for a kill
 SCORE_HIT = (BULWARK_PARAM_SCORE_HIT call shared_fnc_getCurrentParamValue);                   // Every Bullet hit that doesn't result in a kill
 SCORE_DAMAGE_BASE = (BULWARK_PARAM_SCORE_DAMAGE_BASE call shared_fnc_getCurrentParamValue);   // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
