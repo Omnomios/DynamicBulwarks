@@ -1,4 +1,4 @@
-#include "shared\bulwark.hpp"
+#include "..\..\shared\bulwark.hpp"
 
 HOSTILE_MULTIPLIER = BULWARK_PARAM_HOSTILE_MULTIPLIER call shared_fnc_getCurrentParamValue;  // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
 HOSTILE_TEAM_MULTIPLIER = (BULWARK_PARAM_HOSTILE_TEAM_MULTIPLIER call shared_fnc_getCurrentParamValue) / 100;   // How many extra units are added per player

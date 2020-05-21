@@ -1,4 +1,4 @@
-#include "shared\bulwark.hpp"
+#include "..\..\shared\bulwark.hpp"
 
 // TODO: Refactor into a function
 
@@ -30,10 +30,9 @@ private _hostileFunctions = [ //could make more efficent init phase with loading
 // Do these need to be done in ExecVM?
 "Setting params and lists" call shared_fnc_log;
 
-call compile preprocessFileLineNumbers "setParams.sqf";
+call server_fnc_setParams;
 
-
-call compile preprocessFileLineNumbers  "locationLists.sqf";
+call server_fnc_setLocations;
 
 call compile preprocessFileLineNumbers  "presets\init_preset.sqf";
 
@@ -102,7 +101,7 @@ publicVariable "gameStarted";
 
 endLoadingScreen;
 
-[] execVM "missionLoop.sqf";
+[] spawn server_fnc_missionLoop;
 [] execVM "hostiles\clearStuck.sqf";
 [] execVM "area\areaEnforcement.sqf";
 //[] execVM "hostiles\solidObjects.sqf";
