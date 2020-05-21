@@ -8,7 +8,7 @@ private _selectedIndex = lbCurSel _control;
 private _selectedSet = _control lbText _selectedIndex;
 private _selectedSetType = _control lbValue _selectedIndex;
 
-format ["Selected set %1 with type %2", _selectedSet, _selectedSetType] call shared_fnc_log;
+[format ["Selected set %1 with type %2", _selectedSet, _selectedSetType], "PARAM"] call shared_fnc_log;
 _params = [_selectedSet, _selectedSetType] call shared_fnc_loadParameterSet;
 
 if(isNil "_params") then {

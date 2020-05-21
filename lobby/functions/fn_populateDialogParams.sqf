@@ -3,7 +3,7 @@
 disableSerialization;
 
 params ["_dialog"];
-format ["Populating params dialog: %1", _dialog] call shared_fnc_log;
+[format ["Populating params dialog: %1", _dialog], "PARAM"] call shared_fnc_log;
 
 // Adjust the button states
 private _parameterSetControl = _dialog displayCtrl 100;
@@ -44,18 +44,17 @@ private _currentCategory = "";
   if(PARAM_HAS_OPTIONS(_param)) then {
     if(PARAM_IS_MULTISELECT(_param)) then {
       // MULTISELECT
-      private _values = [];
+      _optionValue = "";
       {
         private _value = _x;
         private _option = PARAM_GET_OPTION_BY_INDEX(_param, _value);
-        _values pushBack PARAM_GET_OPTION_NAME(_option);
+        if (!isNil "_option") then {
+          if (_optionValue != "") then {
+            _optionValue = _optionValue + ", ";
+          };
+          _optionValue = _optionValue + PARAM_GET_OPTION_NAME(_option);
+        };
       } forEach PARAM_GET_VALUE(_param);
-
-      if (count _values == 0) then {
-        _optionValue = "";
-      } else {
-        _optionValue = _values;
-      };
     } else {
       // DROPDOWN
       private _option = PARAM_GET_OPTION_BY_INDEX(_param, PARAM_GET_VALUE(_param));

@@ -1,8 +1,8 @@
-// These are the stored parameter IDs.
+// These are the stored parameter IDs, and should be named BULWARK_PARAM_<param name>
 // * They do NOT necessarily correspond to the parameter index in the array
 // * They are opaque identifiers
-// * Do not reorder or reuse IDs
-// * The name of the ID does not matter
+// * The name of the ID does not matter, but you should follow the convention above
+// * WARNING: Do not reorder or reuse ID numbers
 #define BULWARK_PARAM_FILTER_DLC                0
 #define BULWARK_PARAM_HOSTILE_MULTIPLIER        1
 #define BULWARK_PARAM_HOSTILE_TEAM_MULTIPLIER   2
@@ -43,8 +43,12 @@
 #define BULWARK_PARAM_FILTER_PRESET             37
 #define BULWARK_PARAM_ARMOUR_WAVE_SCALING       38
 #define BULWARK_PARAM_KILLPOINTS_MODE           39
+#define BULWARK_PARAM_FILTER_FACTIONS           40
 
-
+// These are known parameter values, and should be named <param name>_<value name>
+// WARNING: If you change these it could mess up the interpretation of people's saved parameters.
+// If you need to get rid of a value, you should instead rename it and interpret the old
+// value as one of the new values (so old saves keep working).
 #define KILLPOINTS_MODE_PRIVATE    0  // Killpoints are per-player
 #define KILLPOINTS_MODE_SHARED     1  // Killpoints are shared by all players
 #define KILLPOINTS_MODE_SHAREABLE  2  // Killpoint can be shared by players manually

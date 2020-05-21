@@ -14,8 +14,15 @@ private _dialog = findDisplay 9998;
 private _editControl = _dialog displayCtrl 100;
 
 private _newParamValue = if (_isMultiSelect) then {
-  // TODO MULTISELECT
-  0;
+  private _selectedValues = [];
+  for "_x" from 0 to (ctRowCount _editControl) - 1 do {
+    private _rowControls = _editControl ctRowControls _x;
+    private _checkbox = _rowControls select 1;
+    if (cbChecked _checkbox) then {
+      _selectedValues pushBack _x;
+    };
+  };
+  _selectedValues;
 } else {
   if (_hasOptions) then {
     // DROPDOWN
@@ -28,10 +35,10 @@ private _newParamValue = if (_isMultiSelect) then {
 
 if (!isNil "_newParamValue") then {
   PARAM_SET_VALUE(_param, _newParamValue);
-  format ["Set parameter %1 to %2", PARAM_GET_TITLE(_param), _newParamValue] call shared_fnc_log;
+  [format ["Set parameter %1 to %2", PARAM_GET_TITLE(_param), _newParamValue], "PARAM"] call shared_fnc_log;
   (findDisplay 9999) call lobby_fnc_populateDialogParams;
 } else {
-  format ["Cancel set parameter %1", PARAM_GET_TITLE(_param)] call shared_fnc_log;
+  [format ["Cancel set parameter %1", PARAM_GET_TITLE(_param)], "PARAM"] call shared_fnc_log;
 };
 
 closeDialog 1;

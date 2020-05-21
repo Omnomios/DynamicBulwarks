@@ -12,6 +12,25 @@
 #define LOG_ERR  "ERR"
 #define LOG_WARN "WARN"
 
+#define TYPENAME_ARRAY        "ARRAY"
+#define TYPENAME_BOOL         "BOOL"
+#define TYPENAME_CODE         "CODE"
+#define TYPENAME_CONFIG       "CONFIG"
+#define TYPENAME_CONTROL      "CONTROL"
+#define TYPENAME_DISPLAY      "DISPLAY"
+#define TYPENAME_GROUP        "GROUP"
+#define TYPENAME_LOCATION     "LOCATION"
+#define TYPENAME_OBJECT       "OBJECT"
+#define TYPENAME_SCALAR       "SCALAR"
+#define TYPENAME_SCRIPT       "SCRIPT"
+#define TYPENAME_SIDE         "SIDE"
+#define TYPENAME_STRING       "STRING"
+#define TYPENAME_TEXT         "TEXT"
+#define TYPENAME_TEAM_MEMBER  "TEAM_MEMBER"
+#define TYPENAME_NAMESPACE    "NAMESPACE"
+#define TYPENAME_DIARY_RECORD "DIARY_RECORD"
+#define TYPENAME_TASK         "TASK"
+
 #define GET_PARAM_BY_INDEX(params, index) (params select index)
 #define GET_PARAM_BY_ID(params, id) GET_PARAM_BY_INDEX(params, (params findIf { id == PARAM_GET_ID(_x) }))
 #define GET_CURRENT_PARAM_BY_INDEX(index) (CurrentBulwarkParams select index)
@@ -28,11 +47,7 @@
 
 // A boolean value (true/false)
 #define PARAM_TYPE_BOOL 0
-
-// A number value
 #define PARAM_TYPE_NUMBER 1
-
-// A string value
 #define PARAM_TYPE_STRING 2
 
 #define PARAM_INDEX_ID          0
@@ -52,7 +67,7 @@
 #define PARAM_GET_TITLE(param) (param select PARAM_INDEX_TITLE)
 #define PARAM_GET_CATEGORY(param) (param select PARAM_INDEX_CATEGORY)
 #define PARAM_GET_TYPE(param) (param select PARAM_INDEX_TYPE)
-#define PARAM_IS_MULTISELECT(param) ((param select PARAM_INDEX_MULTISELECT) == 1)
+#define PARAM_IS_MULTISELECT(param) (param select PARAM_INDEX_MULTISELECT)
 #define PARAM_HAS_OPTIONS(param) (count (param select PARAM_INDEX_OPTIONS) > 0)
 #define PARAM_GET_OPTIONS(param) (param select PARAM_INDEX_OPTIONS)
 #define PARAM_GET_OPTION_BY_INDEX(param, index) (PARAM_GET_OPTIONS(param) select index)
