@@ -1,0 +1,20 @@
+{
+  "title": "Your Arma 3 Extension Name",
+  "name": "ShortExtName",
+  "author": "yourName",
+  "website": "http://yourwebsite.tld",
+  "version": "0.0.1",
+  "buildPath": "build",
+  "privateKey": "",
+  "steamPath": "F:\\Steam",
+  "serverDirs": [
+    "src/server_core",
+    "src/server_config"
+  ],
+  "serverUse32bit": false,
+  "clientDirs": [
+    "src/client"
+  ],
+  "clientMods": [],
+  "ftpConnection": {}
+}

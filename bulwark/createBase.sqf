@@ -8,19 +8,24 @@
 
 PLAYER_OBJECT_LIST =[]; //create empty variable for player placed objects
 
+"Creating base..." call shared_fnc_log;
 bulwarkBox = createVehicle ["B_supplyCrate_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon = createVehicle ["Land_Laptop_device_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _bulMon allowDamage false;
+
+// REVIEW: Well, are we supposed to allow damage or not??
 bulwarkBox allowDamage false;
-bulwarkFallDamage = {
-_damage = 0;
-if((_this select 4) != "") then
-{
-  _damage = _this select 2;
-};
-_damage
-};
-bulwarkBox addEventHandler ["HandleDamage", { _this call bulwarkFallDamage }];
+bulwarkBox addEventHandler ["HandleDamage", {
+	params ["_unit", "_selection", "_damage", "_source", "_projectile", "_hitIndex", "_instigator", "_hitPoint"];
+
+	// Invulnerable to falling
+	if (_projectile != "") then {
+		_damage;
+	} else {
+		0;
+	};
+}];
+
 clearItemCargoGlobal bulwarkBox;
 clearWeaponCargoGlobal bulwarkBox;
 clearMagazineCargoGlobal bulwarkBox;
@@ -30,6 +35,7 @@ _bulMon enableSimulation false;
 _bulMon attachTo [bulwarkBox, [0,0.1,0.6]];
 _bulMon setDir 180;
 
+format ["Searching for locations in radius %1...", BULWARK_RADIUS] call shared_fnc_log;
 _isWater = true;
 while {_isWater} do {
 	_bulwarkLocation = [BULWARK_LOCATIONS, BULWARK_RADIUS] call bulwark_fnc_bulwarkLocation;
@@ -54,6 +60,8 @@ publicVariable "bulwarkCity";
 if(BULWARK_MEDIKITS > 0) then {
 	bulwarkBox addItemCargoGlobal [Medkit, BULWARK_MEDIKITS];
 };
+
+"Configuring Bulwark" call shared_fnc_log;
 
 //Add actions to Bulwark Box
 [bulwarkBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveBox.sqf","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
@@ -130,8 +138,6 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerColor "ColorWhite";
 
 lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
-
-[] execVM "bulwark\fakToMedkit.sqf";
 
 /* Spinner Box */
 

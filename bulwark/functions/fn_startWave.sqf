@@ -1,3 +1,4 @@
+#include "..\..\shared\bulwark.hpp"
 /**
 *  fn_startWave
 *
@@ -5,7 +6,6 @@
 *
 *  Domain: Server
 **/
-
 
 ["Terminate"] remoteExec ["BIS_fnc_EGSpectator", 0];
 [] remoteExec ["killPoints_fnc_updateHud", 0];
@@ -16,13 +16,9 @@ for ("_i") from 0 to 14 do {
 	sleep 1;
 };
 
-// Delete
-_final = waveUnits select ("BODY_CLEANUP" call BIS_fnc_getParamValue);
-{deleteVehicle _x} foreach _final;
-// Shuffle
-waveUnits set [2, waveUnits select 1];
-waveUnits set [1, waveUnits select 0];
-waveUnits set [0, []];
+"Cleaning up..." call shared_fnc_log;
+
+call hostiles_fnc_cleanupWaveUnits;
 
 playersInWave = [];
 _allHCs = entities "HeadlessClient_F";
@@ -56,62 +52,69 @@ if (_respawnTickets <= 0) then {
 
 missionNamespace setVariable ["buildPhase", false, true];
 
+"Determining special wave..." call shared_fnc_log;
 //determine if Special wave
-
-if (attkWave < 10) then {
-	randSpecChance = 4;
-	maxSinceSpecial = 4;
-	maxSpecialLimit = 1;
-};
-
-if (attkWave >= 10 && attkWave < 15) then {
-	randSpecChance = 3;
-	maxSinceSpecial = 3;
-	maxSpecialLimit = 1;
-};
-
-if (attkWave >= 15) then {
-	randSpecChance = 2;
-	maxSinceSpecial = 2;
-	maxSpecialLimit = 0;
-};
-
-if ((floor random randSpecChance == 1 || wavesSinceSpecial >= maxSinceSpecial) && attkWave >= 5 && wavesSinceSpecial >= maxSpecialLimit) then {
-	specialWave = true;
-	}
-	else
-	{
-	wavesSinceSpecial = wavesSinceSpecial + 1;
-	if (everyWaveSpecial) then {
-		specialWave = true;
-	}
-	else
-	{
-		specialWave = false;
-	};
-};
-
 SpecialWaveType = "";
 droneCount = 0;
 
-//special wave selection
-if (specialWave && attkWave >= lowSpecialWaveStart) then {
-	if (isNil "specialWavePool" || {count specialWavePool == 0}) then {
-		if (attkWave < SpecialWaveStart) then {
-			specialWavePool = lowSpecialWave_list;
+if (enableSpecialWaves) then {
+	if (attkWave < 10) then {
+		randSpecChance = 4;
+		maxSinceSpecial = 4;
+		maxSpecialLimit = 1;
+	};
+
+	if (attkWave >= 10 && attkWave < 15) then {
+		randSpecChance = 3;
+		maxSinceSpecial = 3;
+		maxSpecialLimit = 1;
+	};
+
+	if (attkWave >= 15) then {
+		randSpecChance = 2;
+		maxSinceSpecial = 2;
+		maxSpecialLimit = 0;
+	};
+
+	if ((floor random randSpecChance == 1 || wavesSinceSpecial >= maxSinceSpecial) && attkWave >= 5 && wavesSinceSpecial >= maxSpecialLimit) then {
+		specialWave = true;
 		}
 		else
 		{
-			specialWavePool = SpecialWave_list;
+		wavesSinceSpecial = wavesSinceSpecial + 1;
+		if (everyWaveSpecial) then {
+			specialWave = true;
+		}
+		else
+		{
+			specialWave = false;
 		};
 	};
-	specialWaveType = selectRandom specialWavePool;
-	wavesSinceSpecial = 0;
-	if (!specialWaveRepeat)  then {
-		specialWavePool = specialWavePool - [specialWaveType];
+
+
+	//special wave selection
+	if (specialWave && attkWave >= lowSpecialWaveStart) then {
+		if (isNil "specialWavePool" || {count specialWavePool == 0}) then {
+			if (attkWave < SpecialWaveStart) then {
+				specialWavePool = lowSpecialWave_list;
+			}
+			else
+			{
+				specialWavePool = SpecialWave_list;
+			};
+		};
+		specialWaveType = selectRandom specialWavePool;
+		wavesSinceSpecial = 0;
+		if (!specialWaveRepeat)  then {
+			specialWavePool = specialWavePool - [specialWaveType];
+		};
 	};
 };
 
+"Clean up latent vehicles..." call shared_fnc_log;
+//
+// Clean up any destroyed land or air vehicles
+//
 {
 	if (!alive _x) then {
 		deleteVehicle _x;
@@ -124,6 +127,10 @@ if (specialWave && attkWave >= lowSpecialWaveStart) then {
 	};
 } foreach allMissionObjects "Air";
 
+"Spawn loot..." call shared_fnc_log;
+//
+// Spawn some loot
+//
 if (attkWave > 1) then { //if first wave give player extra time before spawning enemies
 	{deleteMarker _x} foreach lootDebugMarkers;
 	[] call loot_fnc_cleanup;
@@ -131,15 +138,17 @@ if (attkWave > 1) then { //if first wave give player extra time before spawning 
 	waitUntil { scriptDone _spawnLoot};
 };
 
+"Spawn Wave..." call shared_fnc_log;
 // spawn
-	if (attkWave <= PISTOL_HOSTILES) then {
-		SpecialWaveType = "pistolWave";
-	};
-	if (SpecialWaveType != "") then {
-		[] call call compile format ["DBW_%1",SpecialWaveType]; //call compile toUpper format ["DBW_%1",SpecialWaveType]; //"call compile" compiles the string into the function name. The second "call" runs the function.
-	}
-	else
-	{
-		["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
-		[] call DBW_NORMALWAVE;
-	};
+if (attkWave <= PISTOL_HOSTILES) then {
+	SpecialWaveType = "pistolWave";
+};
+
+if (SpecialWaveType != "") then {
+	[] call call compile format ["DBW_%1",SpecialWaveType]; //call compile toUpper format ["DBW_%1",SpecialWaveType]; //"call compile" compiles the string into the function name. The second "call" runs the function.
+}
+else
+{
+	["TaskAssigned",["In-coming","Wave " + str attkWave]] remoteExec ["BIS_fnc_showNotification", 0];
+	[] call DBW_NORMALWAVE;
+};

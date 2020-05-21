@@ -1,16 +1,17 @@
+#include "shared\bulwark.hpp"
+
 {
 	[_x, false] remoteExec ["setUnconscious", 0];
 	_X action ["CancelAction", _X];
 	_X switchMove "PlayerStand";
-	[ "#rev", 1, _x ] remoteExecCall ["BIS_fnc_reviveOnState", _x];
+	// REVIEW: Revive
+	//[ "#rev", 1, _x ] remoteExecCall ["BIS_fnc_reviveOnState", _x];
+	[ "#rev", 1, _x ] call BIS_fnc_reviveOnState;
 	_x setDamage 0;
-}forEach allPlayers;
+} forEach allPlayers;
 
-_downTime = ("DOWN_TIME" call BIS_fnc_getParamValue);
-_specialWaves = ("SPECIAL_WAVES" call BIS_fnc_getParamValue);
-_maxWaves = ("MAX_WAVES" call BIS_fnc_getParamValue);
+private _maxWaves = (BULWARK_PARAM_MAX_WAVES call shared_fnc_getCurrentParamValue);
 
-_CenterPos = _this;
 attkWave = 0;
 publicVariable "attkWave";
 suicideWave = false;
@@ -46,6 +47,10 @@ while {runMissionLoop} do {
 
 	[] call bulwark_fnc_startWave;
 
+	//
+	// TODO: This is a tight loop, see if we can refactor into something
+	// event driven
+	//
 	while {runMissionLoop} do {
 
 		// Get all human players in this wave cycle // moved to contain players that respawned in this wave
@@ -83,6 +88,8 @@ while {runMissionLoop} do {
 			};
 		};
 
+		// TODO: Should this be happening *constantly*, or just at the
+		// start of the wave/when players join?
 		//Add objects to zeus
 		{
 			mainZeus addCuratorEditableObjects [[_x], true];

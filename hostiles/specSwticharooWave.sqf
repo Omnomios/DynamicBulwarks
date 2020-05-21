@@ -1,8 +1,10 @@
 
+#include "..\shared\bulwark.hpp"
+
 //teleport players away from Bulwark
 {
     _distToBulwark = 0;
-    _distFromBulwark = "BULWARK_RADIUS" call BIS_fnc_getParamValue;
+    _distFromBulwark = BULWARK_PARAM_BULWARK_RADIUS call shared_fnc_getCurrentParamValue;
     telePos = getPos _x;
     while {_distToBulwark < 30 && {["mine_", str(_x)] call BIS_fnc_inString} count (telePos nearObjects 10) <= 1} do {
     telePos = [bulwarkRoomPos, 30, _distFromBulwark - 10, 3, 0, 10, 0] call BIS_fnc_findSafePos;
@@ -36,6 +38,5 @@ for ("_i") from 1 to ((floor attkWave / 2) + (floor count allPlayers * 1.5)) do 
     _unit setVariable ["killPointMulti", HOSTILE_LEVEL_1_POINT_SCORE];
 	removeAllAssignedItems _unit;
 	mainZeus addCuratorEditableObjects [[_unit], true];
-    unitArray = waveUnits select 0;
-    unitArray append [_unit];
+    _unit call hostiles_fnc_addUnitToWaveForCleanup;
 };

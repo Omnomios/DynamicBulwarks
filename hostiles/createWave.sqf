@@ -1,71 +1,46 @@
-DBW_determineAndSpawnIfVehicleWave = {
-	_armourStartWave = "ARMOUR_START_WAVE" call BIS_fnc_getParamValue;
+#include "..\shared\bulwark.hpp"
 
-	if (attkWave < (_armourStartWave + 5)) then {
+DBW_determineAndSpawnIfVehicleWave = {
+	if (attkWave < (ARMOUR_START_WAVE + 5)) then {
 		ArmourChance = 0;
 		ArmourMaxSince = 0;
 		ArmourCount = 0;
-		carChance = 3;
-		carMaxSince = 2;
-		carCount = 1;
 	};
 
-	if (attkWave >= (_armourStartWave + 5) && attkWave < (_armourStartWave + 10)) then {
+	if (attkWave >= (ARMOUR_START_WAVE + 5) && attkWave < (ARMOUR_START_WAVE + 10)) then {
 		ArmourChance = 4;
 		ArmourMaxSince = 4;
 		ArmourCount = 1;
-		carChance = 3;
-		carMaxSince = 3;
-		carCount = 1 + (floor (playersNumber west / 4));
 	};
 
-	if (attkWave >= (_armourStartWave + 10) && attkWave < (_armourStartWave + 15)) then {
+	if (attkWave >= (ARMOUR_START_WAVE + 10) && attkWave < (ARMOUR_START_WAVE + 15)) then {
 		ArmourChance = 3;
 		ArmourMaxSince = 3;
 		ArmourCount = 1 + (floor (playersNumber west / 4));
-		carChance = 2;
-		carMaxSince = 2;
-		carCount = 2 + (floor (playersNumber west / 4));
 	};
 
-	if (attkWave >= (_armourStartWave + 15) && attkWave < (_armourStartWave + 20)) then {
+	if (attkWave >= (ARMOUR_START_WAVE + 15) && attkWave < (ARMOUR_START_WAVE + 20)) then {
 		ArmourChance = 2;
 		ArmourMaxSince = 2;
 		ArmourCount = 2 + (floor (playersNumber west / 4));
-		carChance = 1;
-		carMaxSince = 2;
-		carCount = 2 + (floor (playersNumber west / 4));
 	};
 
-	if (attkWave >= (_armourStartWave + 20)) then {
+	if (attkWave >= (ARMOUR_START_WAVE + 20)) then {
 		ArmourChance = 2;
 		ArmourMaxSince = 1;
 		ArmourCount = 3 + (floor (playersNumber west / 4));
-		carChance = 1;
-		carMaxSince = 1;
-		carCount = 3 + (floor (playersNumber west / 4));
 	};
 
-	if ((attkWave >= _armourStartWave && (floor random ArmourChance) == 1) || (attkWave >= _armourStartWave && wavesSinceArmour >= ArmourMaxSince)) then {
-		_spwnVec = execVM "hostiles\spawnVehicle.sqf";
-		waitUntil {scriptDone _spwnVec};
+	if ((attkWave >= ARMOUR_START_WAVE && (floor random ArmourChance) == 0) || (attkWave >= ARMOUR_START_WAVE && wavesSinceArmour >= ArmourMaxSince)) then {
+		private _budget = attkWave call hostiles_fnc_getVehicleBudgetForWave;
+		private _vehiclesToSpawn = [HOSTILE_ARMOUR_COSTS, _budget] call hostiles_fnc_getVehiclesWithBudget;
+		[_vehiclesToSpawn] call compileFinal preprocessFileLineNumbers "hostiles\spawnVehicle.sqf";
 		wavesSinceArmour = 0;
 	}
 	else
 	{
-		if (attkWave >= _armourStartWave) then {
+		if (attkWave >= ARMOUR_START_WAVE) then {
 			wavesSinceArmour = wavesSinceArmour + 1;
-		};
-	};
-	if ((attkWave >= _armourStartWave && (floor random carChance) == 1) || (attkWave >= _armourStartWave && wavesSinceArmour >= carMaxSince)) then {
-		_spwnVec = execVM "hostiles\spawnCar.sqf";
-		waitUntil {scriptDone _spwnVec};
-		wavesSinceCar = 0;
-	}
-	else
-	{
-		if (attkWave >= _armourStartWave) then {
-			wavesSinceCar = wavesSinceCar + 1;
 		};
 	};
 };
@@ -158,8 +133,7 @@ DBW_initUnit = {
 	_unit setVariable ["points", []];
 	_unit setVariable ["killPointMulti", _killpointsMulti];
 	mainZeus addCuratorEditableObjects [[_unit], true];
-	unitArray = waveUnits select 0;
-	unitArray append [_unit];
+	_unit call hostiles_fnc_addUnitToWaveForCleanup;
 	_unit doMove (getPos (selectRandom playableUnits));
 };
 

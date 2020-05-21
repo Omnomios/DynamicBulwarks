@@ -14,4 +14,6 @@ if (isServer) then {
         ["Alarm"] remoteExec ["playSound", _instigator];
         [_unit, round SCORE_KILL* -10, [1, 0.1, 0.1]] remoteExec ["killPoints_fnc_hitMarker", _instigator];
     };
+
+    _unit call hostiles_fnc_addUnitToWaveForCleanup;
 };
