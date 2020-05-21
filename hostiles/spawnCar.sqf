@@ -8,7 +8,7 @@
 
 for "_i" from 1 to (carCount) do {
 	_location = [bulwarkCity, BULWARK_RADIUS, BULWARK_RADIUS + 150,10,0] call BIS_fnc_findSafePos;
-	_foundVeh = selectRandom List_ArmedCars;
+	_foundVeh = selectRandom HOSTILE_ARMED_CARS;
 	_createdVehFnc = [_location, 0, _foundVeh, EAST] call bis_fnc_spawnvehicle;
 	_createdVehFnc select 0 doMove (getPos (selectRandom playableUnits));
 	mainZeus addCuratorEditableObjects [[_createdVehFnc select 0], true];

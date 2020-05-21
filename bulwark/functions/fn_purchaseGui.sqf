@@ -16,7 +16,7 @@ waitUntil {!isNull (findDisplay 9999);};
 
 _ctrl = (findDisplay 9999) displayCtrl 1500;
 {
-    _ctrl lbAdd format [_listFormat, _x select 0, _x select 1],;
+    _ctrl lbAdd format [_listFormat, _x select 0, _x select 1];
 } forEach BULWARK_BUILDITEMS;
 
 
@@ -30,7 +30,7 @@ _ctrl = (findDisplay 9999) displayCtrl 1501;
 SUPPORTMENU = missionNamespace getVariable "SUPPORTMENU";
 if (SUPPORTMENU) then {
   {
-      _ctrl lbAdd format [_listFormat, _x select 0, _x select 1],;
+      _ctrl lbAdd format [_listFormat, _x select 0, _x select 1];
   } forEach BULWARK_SUPPORTITEMS;
 }else{
   _ctrl lbAdd " ";

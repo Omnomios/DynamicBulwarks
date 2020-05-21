@@ -1,4 +1,4 @@
-waitUntil {!isNil "bulwarkBox"};
+waitUntil {sleep 0.2; !(isNil "bulwarkBox")};
 ["Terminate"] call BIS_fnc_EGSpectator;
 player setVariable ["buildItemHeld", false];
 
@@ -52,9 +52,10 @@ removeAllAssignedItems player;
 player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
 
 if(PLAYER_STARTWEAPON) then {
-    player addMagazine "16Rnd_9x21_Mag";
-    player addMagazine "16Rnd_9x21_Mag";
-    player addWeapon "hgun_P07_F";
+    _weap = selectRandom LOOT_WEAPON_HANDGUN_POOL;
+		_ammo = selectRandom getArray (configFile >> "CfgWeapons" >> _weap >> "magazines");
+		for "_i" from 1 to 3 do {player addMagazine _ammo;};
+		player addWeapon _weap;
 };
 
 if(PLAYER_STARTMAP) then {
