@@ -1,6 +1,6 @@
 private _knownMagRepackAddons = ["outlw_magrepack"];
 
-if (!(_knownMagRepackAddons intersect activatedAddons)) then {
+if (count (_knownMagRepackAddons arrayIntersect activatedAddons) == 0) then {
     // Mag Repack
     MY_KEYDOWN_FNC = {
         _handled = false;
