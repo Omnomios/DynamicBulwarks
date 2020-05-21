@@ -244,6 +244,7 @@ player addEventHandler ["Put", {
 }];
 
 call player_fnc_addStandardActions;
+call player_fnc_addMagRepack;
 
 // kill player if they disconnected and rejoined during a wave
 _buildPhase = bulwarkBox getVariable ["buildPhase", true];
@@ -253,19 +254,5 @@ if (getPlayerUID player in playersInWave && attkWave > 0 && !_buildPhase) then {
     player setDamage 1;
 };
 
-// Mag Repack
-// TODO: There are mods for this already, we should avoid conflicting
-MY_KEYDOWN_FNC = {
-    _handled = false;
-    params ["_ctrl", "_dikCode", "_shift", "_ctrlKey", "_alt"];
-    if (_dikCode == 19 && _ctrlKey) then { // using if instead of switch since it's faster when evaluating only one condition
-        [player] execVM "bulwark\magRepack.sqf";
-        _handled = true;
-    };
-    _handled
-};
 
-toggled = 0;
 
-waituntil {!(isNull (findDisplay 46))};
-(findDisplay 46) displayAddEventHandler ["KeyDown",{_this call MY_KEYDOWN_FNC}];

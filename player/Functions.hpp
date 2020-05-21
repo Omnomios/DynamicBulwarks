@@ -6,5 +6,6 @@ class player
         class startPlayer {};
 		class initPlayer {};
 		class addStandardActions {};
+        class addMagRepack {};
     };
 };
