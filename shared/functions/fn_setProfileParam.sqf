@@ -1,6 +1,6 @@
 params ["_paramName", "_value"];
 
-private _saveKey = "CWS_BULWARK_" + (toUpper worldName) + "_SAVE_PARAMS";
+private _saveKey = "CWS_BULWARK_SAVE_PARAMS";
 
 private _savedParams = profileNamespace getVariable _saveKey;
 if(isNil "_savedParams") then {
