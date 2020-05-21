@@ -1,3 +1,6 @@
+// NOTE: Base class values for controls can usually be found in the
+// config viewer under ctrlXXX, such as ctrlButton.
+
 ///////////////////////////////////////////////////////////////////////////
 /// Styles
 ///////////////////////////////////////////////////////////////////////////
@@ -27,6 +30,7 @@
 #define CT_XSLIDER          43
 #define CT_XCOMBO           44
 #define CT_ANIMATED_TEXTURE 45
+#define CT_CHECKBOX         77
 #define CT_OBJECT           80
 #define CT_OBJECT_ZOOM      81
 #define CT_OBJECT_CONTAINER 82
@@ -543,30 +547,10 @@ class RscButton
 		0,
 		1
 	};
-	soundEnter[] =
-	{
-		"\A3\ui_f\data\sound\onover",
-		0.09,
-		1
-	};
-	soundPush[] =
-	{
-		"\A3\ui_f\data\sound\new1",
-		0,
-		0
-	};
-	soundClick[] =
-	{
-		"\A3\ui_f\data\sound\onclick",
-		0.07,
-		1
-	};
-	soundEscape[] =
-	{
-		"\A3\ui_f\data\sound\onescape",
-		0.09,
-		1
-	};
+	soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
+	soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1};
+	soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
+	soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1};
 	style = 2;
 	x = 0;
 	y = 0;
@@ -871,7 +855,47 @@ class IGUIBack
 		"(profilenamespace getvariable ['IGUI_BCG_RGB_A',0.8])"
 	};
 };
+
 class RscCheckbox
+{
+	idc = -1;
+	type = CT_CHECKBOX;
+	style = 0;
+	x = 0;
+	y = 0;
+	w = 0.05;
+	h = 0.05;
+
+	checked = 0;
+	color[] = {1,1,1,0.7};
+	colorBackground[] = {0,0,0,0};
+	colorBackgroundDisabled[] = {0,0,0,0};
+	colorBackgroundFocused[] = {0,0,0,0};
+	colorBackgroundHover[] = {0,0,0,0};
+	colorBackgroundPressed[] = {0,0,0,0};
+	colorDisabled[] = {1,1,1,0.25};
+	colorFocused[] = {1,1,1,1};
+	colorHover[] = {1,1,1,1};
+	colorPressed[] = {1,1,1,1};
+	font = "PuristaMedium";
+	soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick",0.09,1};
+	soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter",0.09,1};
+	soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape",0.09,1};
+	soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush",0.09,1};
+
+	textureChecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureChecked_ca.paa";
+	textureDisabledChecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureChecked_ca.paa";
+	textureDisabledUnchecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureUnchecked_ca.paa";
+	textureFocusedChecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureChecked_ca.paa";
+	textureFocusedUnchecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureUnchecked_ca.paa";
+	textureHoverChecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureChecked_ca.paa";
+	textureHoverUnchecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureUnchecked_ca.paa";
+	texturePressedChecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureChecked_ca.paa";
+	texturePressedUnchecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureUnchecked_ca.paa";
+	textureUnchecked = "\a3\3DEN\Data\Controls\ctrlCheckbox\textureUnchecked_ca.paa";
+	tooltip = "";
+};
+class RscCheckboxes
 {
 	idc = -1;
 	type = 7;

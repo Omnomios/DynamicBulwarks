@@ -1,4 +1,4 @@
-#include "shared\bulwark.hpp"
+#include "..\..\shared\bulwark.hpp"
 
 HOSTILE_MULTIPLIER = BULWARK_PARAM_HOSTILE_MULTIPLIER call shared_fnc_getCurrentParamValue;  // How many hostiles per wave (waveCount x HOSTILE_MULTIPLIER)
 HOSTILE_TEAM_MULTIPLIER = (BULWARK_PARAM_HOSTILE_TEAM_MULTIPLIER call shared_fnc_getCurrentParamValue) / 100;   // How many extra units are added per player
@@ -21,6 +21,7 @@ LOOT_DISTRIBUTION_OFFSET = 0; // Offset the position by this number.
 
 LOOT_SUPPLYDROP = (BULWARK_PARAM_LOOT_SUPPLYDROP call shared_fnc_getCurrentParamValue) / 100; // Radius of supply drop as a percentage of BULWARK_RADIUS
 PARATROOP_COUNT = (BULWARK_PARAM_PARATROOP_COUNT call shared_fnc_getCurrentParamValue);
+KILLPOINTS_MODE = (BULWARK_PARAM_KILLPOINTS_MODE call shared_fnc_getCurrentParamValue);
 SCORE_KILL = (BULWARK_PARAM_SCORE_KILL call shared_fnc_getCurrentParamValue);                 // Base Points for a kill
 SCORE_HIT = (BULWARK_PARAM_SCORE_HIT call shared_fnc_getCurrentParamValue);                   // Every Bullet hit that doesn't result in a kill
 SCORE_DAMAGE_BASE = (BULWARK_PARAM_SCORE_DAMAGE_BASE call shared_fnc_getCurrentParamValue);   // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2

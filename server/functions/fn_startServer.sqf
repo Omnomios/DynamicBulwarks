@@ -1,4 +1,4 @@
-#include "shared\bulwark.hpp"
+#include "..\..\shared\bulwark.hpp"
 
 // TODO: Refactor into a function
 
@@ -10,12 +10,6 @@ playersInWave = [];
 publicVariable "playersInWave";
 
 startLoadingScreen ["Entering defense perimeter..."];
-
-// Broadcast the starting killpoints for everyone
-{
-  // Current result is saved in variable _x
-  [_x, BULWARK_PARAM_START_KILLPOINTS call shared_fnc_getCurrentParamValue] call killPoints_fnc_add;
-} forEach allPlayers;
 
 //init phase
 ["<t size = '.5'>Loading lists.<br/>Please wait...</t>", 0, 0, 10, 0] remoteExec ["BIS_fnc_dynamicText", 0];
@@ -30,10 +24,9 @@ private _hostileFunctions = [ //could make more efficent init phase with loading
 // Do these need to be done in ExecVM?
 "Setting params and lists" call shared_fnc_log;
 
-call compile preprocessFileLineNumbers "setParams.sqf";
+call server_fnc_setParams;
 
-
-call compile preprocessFileLineNumbers  "locationLists.sqf";
+call server_fnc_setLocations;
 
 call compile preprocessFileLineNumbers  "presets\init_preset.sqf";
 
@@ -61,6 +54,7 @@ publicVariable "RESPAWN_TIME";
 publicVariable "PLAYER_OBJECT_LIST";
 publicVariable "MIND_CONTROLLED_AI";
 publicVariable "SCORE_RANDOMBOX";
+publicVariable "KILLPOINTS_MODE";
 publicVariable "magLAUNCHER";
 publicVariable "magASSAULT";
 publicVariable "magSMG";
@@ -90,6 +84,13 @@ publicVariable 'TEAM_DAMAGE';
 HITMARKERPARAM = (BULWARK_PARAM_HUD_POINT_HITMARKERS call shared_fnc_getCurrentParamValue);
 publicVariable 'HITMARKERPARAM';
 
+// Broadcast the starting killpoints for everyone
+{
+  // Current result is saved in variable _x
+  [_x, BULWARK_PARAM_START_KILLPOINTS call shared_fnc_getCurrentParamValue] call killPoints_fnc_add;
+} forEach allPlayers;
+
+
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;
 _timeToSet = DAY_TIME_FROM + _randTime;
@@ -102,7 +103,7 @@ publicVariable "gameStarted";
 
 endLoadingScreen;
 
-[] execVM "missionLoop.sqf";
+[] spawn server_fnc_missionLoop;
 [] execVM "hostiles\clearStuck.sqf";
 [] execVM "area\areaEnforcement.sqf";
 //[] execVM "hostiles\solidObjects.sqf";

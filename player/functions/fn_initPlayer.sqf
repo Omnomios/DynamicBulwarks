@@ -1,3 +1,4 @@
+// This function is called once when the game starts (after the lobby)
 initStarted = nil;
 gameStarted = nil;
 
@@ -89,34 +90,34 @@ onEachFrame {
     };
 
     if (HITMARKERPARAM == 1) then {
-      {
-          _pos    = _x select 0;
-          _label  = _x select 1;
-          _unit   = _x select 2;
-          _age    = _x select 3;
-          _active = _x select 4;
-          _colour = _x select 5;
+    {
+        _pos    = _x select 0;
+        _label  = _x select 1;
+        _unit   = _x select 2;
+        _age    = _x select 3;
+        _active = _x select 4;
+        _colour = _x select 5;
 
-          if(_active) then {
-              _x set [3, _age + 1];
+        if(_active) then {
+            _x set [3, _age + 1];
 
-              _alpha = 1;
-              _scale = 0;
-              if(_age > 0 && _age <= 10) then {
-                  _scale = 0.035 * _age / 10;
-              };
-              if(_age > 10) then {
-                  _scale = 0.035;
-              };
-              if(_age > 30 && _age <= 40) then {
-                  _alpha = 1 - ((_age - 40) / 10);
-              };
-              _textPos = _pos vectorAdd [0, 0, 1 +_age / 100];
+            _alpha = 1;
+            _scale = 0;
+            if(_age > 0 && _age <= 10) then {
+                _scale = 0.035 * _age / 10;
+            };
+            if(_age > 10) then {
+                _scale = 0.035;
+            };
+            if(_age > 30 && _age <= 40) then {
+                _alpha = 1 - ((_age - 40) / 10);
+            };
+            _textPos = _pos vectorAdd [0, 0, 1 +_age / 100];
 
-              if(_age > 40) then {_x set [4, false];};
-              drawIcon3D ["", [_colour select 0, _colour select 1, _colour select 2, _alpha], _textPos, 1, 1, 0, format ["%1", _label], 0, _scale, "RobotoCondensed", "center", false];
-          };
-      } foreach hitMarkers;
+            if(_age > 40) then {_x set [4, false];};
+            drawIcon3D ["", [_colour select 0, _colour select 1, _colour select 2, _alpha], _textPos, 1, 1, 0, format ["%1", _label], 0, _scale, "RobotoCondensed", "center", false];
+        };
+    } foreach hitMarkers;
     };
 };
 
@@ -211,8 +212,8 @@ If you are knocked unconscious but you have a Medikit in your inventory you will
 // FAK to Medikit conversion
 //
 player addEventHandler ["Put", {
-	params ["_unit", "_container", "_item"];
-	format ["Checking %1 against FAKs", _item] call shared_fnc_log;
+    params ["_unit", "_container", "_item"];
+    format ["Checking %1 against FAKs", _item] call shared_fnc_log;
     if (_container == bulwarkBox) then {
         private _fakEquivalents = ["FirstAidKit", "PiR_bint"];
         if (_item in _fakEquivalents) then {
@@ -242,30 +243,8 @@ player addEventHandler ["Put", {
     };
 }];
 
-//Disarm mines and explosives
-_disarm =
-{
-    _explosive = nearestObject [player, "TimeBombCore"];
-	deleteVehicle _explosive;
-    _explosiveClass = typeOf _explosive;
-    _count =  count (configFile >> "CfgMagazines");
-    for "_x" from 0 to (_count-1) do {
-        _item=((configFile >> "CfgMagazines") select _x);
-		if (getText (_item >> "ammo") isEqualTo _explosiveClass) then {
-			player addMagazine configName _item;
-		};
-    };
-	player playAction "PutDown";
-};
-player addAction ["Disarm Explosive",_disarm,nil,2,false,true,"","(player distance2D nearestObject [player, 'TimeBombCore']) <= 1.6"];
-
-_disarmMine =
-{
-    _explosive = nearestObject [player, "mineBase"];
-	deleteVehicle _explosive;
-    player playAction "PutDown";
-};
-player addAction ["Disarm Mine",_disarmMine,nil,2,false,true,"","(player distance2D nearestObject [player, 'mineBase']) <= 1.6"];
+call player_fnc_addStandardActions;
+call player_fnc_addMagRepack;
 
 // kill player if they disconnected and rejoined during a wave
 _buildPhase = bulwarkBox getVariable ["buildPhase", true];
@@ -275,17 +254,5 @@ if (getPlayerUID player in playersInWave && attkWave > 0 && !_buildPhase) then {
     player setDamage 1;
 };
 
-MY_KEYDOWN_FNC = {
-    _handled = false;
-    params ["_ctrl", "_dikCode", "_shift", "_ctrlKey", "_alt"];
-    if (_dikCode == 19 && _ctrlKey) then { // using if instead of switch since it's faster when evaluating only one condition
-        [player] execVM "bulwark\magRepack.sqf";
-        _handled = true;
-    };
-    _handled
-};
 
-toggled = 0;
 
-waituntil {!(isNull (findDisplay 46))};
-(findDisplay 46) displayAddEventHandler ["KeyDown",{_this call MY_KEYDOWN_FNC}];

@@ -8,7 +8,7 @@
 #include "..\shared\defines.hpp"
 
 if (!isNil "leadSurvivor") then {
-	format ["Loading parameters from player: %1", player] call shared_fnc_log;
+	[format ["Loading parameters from player: %1", player], "LOBBY"] call shared_fnc_log;
 	private _selectedParameterSet = call shared_fnc_loadSelectedParameterSet;
 	CurrentBulwarkParams = [_selectedParameterSet, PARAMSET_TYPE_CUSTOM] call shared_fnc_loadParameterSet;
 

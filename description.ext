@@ -47,8 +47,10 @@ class CfgFunctions
 
 	#include "shared\Functions.hpp"
 	#include "lobby\Functions.hpp"
-};
 
+	#include "server\Functions.hpp"
+	#include "player\Functions.hpp"
+};
 
 class CfgRemoteExec
 {
@@ -70,9 +72,9 @@ class CfgRemoteExec
 		class createBlur {};
 		class suiExplode{};
 
-		class startGame {};
-		class startGameServer {};
-		class startGamePlayer {};
+		class lobby_fnc_startGame {};
+		class server_fnc_startServer {};
+		class player_fnc_startPlayer {};
 	};
 };
 

@@ -8,20 +8,26 @@
 * missionLoop is a tight while loop
 * FIXED Also it seems the first aid kits dropped by nato allow healing but the others dont when using PIR
 * FIXED Auto-revive with medikits broken
+* FIXED Mag Repack might conflict with existing mods, we should check
 
 
 # New Features
 * DONE: Finish the lobby system
 * DONE Scaling vehicle waves (maybe with a vehicle costing table and wave budget), https://community.bistudio.com/wiki/CfgVehicles_Config_Reference#cost
+* DONE UI Support for multiple-selection options
 * AI target buildings with grenades/explosives
   * Needs investigation - destroy waypoints
+  * We already have activation radius for suicide bombers - extend to explosives specialists to opportunistically plant explosives next to your constructions
+  * Extend to bulwark to make it destructible
+  * Audio or visual cue that bulwark is under threat
+  * Explosives on timer, use new disarm functionality to mitigate
 * Faction-based enemies
 * Tweak spawn list to remove backpacks and other useless spawn items
 * Spawn groups instead of individuals?
 * Spawns between waves?
 * Play at different times of the year?
 * Slower transition to night time using time acceleration?
-* Team-wide bulwark points
+* IN-PROGRESS Team-wide bulwark points
 * Progressived spawning (cap on how many units can spawn at once, trickle them in over time)
 
 

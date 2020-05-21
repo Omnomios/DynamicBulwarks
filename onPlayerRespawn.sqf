@@ -48,4 +48,6 @@ if (isClass (configfile >> "CfgVehicles" >> "tf_anarc164")) then {
 
 waituntil {alive player};
 
+call player_fnc_addStandardActions;
+
 [] remoteExec ["killPoints_fnc_updateHud", 0];

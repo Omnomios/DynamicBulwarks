@@ -10,10 +10,7 @@ if (!isDedicated) then {
     disableSerialization;
     _player = player;
 
-    _killPoints = _player getVariable "killPoints";
-    if(isNil "_killPoints") then {
-        _killPoints = 0;
-    };
+    _killPoints = call killPoints_fnc_get;
 
     _attackWave = 0;
     if(!isNil "attkWave") then {

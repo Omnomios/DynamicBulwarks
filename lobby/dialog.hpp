@@ -359,3 +359,103 @@ class bulwarkParamSelect_Dialog : BulwarkParam_Dialog
 		colorText[] = COLOR_WHITE;
 	};
 };
+
+class bulwarkParamMultiSelect_Dialog : BulwarkParam_Dialog
+{
+	controls[] = {
+		BulwarkParamCloseButton,
+		MultiSelectBox
+	};
+
+	//
+	// HEADER
+	//
+	class BulwarkParamBackground : RscText
+	{
+		idc = -1;
+		x = 0.2; y = 0.1;
+		w = 0.6; h = 0.8;
+		colorBackground[] = COLOR_HALF_BLACK;
+	};
+
+	class BulwarkParamTitle : RscText
+	{
+		idc = 1;
+		x = 0.2; y = 0.1;
+		w = 0.6; h = 0.05;
+		colorBackground[] = COLOR_DARK_GREEN;
+		text = "Change <param>";
+	};
+
+	class BulwarkParamDescription : RscStructuredText
+	{
+		idc = 2;
+		x = 0.2; y = 0.175;
+		w = 0.6; h = 0.325;
+		colorBackground[] = COLOR_HALF_BLACK;
+		text = "Some description that is really long and should wrap";
+	};
+
+    //
+	// FOOTER
+	//
+	class BulwarkParamCloseButton : RscButton
+	{
+		colorBackground[] = COLOR_GREEN;
+		colorText[] = COLOR_WHITE;
+
+		idc=3;
+		x = 0.6; y = 0.85;
+		w = 0.2; h = 0.05;
+		text="OK";
+	};
+
+	//
+	// PARAMETER LIST
+	//
+	class MultiSelectBox : RscControlsTable
+	{
+		idc = 100;
+		x = 0.3; y = 0.525;
+		w = 0.4; h = 0.25;
+		colorBackground[] = COLOR_HALF_PINK;
+    	lineSpacing = 0;
+	    rowHeight = 0.05;
+	    headerHeight = 0.0;
+		class HeaderTemplate
+		{
+		};
+		class RowTemplate
+		{
+			class RowBackground
+			{
+				controlBaseClassPath[] = {"RscText"};
+				columnX = 0;
+				columnW = 0.4;
+				controlW = 0.4;
+				controlH = 0.1;
+				controlOffsetY = 0;
+			};
+			class RowCheck
+			{
+				controlBaseClassPath[] = {"RscCheckbox"};
+				columnX = 0;
+				columnW = 0.05;
+				controlW = 0.05;
+				controlH = 0.1;
+				controlOffsetY = 0;
+				checked = 0;
+			};
+			class RowValueText
+			{
+				controlBaseClassPath[] = {"RscText"};
+				columnX = 0.05;
+				columnW = 0.35;
+				controlW = 0.35;
+				controlH = 0.1;
+				controlOffsetY = 0;
+				text = "Value";
+			};
+		};
+	};
+};

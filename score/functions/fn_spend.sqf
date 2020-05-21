@@ -5,19 +5,26 @@
 *
 *  Domain: Server
 **/
+#include "..\..\shared\bulwark.hpp"
+
+params ["_player", "_points"];
 
 if (isServer) then {
-	_player = _this select 0;
-	_points = _this select 1;
+	switch (KILLPOINTS_MODE) do {
+		case KILLPOINTS_MODE_PRIVATE: {
+			_killPoints = call killPoints_fnc_get;
 
-	_killPoints = _player getVariable "killPoints";
-	if(isNil "_killPoints") then {
-		_killPoints = 0;
+			// REVIEW: It would be weird to fail this condition...
+			if(_killPoints - _points >= 0) then {
+				_killPoints = _killPoints - _points;
+				_player setVariable ["killPoints", _killPoints, true];
+			};
+		};
+		case KILLPOINTS_MODE_SHARED: {
+		};
+		case KILLPOINTS_MODE_SHAREABLE: {
+		};
 	};
 
-	if(_killPoints - _points >= 0) then {
-	    _killPoints = _killPoints - _points;
-	    _player setVariable ["killPoints", _killPoints, true];
-	    [] remoteExec ["killPoints_fnc_updateHud", _player];
-	};
+	[] remoteExec ["killPoints_fnc_updateHud", _player];
 };
