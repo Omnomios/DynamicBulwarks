@@ -6,16 +6,16 @@
 * missionLoop is a tight while loop
 * The number of units at higher end waves is crunching the game.  We need to spread it out.
 * Drone waves spawn too many drones, its frustrating players.  Drones would be better as additions to existing waves as a distraction.
+* The supply drop plane was behaving very strangely after the wave numbers got higher - it could take several flyby's before the crate dropped.
 
 # New Features
-* Parameter options should be indexed by a unique option ID, not by array index
 * AI target buildings with grenades/explosives
   * Needs investigation - destroy waypoints
   * We already have activation radius for suicide bombers - extend to explosives specialists to opportunistically plant explosives next to your constructions
   * Extend to bulwark to make it destructible
   * Audio or visual cue that bulwark is under threat
   * Explosives on timer, use new disarm functionality to mitigate
-* Faction-based enemies
+* TIWAZ Faction-based enemies
 * Tweak spawn list to remove backpacks and other useless spawn items
 * Spawn groups instead of individuals?
 * Spawns between waves?
@@ -41,4 +41,4 @@
 * DONE Scaling vehicle waves (maybe with a vehicle costing table and wave budget), https://community.bistudio.com/wiki/CfgVehicles_Config_Reference#cost
 * DONE UI Support for multiple-selection options
 * DONE Team-wide bulwark points
-
+* DONE Parameter options should be indexed by a unique option ID, not by array index

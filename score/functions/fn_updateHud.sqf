@@ -6,7 +6,7 @@
 *  Domain: Client
 **/
 
-if (!isDedicated) then {
+if (hasInterface) then {
     disableSerialization;
     _player = player;
 

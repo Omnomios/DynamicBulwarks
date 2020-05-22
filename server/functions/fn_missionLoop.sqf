@@ -35,8 +35,6 @@ missionFailure = false;
 // start in build phase
 missionNamespace setVariable ["buildPhase", true, true];
 
-[west, RESPAWN_TICKETS] call BIS_fnc_respawnTickets;
-
 while {runMissionLoop} do {
 
 	//Reset the AI position checks

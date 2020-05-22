@@ -1,10 +1,5 @@
 #include "..\..\shared\bulwark.hpp"
 
-// TODO: Refactor into a function
-
-initStarted = true;
-publicVariable "initStarted";
-
 // variable to prevent players rejoining during a wave
 playersInWave = [];
 publicVariable "playersInWave";
@@ -84,7 +79,8 @@ publicVariable 'TEAM_DAMAGE';
 HITMARKERPARAM = (BULWARK_PARAM_HUD_POINT_HITMARKERS call shared_fnc_getCurrentParamValue);
 publicVariable 'HITMARKERPARAM';
 
-// Broadcast the starting killpoints for everyone
+// Broadcast the starting killpoints and update the HUD for everyone
+[west, RESPAWN_TICKETS] call BIS_fnc_respawnTickets;
 call killPoints_fnc_init;
 
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
