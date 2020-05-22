@@ -4,9 +4,7 @@
 	[_x, false] remoteExec ["setUnconscious", 0];
 	_X action ["CancelAction", _X];
 	_X switchMove "PlayerStand";
-	// REVIEW: Revive
-	//[ "#rev", 1, _x ] remoteExecCall ["BIS_fnc_reviveOnState", _x];
-	[ "#rev", 1, _x ] call BIS_fnc_reviveOnState;
+	[ "#rev", 1, _x ] remoteExecCall ["BIS_fnc_reviveOnState", _x];
 	_x setDamage 0;
 } forEach allPlayers;
 

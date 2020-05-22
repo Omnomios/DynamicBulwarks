@@ -9,7 +9,8 @@
 * FIXED Also it seems the first aid kits dropped by nato allow healing but the others dont when using PIR
 * FIXED Auto-revive with medikits broken
 * FIXED Mag Repack might conflict with existing mods, we should check
-
+* The number of units at higher end waves is crunching the game.  We need to spread it out.
+* Drone waves spawn too many drones, its frustrating players.  Drones would be better as additions to existing waves as a distraction.
 
 # New Features
 * DONE: Finish the lobby system
@@ -27,7 +28,8 @@
 * Spawns between waves?
 * Play at different times of the year?
 * Slower transition to night time using time acceleration?
-* IN-PROGRESS Team-wide bulwark points
+* FIXED Team-wide bulwark points
+* "Shareable" bulwark points (player can choose to give another player some of their points)
 * Progressived spawning (cap on how many units can spawn at once, trickle them in over time)
 
 
