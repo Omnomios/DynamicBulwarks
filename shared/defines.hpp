@@ -1,13 +1,3 @@
-// // Get parameter
-// #define GET_PARAM(outVar, paramName, paramDefault)          outVar = [paramName,paramDefault] call shared_fnc_getSaveableParam;\
-//                                                             publicVariable #outVar;\
-//                                                             [format ["%1: %2", paramName, outVar], "PARAM"] call shared_fnc_log
-
-// // Get parameter and convert to bool
-// #define GET_PARAM_BOOL(outVar, paramName, paramDefault)     outVar = ([paramName,paramDefault] call shared_fnc_getSaveableParam) isEqualTo 1;\
-//                                                             publicVariable #outVar;\
-//                                                             [format ["%1: %2", paramName, outVar], "PARAM"] call shared_fnc_log
-
 #define LOG_INFO "INFO"
 #define LOG_ERR  "ERR"
 #define LOG_WARN "WARN"
@@ -31,6 +21,9 @@
 #define TYPENAME_DIARY_RECORD "DIARY_RECORD"
 #define TYPENAME_TASK         "TASK"
 
+//
+// Parameters
+//
 #define GET_PARAM_BY_INDEX(params, index) (params select index)
 #define GET_PARAM_BY_ID(params, id) GET_PARAM_BY_INDEX(params, (params findIf { id == PARAM_GET_ID(_x) }))
 #define GET_CURRENT_PARAM_BY_INDEX(index) (CurrentBulwarkParams select index)

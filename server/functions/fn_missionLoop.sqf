@@ -47,7 +47,12 @@ while {runMissionLoop} do {
 
 	//
 	// TODO: This is a tight loop, see if we can refactor into something
-	// event driven
+	// event driven.
+	// Thought: If we can attach event handlers to when units are killed and players are killed,
+	// then when any of those events fire, we can just do the check for:
+	// 1. If all enemies are dead, end the wave
+	// 2, If all players are down and there are no tickets left, end the game
+	// otherwise wait.
 	//
 	while {runMissionLoop} do {
 
