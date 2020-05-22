@@ -19,8 +19,6 @@
 * Tweak spawn list to remove backpacks and other useless spawn items
 * Spawn groups instead of individuals?
 * Spawns between waves?
-* Play at different times of the year?
-* Slower transition to night time using time acceleration?
 * "Shareable" bulwark points (player can choose to give another player some of their points)
 * Progressived spawning (cap on how many units can spawn at once, trickle them in over time)
 * Broaden search for valid starting houses/loot houses.
@@ -45,3 +43,5 @@
 * DONE UI Support for multiple-selection options
 * DONE Team-wide bulwark points
 * DONE Parameter options should be indexed by a unique option ID, not by array index
+* DONE Play at different times of the year?
+* DONE Ability to set time multiplier (for faster day/night cycles)
