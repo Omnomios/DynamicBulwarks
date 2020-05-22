@@ -46,28 +46,24 @@ while {runMissionLoop} do {
 	while {runMissionLoop} do {
 		sleep 1; // We don't need to update this very often
 
-		// Get all human players in this wave cycle
-		// moved to contain players that respawned in this wave
-		_allHCs = entities "HeadlessClient_F";
-		_allHPs = allPlayers - _allHCs;
-
 		//Check if all hostiles dead
 		if (EAST countSide allUnits == 0) exitWith {};
 
 		_respawnTickets = [west] call BIS_fnc_respawnTickets;
 		if(_respawnTickets <= 0) then {
 			// Players will lose the game if they are all dead or unconscious
+
+			// Get all human players in this wave cycle
+			// moved to contain players that respawned in this wave
+			_allHCs = entities "HeadlessClient_F";
+			_allHPs = allPlayers - _allHCs;
+
 			private _deadOrUnconscious = _allHPs select { (!alive _x) || ((lifeState _x) == "INCAPACITATED") };
 			if (count _deadOrUnconscious >= count _allHPs) then {
 				runMissionLoop = false;
 				missionFailure = true;
 				"End1" call BIS_fnc_endMissionServer;
-			}
-		} else {
-			// Ensure all players are in curator
-			{
-				mainZeus addCuratorEditableObjects [[_x], true];
-			} foreach _allHPs;
+			};
 		};
 	};
 
