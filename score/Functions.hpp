@@ -3,9 +3,10 @@ class killPoints
     class globals
     {
         file = "score\functions";
-        class init {postInit = 1;};
+        class init {};
         class get {};
         class add {};
+        class change {};
         class spend {};
         class hit {};
         class killed {};

@@ -85,11 +85,7 @@ HITMARKERPARAM = (BULWARK_PARAM_HUD_POINT_HITMARKERS call shared_fnc_getCurrentP
 publicVariable 'HITMARKERPARAM';
 
 // Broadcast the starting killpoints for everyone
-{
-  // Current result is saved in variable _x
-  [_x, BULWARK_PARAM_START_KILLPOINTS call shared_fnc_getCurrentParamValue] call killPoints_fnc_add;
-} forEach allPlayers;
-
+call killPoints_fnc_init;
 
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;

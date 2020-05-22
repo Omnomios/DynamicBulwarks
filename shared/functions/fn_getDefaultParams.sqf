@@ -7,6 +7,15 @@
 // These parameters should be specified in the order they will be displayed, and grouped by
 // their category.
 //
+//
+// Parameter format:
+// <parameter id>,
+// <parameter title>, <parameter category name>, <parameter type>, <is multi-select>,
+// <array of options which are title-value pairs>,
+// <default value, or values if multi-select>,
+// <long description of the parameter>
+//
+
 private _defaultBulwarkParams = [ 
 	//
 	// PARAM_CATEGORY_FILTERS

@@ -72,9 +72,16 @@ class CfgRemoteExec
 		class createBlur {};
 		class suiExplode{};
 
+		class BIS_fnc_endMissionServer {};
+
 		class lobby_fnc_startGame {};
 		class server_fnc_startServer {};
 		class player_fnc_startPlayer {};
+
+		class killPoints_fnc_change {};
+		class killPoints_fnc_add {};
+		class killPoints_fnc_spend {};
+		class killPoints_fnc_updateHud {};
 	};
 };
 
