@@ -25,7 +25,7 @@
 // Parameters
 //
 #define GET_PARAM_BY_INDEX(params, index) (params select index)
-#define GET_PARAM_BY_ID(params, id) GET_PARAM_BY_INDEX(params, (params findIf { id == PARAM_GET_ID(_x) }))
+#define GET_PARAM_BY_ID(params, id) if (true) then { private _paramIndex = (params findIf { id == PARAM_GET_ID(_x) }); if (_paramIndex == -1) then { nil; } else { GET_PARAM_BY_INDEX(params, _paramIndex); };}
 #define GET_CURRENT_PARAM_BY_INDEX(index) (CurrentBulwarkParams select index)
 #define GET_CURRENT_PARAM_BY_ID(id) GET_PARAM_BY_ID(CurrentBulwarkParams, id)
 
@@ -52,8 +52,9 @@
 #define PARAM_INDEX_VALUE       6
 #define PARAM_INDEX_DESC        7
 
-#define PARAM_INDEX_OPTION_NAME 0
-#define PARAM_INDEX_OPTION_VALUE 1
+#define PARAM_INDEX_OPTION_ID 0
+#define PARAM_INDEX_OPTION_NAME 1
+#define PARAM_INDEX_OPTION_VALUE 2
 
 // Param Getters
 #define PARAM_GET_ID(param) (param select PARAM_INDEX_ID)
@@ -64,9 +65,11 @@
 #define PARAM_HAS_OPTIONS(param) (count (param select PARAM_INDEX_OPTIONS) > 0)
 #define PARAM_GET_OPTIONS(param) (param select PARAM_INDEX_OPTIONS)
 #define PARAM_GET_OPTION_BY_INDEX(param, index) (PARAM_GET_OPTIONS(param) select index)
+#define PARAM_GET_OPTION_BY_ID(param, id) if (true) then { private _optionIndex = (PARAM_GET_OPTIONS(param) findIf { id == PARAM_GET_OPTION_ID(_x)}); if (_optionIndex == -1) then { nil;} else { PARAM_GET_OPTION_BY_INDEX(param, _optionIndex); }; }
 #define PARAM_GET_VALUE(param) (param select PARAM_INDEX_VALUE)
 #define PARAM_GET_DESC(param) (param select PARAM_INDEX_DESC)
 
+#define PARAM_GET_OPTION_ID(option) (option select PARAM_INDEX_OPTION_ID)
 #define PARAM_GET_OPTION_NAME(option) (option select PARAM_INDEX_OPTION_NAME)
 #define PARAM_GET_OPTION_VALUE(option) (option select PARAM_INDEX_OPTION_VALUE)
 

@@ -1,26 +1,31 @@
 class shared
 {
-    class sharedFunctions
+    class public
     {
         file = "shared\functions";
 		class log {};
+        class getCurrentParamValue {};
+        class getDefaultParameterSets {};
+        class getDefaultParams {};
+
+    };
+
+    class internal
+    {
+        file = "shared\functions";
         class getNumberFromString {};
         class padString {};
 
         class getProfileParam {};
         class setProfileParam {};
-        class getDefaultParams {};
 
         class loadParameterSet {};
         class saveParameterSet {};
-        class getDefaultParameterSets {};
         class getParameterSets {};
 
         class loadSelectedParameterSet {};
         class saveSelectedParameterSet {};
         class setSavedParameterSets {};
         class getSavedParameterSets {};
-
-        class getCurrentParamValue {};
     };
 };
