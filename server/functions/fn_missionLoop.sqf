@@ -4,9 +4,7 @@
 	[_x, false] remoteExec ["setUnconscious", 0];
 	_X action ["CancelAction", _X];
 	_X switchMove "PlayerStand";
-	// REVIEW: Revive
-	//[ "#rev", 1, _x ] remoteExecCall ["BIS_fnc_reviveOnState", _x];
-	[ "#rev", 1, _x ] call BIS_fnc_reviveOnState;
+	[ "#rev", 1, _x ] remoteExecCall ["BIS_fnc_reviveOnState", _x];
 	_x setDamage 0;
 } forEach allPlayers;
 
@@ -49,7 +47,12 @@ while {runMissionLoop} do {
 
 	//
 	// TODO: This is a tight loop, see if we can refactor into something
-	// event driven
+	// event driven.
+	// Thought: If we can attach event handlers to when units are killed and players are killed,
+	// then when any of those events fire, we can just do the check for:
+	// 1. If all enemies are dead, end the wave
+	// 2, If all players are down and there are no tickets left, end the game
+	// otherwise wait.
 	//
 	while {runMissionLoop} do {
 
