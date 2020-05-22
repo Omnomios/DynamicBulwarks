@@ -245,7 +245,6 @@ class Mission
 					flags=3;
 					class Attributes
 					{
-						name="leadSurvivor";
 						description="Lead Survivor";
 						isPlayable=1;
 					};

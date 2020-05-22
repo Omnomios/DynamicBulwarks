@@ -7,7 +7,7 @@
 **/
 #include "..\shared\defines.hpp"
 
-if (!isNil "leadSurvivor") then {
+if (player == leader (group player)) then {
 	[format ["Loading parameters from player: %1", player], "LOBBY"] call shared_fnc_log;
 	private _selectedParameterSet = call shared_fnc_loadSelectedParameterSet;
 	CurrentBulwarkParams = [_selectedParameterSet, PARAMSET_TYPE_CUSTOM] call shared_fnc_loadParameterSet;
@@ -35,7 +35,7 @@ lobbyCrate addAction [
 	false, // showWindow
 	true, // hideOnUse
 	"", // shortCut
-	"!isNil 'leadSurvivor'" // Confition
+	"player == leader (group player)" // Confition
 ];
 
 lobbyCrate addAction [
@@ -46,7 +46,7 @@ lobbyCrate addAction [
 	false, // showWindow
 	true, // hideOnUse
 	"", // shortCut
-	"!isNil 'leadSurvivor'" // Confition
+	"player == leader (group player)" // Confition
 ];
 
 lobbyCrate addAction [
@@ -57,7 +57,7 @@ lobbyCrate addAction [
 	false, // showWindow
 	true, // hideOnUse
 	"", // shortCut
-	"!isNil 'leadSurvivor'" // Condition
+	"player == leader (group player)" // Condition
 ];
 
 
@@ -72,5 +72,5 @@ lobbyCrate addAction [
 	true, // showWindow
 	true, // hideOnUse
 	"", // shortCut
-	"isNil 'leadSurvivor'" // condition
+	"player != leader (group player)" // condition
 ];
