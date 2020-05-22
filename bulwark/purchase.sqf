@@ -21,7 +21,7 @@ _vechAi    = (BULWARK_BUILDITEMS select _index) select 7;
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};
 
-private _killPoints = call killPoints_fnc_get;
+private _killPoints = [player] call killPoints_fnc_get;
 if(_killPoints >= _shopPrice && !(player getVariable "buildItemHeld")) then {
     [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
     if (_vechAi) then {

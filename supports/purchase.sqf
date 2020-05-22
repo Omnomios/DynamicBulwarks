@@ -18,7 +18,7 @@ if  (SUPPORTMENU) then {
   // Script was passed an invalid number
   if(_shopClass == "") exitWith {};
 
-  if((call killPoints_fnc_get) >= _shopPrice) then {
+  if(([player] call killPoints_fnc_get) >= _shopPrice) then {
       [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
       [player, _shopClass] call BIS_fnc_addCommMenuItem;
   } else {

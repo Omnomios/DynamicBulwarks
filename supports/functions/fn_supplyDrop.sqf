@@ -42,7 +42,6 @@ supplyDropLatch = false;
 // Set the radius to be a percentage of the Bulwark radius - the drop will happen somewhere
 // within this area
 private _supplyDropRadius = BULWARK_RADIUS * LOOT_SUPPLYDROP;
-format ["Supply drop radius from bulwark: %1", _supplyDropRadius] call shared_fnc_log;
 _waypoint0 = _ag addwaypoint[_dropTarget,_supplyDropRadius];
 _waypoint0 setwaypointtype "Move";
 

@@ -1,26 +1,22 @@
 /**
 *  fn_add
 *
-*  Adds score to the specified player
+* Adds points from the specified player. Server authoritative
+* to allow for shared points.
 *
-*  Domain: Server
+*  Domain: Any
 **/
 #include "..\..\shared\bulwark.hpp"
 
 params ["_player", "_points"];
 
 if (isServer) then {
-	switch (KILLPOINTS_MODE) do {
-		case KILLPOINTS_MODE_PRIVATE: {
-			_killPoints = call killPoints_fnc_get;
-			_killPoints = round (_killPoints + _points);
-			_player setVariable ["killPoints", _killPoints, true];
-		};
-		case KILLPOINTS_MODE_SHARED: {
-		};
-		case KILLPOINTS_MODE_SHAREABLE: {
-		};
-	};
+	//format ["%1 Adding %2 points", _player, _points] call shared_fnc_log;
+	private _killPoints = [_player] call killPoints_fnc_get;
+	private _killPoints = round (_killPoints + _points);
 
-	[] remoteExec ["killPoints_fnc_updateHud", _player];
+	// Perform the actual change on the server
+	[_player, _killPoints] call killPoints_fnc_change;
+} else {
+	[_player, _points] remoteExecCall ["killPoints_fnc_add", 2];
 };

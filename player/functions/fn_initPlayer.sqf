@@ -61,13 +61,7 @@ endLoadingScreen;
 player setVariable ["RevByMedikit", false, true];
 player setVariable ["buildItemHeld", false];
 
-//setup Kill Points
-_killPoints = player getVariable "killPoints";
-if(isNil "_killPoints") then {
-    _killPoints = 0;
-};
-
-player setVariable ["killPoints", _killPoints, true];
+// Update killpoints hud
 [] call killPoints_fnc_updateHud;
 
 /*
