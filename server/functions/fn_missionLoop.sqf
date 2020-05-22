@@ -43,58 +43,32 @@ while {runMissionLoop} do {
 
 	[] call bulwark_fnc_startWave;
 
-	//
-	// TODO: This is a tight loop, see if we can refactor into something
-	// event driven.
-	// Thought: If we can attach event handlers to when units are killed and players are killed,
-	// then when any of those events fire, we can just do the check for:
-	// 1. If all enemies are dead, end the wave
-	// 2, If all players are down and there are no tickets left, end the game
-	// otherwise wait.
-	//
 	while {runMissionLoop} do {
+		sleep 1; // We don't need to update this very often
 
-		// Get all human players in this wave cycle // moved to contain players that respawned in this wave
+		// Get all human players in this wave cycle
+		// moved to contain players that respawned in this wave
 		_allHCs = entities "HeadlessClient_F";
 		_allHPs = allPlayers - _allHCs;
 
 		//Check if all hostiles dead
 		if (EAST countSide allUnits == 0) exitWith {};
 
-		//check if all players dead or unconscious
-		_deadUnconscious = [];
-		{
-			if ((!alive _x) || ((lifeState _x) == "INCAPACITATED")) then {
-				_deadUnconscious pushBack _x;
-			};
-		} foreach _allHPs;
 		_respawnTickets = [west] call BIS_fnc_respawnTickets;
-		if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
-			sleep 1;
-
-			//Check that Players have not been revived
-			_deadUnconscious = [];
+		if(_respawnTickets <= 0) then {
+			// Players will lose the game if they are all dead or unconscious
+			private _deadOrUnconscious = _allHPs select { (!alive _x) || ((lifeState _x) == "INCAPACITATED") };
+			if (count _deadOrUnconscious >= count _allHPs) then {
+				runMissionLoop = false;
+				missionFailure = true;
+				"End1" call BIS_fnc_endMissionServer;
+			}
+		} else {
+			// Ensure all players are in curator
 			{
-				if ((!alive _x) || ((lifeState _x) == "INCAPACITATED")) then {
-					_deadUnconscious pushBack _x;
-				};
+				mainZeus addCuratorEditableObjects [[_x], true];
 			} foreach _allHPs;
-			if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
-				sleep 1;
-				if (count (_allHPs - _deadUnconscious) <= 0 && _respawnTickets <= 0) then {
-					runMissionLoop = false;
-					missionFailure = true;
-					"End1" call BIS_fnc_endMissionServer;
-				};
-			};
 		};
-
-		// TODO: Should this be happening *constantly*, or just at the
-		// start of the wave/when players join?
-		//Add objects to zeus
-		{
-			mainZeus addCuratorEditableObjects [[_x], true];
-		} foreach _allHPs;
 	};
 
 	if(missionFailure) exitWith {};
@@ -104,5 +78,4 @@ while {runMissionLoop} do {
 	};
 
 	[] call bulwark_fnc_endWave;
-
 };
