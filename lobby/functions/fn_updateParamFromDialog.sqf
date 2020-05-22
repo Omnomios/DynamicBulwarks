@@ -19,14 +19,16 @@ private _newParamValue = if (_isMultiSelect) then {
     private _rowControls = _editControl ctRowControls _x;
     private _checkbox = _rowControls select 1;
     if (cbChecked _checkbox) then {
-      _selectedValues pushBack _x;
+      private _option = PARAM_GET_OPTION_BY_INDEX(_param, _x);
+      _selectedValues pushBack PARAM_GET_OPTION_ID(_option);
     };
   };
   _selectedValues;
 } else {
   if (_hasOptions) then {
     // DROPDOWN
-    lbCurSel _editControl;
+    private _option = PARAM_GET_OPTION_BY_INDEX(_param, lbCurSel _editControl);
+    PARAM_GET_OPTION_ID(_option);
   } else {
     // EDIT CONTROL
     (ctrlText 100) call shared_fnc_getNumberFromString;

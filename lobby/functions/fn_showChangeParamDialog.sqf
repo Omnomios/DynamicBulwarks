@@ -37,7 +37,8 @@ if (_isMultiSelect) then {
       _selectControl lbAdd PARAM_GET_OPTION_NAME(_x);
     } forEach PARAM_GET_OPTIONS(_param);
 
-    _selectControl lbSetCurSel PARAM_GET_VALUE(_param);
+    private _selectedOptionIndex = PARAM_GET_OPTION_INDEX_FOR_ID(_param, PARAM_GET_VALUE(_param));
+    _selectControl lbSetCurSel _selectedOptionIndex;
   } else {
     // EDIT CONTROL
     createDialog "bulwarkParamEdit_Dialog";
