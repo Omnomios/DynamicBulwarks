@@ -25,9 +25,13 @@ KILLPOINTS_MODE = (BULWARK_PARAM_KILLPOINTS_MODE call shared_fnc_getCurrentParam
 SCORE_KILL = (BULWARK_PARAM_SCORE_KILL call shared_fnc_getCurrentParamValue);                 // Base Points for a kill
 SCORE_HIT = (BULWARK_PARAM_SCORE_HIT call shared_fnc_getCurrentParamValue);                   // Every Bullet hit that doesn't result in a kill
 SCORE_DAMAGE_BASE = (BULWARK_PARAM_SCORE_DAMAGE_BASE call shared_fnc_getCurrentParamValue);   // Extra points awarded for damage. 100% = SCORE_DAMAGE_BASE. 50% = SCORE_DAMAGE_BASE/2
+
 /* Time of Day*/
 DAY_TIME_FROM = (BULWARK_PARAM_DAY_TIME_FROM call shared_fnc_getCurrentParamValue);
 DAY_TIME_TO = (BULWARK_PARAM_DAY_TIME_TO call shared_fnc_getCurrentParamValue);
+SEASON = (BULWARK_PARAM_SEASON call shared_fnc_getCurrentParamValue);
+TIME_MULTIPLIER = (BULWARK_PARAM_TIME_MULTIPLIER call shared_fnc_getCurrentParamValue);
+
 // Check for sneaky inverted configuration. FROM should always be before TO.
 if (DAY_TIME_FROM > DAY_TIME_TO) then {
     DAY_TIME_FROM = DAY_TIME_TO - 2;

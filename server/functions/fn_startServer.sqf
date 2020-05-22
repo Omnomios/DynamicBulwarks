@@ -83,10 +83,12 @@ publicVariable 'HITMARKERPARAM';
 [west, RESPAWN_TICKETS] call BIS_fnc_respawnTickets;
 call killPoints_fnc_init;
 
+// Set time
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;
 _timeToSet = DAY_TIME_FROM + _randTime;
-setDate [2018, 7, 1, _timeToSet, 0];
+setDate [2018, SEASON, 21, _timeToSet, 0];
+setTimeMultiplier TIME_MULTIPLIER;
 
 "Starting mission loop" call shared_fnc_log;
 

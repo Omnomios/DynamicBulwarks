@@ -34,6 +34,7 @@
 #define PARAM_CATEGORY_START "Start Conditions"
 #define PARAM_CATEGORY_BULWARK "Bulwark Configuration"
 #define PARAM_CATEGORY_GAME "Game Configuration"
+#define PARAM_CATEGORY_TIME "Time and Date"
 #define PARAM_CATEGORY_GEOGRAPHY "Geography"
 #define PARAM_CATEGORY_UPGRADES "Upgrades"
 #define PARAM_CATEGORY_PLAYER "Player Configuration"
@@ -65,7 +66,8 @@
 #define PARAM_HAS_OPTIONS(param) (count (param select PARAM_INDEX_OPTIONS) > 0)
 #define PARAM_GET_OPTIONS(param) (param select PARAM_INDEX_OPTIONS)
 #define PARAM_GET_OPTION_BY_INDEX(param, index) (PARAM_GET_OPTIONS(param) select index)
-#define PARAM_GET_OPTION_BY_ID(param, id) if (true) then { private _optionIndex = (PARAM_GET_OPTIONS(param) findIf { id == PARAM_GET_OPTION_ID(_x)}); if (_optionIndex == -1) then { nil;} else { PARAM_GET_OPTION_BY_INDEX(param, _optionIndex); }; }
+#define PARAM_GET_OPTION_INDEX_FOR_ID(param, id) (PARAM_GET_OPTIONS(param) findIf { id == PARAM_GET_OPTION_ID(_x)})
+#define PARAM_GET_OPTION_BY_ID(param, id) if (true) then { private _optionIndex = PARAM_GET_OPTION_INDEX_FOR_ID(param, id); if (_optionIndex == -1) then { nil;} else { PARAM_GET_OPTION_BY_INDEX(param, _optionIndex); }; }
 #define PARAM_GET_VALUE(param) (param select PARAM_INDEX_VALUE)
 #define PARAM_GET_DESC(param) (param select PARAM_INDEX_DESC)
 

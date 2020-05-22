@@ -25,7 +25,10 @@
 * Progressived spawning (cap on how many units can spawn at once, trickle them in over time)
 * Broaden search for valid starting houses/loot houses.
 * Use CBA logging mechanism: https://github.com/CBATeam/CBA_A3/wiki/Error-handling
+
+# Possible new wave types?
 * Enemy paratroopers?
+* Player extract to win (after set amount of waves, or purchasing an extraction from the Bulwark)
 
 # DONE
 * FIXED HandleDamage registered each time the player respawns

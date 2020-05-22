@@ -300,10 +300,15 @@ private _defaultBulwarkParams = [
 		1,
 		"This determines how far from the center of the mission area supply crates will drop"
 	],
+
+	//
+	// PARAM_CATEGORY_TIME
+	//
 	[
 		BULWARK_PARAM_DAY_TIME_FROM,
-		"Earliest mission time start", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, false,
+		"Earliest mission time start", PARAM_CATEGORY_TIME, PARAM_TYPE_NUMBER, false,
 		[
+			[11, "0000 hours", 0],
 			[0, "0200 hours", 2],
 			[1, "0400 hours", 4],
 			[2, "0600 hours", 6],
@@ -313,15 +318,17 @@ private _defaultBulwarkParams = [
 			[6, "1400 hours", 14],
 			[7, "1600 hours", 16],
 			[8, "1800 hours", 18],
-			[9, "2000 hours", 20]
+			[9, "2000 hours", 20],
+			[10, "2200 hours", 22]
 		],
 		3,
 		"The earliest time of dat the mission will start"
 	],
 	[
 		BULWARK_PARAM_DAY_TIME_TO,
-		"Latest mission time start", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, false,
+		"Latest mission time start", PARAM_CATEGORY_TIME, PARAM_TYPE_NUMBER, false,
 		[
+			[11, "0000 hours", 0],
 			[0, "0200 hours", 2],
 			[1, "0400 hours", 4],
 			[2, "0600 hours", 6],
@@ -331,10 +338,37 @@ private _defaultBulwarkParams = [
 			[6, "1400 hours", 14],
 			[7, "1600 hours", 16],
 			[8, "1800 hours", 18],
-			[9, "2000 hours", 20]
+			[9, "2000 hours", 20],
+			[10, "2200 hours", 22]
 		],
 		7,
 		"The latest time of day the mission will start"
+	],
+	[
+		BULWARK_PARAM_SEASON,
+		"Season to play in", PARAM_CATEGORY_TIME, PARAM_TYPE_NUMBER, false,
+		[
+			[0, "Spring", 3],
+			[1, "Summer", 6],
+			[2, "Fall", 9],
+			[3, "Winter", 12]
+		],
+		1,
+		"The season in which the game will be played"
+	],
+	[
+		BULWARK_PARAM_TIME_MULTIPLIER,
+		"Time multiplier", PARAM_CATEGORY_TIME, PARAM_TYPE_NUMBER, false,
+		[
+			[0, "Real-time", 3],
+			[1, "1hr/10 min", 6],
+			[2, "1hr/5 min", 12],
+			[3, "1hr/3 min", 20],
+			[4, "1hr/2 min", 30],
+			[5, "1hr/1 min", 60]
+		],
+		0,
+		"The rate at which game time passes. Note church bells ring every 15 minutes game time..."
 	],
 
 	//
