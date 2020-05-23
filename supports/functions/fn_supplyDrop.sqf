@@ -60,7 +60,7 @@ _agVehicle animateDoor ['Door_1_source', 1];
 waitUntil {supplyDropLatch};
 
 // Drop cargo
-private _parachutePos = (getPosATL _agVehicle) vectorAdd [0, 0, -5]; // Start 5 meters below the plane, to avoid collisions
+private _parachutePos = (getPosATL _agVehicle) vectorAdd [0, 0, -8]; // Start 8 meters below the plane, to avoid collisions
 _parachute = createVehicle ["B_Parachute_02_F", _parachutePos, [], 0, "NONE"];
 _supplyBox = createVehicle ["Land_WoodenCrate_01_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 _supplyBox attachTo [_parachute, [0,0,0]];

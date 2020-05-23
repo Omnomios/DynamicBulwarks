@@ -7,5 +7,6 @@ class server
         class missionLoop {};
         class setParams {};
         class setLocations {};
+        class registerPlayer {};
     };
 };

@@ -24,7 +24,7 @@ if (_isMultiSelect) then {
     private _rowControls = (_row select 1);
     (_rowControls select 0) ctrlSetBackgroundColor [0, 0, 0, 0.3];
     (_rowControls select 2) ctrlSetText PARAM_GET_OPTION_NAME(_x);
-    private _isSelected = PARAM_GET_OPTION_VALUE(_x) in _selectedValues;
+    private _isSelected = PARAM_GET_OPTION_ID(_x) in _selectedValues;
     (_rowControls select 1) cbSetChecked _isSelected;
   } forEach _options;
 } else {
@@ -37,7 +37,8 @@ if (_isMultiSelect) then {
       _selectControl lbAdd PARAM_GET_OPTION_NAME(_x);
     } forEach PARAM_GET_OPTIONS(_param);
 
-    _selectControl lbSetCurSel PARAM_GET_VALUE(_param);
+    private _selectedOptionIndex = PARAM_GET_OPTION_INDEX_FOR_ID(_param, PARAM_GET_VALUE(_param));
+    _selectControl lbSetCurSel _selectedOptionIndex;
   } else {
     // EDIT CONTROL
     createDialog "bulwarkParamEdit_Dialog";

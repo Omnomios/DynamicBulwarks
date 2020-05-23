@@ -2,7 +2,8 @@
 
 The Bulwark parameters system integrates with the lobby UI to provide an extensible
 way to add parameters to the game and allow users to save and load different parameter
-configurations.
+configurations. This replaces the "Mission Parameters" which would normally be set in
+the multiplayer role-selection screen.
 
 ## Overview
 
@@ -86,20 +87,36 @@ to set any value they wish, and the default `param_value` can be anything. If th
 ```
 // Option Definition format
 [
-  <title>,
+  <option_id>,
+  <option_title>,
   <option_value>
 ]
 ```
 
-
-* `title`: The display name for the option in the parameter dialog
+* `option_id`: The unique identifier of this option - can be any value, just need to be unique among the options in this parameter
+* `option_title`: The display name for the option in the parameter dialog
 * `option_value`: The actual value for the option as used in the game
 
-In the case where options are available, the `param_value` of the _parameter_ refers to the _index_ of the option in the `options` array (not the `option_value` of the option). This allows the developer to freely change the `option_value` for a given option without changing the parameter value and invalidating saved parameter sets.
+> WARNING: Do not change existing `option_id` values.  You can remove them and add new ones, however.
 
-## Low-level Access
+In the case where options are available, the `param_value` of the _parameter_ refers to the _option_id_ of the option in the `options` array (not the `option_value` of the option). This allows the developer to freely change the `option_value` for a given option without changing the parameter value and invalidating saved parameter sets.
+
+## Parameters Dialog
+
+Parameters are presented in the parameters dialog ordered by category.  However, the ordering is defined by the order the
+parameters appear in the *default* parameters, as found in `shared_fnc_getDefaultParams`. You may freely re-order parameters
+here, but parameters will always appear within their assigned category, and will be ordered within that category in the 
+order they appear in that function.
+
+Parameter Sets appear in the following order: built-in parameter sets first, then custom sets in the order they were originally
+saved by the user.  The built-in order can be changed by changing the ordering in `shared_fnc_getDefaultParameterSets`. Custom
+set ordering cannot be changed.
+
+# Implementation Details
 
 > WARNING: You shouldn't need to do this unless you are editing the parameter system itself or the lobby dialog.  Use `shared_fnc_getCurrentParamValue` instead!
+
+## Getting parameters and options directly
 
 There are a set of macros used to manipulate the parameter and option arrays to ensure they do not become corrupted. These are defined in `shared\defines.hpp`.  Assuming you have already loaded a parameter set using `shared_fnc_loadParameterSet`, you can access it as follows:
 
@@ -115,7 +132,7 @@ private _myParamValue = PARAM_GET_VALUE(_myParam);
 // If the parameter has options, _myParamValue refers to an option and isn't the value itself,
 // so we need to look it up. This works in the case where `multiselect` is `false`:
 private _myActualValue = if (PARAM_HAS_OPTIONS(_myParam)) then {
-  private _option = PARAM_GET_OPTION_BY_INDEX(_myParam, _myParamValue);
+  private _option = PARAM_GET_OPTION_BY_ID(_myParam, _myParamValue);
 
   // Gets the `option_value` field of the option
   PARAM_GET_OPTION_VALUE(_option);
@@ -131,7 +148,7 @@ private _myActualValues = if (PARAM_IS_MULTISELECT(_myParam)) then {
   private _options = PARAM_GET_OPTIONS(_myParam);
   private _returnValues = [];
   {
-    private _option = PARAM_GET_OPTION_BY_INDEX(_myParam, _x);
+    private _option = PARAM_GET_OPTION_BY_ID(_myParam, _x);
     _returnValues pushBack PARAM_GET_OPTION_VALUYE(_option);
   } forEach _myParamValue;
   _returnValues;
@@ -140,6 +157,29 @@ private _myActualValues = if (PARAM_IS_MULTISELECT(_myParam)) then {
 };
 ```
 
+## Setting parameter values directly
+
+The macro `PARAM_SET_VALUE` can be used to edit the existing value for a specified param, and is the complement
+to `PARAM_GET_VALUE`.
+
+## Parameter Set storage
+
+Parameter sets are stored in the profile only with the information needed to hold their values - they do not contain
+the entire definition of each parameter. Their format is as follows:
+
+```
+[
+  [
+    <param_id>, <param_value>
+  ],
+  ...
+]
+```
+
+* `param_id`: The ID of the parameter
+* `param_value`: The stored value of the parameter
+
+See the implementation of `shared_fnc_saveParameterSet` and `shared_fnc_loadParameterSet`.
 
 
 

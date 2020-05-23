@@ -47,7 +47,7 @@ private _currentCategory = "";
       _optionValue = "";
       {
         private _value = _x;
-        private _option = PARAM_GET_OPTION_BY_INDEX(_param, _value);
+        private _option = PARAM_GET_OPTION_BY_ID(_param, _value);
         if (!isNil "_option") then {
           if (_optionValue != "") then {
             _optionValue = _optionValue + ", ";
@@ -57,7 +57,7 @@ private _currentCategory = "";
       } forEach PARAM_GET_VALUE(_param);
     } else {
       // DROPDOWN
-      private _option = PARAM_GET_OPTION_BY_INDEX(_param, PARAM_GET_VALUE(_param));
+      private _option = PARAM_GET_OPTION_BY_ID(_param, PARAM_GET_VALUE(_param));
       _optionValue = PARAM_GET_OPTION_NAME(_option);
     };
   };

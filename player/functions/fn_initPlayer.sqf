@@ -1,9 +1,4 @@
 // This function is called once when the game starts (after the lobby)
-initStarted = nil;
-gameStarted = nil;
-
-// TODO: Refactor, probably remove initStarted too
-//waitUntil {!isNil "initStarted"};
 
 player setDamage 0;
 
@@ -60,9 +55,6 @@ endLoadingScreen;
 
 player setVariable ["RevByMedikit", false, true];
 player setVariable ["buildItemHeld", false];
-
-// Update killpoints hud
-[] call killPoints_fnc_updateHud;
 
 /*
 // Delete all map markers on clients
