@@ -417,11 +417,23 @@ private _defaultBulwarkParams = [
 		BULWARK_PARAM_BULWARK_POSITION,
 		"Starting position", PARAM_CATEGORY_GEOGRAPHY, PARAM_TYPE_NUMBER, false,
 		[
-			[0, "Near a town", 0],
+			[0, "Random map location", 0],
 			[1, "Random marker", 1]
 		],
 		0,
-		"Determines whether the start area will be chosen at random or from among a selection of pre-defined marked locations for this map"
+		"Determines whether the start area will be chosen at random from locations on the map or from among a selection of pre-defined marked locations"
+	],
+	[
+		BULWARK_PARAM_LOCATIONS,
+		"Random map locations", PARAM_CATEGORY_GEOGRAPHY, PARAM_TYPE_NUMBER, true,
+		[
+			[0, "Capital Cities", "NameCityCapital"],
+			[1, "Major Cities", "NameCity"],
+			[2, "Small Towns", "NameVillage"],
+			[3, "Building Clusters", "NameLocal"]
+		],
+		[0, 1, 2],
+		"When the Starting Position is a random map location, which locations should be considered?"
 	],
 
 	//

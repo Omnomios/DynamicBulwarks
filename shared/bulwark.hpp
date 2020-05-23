@@ -46,6 +46,7 @@
 #define BULWARK_PARAM_FILTER_FACTIONS           40
 #define BULWARK_PARAM_TIME_MULTIPLIER           41
 #define BULWARK_PARAM_SEASON                    42
+#define BULWARK_PARAM_LOCATIONS                 43
 
 // These are known parameter values, and should be named <param name>_<value name>
 // WARNING: If you change these it could mess up the interpretation of people's saved parameters.
