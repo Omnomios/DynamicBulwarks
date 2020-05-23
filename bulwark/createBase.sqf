@@ -137,7 +137,8 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerSize [BULWARK_RADIUS, BULWARK_RADIUS];
 "Mission Area" setMarkerColor "ColorWhite";
 
-lootHouses = bulwarkCity nearObjects ["House", BULWARK_RADIUS];
+// Candidate houses must be within the radius and have at least one room
+lootHouses = (bulwarkCity nearObjects ["Building", BULWARK_RADIUS]) select { count (_x buildingPos -1) > 0 };
 
 /* Spinner Box */
 
