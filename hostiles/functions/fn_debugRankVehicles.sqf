@@ -13,6 +13,7 @@ private _filteredVehicles = [];
         private _threatToSoldiers = getArray (_checked_veh >> "threat") select 0;
         private _scope = getNumber (_checked_veh >> "scope");
         private _vehclass = getText (_checked_veh >> "vehicleClass");
+        private _textSingular = getText (_checked_veh >> "textSingular");
         private _simulation = getText (_checked_veh >> "simulation");
         private _isArtillery = getNumber (_checked_veh >> "artilleryScanner") > 0;
 
@@ -26,30 +27,15 @@ private _filteredVehicles = [];
             };
         } forEach _turrets;
 
+        private _isValidVehicleClass = (_vehclass == "Armored" || _vehclass == "Car" || _threatToSoldiers >= 0.1 && (_vehclass == "Autonomous" && (_textSingular == "UGV" || _textSingular == "tank")));
+
         // Filter our everything that cannot possibly be a threat
         private _inFilter = _scope == SCOPE_PUBLIC &&
             !_isArtillery &&
             _hasTurret &&
-            (_vehclass == "Armored" || _vehclass == "Car") &&
+            _isValidVehicleClass &&
             _simulation != "parachute";
         
-        // Possible threats with a threat rating of 0 need to be evaluated
-        // in more detail
-        // if (_inFilter && _threatToSoldiers == 0) then {
-        //     // Still a threat if the vehicle has turrets with weapons
-        //     _inFilter = false;
-        //     _turrets = [_classname, true] call BIS_fnc_allTurrets;
-        //     {
-        //         // Current result is saved in variable _x
-        //         _turretConfigPath = [_classname,_x] call BIS_fnc_turretConfig;
-        //         _turretWeapons = getArray (_turretConfigPath >> "weapons");
-        //         //[format ["Veh: %1 Turret: %2 %3", _classname, _x, _turretWeapons], "VEHDEBUG"] call shared_fnc_log;
-        //         if (count _turretWeapons > 0) then {
-        //             _inFilter = true;
-        //         };
-        //     } forEach _turrets;
-        // };
-
         if (_inFilter) then {
                 _simulation_paracheck = getText (_checked_veh >> "simulation");
                 _actual_vehclass = getText (_checked_veh >> "vehicleClass");
@@ -71,33 +57,39 @@ _sortedVehicles = [+_sortedVehicles, [], { getArray (_x >> "threat") select 0 },
     // };
 
 CWS_getCostFactor = {
-    params ["_cost"];
-    log _cost;
+    params ["_cfg"];
+    private _costBonusForUAVs = 3;
+    private _cost = log (getNumber (_cfg >> "cost"));
+    private _isAutonomous = getNumber (_cfg >> "isUav") == 1;
+    if (_isAutonomous) then {
+        _cost = _cost + _costBonusForUAVs;
+    };
+    _cost;
 };
 
 CWS_getThreatFactor = {
-    params ["_threat"];
+    params ["_cfg"];
+    private _threatForNoThreatVehicles = 0.05;
+    private _threat = getArray (_cfg >> "threat") select 0;
+    if (_threat == 0) then {
+        _threat = _threatForNoThreatVehicles;
+    };
+
     _threat * 100;
 };
 
 CWS_getArmorFactor = {
-    params ["_armor"];
+    params ["_cfg"];
+    private _armor = getNumber (_cfg >> "armor");
     8 * log (_armor/30);
 };
 
 CWS_getWaveCost = {
     params ["_vehCfg"];
 
-    private _cost = getNumber (_vehCfg >> "cost");
-    private _armor = getNumber (_vehCfg >> "armor");
-    private _threat = getArray (_vehCfg >> "threat") select 0;
-    if (_threat == 0) then {
-        _threat = 0.05;
-    };
-
-    private _costFactor = _cost call CWS_getCostFactor;
-    private _threatFactor = _threat call CWS_getThreatFactor;
-    private _armorFactor = _armor call CWS_getArmorFactor;
+    private _costFactor = _vehCfg call CWS_getCostFactor;
+    private _threatFactor = _vehCfg call CWS_getThreatFactor;
+    private _armorFactor = _vehCfg call CWS_getArmorFactor;
     private _waveCost = log (_threatFactor * (_costFactor + _armorFactor));
     _waveCost;
 };
@@ -132,7 +124,7 @@ _sortedVehicles = [+_filteredVehicles, [], { _x call CWS_getWaveCost }, "DESCEND
     //private _dmgResist = getNumber (_x >> "damageResistance");
     //private _crashProt = getNumber (_x >> "crewCrashProtection");
 
-    private _costFactor = _cost call CWS_getCostFactor;
+    private _costFactor = _x call CWS_getCostFactor;
     private _threatFactor = _threat call CWS_getThreatFactor;
     private _armorFactor = _armor call CWS_getArmorFactor;
     private _waveCost = 1 + ((_x call CWS_getWaveCost) - _lowestCost) / (_highestCost -_lowestCost) * (_costSpan - 1);

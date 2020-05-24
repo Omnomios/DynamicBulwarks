@@ -10,8 +10,8 @@ params ["_factionConfigName"];
 private _allLandVehicles = [];
 private _allInfantry = [];
 //private _allStaticWeapons = [];
-//private allHelicopters = [];
-//private allPlanes = [];
+//private _allHelicopters = [];
+//private _allPlanes = [];
 private _configArray = "([_x,'faction'] call BIS_fnc_returnConfigEntry) == _factionConfigName" configClasses (configFile >> "CfgVehicles");
 {
     private _scope = [_x,"scope"] call BIS_fnc_returnConfigEntry;
@@ -21,7 +21,7 @@ private _configArray = "([_x,'faction'] call BIS_fnc_returnConfigEntry) == _fact
             //sort by type
             private _configName = configName _x;
             switch (true) do { 
-                //case ("StaticWeapon" in _parents): {allStaticWeapons pushBack _configName;};
+                //case ("StaticWeapon" in _parents): {_allStaticWeapons pushBack _configName;};
                 case ("CAManBase" in _parents): 
                 {
                     private _role =  [_x,"role"] call BIS_fnc_returnConfigEntry;
@@ -31,8 +31,8 @@ private _configArray = "([_x,'faction'] call BIS_fnc_returnConfigEntry) == _fact
                     };
                 };
                 case ("LandVehicle" in _parents): {_allLandVehicles pushBack _configName;};
-                //case ("Helicopter" in _parents): {allHelicopters pushBack _configName};
-                //case ("Plane" in _parents): {allPlanes pushBack _configName};
+                //case ("Helicopter" in _parents): {_allHelicopters pushBack _configName};
+                //case ("Plane" in _parents): {_allPlanes pushBack _configName};
             };
         };
     };
@@ -46,6 +46,8 @@ private _filteredVehicles = [];
         private _vehclass = getText (_checked_veh >> "vehicleClass");
         private _simulation = getText (_checked_veh >> "simulation");
         private _isArtillery = getNumber (_checked_veh >> "artilleryScanner") > 0;
+        private _threatToSoldiers = getArray (_checked_veh >> "threat") select 0;
+        private _textSingular = getText (_checked_veh >> "textSingular");
         private _hasTurret = false;
         private _turrets = [_classname, true] call BIS_fnc_allTurrets;
         {
@@ -55,13 +57,18 @@ private _filteredVehicles = [];
                 _hasTurret = true;
             };
         } forEach _turrets;
+
+        // Demining UGVs have a singular type 'tank', but that also includes the "Science" drone, which has a very low threat and doesn't
+        // actually do any damage.
+        private _isValidVehicleClass = (_vehclass == "Armored" || _vehclass == "Car" || _threatToSoldiers >= 0.1 && (_vehclass == "Autonomous" && (_textSingular == "UGV" || _textSingular == "tank")));
+
         //filter out blacklisted vehicles
         if (isnil "HOSTILE_VEHICLE_BLACKLIST" || {!(_classname in HOSTILE_VEHICLE_BLACKLIST)}) then {
             // Filter our everything that cannot possibly be a threat
             private _inFilter = !_isArtillery &&
                 _hasTurret &&
-                (_vehclass == "Armored" || _vehclass == "Car") &&
-                _simulation != "parachute";            
+                _isValidVehicleClass &&
+                _simulation != "parachute";
             if (_inFilter) then {
             _filteredVehicles pushBack _classname;
             };
