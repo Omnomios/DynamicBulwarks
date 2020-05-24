@@ -162,6 +162,7 @@ BULWARK_BUILDITEMS = [
     [2500,  "Launcher tripod",        "gm_ge_army_milan_launcher_tripod",       0,        1,        0,        1,        false],
     [3000,  "Small Bunker",           "Land_BagBunker_Small_F",               180,        3,        0,        0,        false],
     [4500,  "Pillbox",                "Land_PillboxBunker_01_hex_F",           90,      2.5,        0,        0,        false],
+    [5000,  "Launcher tripod Auto",   "gm_ge_army_milan_launcher_tripod",       0,        1,        0,        1,        true],
     [6500, "Tall Tower",              "land_gm_tower_bt_11_60",                90,        3,        0,        0,        false],
     [9500,  "Modular Bunker",         "Land_Bunker_01_Small_F",               180,      3.5,        0,        0,        false]
 ];

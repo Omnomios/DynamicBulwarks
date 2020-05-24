@@ -161,9 +161,11 @@ BULWARK_BUILDITEMS = [
     [2500,  "Static HMG",             "B_HMG_01_high_F",                   0,        1,        0,        1,        false],
     [3000,  "Small Bunker",           "Land_BagBunker_Small_F",          180,        3,        0,        0,        false],
     [4500,  "Pillbox",                "Land_PillboxBunker_01_hex_F",      90,      2.5,        0,        0,        false],
+    [4500,  "Static HMG Autonomous",  "B_HMG_01_high_F",                   0,        1,        0,        0,         true],
     [5000,  "Metal Guard Tower",      "Land_GuardTower_01_F",             90,      2.5,        0,        0,        false],
     [6000,  "Guard Tower",            "Land_Cargo_Patrol_V3_F",            0,      3.5,        0,        0,        false],
     [7000,  "Static GMG",             "B_GMG_01_high_F",                   0,      3.5,        0,        1,        false],
+    [9500,  "Static GMG Autonomous",  "B_GMG_01_high_F",                   0,      3.5,        0,        0,         true],
     [9500,  "Modular Bunker",         "Land_Bunker_01_Small_F",          180,        4,        0,        1,        false],
     [25000, "Mortar",                 "B_Mortar_01_F",                   180,      3.5,        0,        1,        false]
 ];
