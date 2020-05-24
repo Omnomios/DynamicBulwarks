@@ -7,29 +7,14 @@
 **/
 /* MOD FILTER */
 modTag = ["LIB"]; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class name, use that. For example modTag = ["LIB"] would only spawn Iron Front Weapons. Can use multiple for example:modTag = ["LIB,"NORTH"];
-/* Attacker Waves */
-// Use group class names - To leave empty do: HOSTILE_LEVEL_1 = [];
-HOSTILE_LEVEL_1 = [];    		//wave 0
-HOSTILE_LEVEL_2 = [];       	//wave 5
-HOSTILE_LEVEL_3 = [];         	//wave 10
-HOSTILE_LEVEL_4 = []; 			//wave 15
-DEFECTOR_CLASS = [];          			//defector special wave units
-PARATROOP_CLASS = [];          		//friendly units called in via support
 
+/* Attacker Waves */
 //Unit Whitelist - unit classnames are expected for example: HOSTILE_LEVEL_1_WHITELIST = ["B_Soldier_A_F","B_support_MG_F"];
-HOSTILE_LEVEL_1_WHITELIST = ["LIB_GER_rifleman_w"]; //adds these units to the hostile levels, if you only want to use the whitelist and not the above groups, leave the groups empty : [];
-HOSTILE_LEVEL_2_WHITELIST = ["LIB_GER_rifleman_w","LIB_GER_ober_grenadier_w","LIB_GER_LAT_Rifleman_w","LIB_GER_rifleman_w","LIB_GER_medic_w","LIB_GER_unterofficer_w"];
-HOSTILE_LEVEL_3_WHITELIST = ["LIB_GER_ober_rifleman_w","LIB_GER_ober_grenadier_w","LIB_GER_ober_grenadier_w","LIB_GER_LAT_Rifleman_w","LIB_GER_ober_rifleman_w","LIB_GER_medic_w","LIB_GER_unterofficer_w","LIB_GER_Scout_mgunner_w"];
-HOSTILE_LEVEL_4_WHITELIST = ["LIB_GER_AT_grenadier_w","LIB_GER_ober_grenadier_w","LIB_GER_Scout_sniper_w","LIB_GER_Mgunner_w","LIB_GER_LAT_Rifleman_w","LIB_GER_AT_soldier_w"];
-DEFECTOR_CLASS_WHITELIST = ["LIB_US_Sniper_w","LIB_US_AT_soldier_w","LIB_US_Smgunner_w","LIB_US_Grenadier_w","LIB_US_Mgunner_w"];
-PARATROOP_CLASS_WHITELIST = ["LIB_US_AT_soldier_w"];
-//Vehicle Whitelist
-/* 0 = Adds Whitelist Vehicles to spawn. */
-/* 1 = Only Whitelist Vehicles will spawn */
-VEHICLE_WHITELIST_MODE = 1;
-HOSTILE_ARMED_CARS_WHITELIST = ["LIB_SdKfz_7_AA_w","LIB_SdKfz251_FFV_w","LIB_Kfz1_MG42_sernyt"]; // HOSTILE_ARMED_CARS_WHITELIST = []; to leave empty
-HOSTILE_ARMOUR_WHITELIST = ["LIB_SdKfz222","LIB_SdKfz222","LIB_SdKfz222","LIB_FlakPanzerIV_Wirbelwind_w","LIB_PzKpfwIV_H_w","LIB_PzKpfwIV_H_w","LIB_PzKpfwV_w","LIB_PzKpfwVI_B_camo_w","LIB_PzKpfwVI_E_w"];
-//Vehicle Blacklist
+HOSTILE_INFANTRY_WHITELIST = [];
+DEFECTOR_CLASS_WHITELIST = []; //defector special wave units
+PARATROOP_CLASS_WHITELIST = []; //friendly units called in via support
+
+HOSTILE_VEHICLE_WHITELIST = ["LIB_SdKfz_7_AA_w","LIB_SdKfz251_FFV_w","LIB_Kfz1_MG42_sernyt","LIB_SdKfz222","LIB_SdKfz222","LIB_SdKfz222","LIB_FlakPanzerIV_Wirbelwind_w","LIB_PzKpfwIV_H_w","LIB_PzKpfwIV_H_w","LIB_PzKpfwV_w","LIB_PzKpfwVI_B_camo_w","LIB_PzKpfwVI_E_w"];
 HOSTILE_VEHICLE_BLACKLIST = [];
 
 /* LOOT */

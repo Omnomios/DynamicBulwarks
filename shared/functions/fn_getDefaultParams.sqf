@@ -38,17 +38,8 @@ private _defaultBulwarkParams = [
 	[ 
 		BULWARK_PARAM_FILTER_FACTIONS,
 		"Factions", PARAM_CATEGORY_FILTERS, PARAM_TYPE_NUMBER, true, 
-		[
-			[0, "Option 1", 0],
-			[1, "Option 2", 1],
-			[2, "Option 3", 2],
-			[3, "Option 4", 3],
-			[4, "Option 5", 4],
-			[5, "Option 6", 5],
-			[6, "Option 7", 6],
-			[7, "Option 8", 7]
-		],
-		[],
+		factionOptions,
+		[0],
 		"Select which factions can spawn as enemies"
 	],
 

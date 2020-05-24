@@ -7,29 +7,14 @@
 **/
 /* MOD FILTER */
 modTag = ["gm"]; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class name, use that. For example modTag = ["LIB"] would only spawn Iron Front Weapons. Can use multiple for example:modTag = ["LIB,"NORTH"];
+ 
 /* Attacker Waves */
-// Use group class names - To leave empty do: HOSTILE_LEVEL_1 = [];
-HOSTILE_LEVEL_1 = ["gm_gc_bgs_infantry_post_str"];    //wave 0
-HOSTILE_LEVEL_2 = ["gm_gc_army_infantry_squad_win"];         //wave 5
-HOSTILE_LEVEL_3 = ["gm_ge_army_infantry_mggroup_str"];         //wave 10
-HOSTILE_LEVEL_4 = ["gm_ge_army_infantry_mggroup_str"];      //wave 15
-DEFECTOR_CLASS = ["gm_dk_army_infantry_squad_84_m84"];          //defector special wave units
-PARATROOP_CLASS = ["gm_dk_army_infantry_squad_84_m84"];          //friendly units called in via support
-
 //Unit Whitelist - unit classnames are expected for example: HOSTILE_LEVEL_1_WHITELIST = ["B_Soldier_A_F","B_support_MG_F"];
-HOSTILE_LEVEL_1_WHITELIST = []; //adds these units to the hostile levels, if you only want to use the whitelist and not the above groups, leave the groups empty : [];
-HOSTILE_LEVEL_2_WHITELIST = [];
-HOSTILE_LEVEL_3_WHITELIST = [];
-HOSTILE_LEVEL_4_WHITELIST = [];
-DEFECTOR_CLASS_WHITELIST = [];
-PARATROOP_CLASS_WHITELIST = [];
-//Vehicle Whitelist
-/* 0 = Adds Whitelist Vehicles to spawn. */
-/* 1 = Only Whitelist Vehicles will spawn */
-VEHICLE_WHITELIST_MODE = 0;
-HOSTILE_ARMED_CARS_WHITELIST = []; // HOSTILE_ARMED_CARS_WHITELIST = []; to leave empty
-HOSTILE_ARMOUR_WHITELIST = [];
-//Vehicle Blacklist
+HOSTILE_INFANTRY_WHITELIST = [];
+DEFECTOR_CLASS_WHITELIST = []; //defector special wave units
+PARATROOP_CLASS_WHITELIST = []; //friendly units called in via support
+
+HOSTILE_VEHICLE_WHITELIST = [];
 HOSTILE_VEHICLE_BLACKLIST = [];
 
 /* LOOT */
