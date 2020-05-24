@@ -16,7 +16,7 @@ _index = -1;
 	private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call BIS_fnc_returnConfigEntry;
 	if (_side <= 3) then {
 		private _displayName = [configfile >> "CfgFactionClasses" >> _x,"displayName"] call BIS_fnc_returnConfigEntry;
-		[_x] call hostiles_fnc_getAllFactionHostiles params ["_allInfantry","_filteredVehicles"];
+		[_x] call factions_fnc_getAllFactionHostiles params ["_allInfantry","_filteredVehicles"];
 		//filter out factions that don't have anything
 		if (count _allInfantry + count _filteredVehicles > 0) then {
 			private _displayName = format ["%1 [I:%2 V:%3]",_displayName,count _allInfantry,count _filteredVehicles];

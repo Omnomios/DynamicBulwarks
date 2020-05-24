@@ -16,7 +16,7 @@ private _factionParams = [BULWARK_PARAM_FILTER_FACTIONS] call shared_fnc_getCurr
 _allInfantry = [];
 _allVehicles = [];
 {
-	[_x] call hostiles_fnc_getAllFactionHostiles params ["_infantry","_vehicles"];
+	[_x] call factions_fnc_getAllFactionHostiles params ["_infantry","_vehicles"];
 	_allInfantry append _infantry;
 	_allVehicles append _vehicles;
 } forEach _factionParams;
