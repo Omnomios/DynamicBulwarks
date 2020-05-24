@@ -10,8 +10,9 @@ if (BULWARK_LOCATIONS_MARKER) then {
 _probe = createVehicle ["Sign_Arrow_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 while {isNil "_finalPos"} do {
 	_city = selectRandom _locations;
-	_houses = nearestObjects [_city, ["house"], 300];
 
+	// Consider houses which are within 300 meters of the specified city and have at least one actual room.
+	_houses = (nearestObjects [_city, ["Building"], 300]) select { count (_x buildingPos -1) > 0 };
 	_options = [];
 
 	// Go through every house and position
@@ -34,7 +35,7 @@ while {isNil "_finalPos"} do {
 		} forEach (_house buildingPos -1);
 
 		// Make sure it's not some crapshack in the middle of nowhere
-		_neighbours = count nearestObjects [_largestPos, ["house"], BULWARK_RADIUS];
+		_neighbours = count ((nearestObjects [_largestPos, ["house"], BULWARK_RADIUS]) select { count (_x buildingPos -1) > 0 });
 
 		// One house, one location. Add it to the list of options
 		if(_largestVolume > 0 && _neighbours > LOOT_HOUSE_DENSITY) then {

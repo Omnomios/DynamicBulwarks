@@ -20,7 +20,7 @@
 * Spawns between waves?
 * "Shareable" bulwark points (player can choose to give another player some of their points)
 * Progressived spawning (cap on how many units can spawn at once, trickle them in over time)
-* Broaden search for valid starting houses/loot houses.  Seems like we are always getting the same couple of cities
+
 * Use CBA logging mechanism: https://github.com/CBATeam/CBA_A3/wiki/Error-handling
 * Ability to sell back items (User suggested)
 
@@ -47,3 +47,4 @@
 * DONE Ability to set time multiplier (for faster day/night cycles)
 * FIXED Long start time for some waves
 * FIXED missionLoop is a tight while loop
+* ADDED Ability to select which set of locations are candidates for starting
