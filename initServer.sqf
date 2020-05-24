@@ -1,2 +1,2 @@
 // Do lobby-specific server initialization here.
-factionOptions = [] call hostiles_fnc_getAllFactions;
+factionOptions = [] call factions_fnc_getAllFactions;

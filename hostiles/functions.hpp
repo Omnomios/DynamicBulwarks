@@ -11,8 +11,6 @@ class hostiles
         class getVehicleBudgetForWave {};
         class getVehiclesWithBudget {};
 
-        class getAllFactions {};
-        class getAllFactionHostiles {};
         // DEBUG functions
         class debugRankVehicles {};
     };

@@ -42,6 +42,7 @@ class CfgFunctions
 	#include "sound\Functions.hpp"
 	#include "area\Functions.hpp"
 	#include "build\Functions.hpp"
+	#include "factions\Functions.hpp"
 	#include "hostiles\Functions.hpp"
 	#include "loot\Functions.hpp"
 
