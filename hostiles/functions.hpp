@@ -7,7 +7,6 @@ class hostiles
         class addUnitToWaveForCleanup {};
         class cleanupWaveUnits {};
 
-        class getAllowedVehicleClasses {};
         class getVehicleCosts {};
         class getVehicleBudgetForWave {};
         class getVehiclesWithBudget {};
