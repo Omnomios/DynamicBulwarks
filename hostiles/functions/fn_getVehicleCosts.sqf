@@ -38,31 +38,44 @@ CWS_getWaveCost = {
     _waveCost;
 };
 
-private _costSpan = 5;
-private _lowestCost = 99999;
-private _highestCost = 0;
+if(count _vehicleClasses == 0) then {
+    [];
+} else {
+    private _costSpan = 5;
+    private _lowestCost = 99999;
+    private _highestCost = 0;
 
-private _vehicleCosts = [];
+    private _vehicleCosts = [];
 
-// Get raw vehicle costs
-{
-    // Current result is saved in variable _x
-    private _vehicleConfig = configFile >> "CfgVehicles" >> _x;
-    private _waveCost = _vehicleConfig call CWS_getWaveCost;
-    _lowestCost = _lowestCost min _waveCost;
-    _highestCost = _highestCost max _waveCost;
-    _vehicleCosts pushBack [_x, _waveCost];
-} forEach _vehicleClasses;
+    // Get raw vehicle costs
+    {
+        // Current result is saved in variable _x
+        private _vehicleConfig = configFile >> "CfgVehicles" >> _x;
+        private _waveCost = _vehicleConfig call CWS_getWaveCost;
+        _lowestCost = _lowestCost min _waveCost;
+        _highestCost = _highestCost max _waveCost;
+        _vehicleCosts pushBack [_x, _waveCost];
+    } forEach _vehicleClasses;
 
-// Normalize vehicle costs to range 1 .. 5 (_costSpan)
-{
-    private _normalizedWaveCost = 1 + ((_x select 1) - _lowestCost) / (_highestCost -_lowestCost) * (_costSpan - 1);
-    _x set [1, _normalizedWaveCost];
-} forEach _vehicleCosts;
+    // Normalize vehicle costs to range 1 .. 5 (_costSpan)
+    {
+        private _rawWaveCost = _x select 1;
+        private _normalizationOffset = if (_highestCost == _lowestCost) then {
+            // If all vehicles cost the same amount, there is no offset
+            0;
+        } else {
+            // Otherwise, normalize them.
+            (_rawWaveCost - _lowestCost) / (_highestCost -_lowestCost) * (_costSpan - 1);
+        };
+        private _normalizedWaveCost = 1 + _normalizationOffset;
 
-// ["Vehicles costs:", "VEH"] call shared_fnc_log;
-// {
-//     [format ["  Class: %1 Cost: %2", [_x select 0, 48] call shared_fnc_padString, _x select 1], "VEH"] call shared_fnc_log;
-// } forEach _vehicleCosts;
+        _x set [1, _normalizedWaveCost];
+    } forEach _vehicleCosts;
 
-_vehicleCosts;
+    // ["Vehicles costs:", "VEH"] call shared_fnc_log;
+    // {
+    //     [format ["  Class: %1 Cost: %2", [_x select 0, 48] call shared_fnc_padString, _x select 1], "VEH"] call shared_fnc_log;
+    // } forEach _vehicleCosts;
+
+    _vehicleCosts;
+};
