@@ -131,11 +131,11 @@ if (enableSpecialWaves) then {
 //
 // Spawn some loot
 //
-if (attkWave > 1) then { //if first wave give player extra time before spawning enemies
+if (attkWave > 1) then { // We spawned loot in missionLoop already for wave 1.
 	{deleteMarker _x} foreach lootDebugMarkers;
-	[] call loot_fnc_cleanup;
-	_spawnLoot = execVM "loot\spawnLoot.sqf";
-	waitUntil { scriptDone _spawnLoot};
+	// Remove the old loot and show the new loot
+	call loot_fnc_cleanup;
+	call loot_fnc_startRevealPreSpawnedLoot;
 };
 
 "Spawn Wave..." call shared_fnc_log;

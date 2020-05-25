@@ -1,3 +1,4 @@
+"onPlayerKilled invoked" call shared_fnc_log;
 waitUntil {sleep 0.2; !(isNil "bulwarkBox")};
 _player = _this select 0;
 _buildPhase = missionNamespace getVariable "buildPhase";

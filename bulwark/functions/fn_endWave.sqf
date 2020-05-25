@@ -41,4 +41,7 @@ publicVariable "RESPAWN_TIME";
 MIND_CONTROLLED_AI = [];
 publicVariable "MIND_CONTROLLED_AI";
 
+// Pre-initialize loot for the next wave
+call loot_fnc_startPreSpawn;
+
 sleep DOWN_TIME;
