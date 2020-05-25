@@ -66,7 +66,7 @@
 #define PARAM_HAS_OPTIONS(param) (count (param select PARAM_INDEX_OPTIONS) > 0)
 #define PARAM_GET_OPTIONS(param) (param select PARAM_INDEX_OPTIONS)
 #define PARAM_GET_OPTION_BY_INDEX(param, index) (PARAM_GET_OPTIONS(param) select index)
-#define PARAM_GET_OPTION_INDEX_FOR_ID(param, id) call { private _id = id; (PARAM_GET_OPTIONS(param) findIf { _id == PARAM_GET_OPTION_ID(_x)}) }
+#define PARAM_GET_OPTION_INDEX_FOR_ID(param, id) call { private _id = id; (PARAM_GET_OPTIONS(param) findIf { typename _id == typename PARAM_GET_OPTION_ID(_x) && { _id == PARAM_GET_OPTION_ID(_x) } }) }
 #define PARAM_GET_OPTION_BY_ID(param, id) call { private _optionIndex = PARAM_GET_OPTION_INDEX_FOR_ID(param, id); if (_optionIndex == -1) then { nil;} else { PARAM_GET_OPTION_BY_INDEX(param, _optionIndex); }; }
 #define PARAM_GET_VALUE(param) (param select PARAM_INDEX_VALUE)
 #define PARAM_GET_DESC(param) (param select PARAM_INDEX_DESC)

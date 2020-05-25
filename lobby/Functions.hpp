@@ -16,5 +16,6 @@ class lobby
 		class btnDoSaveAs {};
 
 		class startGame {};
+		class displayError {};
     };
 };
