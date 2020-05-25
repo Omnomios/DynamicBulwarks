@@ -45,9 +45,14 @@ _secondaries = [];
 _launchers = [];
 _optics = [];
 _railAttach = [];
+_muzzleAttach = [];
+_bipods = [];
 _items = [];
 _mines = [];
 _backpacks = [];
+_disassembledGuns = [];
+_disassembledDroneGuns = [];
+_disassembledDrones = [];
 _glasses = [];
 _faces = [];
 _grenades = [];
@@ -63,6 +68,8 @@ if (LOOT_WHITELIST_MODE != 1) then {
 					if (isClass (_weap >> "ItemInfo")) then {
 						_infoType = (getnumber (_weap >> "ItemInfo" >> "Type"));
 						switch (_infoType) do {
+							case 101: {_muzzleAttach = _muzzleAttach + [configName _weap];};
+							case 302: {_bipods = _bipods + [configName _weap];};
 							case 605: {_hats = _hats + [configName _weap];};
 							case 801: {_uniforms = _uniforms + [configName _weap];};
 							case 701: {_vests = _vests + [configName _weap];};
@@ -104,7 +111,23 @@ if (LOOT_WHITELIST_MODE != 1) then {
 				_filter = [_item] call DBW_filter;
 				if (_filter) then {
 					if (gettext (_item >> "vehicleClass") == "Backpacks") then {
-						_backpacks = _backpacks + [configname _item];
+						if (isClass (_item >> "assembleInfo")) then {
+							// Guns and drone guns which can be assembled require two items - the gun itself and
+							// a mount for the gun.  The required mount must exactly match the gun. This item can be
+							// found in the assemblyInfo >> disassemblyTo array of the item's assembleInfo >> assembleTo
+							private _assemblesInto = getText (_item >> "assembleInfo" >> "assembleTo");
+							if (getNumber (configFile >> "CfgVehicles" >> _assemblesInto >> "isUAV") == 1) then {
+								if (getNumber (configFile >> "CfgVehicles" >> _assemblesInto >> "hasDriver") == 1) then {
+									_disassembledDrones = _disassembledDrones + [configName _item];
+								} else {
+									_disassembledDroneGuns = _disassembledDroneGuns + [configName _item];
+								};
+							} else {
+								_disassembledGuns = _disassembledGuns + [configName _item];
+							};
+						} else {
+							_backpacks = _backpacks + [configname _item];
+						};
 					};
 				};
 			};
@@ -179,11 +202,11 @@ if (LOOT_WHITELIST_MODE != 1) then {
 List_Hats = [] + _hats;
 List_Uniforms = [] + _uniforms;
 List_Vests = [] + _vests;
-List_Backpacks = [] + _backpacks;
+List_Backpacks = [] + _backpacks + _disassembledGuns + _disassembledDrones + _disassembledDroneGuns;
 List_Primaries = [] + _primaries;
 List_Secondaries = [] + _secondaries;
 List_Launchers = [] + _launchers;
-List_Optics = [] + _optics + _railAttach;
+List_Optics = [] + _optics + _railAttach + _muzzleAttach + _bipods;
 List_Items = [] + _items + ['ItemGPS','ItemCompass','ItemMap', 'ItemWatch', 'ItemRadio'];
 List_Mines = [] + _mines;
 List_Glasses = [] + _glasses;
