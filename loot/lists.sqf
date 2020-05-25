@@ -50,9 +50,10 @@ _bipods = [];
 _items = [];
 _mines = [];
 _backpacks = [];
-_disassembledGuns = [];
-_disassembledDroneGuns = [];
+_disassembledStaticGuns = [];
+_disassembledAutonomousGuns = [];
 _disassembledDrones = [];
+_disassembledSupports = [];
 _glasses = [];
 _faces = [];
 _grenades = [];
@@ -115,15 +116,39 @@ if (LOOT_WHITELIST_MODE != 1) then {
 							// Guns and drone guns which can be assembled require two items - the gun itself and
 							// a mount for the gun.  The required mount must exactly match the gun. This item can be
 							// found in the assemblyInfo >> disassemblyTo array of the item's assembleInfo >> assembleTo
-							private _assemblesInto = getText (_item >> "assembleInfo" >> "assembleTo");
-							if (getNumber (configFile >> "CfgVehicles" >> _assemblesInto >> "isUAV") == 1) then {
-								if (getNumber (configFile >> "CfgVehicles" >> _assemblesInto >> "hasDriver") == 1) then {
-									_disassembledDrones = _disassembledDrones + [configName _item];
+							private _assembleTo = getText (_item >> "assembleInfo" >> "assembleTo");
+
+							// If it doesn't assemble into anything, it's a bipod.  These should only be dropped as part
+							// of a set of dissassembled guns or drone guns.
+							if (_assembleTo != "") then {
+								private _assembledClass = configFile >> "CfgVehicles" >> _assembleTo;
+								// Yes, the config name is called "dissasembleTo".  You aren't crazy...
+								private _disassembleTo = getArray (_assembledClass >> "assembleInfo" >> "dissasembleTo");
+								//[format ["Item %1 assembles to %2 and requires %3", _item, _assembleTo, _disassembleTo], "LIST"] call shared_fnc_log;
+								if (getNumber (configFile >> "CfgVehicles" >> _assembleTo >> "isUAV") == 1) then {
+									if (getNumber (configFile >> "CfgVehicles" >> _assembleTo >> "hasDriver") == 1) then {
+										// This is a UAV/UGV
+										_disassembledDrones = _disassembledDrones + [configName _item];
+									} else {
+										// This is an autonomous gun
+										_disassembledAutonomousGuns = _disassembledAutonomousGuns + [configName _item];
+										{
+											if (_x != configName _item) then {
+												//[format ["Requiring support %1", _x], "LIST"] call shared_fnc_log;
+												_disassembledSupports pushBackUnique _x;
+											};
+										} foreach _disassembleTo;
+									};
 								} else {
-									_disassembledDroneGuns = _disassembledDroneGuns + [configName _item];
+									// This is a static gun
+									_disassembledStaticGuns = _disassembledStaticGuns + [configName _item];
+									{
+										if (_x != configName _item) then {
+											//[format ["Requiring support %1", _x], "LIST"] call shared_fnc_log;
+											_disassembledSupports pushBackUnique _x;
+										};
+									} foreach _disassembleTo;
 								};
-							} else {
-								_disassembledGuns = _disassembledGuns + [configName _item];
 							};
 						} else {
 							_backpacks = _backpacks + [configname _item];
@@ -202,7 +227,7 @@ if (LOOT_WHITELIST_MODE != 1) then {
 List_Hats = [] + _hats;
 List_Uniforms = [] + _uniforms;
 List_Vests = [] + _vests;
-List_Backpacks = [] + _backpacks + _disassembledGuns + _disassembledDrones + _disassembledDroneGuns;
+List_Backpacks = [] + _backpacks + _disassembledStaticGuns + _disassembledDrones + _disassembledAutonomousGuns + _disassembledSupports;
 List_Primaries = [] + _primaries;
 List_Secondaries = [] + _secondaries;
 List_Launchers = [] + _launchers;
