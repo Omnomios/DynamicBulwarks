@@ -10,7 +10,7 @@ if (BULWARK_LOCATIONS_MARKER) then {
 _probe = createVehicle ["Sign_Arrow_F", [0,0,0], [], 0, "CAN_COLLIDE"];
 while {isNil "_finalPos"} do {
 	_city = selectRandom _locations;
-
+	// format ["Checking %1...", _city] call shared_fnc_log;
 	// Consider houses which are within 300 meters of the specified city and have at least one actual room.
 	_houses = (nearestObjects [_city, ["Building"], 300]) select { count (_x buildingPos -1) > 0 };
 	_options = [];
@@ -35,7 +35,10 @@ while {isNil "_finalPos"} do {
 		} forEach (_house buildingPos -1);
 
 		// Make sure it's not some crapshack in the middle of nowhere
-		_neighbours = count ((nearestObjects [_largestPos, ["house"], BULWARK_RADIUS]) select { count (_x buildingPos -1) > 0 });
+		private _largestPos2d = [_largestPos select 0, _largestPos select 1];
+		_neighbours = count ((nearestObjects [_largestPos2d, ["house"], BULWARK_RADIUS]) select { count (_x buildingPos -1) > 0 });
+
+		// format ["Volume: %1 Pos: %2 Neighbours: %3", _largestVolume, _largestPos, _neighbours] call shared_fnc_log;
 
 		// One house, one location. Add it to the list of options
 		if(_largestVolume > 0 && _neighbours > LOOT_HOUSE_DENSITY) then {
@@ -58,6 +61,7 @@ while {isNil "_finalPos"} do {
 
 	} forEach _houses;
 
+	format ["From %1 houses found %2 options", count _houses, count _options] call shared_fnc_log;
 	if(count _options > 0) exitWith {
 		_finalPos = selectRandom _options;
 		_finalCity = _finalPos;

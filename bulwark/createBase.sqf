@@ -42,13 +42,11 @@ while {_isWater} do {
 	bulwarkRoomPos = _bulwarkLocation select 0;
 	bulwarkCity = _bulwarkLocation select 1;
 	if (BULWARK_LOCATIONS_MARKER) then {
-	bulwarkRoomPos params ["_posX","_posY","_posZ"];
-    bulwarkBox setPos [_posX,_posY,_posZ +2];
-	vectorUp bulwarkBox; 
-	}
-	else
-	{
-	bulwarkBox setPosASL bulwarkRoomPos;
+		bulwarkRoomPos params ["_posX","_posY","_posZ"];
+		bulwarkBox setPos [_posX,_posY,_posZ +2];
+		vectorUp bulwarkBox; 
+	} else {
+		bulwarkBox setPosASL bulwarkRoomPos;
 	};
 	_isWater = surfaceIsWater (getPos bulwarkBox);
 };
@@ -61,7 +59,7 @@ if(BULWARK_MEDIKITS > 0) then {
 	bulwarkBox addItemCargoGlobal [Medkit, BULWARK_MEDIKITS];
 };
 
-"Configuring Bulwark" call shared_fnc_log;
+format ["Configuring Bulwark at Location: %1 City: %2", bulwarkRoomPos, bulwarkCity] call shared_fnc_log;
 
 //Add actions to Bulwark Box
 [bulwarkBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveBox.sqf","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
@@ -138,7 +136,8 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerColor "ColorWhite";
 
 // Candidate houses must be within the radius and have at least one room
-lootHouses = (bulwarkCity nearObjects ["Building", BULWARK_RADIUS]) select { count (_x buildingPos -1) > 0 };
+private _bulwarkLocation = [bulwarkCity select 0, bulwarkCity select 1, 0];
+lootHouses = (_bulwarkLocation nearObjects ["Building", BULWARK_RADIUS]) select { count (_x buildingPos -1) > 0 };
 
 /* Spinner Box */
 
