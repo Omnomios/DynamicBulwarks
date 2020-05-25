@@ -1,0 +1,1 @@
+[] spawn { call loot_fnc_revealPreSpawnedLoot };

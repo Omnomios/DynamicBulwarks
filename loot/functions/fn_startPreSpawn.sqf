@@ -1,0 +1,1 @@
+preSpawnHandle = [] spawn { call loot_fnc_preSpawnLoot };

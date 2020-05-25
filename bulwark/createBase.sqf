@@ -135,33 +135,5 @@ _marker1 = createMarker ["Mission Area", bulwarkCity];
 "Mission Area" setMarkerSize [BULWARK_RADIUS, BULWARK_RADIUS];
 "Mission Area" setMarkerColor "ColorWhite";
 
-// Candidate houses must be within the radius and have at least one room
-private _bulwarkLocation = [bulwarkCity select 0, bulwarkCity select 1, 0];
-lootHouses = (_bulwarkLocation nearObjects ["Building", BULWARK_RADIUS]) select { count (_x buildingPos -1) > 0 };
-
-/* Spinner Box */
-
-_lootBoxRoom = while {true} do {
-	_lootBulding = selectRandom lootHouses;
-	_lootRooms = _lootBulding buildingPos -1;
-	_lootRoom = selectRandom _lootRooms;
-	if(!isNil "_lootRoom") exitWith {_lootRoom};
-};
-lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 4];
-publicVariable "lootBox";
-[lootBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveSpinBox.sqf"]] remoteExec ["addAction", 0, true];
-[lootBox, [
-	format ["<t color='#FF0000'>Spin the box! %1p</t>", SCORE_RANDOMBOX], "
-		lootBoxPos    = getPos lootBox;
-		lootBoxPosATL = getPosATL lootBox;
-		lootBoxDir    = getDir lootBox;
-		_player = _this select 1;
-		_points = _player getVariable 'killPoints';
-		if(_points >= SCORE_RANDOMBOX) then {
-			[_player, SCORE_RANDOMBOX] remoteExec ['killPoints_fnc_spend', 2];
-			[[lootBoxPos, lootBoxPosATL, lootBoxDir], 'loot\spin\main.sqf'] remoteExec ['execVM', 2];
-		};
-	"
-]] remoteExec ["addAction", 0, true];
 //function to reset bulwark if it falls through the floor
 [] spawn bulwark_fnc_bulwarkReset;
