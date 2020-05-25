@@ -25,7 +25,9 @@ publicVariable 'SatUnlocks';
 
 //spawn start loot
 if (isServer) then {
-	execVM "loot\spawnLoot.sqf";
+	call loot_fnc_init;
+	call loot_fnc_startPreSpawn;
+	call loot_fnc_startRevealPreSpawnedLoot;
 };
 
 sleep 15;

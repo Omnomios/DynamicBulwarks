@@ -27,28 +27,10 @@ if (floor random 15 == 1) then {
   deleteVehicle lootBox;
   _player = player;
   [_player, "SmallExplosion"] remoteExec ["sound_fnc_say3DGlobal", 0];
-  _lootBoxRoom = while {true} do {
-  	_lootBulding = selectRandom lootHouses;
-  	_lootRooms = _lootBulding buildingPos -1;
-  	_lootRoom = selectRandom _lootRooms;
-  	if(!isNil "_lootRoom") exitWith {_lootRoom};
-  };
-  lootBox = createVehicle ["Land_WoodenBox_F", _lootBoxRoom, [], 4];
-  publicVariable "lootBox";
-  [lootBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveSpinBox.sqf"]] remoteExec ["addAction", 0, true];
-  [lootBox, [
-  	"<t color='#FF0000'>Spin the box!</t>", "
-  		lootBoxPos    = getPos lootBox;
-  		lootBoxPosATL = getPosATL lootBox;
-  		lootBoxDir    = getDir lootBox;
-  		_player = _this select 1;
-  		_points = _player getVariable 'killPoints';
-  		if(_points >= SCORE_RANDOMBOX) then {
-  			[_player, SCORE_RANDOMBOX] remoteExec ['killPoints_fnc_spend', 2];
-  			[[lootBoxPos, lootBoxPosATL, lootBoxDir], 'loot\spin\main.sqf'] remoteExec ['execVM', 2];
-  		};
-  	"
-  ]] remoteExec ["addAction", 0, true];
+
+  // We re-randomize because they were probably consumed by the last loot spawn cycle
+  call loot_fnc_randomizeLootRoomIndices;
+  call loot_fnc_trySpawnLootSpinner;
   //lootBox enableSimulationGlobal false;
 }else{
   // Create weapon holder and position on loot box
