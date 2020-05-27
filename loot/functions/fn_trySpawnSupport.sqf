@@ -6,8 +6,6 @@ if (!SUPPORTMENU) then {
 	private _satRoom = call loot_fnc_getRandomLootRoom;
 	if (!isNil "_satRoom") then {
 		_satSupport = createVehicle ["Land_SatelliteAntenna_01_F", _satRoom, [], 0, "CAN_COLLIDE"];
-		hideObjectGlobal _satSupport;
-		_satSupport enableSimulationGlobal false;
 		[_satSupport, ["<t color='#ff00ff'>" + "Unlock Support Menu", format ["
 			_satSupport = _this select 0;
 			_player = _this select 1;
