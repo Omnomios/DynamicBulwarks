@@ -10,6 +10,8 @@ class loot
 
         class startPreSpawn {};
         class startRevealPreSpawnedLoot {};
+
+        class generateLootLists {};
     };
 
     class internal

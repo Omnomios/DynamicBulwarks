@@ -25,7 +25,7 @@ call server_fnc_setLocations;
 
 call compile preprocessFileLineNumbers  "presets\init_preset.sqf";
 
-call compile preprocessFileLineNumbers  "loot\lists.sqf";
+call loot_fnc_generateLootLists;
 
 call compile preprocessFileLineNumbers  "hostiles\lists.sqf";
 
