@@ -36,7 +36,7 @@ LIST_HOSTILE_LEVEL_1 = _allInfantry;
 LIST_HOSTILE_LEVEL_2 = _allInfantry;
 LIST_HOSTILE_LEVEL_3 = _allInfantry;
 LIST_HOSTILE_LEVEL_4 = _allInfantry;
-
+[_allInfantry] call hostiles_fnc_getInfantryCost;
 
 if (count HOSTILE_INFANTRY_WHITELIST > 0) then {
 	LIST_DEFECTOR_CLASS = DEFECTOR_CLASS_WHITELIST;

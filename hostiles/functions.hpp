@@ -10,7 +10,7 @@ class hostiles
         class getVehicleCosts {};
         class getVehicleBudgetForWave {};
         class getVehiclesWithBudget {};
-
+        class getInfantryCost {};
         // DEBUG functions
         class debugRankVehicles {};
     };
