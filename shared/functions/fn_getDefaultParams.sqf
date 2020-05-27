@@ -280,6 +280,69 @@ private _defaultBulwarkParams = [
 		"This determines which locations within a building will spawn loot"
 	],
 	[
+		BULWARK_PARAM_LOOT_WORN,
+		"Enabled worn/carried items", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, true,
+		[
+			[0,           "Uniforms", LOOT_CATEGORY_UNIFORMS],
+			[1,              "Vests", LOOT_CATEGORY_VESTS],
+			[2,          "Backpacks", LOOT_CATEGORY_BACKPACKS],
+			[3,               "Hats", LOOT_CATEGORY_HATS],
+			[4,            "Glasses", LOOT_CATEGORY_GLASSES],
+			[5,               "NVGs", LOOT_CATEGORY_NVGS],
+			[6, "Map, Compass, etc.", LOOT_CATEGORY_MISC]
+		],
+		[0, 1, 2, 3, 4, 5, 6],
+		"Which worn/carried items can spawn as loot"
+	],
+	[
+		BULWARK_PARAM_LOOT_WEAPONS,
+		"Enabled weapons", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, true,
+		[
+			[0, "Sniper Rifles", LOOT_CATEGORY_SNIPER],
+			[1,"Assault Rifles", LOOT_CATEGORY_ASSAULT],
+			[2,          "SMGs", LOOT_CATEGORY_SMG],
+			[3,  "Machine Guns", LOOT_CATEGORY_MG],
+			[4,     "Launchers", LOOT_CATEGORY_LAUNCHERS],
+			[5,      "Handguns", LOOT_CATEGORY_HANDGUNS]
+		],
+		[0, 1, 2, 3, 4, 5],
+		"Which weapons can spawn as loot"
+	],
+	[
+		BULWARK_PARAM_LOOT_ATTACHMENTS,
+		"Enabled weapon attachments", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, true,
+		[
+			[0,             "Optics", LOOT_CATEGORY_OPTICS],
+			[1,   "Rail Attachments", LOOT_CATEGORY_RAIL_ATTACHMENTS],
+			[2, "Muzzle Attachments", LOOT_CATEGORY_MUZZLE_ATTACHMENTS],
+			[3,             "Bipods", LOOT_CATEGORY_BIPODS]
+		],
+		[0, 1, 2, 3],
+		"Which weapons attachments can spawn as loot"
+	],
+	[
+		BULWARK_PARAM_LOOT_EXPLOSIVES,
+		"Enabled explosives", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, true,
+		[
+			[0,      "Mines", LOOT_CATEGORY_MINES],
+			[1,   "Grenades", LOOT_CATEGORY_GRENADES],
+			[2, "Explosives", LOOT_CATEGORY_EXPLOSIVES]
+		],
+		[0, 1, 2],
+		"Which explosives can spawn as loot"
+	],
+	[
+		BULWARK_PARAM_LOOT_CONSTRUCTS,
+		"Enabled constructs", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, true,
+		[
+			[0,    "Static Guns", LOOT_CATEGORY_STATIC_GUNS],
+			[1, "Automated Guns", LOOT_CATEGORY_DRONE_GUNS],
+			[2,         "Drones", LOOT_CATEGORY_DRONES]
+		],
+		[0, 1, 2],
+		"Which construction packs can spawn as loot"
+	],
+	[
 		BULWARK_PARAM_LOOT_SUPPLYDROP,
 		"Supply drop distance", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, false,
 		[
