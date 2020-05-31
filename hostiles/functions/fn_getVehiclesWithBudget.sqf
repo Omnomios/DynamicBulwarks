@@ -1,7 +1,16 @@
+//
+// Takes a set of costs and a budget and selects items until the budget is exhausted
+//
+// Inputs:
+// _vehicleCosts - an array of 2-tuples containing the class and the cost
+// _budget - a number representing the total budget for this wave
+// 
+// Outputs:
+// An array of 2-tuples containing a class and cost to spawn
+
 params ["_vehicleCosts", "_budget"];
 
 private _vehiclesInBudget = [] + _vehicleCosts;
-
 
 private _budgetRemaining = _budget;
 private _vehiclesToSpawn = [];
@@ -11,7 +20,7 @@ while { count _vehiclesInBudget > 0 } do {
     if (count _vehiclesInBudget > 0) then {
         private _vehicleToBuy = selectRandom _vehiclesInBudget;
         // format ["Buying vehicle: %1", _vehicleToBuy] call shared_fnc_log;
-        _vehiclesToSpawn pushBack (_vehicleToBuy select 0);
+        _vehiclesToSpawn pushBack _vehicleToBuy;
         _budgetRemaining = _budgetRemaining - (_vehicleToBuy select 1);
     };
 };

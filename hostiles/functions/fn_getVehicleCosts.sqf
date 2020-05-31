@@ -41,7 +41,6 @@ CWS_getWaveCost = {
 if(count _vehicleClasses == 0) then {
     [];
 } else {
-    private _costSpan = 5;
     private _lowestCost = 99999;
     private _highestCost = 0;
 
@@ -57,7 +56,7 @@ if(count _vehicleClasses == 0) then {
         _vehicleCosts pushBack [_x, _waveCost];
     } forEach _vehicleClasses;
 
-    // Normalize vehicle costs to range 1 .. 5 (_costSpan)
+    // Normalize vehicle costs
     {
         private _rawWaveCost = _x select 1;
         private _normalizationOffset = if (_highestCost == _lowestCost) then {
@@ -65,7 +64,7 @@ if(count _vehicleClasses == 0) then {
             0;
         } else {
             // Otherwise, normalize them.
-            (_rawWaveCost - _lowestCost) / (_highestCost -_lowestCost) * (_costSpan - 1);
+            (_rawWaveCost - _lowestCost) / (_highestCost -_lowestCost) * (VEHICLE_COST_SPAN - 1);
         };
         private _normalizedWaveCost = 1 + _normalizationOffset;
 

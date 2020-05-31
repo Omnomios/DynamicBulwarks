@@ -33,7 +33,12 @@ DBW_determineAndSpawnIfVehicleWave = {
 
 	if ((attkWave >= ARMOUR_START_WAVE && (floor random ArmourChance) == 0) || (attkWave >= ARMOUR_START_WAVE && wavesSinceArmour >= ArmourMaxSince)) then {
 		private _budget = attkWave call hostiles_fnc_getVehicleBudgetForWave;
-		private _vehiclesToSpawn = [HOSTILE_ARMOUR_COSTS, _budget] call hostiles_fnc_getVehiclesWithBudget;
+		private _vehiclesToSpawnWithCosts = [HOSTILE_ARMOUR_COSTS, _budget] call hostiles_fnc_getVehiclesWithBudget;
+		private _vehiclesToSpawn = [];
+		{
+			_vehiclesToSpawn pushBack (_x select 0);
+		} foreach _vehiclesToSpawnWithCosts;
+		
 		[_vehiclesToSpawn] call compileFinal preprocessFileLineNumbers "hostiles\spawnVehicle.sqf";
 		wavesSinceArmour = 0;
 	}
@@ -66,6 +71,7 @@ DBW_getHostileListsAndKillMulti = {
 	};
 	[_classArray,_scoreMulti]
 };
+
 DBW_getHostileAmount = { //determines how many units need to be spawned
 	_playerAmountMulti = ((playersNumber west) * HOSTILE_TEAM_MULTIPLIER) - HOSTILE_TEAM_MULTIPLIER; //Hostile_TEAM_MULTIPLIER only has an effect if 2 or more people are online this way
 	_difficultyMulti = HOSTILE_MULTIPLIER; //multiplies everything
@@ -74,16 +80,23 @@ DBW_getHostileAmount = { //determines how many units need to be spawned
 	_amountTotal = floor (_baseValue * attkWave * _difficultyMulti);
 	_amountTotal
 };
+
+CWS_getHostileScoreMultiplier = {
+	params ["_cost"];
+	private _offset = (_cost - 1) / (INFANTRY_COST_SPAN - 1);
+	HOSTILE_INFANTRY_POINT_SCORE + _offset;
+};
+
 DBW_spawnHostile = {
-	params["_classArr","_pos"];
+	params["_unitClass","_pos"];
 	_group = createGroup [EAST,true];
-	_unitClass  = selectRandom _classArr;
 	_unit = _group createUnit [_unitClass, _pos, [], 0.5, "FORM"];
 	sleep 0.3;
 	waitUntil {!isNull _unit};
 	[_unit] join _group;
 	_unit //return
 };
+
 DBW_giveRandPriWeap = {
 	params ["_unit","_weaponsArr"];
 	_unitPrimaryWeap = primaryWeapon _unit;
