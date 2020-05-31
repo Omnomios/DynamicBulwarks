@@ -15,14 +15,14 @@ CWS_getCostFactor = {
 CWS_getRoleFactor = {
     params ["_cfg"];
     _roleCosts = [
-        ["MachineGunner", 10],
-        ["Grenadier", 9],
-        ["Marksman", 8],
-        ["MissileSpecialist", 7],
-        ["Sapper", 6],
-        ["CombatLifeSaver", 5],
-        ["Rifleman", 1],
-        ["SpecialOperative", 1],
+        ["MachineGunner", 5],
+        ["Grenadier", 4],
+        ["Marksman", 4],
+        ["MissileSpecialist", 3],
+        ["Sapper", 3],
+        ["CombatLifeSaver", 3],
+        ["Rifleman", 2],
+        ["SpecialOperative", 2],
         ["Assistant", 1],
         ["RadioOperator", 1]
     ];
@@ -69,13 +69,32 @@ CWS_getWaveCost = {
 _uniqueRoles = [];
 
 _infantryByCost = [];
+private _highestCost = 0;
+private _lowestCost = 99999;
 
 {
     private _config = configfile >> "CfgVehicles" >> _x;
     _waveCost = _config call CWS_getWaveCost;
-    _infantryByCost pushBack [_config, _waveCost];
+    _infantryByCost pushBack [configName _config, _waveCost];
+    _highestCost = _highestCost max _waveCost;
+    _lowestCost = _lowestCost min _waveCost;
 }
 foreach _infantryClasses;
+
+{
+    private _rawWaveCost = _x select 1;
+    private _normalizationOffset = if (_highestCost == _lowestCost) then {
+        // If all vehicles cost the same amount, there is no offset
+        0;
+    } else {
+        // Otherwise, normalize them.
+        (_rawWaveCost - _lowestCost) / (_highestCost -_lowestCost) * (INFANTRY_COST_SPAN - 1);
+    };
+    private _normalizedWaveCost = 1 + _normalizationOffset;
+
+    _x set [1, _normalizedWaveCost];
+} forEach _infantryByCost;
+
 
 _sortedInfantry = [+_infantryByCost, [], { _x select 1 }, "DESCEND"] call BIS_fnc_sortBy;
 
@@ -105,10 +124,8 @@ _sortedInfantry = [+_infantryByCost, [], { _x select 1 }, "DESCEND"] call BIS_fn
     _costFactor = _config call CWS_getCostFactor;
     _armorFactor = _config call CWS_getArmorFactor;
     _roleFactor = _config call CWS_getRoleFactor;
-    _waveCost = _config call CWS_getWaveCost;
+    _waveCost = _x select 1;
 
-    _infantryByCost pushBack [_config, _waveCost];
-    //debug:
 	[format ["%1 | Role: %2 | Cost: %3 | Armor: %4 | RF: %5 | CF: %6 | AF: %7 | Wave: %8",
         [str _displayName, 38] call shared_fnc_padString,
 		[str _role, 20] call shared_fnc_padString,
@@ -128,3 +145,15 @@ _sortedInfantry = [+_infantryByCost, [], { _x select 1 }, "DESCEND"] call BIS_fn
 }
 foreach _uniqueRoles;
 
+for "_x" from 1 to 30 do {
+    private _waveBudget1 = [_x, 1] call hostiles_fnc_getInfantryBudgetForWave;
+    private _waveBudget2 = [_x, 2] call hostiles_fnc_getInfantryBudgetForWave;
+
+    [format ["Wave: %1  1 Player: %2  2 Players: %3", 
+        [str _x, 3] call shared_fnc_padString,
+        [str _waveBudget1, 3] call shared_fnc_padString,
+        [str _waveBudget2, 3] call shared_fnc_padString],
+         "INFDEBUG"] call shared_fnc_log;
+};
+
+_sortedInfantry;

@@ -49,3 +49,6 @@ specialWaveRepeat = if ((BULWARK_PARAM_SPECIAL_WAVES_VARIETY call shared_fnc_get
 BODY_CLEANUP_WAVE = (BULWARK_PARAM_BODY_CLEANUP call shared_fnc_getCurrentParamValue);
 ARMOUR_START_WAVE = BULWARK_PARAM_ARMOUR_START_WAVE call shared_fnc_getCurrentParamValue;
 ARMOUR_WAVE_SCALING = BULWARK_PARAM_ARMOUR_WAVE_SCALING call shared_fnc_getCurrentParamValue;
+
+INFANTRY_COST_SPAN = 3;
+VEHICLE_COST_SPAN = 5;

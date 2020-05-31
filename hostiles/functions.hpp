@@ -11,6 +11,9 @@ class hostiles
         class getVehicleBudgetForWave {};
         class getVehiclesWithBudget {};
         class getInfantryCost {};
+        class getInfantryBudgetForWave {};
+        class getInfantryForWave {};
+
         // DEBUG functions
         class debugRankVehicles {};
     };
