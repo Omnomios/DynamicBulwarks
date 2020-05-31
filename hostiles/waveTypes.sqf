@@ -146,7 +146,7 @@ DBW_DEFECTORWAVE = {
 	_skill = attkWave * 0.02;
 	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		private _unit = [LIST_DEFECTOR_CLASS,_location] call DBW_spawnHostile;
+		private _unit = [selectRandom LIST_DEFECTOR_CLASS,_location] call DBW_spawnHostile;
 		private _setSkill = [_unit,_skill] call DBW_setSkill;
 		private _init = [_unit,_scoreMulti] call DBW_initUnit;
 	};
@@ -245,7 +245,7 @@ DBW_FLAMEWAVE = {
 	_skill = attkWave * 0.02;
 	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		_unit = [_classArray,_location] call DBW_spawnHostile;
+		_unit = [selectRandom _classArray,_location] call DBW_spawnHostile;
 		private _setSkill = [_unit,_skill] call DBW_setSkill;
 		private _init = [_unit,_scoreMulti] call DBW_initUnit;
 			removeAllWeapons _unit;
@@ -272,7 +272,7 @@ DBW_PTRDWAVE = {
 	_skill = attkWave * 0.02;
 	for ("_i") from 1 to _amount do {
 		private _location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-		_unit = [_classArray,_location] call DBW_spawnHostile;
+		_unit = [selectRandom _classArray,_location] call DBW_spawnHostile;
 		private _setSkill = [_unit,_skill] call DBW_setSkill;
 		private _init = [_unit,_scoreMulti] call DBW_initUnit;
 		private _givePTRD = [_unit,["LIB_PTRD"]] call DBW_giveRandPriWeap;
