@@ -8,13 +8,13 @@ params ["_infantryClasses"];
 
 CWS_getCostFactor = {
     params ["_cfg"];
-    _cost = [_cfg,"cost"] call BIS_fnc_returnConfigEntry;
+    private _cost = [_cfg,"cost"] call BIS_fnc_returnConfigEntry;
     log _cost;
 };
 
 CWS_getRoleFactor = {
     params ["_cfg"];
-    _roleCosts = [
+    private _roleCosts = [
         ["MachineGunner", 5],
         ["Grenadier", 4],
         ["Marksman", 4],
@@ -75,7 +75,7 @@ private _lowestCost = 99999;
 {
     private _config = configfile >> "CfgVehicles" >> _x;
     _waveCost = _config call CWS_getWaveCost;
-    _infantryByCost pushBack [configName _config, _waveCost];
+    _infantryByCost pushBack [_config, _waveCost];
     _highestCost = _highestCost max _waveCost;
     _lowestCost = _lowestCost min _waveCost;
 }
@@ -156,4 +156,11 @@ for "_x" from 1 to 30 do {
          "INFDEBUG"] call shared_fnc_log;
 };
 
-_sortedInfantry;
+_infantryClassesByCost = [];
+
+{
+    _infantryClassesByCost pushBack [configName (_x select 0), _x select 1];
+}
+foreach _sortedInfantry;
+
+_infantryClassesByCost;
