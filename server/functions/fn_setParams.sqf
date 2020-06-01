@@ -50,5 +50,11 @@ BODY_CLEANUP_WAVE = (BULWARK_PARAM_BODY_CLEANUP call shared_fnc_getCurrentParamV
 ARMOUR_START_WAVE = BULWARK_PARAM_ARMOUR_START_WAVE call shared_fnc_getCurrentParamValue;
 ARMOUR_WAVE_SCALING = BULWARK_PARAM_ARMOUR_WAVE_SCALING call shared_fnc_getCurrentParamValue;
 
+// The maximum cost of infantry units (min cost is always 1)
 INFANTRY_COST_SPAN = 3;
+
+// The wave at which the maximum level infantry can start spawning.
+INFANTRY_COST_WAVE_CAP = 15;
+
+// The maximum cost of vehicle units (min cost is always 1)
 VEHICLE_COST_SPAN = 5;
