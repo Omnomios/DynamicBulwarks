@@ -7,6 +7,8 @@
 **/
 #include "..\shared\defines.hpp"
 
+waitUntil { !isNil "factionOptions" };
+
 if (player == leader (group player)) then {
 	[format ["Loading parameters from player: %1", player], "LOBBY"] call shared_fnc_log;
 	private _selectedParameterSet = call shared_fnc_loadSelectedParameterSet;
