@@ -109,30 +109,29 @@ DBW_DEMINEWAVE = {
 	execVM "hostiles\droneFire.sqf";
 	["SpecialWarning",["Look up! They're sending drones!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	["Alarm"] remoteExec ["playSound", 0];
-	for "_i" from 1 to 30 do {
-		if ((floor random 2) == 0 && droneCount <= 15) then {
-			droneCount = droneCount + 1;
-			_aicrew = creategroup EAST;
-			_location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
-			_drone = [_location, 50, "C_IDAP_UAV_06_antimine_F", _aicrew] call BIS_fnc_spawnVehicle;
-			droneSquad pushback _aicrew;
-			_wp1 = _aicrew addWaypoint [position bulwarkBox, 0];
-			_wp1 setWaypointType "SAD";
-			_leadah = leader _aicrew;
-			_leadah flyInHeight 30;
-			_leadah setSkill 1;
-			sleep 0.5;
-			mainZeus addCuratorEditableObjects [[_drone select 0], true];
-			_leadah addEventHandler ["Hit", killPoints_fnc_hit];
-			_leadah addEventHandler ["Killed", {
-				params ["_unit", "_killer", "_instigator", "_useEffects"];
-				call killPoints_fnc_killed;
-				_scriptedCharge = "HandGrenade" createVehicle (getPos _unit);
-				_scriptedCharge setdamage 1;
-				deleteVehicle _unit;
-			}];
-			_leadah setVariable ["killPointMulti", HOSTILE_CAR_POINT_SCORE];
-		};
+	private _numDrones = ceil (attkWave / 3);
+	for "_i" from 1 to _numDrones do {
+		droneCount = droneCount + 1;
+		_aicrew = creategroup EAST;
+		_location = [bulwarkCity, BULWARK_RADIUS + 30, BULWARK_RADIUS + 150,1,0] call BIS_fnc_findSafePos;
+		_drone = [_location, 50, "C_IDAP_UAV_06_antimine_F", _aicrew] call BIS_fnc_spawnVehicle;
+		droneSquad pushback _aicrew;
+		_wp1 = _aicrew addWaypoint [position bulwarkBox, 0];
+		_wp1 setWaypointType "SAD";
+		_leadah = leader _aicrew;
+		_leadah flyInHeight 30;
+		_leadah setSkill 1;
+		sleep 0.5;
+		mainZeus addCuratorEditableObjects [[_drone select 0], true];
+		_leadah addEventHandler ["Hit", killPoints_fnc_hit];
+		_leadah addEventHandler ["Killed", {
+			params ["_unit", "_killer", "_instigator", "_useEffects"];
+			call killPoints_fnc_killed;
+			_scriptedCharge = "HandGrenade" createVehicle (getPos _unit);
+			_scriptedCharge setdamage 1;
+			deleteVehicle _unit;
+		}];
+		_leadah setVariable ["killPointMulti", HOSTILE_CAR_POINT_SCORE];
 	};
 	[] call DBW_NORMALWAVE;
 };
