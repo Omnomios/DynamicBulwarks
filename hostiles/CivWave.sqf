@@ -57,7 +57,7 @@ CWS_AddNextCivWaypoint = {
 };
 
 //Create array of all Civ classes
-private _civSide = 3;
+private _civFaction = "CIV_F";
 private _cfgVehiclesConfig = configFile >> "CfgVehicles";
 private _cfgVehiclesConfigCount = count _cfgVehiclesConfig;
 for [{_i = 0}, {_i < _cfgVehiclesConfigCount}, {_i = _i + 1}] do
@@ -68,8 +68,8 @@ for [{_i = 0}, {_i < _cfgVehiclesConfigCount}, {_i = _i + 1}] do
     _typeMan = getNumber (_config >> "isMan");
     if (_typeMan != 0) then
     {
-      _side = getNumber (_config >> "side");
-      if (_side == _civSide) then
+      _faction = getText (_config >> "faction");
+      if (_faction == _civFaction) then 
       {
         civClassArr set [count civClassArr, configName _config];
       };
