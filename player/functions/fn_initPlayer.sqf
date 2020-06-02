@@ -201,7 +201,7 @@ player addEventHandler ["Put", {
     params ["_unit", "_container", "_item"];
     format ["Checking %1 against FAKs", _item] call shared_fnc_log;
     if (_container == bulwarkBox) then {
-        private _fakEquivalents = ["FirstAidKit", "PiR_bint"];
+        private _fakEquivalents = ["FirstAidKit", (call bulwark_fnc_getFAKClass)];
         if (_item in _fakEquivalents) then {
             private _cargoItems = getItemCargo bulwarkBox;
             private _itemsToRemove = [];
@@ -223,7 +223,7 @@ player addEventHandler ["Put", {
                 {
                     [bulwarkBox, _x select 0, _x select 1, false] call CBA_fnc_removeItemCargo;
                 } forEach _itemsToRemove;
-                bulwarkBox addItemCargoGlobal ["Medikit", 1];
+                bulwarkBox addItemCargoGlobal [call bulwark_fnc_getMedikitClass, 1];
             };
         };
     };

@@ -13,5 +13,8 @@ class bulwark
     		class endWave {};
         class revivePlayer{};
         class bulwarkReset{};
+
+        class getMedikitClass {};
+        class getFAKClass {};
     };
 };

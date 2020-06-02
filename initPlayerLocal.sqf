@@ -14,11 +14,11 @@ CWS_ResetStaminaRecoil = {
 
 CWS_GetMedikitEquivalent = {
     private _playerItems = items player;
-    private _allowedMedikits = ["Medikit", "PiR_apteka"];
+    private _allowedMedikits = [ Medkit, call bulwark_fnc_getMedikitClass ]; // By default, the configured medikit is valid
+
     format ["Player items on revive: %1", _playerItems] call shared_fnc_log;
 
     {
-        // Current result is saved in variable _x
        if (_x in _playerItems) exitWith {_x};
     } forEach _allowedMedikits;
 };

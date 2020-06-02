@@ -56,7 +56,7 @@ publicVariable "bulwarkCity";
 //bulwarkBox addWeaponCargoGlobal["hgun_P07_F",10];
 //bulwarkBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 if(BULWARK_MEDIKITS > 0) then {
-	bulwarkBox addItemCargoGlobal [Medkit, BULWARK_MEDIKITS];
+	bulwarkBox addItemCargoGlobal [call bulwark_fnc_getMedikitClass, BULWARK_MEDIKITS];
 };
 
 format ["Configuring Bulwark at Location: %1 City: %2", bulwarkRoomPos, bulwarkCity] call shared_fnc_log;

@@ -227,7 +227,7 @@ DBW_PISTOLWAVE = {
 		private _init = [_unit, _cost call CWS_getHostileScoreMultiplier] call DBW_initUnit;
 		private _randWeap = [_unit,List_Secondaries] call DBW_giveRandSecWeap;
 		if ((floor random 3) == 1) then {
-			_unit additem "FirstAidKit";
+			_unit additem (call bulwark_fnc_getFAKClass);
 		};
 	}
 	forEach _infantryToSpawnWithCosts;
@@ -254,7 +254,7 @@ DBW_FLAMEWAVE = {
 			_unit addWeapon "LIB_M2_Flamethrower";
 			_unit addPrimaryWeaponItem "LIB_M2_Flamethrower_Mag";
 			_unit addBackpack "B_LIB_US_M2Flamethrower";
-			_unit addItemToVest "FirstAidKit";
+			_unit addItemToVest (call bulwark_fnc_getFAKClass);
 			for "_i" from 1 to 5 do {_unit addItemToVest "LIB_No77";};
 			for "_i" from 1 to 20 do {_unit addItemToBackpack "LIB_No77";};
 			_unit enableStamina false;
