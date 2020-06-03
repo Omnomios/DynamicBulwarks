@@ -23,7 +23,6 @@ if (_vechAi) then {
 
 _shopVehicle setVariable ["shopPrice", _shopPrice, true];
 _shopVehicle setVariable ["Radius", _VecRadius, true];
-_shopVehicle setVariable ["ShopDir", _shopDir, true];
 //Check if Explosive	
 if (_explosive == 1) then {
     _shopVehicle setDamage 0.9;

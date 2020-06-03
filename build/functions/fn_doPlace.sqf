@@ -11,8 +11,6 @@ private _serverObjectDir = vectorDir _object;
 private _serverObjectUp = vectorUp _object;
 [format ["Server before placement: Pos: %1 Dir: %2 Up: %3", _serverObjectPos, _serverObjectDir, _serverObjectUp], "BUILD"] call shared_fnc_log;
 
-detach _object;
-
 _serverObjectPos = getPosATL _object;
 _serverObjectDir = vectorDir _object;
 _serverObjectUp = vectorUp _object;
@@ -39,7 +37,7 @@ _serverObjectDir = vectorDir _object;
 _serverObjectUp = vectorUp _object;
 [format ["Server after placement: Pos: %1 Dir: %2 Up: %3", _serverObjectPos, _serverObjectDir, _serverObjectUp], "BUILD"] call shared_fnc_log;
 
-[_object, _caller] remoteExec ["build_fnc_setPlacedItemActions", 0];
+[_object, _caller] remoteExec ["build_fnc_doPlaceLocal", 0];
 
 _caller setVariable ["buildItemHeld", false, true];
 _object setVariable ["buildItemHeld", false, true];

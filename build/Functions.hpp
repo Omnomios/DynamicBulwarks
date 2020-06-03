@@ -10,9 +10,9 @@ class build
         class place {};
 
         class doPlace {};
-        class setPlacedItemActions {};
-        class setPickedUpItemActions {};
-        class doCreate {};
+        class doPlaceLocal {};
         class doPickup {};
+        class doPickupLocal {};
+        class doCreate {};
     };
 };
