@@ -1,4 +1,5 @@
-_object  = _this select 0;
+params ["_object"];
+
 _isHeld = _object getVariable "buildItemHeld";
 _loopCount = 0;
 _foundAIArr = [];

@@ -84,6 +84,12 @@ class CfgRemoteExec
 		class killPoints_fnc_add {};
 		class killPoints_fnc_spend {};
 		class killPoints_fnc_updateHud {};
+
+		class build_fnc_doPickup {};
+		class build_fnc_doCreate {};
+		class build_fnc_doPlace {};
+		class build_fnc_setPickedUpItemActions {};
+		class build_fnc_setPlacedUpItemActions {};
 	};
 };
 

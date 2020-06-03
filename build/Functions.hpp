@@ -5,9 +5,14 @@ class build
         file = "build\functions";
         class sell {};
         class pickup {};
-        class drop {};
         class reset{};
 		    class move {};
         class place {};
+
+        class doPlace {};
+        class setPlacedItemActions {};
+        class setPickedUpItemActions {};
+        class doCreate {};
+        class doPickup {};
     };
 };
