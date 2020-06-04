@@ -13,11 +13,6 @@ private _buildItem = (BULWARK_BUILDITEMS select _index);
 _shopPrice = (BULWARK_BUILDITEMS select _index) select 0;
 _shopName  = (BULWARK_BUILDITEMS select _index) select 1;
 _shopClass = (BULWARK_BUILDITEMS select _index) select 2;
-_shopDir   = (BULWARK_BUILDITEMS select _index) select 3;
-_VecRadius = (BULWARK_BUILDITEMS select _index) select 4;
-_explosive = (BULWARK_BUILDITEMS select _index) select 5;
-_invincible = (BULWARK_BUILDITEMS select _index) select 6;
-_vechAi    = (BULWARK_BUILDITEMS select _index) select 7;
 
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};
