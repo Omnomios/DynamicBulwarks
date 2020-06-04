@@ -18,11 +18,9 @@ if (_vechAi) then {
     _shopVehicle = _shopClass createVehicle [0,0,0];
 };
 
-//private _currentDir = getDir _shopVehicle;
-//_shopVehicle setDir (_currentDir + _shopDir);
-
 _shopVehicle setVariable ["shopPrice", _shopPrice, true];
 _shopVehicle setVariable ["Radius", _VecRadius, true];
+
 //Check if Explosive	
 if (_explosive == 1) then {
     _shopVehicle setDamage 0.9;

@@ -1,6 +1,6 @@
-params ["_player", "_object", "_dir", "_pos"];
+params ["_player", "_object", "_pos", "_dir"];
 
-if(isNil "_dir") then {
+if(isNil "_pos") then {
     [_object, _player] call BIS_fnc_attachToRelative;
 } else {
     _object attachTo [_player, _pos, "Pelvis"];

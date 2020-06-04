@@ -1,4 +1,19 @@
-params ["_object", "_caller"];
+params ["_object", "_objectPos", "_objectDir", "_objectUp", "_caller", "_drop"];
+
+if (!_drop) then {
+	_object enableSimulationGlobal false;
+	_object setPosATL _objectPos;
+	_object enableSimulationGlobal true;
+} else {
+	//_object setVehiclePosition [[_objectPos select 0, _objectPos select 1], [], 0, "CAN_COLLIDE"];
+ 	_object setPosATL [_objectPos select 0, _objectPos select 1, 0];
+};
+
+{
+	_object enableCollisionWith _x;
+} forEach playableUnits;
+
+_object setVectorDirAndUp [_objectDir, _objectUp];
 
 removeAllActions _caller;
 

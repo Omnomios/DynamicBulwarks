@@ -90,6 +90,8 @@ class CfgRemoteExec
 		class build_fnc_doCreate {};
 		class build_fnc_doPlace {};
 		class build_fnc_doPlaceLocal {};
+		class build_fnc_doMove {};
+		class build_fnc_doMoveLocal {};
 	};
 };
 

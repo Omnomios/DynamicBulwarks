@@ -14,5 +14,7 @@ class build
         class doPickup {};
         class doPickupLocal {};
         class doCreate {};
+        class doMove {};
+        class doMoveLocal {};
     };
 };
