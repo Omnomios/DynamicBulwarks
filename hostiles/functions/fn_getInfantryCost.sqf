@@ -125,8 +125,9 @@ _sortedInfantry = [+_infantryByCost, [], { _x select 1 }, "DESCEND"] call BIS_fn
     _armorFactor = _config call CWS_getArmorFactor;
     _roleFactor = _config call CWS_getRoleFactor;
     _waveCost = _x select 1;
+    private _weapons = [_config, "weapons"] call BIS_fnc_returnConfigEntry;
 
-	[format ["%1 | Role: %2 | Cost: %3 | Armor: %4 | RF: %5 | CF: %6 | AF: %7 | Wave: %8",
+	[format ["%1 | Role: %2 | Cost: %3 | Armor: %4 | RF: %5 | CF: %6 | AF: %7 | Wave: %8 | Weapons: %9",
         [str _displayName, 38] call shared_fnc_padString,
 		[str _role, 20] call shared_fnc_padString,
         [str _cost, 5] call shared_fnc_padString,
@@ -134,7 +135,8 @@ _sortedInfantry = [+_infantryByCost, [], { _x select 1 }, "DESCEND"] call BIS_fn
 		[str _roleFactor, 6] call shared_fnc_padString,
         [str _costFactor, 7] call shared_fnc_padString,
         [str _armorFactor, 6] call shared_fnc_padString,
-        [str _waveCost, 6] call shared_fnc_padString
+        [str _waveCost, 6] call shared_fnc_padString,
+        _weapons
         ],
         "INFDEBUG"] call shared_fnc_log;
 } forEach _sortedInfantry;

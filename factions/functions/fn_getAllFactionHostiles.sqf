@@ -25,9 +25,20 @@ private _configArray = "([_x,'faction'] call BIS_fnc_returnConfigEntry) == _fact
                 case ("CAManBase" in _parents): 
                 {
                     private _role =  [_x,"role"] call BIS_fnc_returnConfigEntry;
-                    //probably need more filter, some unarmed units still get through | Using respawnWeapons config entry should give more reliable results.
                     if !(_role in ["Crewman","Civilian","Crew","Unarmed","Default"]) then {
-                    _allInfantry pushBack _configName
+                        private _weapons = [_x, "weapons"] call BIS_fnc_returnConfigEntry;
+                        private _weaponCount = count _weapons;
+                        if ("Throw" in _weapons) then {
+                            _weaponCount = _weaponCount - 1;
+                        };
+
+                        if ("Put" in _weapons) then {
+                            _weaponCount = _weaponCount - 1;
+                        };
+
+                        if(_weaponCount > 0) then {
+                            _allInfantry pushBack _configName
+                        };
                     };
                 };
                 case ("LandVehicle" in _parents): {_allLandVehicles pushBack _configName;};
