@@ -7,16 +7,12 @@
 **/
 
 _index = lbCurSel 1500;
-shopVehic = objNull;
+private _shopVehic = objNull;
+private _buildItem = (BULWARK_BUILDITEMS select _index);
 
 _shopPrice = (BULWARK_BUILDITEMS select _index) select 0;
 _shopName  = (BULWARK_BUILDITEMS select _index) select 1;
 _shopClass = (BULWARK_BUILDITEMS select _index) select 2;
-_shopDir   = (BULWARK_BUILDITEMS select _index) select 3;
-_VecRadius = (BULWARK_BUILDITEMS select _index) select 4;
-_explosive = (BULWARK_BUILDITEMS select _index) select 5;
-_invincible = (BULWARK_BUILDITEMS select _index) select 6;
-_vechAi    = (BULWARK_BUILDITEMS select _index) select 7;
 
 // Script was passed an invalid number
 if(_shopClass == "") exitWith {};
@@ -24,23 +20,7 @@ if(_shopClass == "") exitWith {};
 private _killPoints = [player] call killPoints_fnc_get;
 if(_killPoints >= _shopPrice && !(player getVariable "buildItemHeld")) then {
     [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
-    if (_vechAi) then {
-        _vechWithAi = [[0,0,300], 0, _shopClass, west] call BIS_fnc_spawnVehicle;
-        shopVehic = _vechWithAi select 0;
-    }else{
-        shopVehic = _shopClass createVehicle [0,0,0];
-    };
-    shopVehic setVariable ["shopPrice", _shopPrice, true];
-    shopVehic setVariable ["Radius", _VecRadius, true];
-		//Check if Explosive	
-		if (_explosive == 1) then {
-		shopVehic setDamage 0.9;
-		shopVehic addEventHandler ["Killed", killPoints_fnc_hitBoom];	
-		};
-		//check if invincible
-		if (_invincible == 1) then {
-		shopVehic allowDamage false;
-		};
+    [player, _buildItem] remoteExec ["build_fnc_doCreate", 2];
     objPurchase = true;
 } else {
     if(_killPoints < _shopPrice) then {
@@ -54,18 +34,6 @@ if(_killPoints >= _shopPrice && !(player getVariable "buildItemHeld")) then {
 
 sleep 0.1;
 
-
-
-
-
 if (objPurchase) then {
     closeDialog 0;
-
-    // If it's a container, make sure it's empty
-    clearItemCargoGlobal shopVehic;
-    clearWeaponCargoGlobal shopVehic;
-    clearMagazineCargoGlobal shopVehic;
-    clearBackpackCargoGlobal shopVehic;
-
-	[shopVehic, ShopCaller, [0,_VecRadius + 1.5,0.02], _shopDir] call build_fnc_pickup;
 };
