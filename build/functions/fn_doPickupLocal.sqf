@@ -26,3 +26,6 @@ _player addAction [
 	_object
 ];
 
+[_player, "build_fnc_place", [_object, _player, true]] call build_fnc_registerHeldObject;
+
+

@@ -62,7 +62,7 @@ if(BULWARK_MEDIKITS > 0) then {
 format ["Configuring Bulwark at Location: %1 City: %2", bulwarkRoomPos, bulwarkCity] call shared_fnc_log;
 
 //Add actions to Bulwark Box
-[bulwarkBox, ["<t color='#00ffff'>" + "Pickup", "bulwark\moveBox.sqf","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
+[bulwarkBox, ["<t color='#00ffff'>" + "Pickup", { _this call bulwark_fnc_moveBox; },"",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 [bulwarkBox, ["<t color='#00ff00'>" + "Shop", "[] spawn bulwark_fnc_purchaseGui; ShopCaller = _this select 1","",1.5,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 [bulwarkBox, ["<t color='#ff0000'>" + "Heal Yourself: 500p", "
 	_player = _this select 1;

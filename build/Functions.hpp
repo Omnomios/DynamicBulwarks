@@ -16,5 +16,10 @@ class build
         class doCreate {};
         class doMove {};
         class doMoveLocal {};
+
+        class isHoldingObject {};
+        class dropHeldObject {};
+        class registerHeldObject {};
+        class unregisterHeldObject {};
     };
 };

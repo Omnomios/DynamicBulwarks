@@ -16,5 +16,8 @@ class bulwark
 
         class getMedikitClass {};
         class getFAKClass {};
+
+        class moveBox {};
+        class dropBox {};
     };
 };

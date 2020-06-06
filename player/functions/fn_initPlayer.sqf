@@ -9,7 +9,11 @@ waitUntil {!isNil "gameStarted"};
 
 "Initializing player" call shared_fnc_log;
 
-//Make player immune to fall damage / immune to all damage while incapacitated / immune with a medikit
+// Damage handling:
+// * Make player immune to fall damage
+// * Make player immune to all damage while incapacitated
+// * Make player immune if they've used the instant-revive with a medikit
+// * Make player drop any held items if they are incapacitated
 player removeAllEventHandlers "HandleDamage";
 player addEventHandler ["HandleDamage", {
     params ["_unit", "_selection", "_damage", "_source", "_projectile", "_hitIndex", "_instigator", "_hitPoint"];
@@ -26,6 +30,13 @@ player addEventHandler ["HandleDamage", {
         _soakDamage = true;
     } else {
         if (_damage + damage player >= 1) then {
+            
+            // Drop any held objects
+            // REVIEW: This doesn't *always* mean the player is going to go down
+            // I don't think.  
+            player call build_fnc_dropHeldObject;
+
+            // See if we can instant-revive
             private _medikit = call CWS_GetMedikitEquivalent;
             if (!isNil "_medikit") then {
                 format ["Instant revive by medikit for player %1", player] call shared_fnc_log;

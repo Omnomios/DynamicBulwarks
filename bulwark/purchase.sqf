@@ -18,7 +18,7 @@ _shopClass = (BULWARK_BUILDITEMS select _index) select 2;
 if(_shopClass == "") exitWith {};
 
 private _killPoints = [player] call killPoints_fnc_get;
-if(_killPoints >= _shopPrice && !(player getVariable "buildItemHeld")) then {
+if(_killPoints >= _shopPrice && !(player call build_fnc_isHoldingObject)) then {
     [player, _shopPrice] remoteExec ["killPoints_fnc_spend", 2];
     [player, _buildItem] remoteExec ["build_fnc_doCreate", 2];
     objPurchase = true;

@@ -16,13 +16,13 @@ if (!_drop) then {
 _object setVectorDirAndUp [_objectDir, _objectUp];
 
 removeAllActions _caller;
+_caller call build_fnc_unregisterHeldObject;
 
 _object addAction [
 	'<t color="#ff0000">Remove Object</t>',
 	'[_this select 0, _this select 1] call build_fnc_sell;',
 	'', 1, false, false, 'true', 'true', 5
 ];
-
 
 _object addAction [
 	'<t color="#00ffff">Move Up</t>',
