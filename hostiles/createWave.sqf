@@ -32,8 +32,7 @@ DBW_determineAndSpawnIfVehicleWave = {
 	};
 
 	if ((attkWave >= ARMOUR_START_WAVE && (floor random ArmourChance) == 0) || (attkWave >= ARMOUR_START_WAVE && wavesSinceArmour >= ArmourMaxSince)) then {
-		private _budget = attkWave call hostiles_fnc_getVehicleBudgetForWave;
-		private _vehiclesToSpawnWithCosts = [HOSTILE_ARMOUR_COSTS, _budget] call hostiles_fnc_getVehiclesWithBudget;
+		private _vehiclesToSpawnWithCosts = attkWave call hostiles_fnc_getVehiclesForWave;
 		private _vehiclesToSpawn = [];
 		{
 			_vehiclesToSpawn pushBack (_x select 0);
@@ -83,7 +82,7 @@ DBW_getHostileAmount = { //determines how many units need to be spawned
 
 CWS_getHostileScoreMultiplier = {
 	params ["_cost"];
-	private _offset = (_cost - 1) / (INFANTRY_COST_SPAN - 1);
+	private _offset = (_cost - 1) / (INFANTRY_COST_CAP - 1);
 	HOSTILE_INFANTRY_POINT_SCORE + _offset;
 };
 

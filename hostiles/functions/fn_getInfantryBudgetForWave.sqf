@@ -1,6 +1,6 @@
 params ["_wave", "_players"];
 
-private _baseBudget = HOSTILE_MULTIPLIER * _wave;
+private _baseBudget = HOSTILE_MULTIPLIER * _wave * INFANTRY_COST_BUDGET_PER_WAVE;
 private _playerCountMultiplier = _players * HOSTILE_TEAM_MULTIPLIER;
 private _budget = 1 max (_baseBudget * _playerCountMultiplier);
 

@@ -88,7 +88,7 @@ foreach _infantryClasses;
         0;
     } else {
         // Otherwise, normalize them.
-        (_rawWaveCost - _lowestCost) / (_highestCost -_lowestCost) * (INFANTRY_COST_SPAN - 1);
+        (_rawWaveCost - _lowestCost) / (_highestCost -_lowestCost) * (INFANTRY_COST_CAP - 1);
     };
     private _normalizedWaveCost = 1 + _normalizationOffset;
 
@@ -150,12 +150,14 @@ foreach _uniqueRoles;
 for "_x" from 1 to 30 do {
     private _waveBudget1 = [_x, 1] call hostiles_fnc_getInfantryBudgetForWave;
     private _waveBudget2 = [_x, 2] call hostiles_fnc_getInfantryBudgetForWave;
-
-    [format ["Wave: %1  1 Player: %2  2 Players: %3", 
+    private _waveWindow = [1, INFANTRY_COST_CAP, INFANTRY_COST_WAVE_CAP, INFANTRY_COST_WINDOW_SIZE, _x] call hostiles_fnc_getCostWindowForWave;
+    [format ["Wave: %1  1 Player: %2  2 Players: %3  MinCost: %4 MaxCost: %5", 
         [str _x, 3] call shared_fnc_padString,
         [str _waveBudget1, 3] call shared_fnc_padString,
-        [str _waveBudget2, 3] call shared_fnc_padString],
-         "INFDEBUG"] call shared_fnc_log;
+        [str _waveBudget2, 3] call shared_fnc_padString,
+        [str (_waveWindow select 0), 3] call shared_fnc_padString,
+        [str (_waveWindow select 1), 3] call shared_fnc_padString],
+        "INFDEBUG"] call shared_fnc_log;
 };
 
 _infantryClassesByCost = [];

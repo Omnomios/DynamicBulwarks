@@ -2,18 +2,21 @@ params ["_wave"];
 
 private _budget = [_wave, (playersNumber west)] call hostiles_fnc_getInfantryBudgetForWave;
 
-// The infantry cost cap is proportional to how close to the cap wave we are, with a
-// minimum cap of 1.
-private _infantryCostCap = 1 + _wave / INFANTRY_COST_WAVE_CAP * (INFANTRY_COST_SPAN - 1);
-format ["Infantry cost cap for wave: %1: %2", _wave, _infantryCostCap] call shared_fnc_log;
-private _infantryUnderCap = [];
+private _infantryInWindow = [];
+private _windowSizeModifier = 0.9;
 
-{
-    private _cost = _x select 1;
-    if(_cost <= _infantryCostCap) then {
-        _infantryUnderCap pushBack _x;
-    }
-} forEach HOSTILE_INFANTRY_COSTS;
+// This loop causes the window to expand in case we don't actually
+// find any units (some mod sets have poor unit cost distributions)
+while { count _infantryInWindow == 0 } do {
+    _windowSizeModifier = _windowSizeModifier + 0.1;
+    private _costWindow = [1, INFANTRY_COST_CAP, INFANTRY_COST_WAVE_CAP, INFANTRY_COST_WINDOW_SIZE * _windowSizeModifier, _wave] call hostiles_fnc_getCostWindowForWave;
+    {
+        private _cost = _x select 1;
+        if(_cost >= _costWindow select 0 && _cost <= _costWindow select 1) then {
+            _infantryInWindow pushBack _x;
+        }
+    } forEach HOSTILE_INFANTRY_COSTS;
+};
 
-private _infantryToSpawnWithCosts = [_infantryUnderCap, _budget] call hostiles_fnc_getVehiclesWithBudget;
+private _infantryToSpawnWithCosts = [_infantryInWindow, _budget] call hostiles_fnc_getUnitsWithBudget;
 _infantryToSpawnWithCosts;

@@ -64,7 +64,7 @@ if(count _vehicleClasses == 0) then {
             0;
         } else {
             // Otherwise, normalize them.
-            (_rawWaveCost - _lowestCost) / (_highestCost -_lowestCost) * (VEHICLE_COST_SPAN - 1);
+            (_rawWaveCost - _lowestCost) / (_highestCost -_lowestCost) * (VEHICLE_COST_CAP - 1);
         };
         private _normalizedWaveCost = 1 + _normalizationOffset;
 
