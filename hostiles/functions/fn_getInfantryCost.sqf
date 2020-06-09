@@ -9,30 +9,32 @@ params ["_infantryClasses"];
 CWS_getCostFactor = {
     params ["_cfg"];
     private _cost = [_cfg,"cost"] call BIS_fnc_returnConfigEntry;
-    log _cost;
+    //log _cost;
+    1;
 };
 
 CWS_getRoleFactor = {
     params ["_cfg"];
     private _roleCosts = [
-        ["MachineGunner", 5],
-        ["Grenadier", 4],
-        ["Marksman", 4],
-        ["MissileSpecialist", 3],
-        ["Sapper", 3],
-        ["CombatLifeSaver", 3],
-        ["Rifleman", 2],
-        ["SpecialOperative", 2],
-        ["Assistant", 1],
-        ["RadioOperator", 1]
+        ["MachineGunner", 17],
+        ["Grenadier", 16],
+        ["Marksman", 16],
+        ["MissileSpecialist", 15],
+        ["Sapper", 15],
+        ["CombatLifeSaver", 15],
+        ["Rifleman", 15],
+        ["SpecialOperative", 15],
+        ["Assistant", 13],
+        ["RadioOperator", 13]
     ];
 
     private _role = [_cfg,"role"] call BIS_fnc_returnConfigEntry;
     _index = _roleCosts findIf { (_x select 0) == _role };
-    (_roleCosts select _index) select 1;
+    private _roleCost = (_roleCosts select _index) select 1;
+    _roleCost / 20;
 };
 
-CWS_getArmorFactor = {
+CWS_GetCombinedArmor = {
     params ["_cfg"];
     private _linkedItemsArr = [_cfg,"respawnLinkedItems"] call BIS_fnc_returnConfigEntry;
     //if item has armor values extract that info as well and combine to single armor rating value for the unit
@@ -47,6 +49,30 @@ CWS_getArmorFactor = {
             } forEach _hitpointProtection;
         };
     } forEach _linkedItemsArr;
+
+    private _unitLinkedUniformClass = getText (_cfg >> "uniformClass");
+    private _unitUniformClass = getText (configFile >> "CfgWeapons" >> _unitLinkedUniformClass >> "ItemInfo" >> "uniformClass");
+    //[format ["UniformClass: %1  UnitUniformClass: %2", _unitLinkedUniformClass, _unitUniformClass], "INFDEBUG"] call shared_fnc_log;
+    
+    if(_unitUniformClass != "") then {
+        private _unitHitpoints = configFile >> "CfgVehicles" >> _unitUniformClass >> "HitPoints";
+        private _allHitpointLocations = _unitHitpoints call BIS_fnc_returnChildren;
+        {
+            private _armorValue = getNumber (_x >> "armor");
+            //[format ["Adding %1 hp from uniform %2", _armorValue, _unitLinkedUniformClass], "INFDEBUG"] call shared_fnc_log;
+            if (! isNil "_armorValue") then {
+                if (_armorValue < 1000) then {
+                    _armor = _armor + _armorValue;
+                };
+            };
+        } forEach _allHitpointLocations;
+    };
+    _armor;
+};
+
+CWS_getArmorFactor = {
+    params ["_cfg"];
+    private _armor = _cfg call CWS_GetCombinedArmor;
     if(_armor == 0) then {
         1;
     } else {
@@ -104,19 +130,8 @@ _sortedInfantry = [+_infantryByCost, [], { _x select 1 }, "DESCEND"] call BIS_fn
 	private _role = [_config,"role"] call BIS_fnc_returnConfigEntry;
 	private _cost = [_config,"cost"] call BIS_fnc_returnConfigEntry;
 	[_config,"threat"] call BIS_fnc_returnConfigEntry params ["_threatSoft","_threatArmor","_threatAir"];
-	private _linkedItemsArr = [_config,"respawnLinkedItems"] call BIS_fnc_returnConfigEntry;
     //if item has armor values extract that info as well and combine to single armor rating value for the unit
-    private _armor = 0;
-	{
-        private _config = configfile >> "CfgWeapons" >> _x;
-        private _hitpointProtection = [_config >> "ItemInfo" >> "HitpointsProtectionInfo",0] call BIS_fnc_returnChildren;
-        if (count _hitpointProtection != 0) then {
-            {
-                private _armorValue = [_x,"armor",0] call BIS_fnc_returnConfigEntry;
-                _armor = _armor + _armorValue;
-            } forEach _hitpointProtection;
-        };
-    } forEach _linkedItemsArr;
+    private _armor = _config call CWS_GetCombinedArmor;
 
     _uniqueRoles pushBackUnique _role;
 
