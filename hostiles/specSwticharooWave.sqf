@@ -34,7 +34,7 @@ for ("_i") from 1 to ((floor attkWave / 2) + (floor count allPlayers * 1.5)) do 
 	_unit setSkill ["aimingShake", 0.05];
 	_unit setSkill ["spotTime", 0.05];
 	_unit addEventHandler ["Hit", killPoints_fnc_hit];
-	_unit addEventHandler ["Killed", killPoints_fnc_killed];
+	_unit addEventHandler ["Killed", hostiles_fnc_eventKilled];
     _unit setVariable ["killPointMulti", HOSTILE_LEVEL_1_POINT_SCORE];
 	removeAllAssignedItems _unit;
 	mainZeus addCuratorEditableObjects [[_unit], true];

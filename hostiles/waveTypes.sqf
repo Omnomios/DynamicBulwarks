@@ -126,7 +126,7 @@ DBW_DEMINEWAVE = {
 		_leadah addEventHandler ["Hit", killPoints_fnc_hit];
 		_leadah addEventHandler ["Killed", {
 			params ["_unit", "_killer", "_instigator", "_useEffects"];
-			call killPoints_fnc_killed;
+			[_unit, _killer, _instigator] call killPoints_fnc_killed;
 			_scriptedCharge = "HandGrenade" createVehicle (getPos _unit);
 			_scriptedCharge setdamage 1;
 			deleteVehicle _unit;

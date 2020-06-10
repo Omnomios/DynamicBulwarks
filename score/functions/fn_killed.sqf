@@ -6,9 +6,9 @@
 *  Domain: Event
 **/
 
+params ["_unit", "_killer", "_instigator"];
+
 if (isServer) then {
-    _unit = _this select 0;
-    _instigator = _this select 2;
     if (isPlayer _instigator) then {
         _kilPointMulti = _unit getVariable "killPointMulti";
         [_instigator, (SCORE_KILL * _kilPointMulti)] call killPoints_fnc_add;

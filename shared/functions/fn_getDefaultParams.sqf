@@ -92,6 +92,7 @@ private _defaultBulwarkParams = [
 		BULWARK_PARAM_BODY_CLEANUP,
 		"Dead bodies remain for this many waves", PARAM_CATEGORY_WAVE, PARAM_TYPE_NUMBER, false,
 		[
+			[-1, "Immediately removed", -1],
 			[0, "Until the next round", 0],
 			[1, "1 round", 1],
 			[2, "2 rounds", 2]

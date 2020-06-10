@@ -140,7 +140,7 @@ DBW_setSkill = {	//WIP - setSkill general,reloadSpeed,spotDistance could be used
 DBW_initUnit = {
 	params["_unit","_killpointsMulti"];
 	_unit addEventHandler ["Hit", killPoints_fnc_hit];
-	_unit addEventHandler ["Killed", killPoints_fnc_killed];
+	_unit addEventHandler ["Killed", hostiles_fnc_eventKilled];
 	removeAllAssignedItems _unit;
 	_unit setVariable ["points", []];
 	_unit setVariable ["killPointMulti", _killpointsMulti];

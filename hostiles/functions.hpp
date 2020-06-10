@@ -6,6 +6,8 @@ class hostiles
         class suiExplode{};
         class addUnitToWaveForCleanup {};
         class cleanupWaveUnits {};
+        
+        class eventKilled {};
 
         class getVehicleCosts {};
         class getVehicleBudgetForWave {};
