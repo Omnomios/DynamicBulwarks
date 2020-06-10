@@ -123,10 +123,6 @@ if(count _hits > 0) then {
 		};
 	};
 
-	_tablePos = [_furthestPos, -0.5, _furthestAngle] call BIS_fnc_relPos;
-	table = createVehicle ["Land_TableSmall_01_f", [0,0,0], [], 0, "CAN_COLLIDE"];
-	table setPos [_tablePos select 0, _tablePos select 1, _boxPos select 2];
-	table setDir _furthestDir-90;
 	bulwarkBox setDir _objDir;
 };
 
