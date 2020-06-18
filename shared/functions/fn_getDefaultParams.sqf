@@ -598,10 +598,23 @@ private _defaultBulwarkParams = [
 			[1, "Medikit", 1],
 			[2, "FAK or Medikit", 2]
 		],
-		2,
+		0,
 		"The items which are required to revive another player"
-		// TODO 	function = "bis_fnc_paramReviveRequiredItems";
+		// bis_fnc_paramReviveRequiredItems;
 	],
+	[
+		BULWARK_PARAM_REVIVE_UNCONSCIOUS_MODE,
+		"Revive unconsciousness mode", PARAM_CATEGORY_PLAYER, PARAM_TYPE_NUMBER, false,
+		[
+			[0, "Basic", 0],
+			[1, "Advanced", 1],
+			[2, "Realistic", 2]
+		],
+		0,
+		"Determines how harsh damage calculations are"
+		// BIS_fnc_paramReviveUnconsciousStateMode
+	],
+
 	[
 		BULWARK_PARAM_RESPAWN_TICKETS,
 		"Respawn tickets", PARAM_CATEGORY_PLAYER, PARAM_TYPE_NUMBER, false,

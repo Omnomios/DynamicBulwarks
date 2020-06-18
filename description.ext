@@ -13,6 +13,7 @@ respawnOnStart = -1;
 respawnDialog = 0;
 respawnTemplates[] = {"Base"};
 ReviveMode = 1;
+ReviveUnconsciousStateMode = 0;
 ReviveRequiredItems = 0;
 ReviveRequiredTrait = 0;
 ReviveBleedOutDelay = 120;

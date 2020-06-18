@@ -61,3 +61,6 @@ VEHICLE_COST_CAP = 5;
 VEHICLE_COST_WAVE_CAP = ARMOUR_START_WAVE + 10;
 VEHICLE_COST_WINDOW_SIZE = 0.15;
 VEHICLE_COST_BUDGET_PER_WAVE = 1; // The base amount of budget granted per wave
+
+bis_reviveParam_unconsciousStateMode = (BULWARK_PARAM_REVIVE_UNCONSCIOUS_MODE call shared_fnc_getCurrentParamValue);
+bis_reviveParam_requiredItems = (BULWARK_PARAM_REVIVE_ITEMS call shared_fnc_getCurrentParamValue);

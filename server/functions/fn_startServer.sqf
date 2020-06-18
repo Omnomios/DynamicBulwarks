@@ -21,6 +21,7 @@ private _hostileFunctions = [ //could make more efficent init phase with loading
 
 call server_fnc_setParams;
 
+call BIS_fnc_reviveInit;
 call server_fnc_setLocations;
 
 call compile preprocessFileLineNumbers  "presets\init_preset.sqf";

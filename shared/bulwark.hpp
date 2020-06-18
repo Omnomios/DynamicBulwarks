@@ -52,6 +52,7 @@
 #define BULWARK_PARAM_LOOT_ATTACHMENTS          46
 #define BULWARK_PARAM_LOOT_EXPLOSIVES           47
 #define BULWARK_PARAM_LOOT_CONSTRUCTS           48
+#define BULWARK_PARAM_REVIVE_UNCONSCIOUS_MODE   49
 
 // These are known parameter values, and should be named <param name>_<value name>
 // WARNING: If you change these it could mess up the interpretation of people's saved parameters.
