@@ -1,13 +1,25 @@
 // This function is called once when the game starts (after the lobby)
 
+"Player waiting for game start" call shared_fnc_log;
+waitUntil {!isNil "gameStarted"};
+
 player setDamage 0;
 
 startLoadingScreen ["Entering defense perimeter..."];
 
-"Player waiting for game start" call shared_fnc_log;
-waitUntil {!isNil "gameStarted"};
-
 "Initializing player" call shared_fnc_log;
+
+private _isCurator = getAssignedCuratorLogic player;
+if (!isNull _isCurator) then {
+    private _curatorUnit = (createGrouP sideLogic) createUnit ["modulecurator_f",[0,0,0],[],0,"CAN_COLLIDE"];
+    {_curatorUnit setCuratorCoef [_x,0];} forEach ["place","edit","delete","destroy","group","synchronize"];
+    player setVariable ["curatorUnit", _curatorUnit];
+    format ["Player %1 is Zeus", player] call shared_fnc_log;
+    player addEventHandler ["Respawn", {
+    	params ["_unit", "_corpse"];
+        player call player_fnc_reassignCurator;
+    }];
+};
 
 // Damage handling:
 // * Make player immune to fall damage

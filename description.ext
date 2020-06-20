@@ -79,7 +79,7 @@ class CfgRemoteExec
 		class lobby_fnc_startGame {};
 		class server_fnc_startServer {};
 		class server_fnc_registerPlayer {};
-		class player_fnc_startPlayer {};
+		class player_fnc_reassignCurator {};
 
 		class killPoints_fnc_change {};
 		class killPoints_fnc_add {};

@@ -31,3 +31,5 @@ player addEventHandler ['Respawn',{
 
 // Player is immune to damage until the game starts
 player addEventHandler ["HandleDamage", { 0 }];
+
+call player_fnc_initPlayer;

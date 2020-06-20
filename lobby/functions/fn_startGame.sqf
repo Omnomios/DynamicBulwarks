@@ -9,7 +9,6 @@ if (count ([BULWARK_PARAM_FILTER_FACTIONS] call shared_fnc_getCurrentParamValue)
     // Start the server
     remoteExec ["server_fnc_startServer", 2];
 
-    // Start the players.  This will also get run every
-    // time a player joins.
-    remoteExec ["player_fnc_startPlayer", 0, true];
+    // Players are already waiting for the game to start by waiting on the 
+    // gameStarted variable
 };
