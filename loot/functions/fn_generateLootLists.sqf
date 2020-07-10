@@ -8,266 +8,97 @@
 
 #include "..\..\shared\bulwark.hpp"
 
-//check if item has modTag
-/*Exclude DLC content or limit to mod*/
-_dlcParameter = BULWARK_PARAM_FILTER_DLC call shared_fnc_getCurrentParamValue;
-//"enoch","Contact"
-switch (_dlcParameter) do {
-	case 0: {dlcCheck = [];};
-	case 1: {dlcCheck = ["enoch","Contact"];};
-};
+_factions = "BLU_F"; //BULWARK_PARAM_FACTIONS call shared_fnc_getCurrentParamValue;
+//filter out infantry and by faction
+_unitConfigs = 	"
+	[_x,'simulation'] call BIS_fnc_returnConfigEntry == 'soldier' &&
+	[_x,'faction'] call BIS_fnc_returnConfigEntry in _factions
+" configClasses (configFile >> "CfgVehicles");
+_filteredUnitConfigs = [_unitConfigs] call loot_fnc_filter;
 
-DBW_filter = {
-	params ["_item"];
-	_filter = false;
-	if (count modTag != 0) then {
-		{
-		_className = configName (_item);
-		if ((toUpper _x) in (toUpper _className splitString "_")) then {_filter = true;};
-		} forEach modTag;
-	}
-	else
-	{
-		_filter = true;
-	};
-	if (count dlcCheck != 0) then {
-		{
-		if (gettext (_item >> "DLC") == _x) then {_filter = false;};
-		} forEach dlcCheck;
-	};
-	_filter //return bool
-};
-
-_hats = [];
-_uniforms = [];
-_vests = [];
-_primaries = [];
-_secondaries = [];
-_launchers = [];
-_optics = [];
-_railAttach = [];
-_muzzleAttach = [];
-_bipods = [];
-_items = [];
-_nvgs = [];
-_mines = [];
-_backpacks = [];
-_disassembledStaticGuns = [];
-_disassembledAutonomousGuns = [];
-_disassembledDrones = [];
-_disassembledSupports = [];
-_glasses = [];
-_faces = [];
-_grenades = [];
-_charges = [];
-
-if (LOOT_WHITELIST_MODE != 1) then {
-	_count =  count (configFile >> "CfgWeapons");
-	for "_x" from 0 to (_count-1) do {
-		_weap = ((configFile >> "CfgWeapons") select _x);
-		if (isClass _weap) then {
-			if (getnumber (_weap >> "scope") == 2) then {
-				_filter = [_weap] call DBW_filter;
-				if (_filter) then {
-					if (isClass (_weap >> "ItemInfo")) then {
-						_infoType = (getnumber (_weap >> "ItemInfo" >> "Type"));
-						switch (_infoType) do {
-							case 101: {_muzzleAttach = _muzzleAttach + [configName _weap];};
-							case 302: {_bipods = _bipods + [configName _weap];};
-							case 605: {_hats = _hats + [configName _weap];};
-							case 801: {_uniforms = _uniforms + [configName _weap];};
-							case 701: {_vests = _vests + [configName _weap];};
-							case 201: {_optics = _optics + [configName _weap];};
-							case 301: {_railAttach = _railAttach + [configName _weap];};
-							case 601: {_items = _items + [configName _weap];};
-							case 620: {_items = _items + [configName _weap];}; // Toolkit
-							case 619: {_items = _items + [configName _weap];}; // Medikit
-							case 621: {_items = _items + [configName _weap];}; // UAV terminal
-							case 616: {_nvgs = _nvgs + [configName _weap];}; // NVG
-							case 401: {_items = _items + [configName _weap];}; // First Aid Kit
-						};
-					};
-					if (!isClass (_weap >> "LinkedItems")) then {
-						if (count(getarray (_weap >> "magazines")) !=0 ) then {
-							_type = getnumber (_weap >> "type");
-							switch (_type) do {
-								case 1: {_primaries = _primaries + [configName _weap];};
-								case 2: {_secondaries = _secondaries + [configName _weap];};
-								case 4: {_launchers = _launchers + [configName _weap];};
-							};
-						};
-					};
-					if ( isClass(_weap >> "LinkedItems" >> "LinkedItemsUnder") && !isClass(_weap >> "LinkedItems" >> "LinkedItemsAcc") && !isClass(_weap >> "LinkedItems" >> "LinkedItemsMuzzle") && !isClass(_weap >> "LinkedItems" >> "LinkedItemsOptic")) then {
-						if (count(getarray (_weap >> "magazines")) !=0 ) then {
-							_primaries = _primaries + [configName _weap];
-						};
-					};
-				};
-			};
-		};
-	};
-
-	_count =  count (configFile >> "CfgVehicles");
-	for "_x" from 0 to (_count-1) do {
-		_item=((configFile >> "CfgVehicles") select _x);
-		if (isClass _item) then {
-			if (getnumber (_item >> "scope") == 2) then {
-				_filter = [_item] call DBW_filter;
-				if (_filter) then {
-					if (gettext (_item >> "vehicleClass") == "Backpacks") then {
-						if (isClass (_item >> "assembleInfo")) then {
-							// Guns and drone guns which can be assembled require two items - the gun itself and
-							// a mount for the gun.  The required mount must exactly match the gun. This item can be
-							// found in the assemblyInfo >> disassemblyTo array of the item's assembleInfo >> assembleTo
-							private _assembleTo = getText (_item >> "assembleInfo" >> "assembleTo");
-
-							// If it doesn't assemble into anything, it's a bipod.  These should only be dropped as part
-							// of a set of dissassembled guns or drone guns.
-							if (_assembleTo != "") then {
-								// Only if this assembles into an item for our side should we include it.
-								// * Prevents autonomous guns which are enemies from being loot
-								// * Reduces the sheer number of essentially duplicate backpack items
-								private _itemFaction = getText (_item >> "faction");
-								private _factionSide = getNumber (configFile >> "CfgFactionClasses" >> _itemFaction >> "side");
-								
-								if (_factionSide == 1) then {
-									private _assembledClass = configFile >> "CfgVehicles" >> _assembleTo;
-									// Yes, the config name is called "dissasembleTo".  You aren't crazy...
-									private _disassembleTo = getArray (_assembledClass >> "assembleInfo" >> "dissasembleTo");
-									//[format ["Item %1 assembles to %2 and requires %3", _item, _assembleTo, _disassembleTo], "LIST"] call shared_fnc_log;
-									if (getNumber (configFile >> "CfgVehicles" >> _assembleTo >> "isUAV") == 1) then {
-											if (getNumber (configFile >> "CfgVehicles" >> _assembleTo >> "hasDriver") == 1) then {
-												// This is a UAV/UGV
-												_disassembledDrones = _disassembledDrones + [configName _item];
-											} else {
-												// This is an autonomous gun
-												_disassembledAutonomousGuns = _disassembledAutonomousGuns + [configName _item];
-												{
-													if (_x != configName _item) then {
-														//[format ["Requiring support %1", _x], "LIST"] call shared_fnc_log;
-														_disassembledSupports pushBackUnique _x;
-													};
-												} foreach _disassembleTo;
-											};
-									} else {
-										// This is a static gun
-										_disassembledStaticGuns = _disassembledStaticGuns + [configName _item];
-										{
-											if (_x != configName _item) then {
-												//[format ["Requiring support %1", _x], "LIST"] call shared_fnc_log;
-												_disassembledSupports pushBackUnique _x;
-											};
-										} foreach _disassembleTo;
-									};
-								};
-							};
-						} else {
-							_backpacks = _backpacks + [configname _item];
-						};
-					};
-				};
-			};
-		};
-	};
-
-	_count =  count (configFile >> "CfgGlasses");
-	for "_x" from 0 to (_count-1) do {
-		_item=((configFile >> "CfgGlasses") select _x);
-		if (isClass _item) then {
-			if (getnumber (_item >> "scope") == 2) then {
-				_filter = [_item] call DBW_filter;
-				if (_filter) then {
-					_glasses = _glasses + [configName _item];
-				};
-			};
-		};
-	};
-	_count =  count (configFile >> "CfgFaces" >> "Man_A3");
-	for "_x" from 0 to (_count-1) do {
-		_item=((configFile >> "CfgFaces" >> "Man_A3") select _x);
-		_filter = [_item] call DBW_filter;
-		if (_filter) then {
-			if (isClass _item) then {_faces = _faces + [configName _item];};
-		};
-	};
-
-	_count =  count (configFile >> "CfgMagazines");
-	for "_x" from 0 to (_count-1) do {
-		_item=((configFile >> "CfgMagazines") select _x);
-		if (isClass _item) then {
-			if(getNumber (_item >> "value") == 5) then {
-				_filter = [_item] call DBW_filter;
-				if (_filter) then {
-					if(["mine", getText (_item >> "displayName")] call BIS_fnc_inString) then {
-						_mines = _mines + [configName _item];
-					};
-				};
-			};
-		};
-	};
-
-	_count =  count (configFile >> "CfgMagazines");
-	_chargeType = getText (configfile >> "CfgMagazines" >> "DemoCharge_Remote_Mag" >> "type");
-	for "_x" from 0 to (_count-1) do {
-	_item=((configFile >> "CfgMagazines") select _x);
-		if (isClass _item) then {
-			_filter = [_item] call DBW_filter;
-			if (_filter) then {
-				if (gettext (_item >> "type") == _chargeType && ["remote", configName _item] call BIS_fnc_inString) then {
-					_charges = _charges + [configName _item];
-				};
-			};
-		};
-	};
-
-	_count =  count (configFile >> "CfgMagazines");
-	for "_x" from 0 to (_count-1) do {
-		_item=((configFile >> "CfgMagazines") select _x);
-		if (isClass _item) then {
-			if(getNumber (_item >> "type") == 16 || getNumber (_item >> "type") == 256) then {
-				_filter = [_item] call DBW_filter;
-				if (_filter) then {
-					if(["grenade", getText (_item >> "displayName")] call BIS_fnc_inString && !(["smoke", getText (_item >> "displayName")] call BIS_fnc_inString)) then {
-						_grenades = _grenades + [configName _item];
-					};
-				};
-			};
-		};
-	};
-};
-
-List_Hats = [] + _hats;
-List_Uniforms = [] + _uniforms;
-List_Vests = [] + _vests;
-List_Backpacks = [] + _backpacks + _disassembledStaticGuns + _disassembledDrones + _disassembledAutonomousGuns + _disassembledSupports;
-List_Primaries = [] + _primaries;
-List_Secondaries = [] + _secondaries;
-List_Launchers = [] + _launchers;
-List_Optics = [] + _optics + _railAttach + _muzzleAttach + _bipods;
-List_Items = [] + _items + _nvgs + ['ItemGPS','ItemCompass','ItemMap', 'ItemWatch', 'ItemRadio'];
-List_Mines = [] + _mines;
-List_Glasses = [] + _glasses;
-List_Faces = [] + _faces;
-List_Grenades = [] + _grenades;
-List_Charges = [] + _charges;
-
-List_AllWeapons = List_Primaries + List_Secondaries + List_Launchers;
-List_AllClothes = List_Hats + List_Uniforms + List_Glasses;
-List_Sniper = [];
-List_Assault = [];
-List_SMG = [];
-List_MG = [];
-
+//grab all gear from the infantry configs
+_allItems = [];
 {
- 	_type = getText (configFile >> "CfgWeapons" >> _x >> "cursor");
-	switch (_type) do {
-		case "srifle": {List_Sniper append [_x];};
-		case "arifle": {List_Assault append [_x];};
-		case "smg": {List_SMG append [_x];};
-		case "sgun": {List_SMG append [_x];};	//shotguns included in SMG array since there aren't that many
-		case "mg": {List_MG append [_x];};
+	[[_x,"Items",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+	[[_x,"linkedItems",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+	[[_x,"magazines",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+	[[_x,"uniformClass",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+	[[_x,"weapons",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+	[[_x,"backpack",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+} forEach _filteredUnitConfigs;
+
+//sort items
+/*https://community.bistudio.com/wiki/BIS_fnc_itemType*/
+_List_MG = [];
+_List_Sniper = [];
+_List_SMG = [];
+_List_Shotgun = [];
+_List_Handgun = [];
+_List_Launcher = [];
+_List_Assault = [];
+_List_Grenades = [];
+_List_Explosives = [];
+_List_Uniforms = [];
+_List_Glasses = [];
+_List_Hats = [];
+_List_Vests = [];
+_list_Items = [];
+//backpacks,statics and so on
+_List_Backpacks = [];
+{
+	_x call BIS_fnc_itemType params ["_cat","_type"];
+	switch (_cat) do {
+		case "Weapon": {
+			switch (_type) do {
+				case "MachineGun": {_List_MG pushBack _x};
+				case "SniperRifle": {_List_Sniper pushBack _x};
+				case "SubmachineGun": {_List_SMG pushBack _x};
+				case "Shotgun": {_List_Shotgun pushBack _x};
+				case "Handgun": {_List_Handgun pushBack _x};
+				case "RocketLauncher";
+				case "MissileLauncher": {_List_Launcher pushBack _x};
+				case "Rifle";
+				case "AssaultRifle": {_List_Assault pushBack _x};
+				default {};
+			};
+		};
+		//magazines are spawned with rifles and from rifle config, only need grenades
+		case "Magazine": {
+			if (_type == "Grenade") then {
+				_List_Grenades pushBack _x;
+			};
+		};
+		case "Mine": {
+			_List_Explosives pushBack _x;
+		};
+		case "Item": {
+			_list_Items pushBack _x;
+		};
+		case "Equipment": {
+			switch (_type) do {
+				case "Glasses": {_List_Glasses pushback _x};
+				case "Headgear": {_List_Hats pushback _x};
+				case "Vest": {_List_Vests pushback _x};
+				case "Unform": {_List_Uniforms pushback _x};
+				case "Backpack": {_List_Backpacks pushback _x};
+				default {};
+			};
+		};
+		default {};
 	};
-} forEach List_AllWeapons;
+} forEach _allItems;
+//deal anything that might have gear in it or attachments on it
+_List_Backpacks = [_List_Backpacks] call loot_fnc_getEmptyBackpacks;
+_List_MG = [_List_MG] call loot_fnc_getBaseWeapons;
+_List_Sniper = [_List_Sniper] call loot_fnc_getBaseWeapons;
+_List_SMG = [_List_SMG] call loot_fnc_getBaseWeapons;
+_List_Shotgun = [_List_Shotgun] call loot_fnc_getBaseWeapons;
+_List_Handgun = [_List_Handgun] call loot_fnc_getBaseWeapons;
+_List_Launcher = [_List_Launcher] call loot_fnc_getBaseWeapons;
+_List_Assault = [_List_Assault] call loot_fnc_getBaseWeapons;
+//filter out backpack types
+[_List_Backpacks] call loot_fnc_sortBackpackTypes params ["_List_Backpacks","_List_DisassembledStaticGuns","_List_DisassembledAutonomousGuns","_List_DisassembledDrones","_List_DisassembledSupports"];
+//placeholder:
 /* Loot Spawn */
 if (LOOT_WHITELIST_MODE != 1) then {
     LOOT_APPAREL_POOL = [];
@@ -282,103 +113,55 @@ if (LOOT_WHITELIST_MODE != 1) then {
     LOOT_WEAPON_LAUNCHER_POOL = [];
 
     if (LOOT_CATEGORY_HATS in (BULWARK_PARAM_LOOT_WORN call shared_fnc_getCurrentParamValue)) then {
-        LOOT_APPAREL_POOL append _hats; 
+        LOOT_APPAREL_POOL append _List_Hats; 
     };
     if (LOOT_CATEGORY_UNIFORMS in (BULWARK_PARAM_LOOT_WORN call shared_fnc_getCurrentParamValue)) then {
-        LOOT_APPAREL_POOL append _uniforms; 
+        LOOT_APPAREL_POOL append _List_Uniforms; 
     };
     if (LOOT_CATEGORY_VESTS in (BULWARK_PARAM_LOOT_WORN call shared_fnc_getCurrentParamValue)) then {
-        LOOT_APPAREL_POOL append _vests;
+        LOOT_APPAREL_POOL append _List_Vests;
     };
     if (LOOT_CATEGORY_BACKPACKS in (BULWARK_PARAM_LOOT_WORN call shared_fnc_getCurrentParamValue)) then {
-        LOOT_STORAGE_POOL append _backpacks;
-    };
-    if (LOOT_CATEGORY_HATS in (BULWARK_PARAM_LOOT_WORN call shared_fnc_getCurrentParamValue)) then {
-        LOOT_APPAREL_POOL append _hats;
+        LOOT_STORAGE_POOL append _List_Backpacks;
     };
     if (LOOT_CATEGORY_GLASSES in (BULWARK_PARAM_LOOT_WORN call shared_fnc_getCurrentParamValue)) then {
-        LOOT_APPAREL_POOL append _glasses;
+        LOOT_APPAREL_POOL append _List_Glasses;
     };
-
-    if (LOOT_CATEGORY_NVGS in (BULWARK_PARAM_LOOT_WORN call shared_fnc_getCurrentParamValue)) then {
-        LOOT_ITEM_POOL append _nvgs;
-    };
-    if (LOOT_CATEGORY_MISC in (BULWARK_PARAM_LOOT_WORN call shared_fnc_getCurrentParamValue)) then {
-        LOOT_ITEM_POOL append _items;
-    };
-
-
 	if (LOOT_CATEGORY_SNIPER in (BULWARK_PARAM_LOOT_WEAPONS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_WEAPON_SNIPER_POOL append List_Sniper;
+        LOOT_WEAPON_SNIPER_POOL append _List_Sniper;
     };
 	if (LOOT_CATEGORY_ASSAULT in (BULWARK_PARAM_LOOT_WEAPONS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_WEAPON_ASSAULT_POOL append List_Assault;
+        LOOT_WEAPON_ASSAULT_POOL append _List_Assault;
     };
 	if (LOOT_CATEGORY_SMG in (BULWARK_PARAM_LOOT_WEAPONS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_WEAPON_SMG_POOL append List_SMG;
+        LOOT_WEAPON_SMG_POOL append _List_SMG;
     };
 	if (LOOT_CATEGORY_MG in (BULWARK_PARAM_LOOT_WEAPONS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_WEAPON_MG_POOL append List_MG;
+        LOOT_WEAPON_MG_POOL append _List_MG;
     };
+	//don't forget adding shotguns later
 	if (LOOT_CATEGORY_LAUNCHERS in (BULWARK_PARAM_LOOT_WEAPONS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_WEAPON_LAUNCHER_POOL append List_Launchers;
+        LOOT_WEAPON_LAUNCHER_POOL append _List_Launcher;
     };
 	if (LOOT_CATEGORY_HANDGUNS in (BULWARK_PARAM_LOOT_WEAPONS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_WEAPON_HANDGUN_POOL append List_Secondaries;
+        LOOT_WEAPON_HANDGUN_POOL append _List_Handgun;
     };
-
-
-    if (LOOT_CATEGORY_OPTICS in (BULWARK_PARAM_LOOT_ATTACHMENTS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_ITEM_POOL append _optics;
-    };
-    if (LOOT_CATEGORY_RAIL_ATTACHMENTS in (BULWARK_PARAM_LOOT_ATTACHMENTS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_ITEM_POOL append _railAttach;
-    };
-    if (LOOT_CATEGORY_MUZZLE_ATTACHMENTS in (BULWARK_PARAM_LOOT_ATTACHMENTS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_ITEM_POOL append _muzzleAttach;
-    };
-    if (LOOT_CATEGORY_BIPODS in (BULWARK_PARAM_LOOT_ATTACHMENTS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_ITEM_POOL append _bipods;
-    };
-
-
     if (LOOT_CATEGORY_MINES in (BULWARK_PARAM_LOOT_EXPLOSIVES call shared_fnc_getCurrentParamValue)) then {
-        LOOT_EXPLOSIVE_POOL append _mines;
+        LOOT_EXPLOSIVE_POOL append _List_Explosives;
     };
     if (LOOT_CATEGORY_GRENADES in (BULWARK_PARAM_LOOT_EXPLOSIVES call shared_fnc_getCurrentParamValue)) then {
-        LOOT_EXPLOSIVE_POOL append _grenades;
+        LOOT_EXPLOSIVE_POOL append _List_Grenades;
     };
-    if (LOOT_CATEGORY_EXPLOSIVES in (BULWARK_PARAM_LOOT_EXPLOSIVES call shared_fnc_getCurrentParamValue)) then {
-        LOOT_EXPLOSIVE_POOL append _charges;
-    };
-
-    _addSupports = false;
-    if (LOOT_CATEGORY_STATIC_GUNS in (BULWARK_PARAM_LOOT_CONSTRUCTS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_STORAGE_POOL append _disassembledStaticGuns;
-        _addSupports = true;
-    };
-    if (LOOT_CATEGORY_DRONE_GUNS in (BULWARK_PARAM_LOOT_CONSTRUCTS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_STORAGE_POOL append _disassembledAutonomousGuns;
-        _addSupports = true;
-    };
-    if (LOOT_CATEGORY_DRONES in (BULWARK_PARAM_LOOT_CONSTRUCTS call shared_fnc_getCurrentParamValue)) then {
-        LOOT_STORAGE_POOL append _disassembledDrones;
-    };
-
-    if(_addSupports) then {
-        LOOT_STORAGE_POOL append _disassembledSupports;
-    };
-
-    //LOOT_APPAREL_POOL   = List_AllClothes + List_Vests - LOOT_BLACKLIST;
+    //LOOT_APPAREL_POOL   = List_AllClothes + _List_Vests - LOOT_BLACKLIST;
     //LOOT_ITEM_POOL      = List_Optics + List_Items - LOOT_BLACKLIST;
-    //LOOT_EXPLOSIVE_POOL = List_Mines + List_Grenades + List_Charges - LOOT_BLACKLIST;
-    //LOOT_STORAGE_POOL   = List_Backpacks - LOOT_BLACKLIST;
-    //LOOT_WEAPON_MG_POOL = List_MG + LOOT_WHITELIST_WEAPON_MG - LOOT_BLACKLIST;
+    //LOOT_EXPLOSIVE_POOL = List_Mines + _List_Grenades + List_Charges - LOOT_BLACKLIST;
+    //LOOT_STORAGE_POOL   = _List_Backpacks - LOOT_BLACKLIST;
+    //LOOT_WEAPON_MG_POOL = _list_Items + LOOT_WHITELIST_WEAPON_MG - LOOT_BLACKLIST;
     //LOOT_WEAPON_HANDGUN_POOL = List_Secondaries + LOOT_WHITELIST_WEAPON_HANDGUN - LOOT_BLACKLIST;
-    //LOOT_WEAPON_SNIPER_POOL = List_Sniper + LOOT_WHITELIST_WEAPON_SNIPER - LOOT_BLACKLIST;
-    //LOOT_WEAPON_SMG_POOL = List_SMG + LOOT_WHITELIST_WEAPON_SMG - LOOT_BLACKLIST;
-    //LOOT_WEAPON_ASSAULT_POOL = List_Assault + LOOT_WHITELIST_WEAPON_ASSAULT - LOOT_BLACKLIST;
-    //LOOT_WEAPON_LAUNCHER_POOL = List_Launchers + LOOT_WHITELIST_WEAPON_LAUNCHER - LOOT_BLACKLIST;
+    //LOOT_WEAPON_SNIPER_POOL = _List_Sniper + LOOT_WHITELIST_WEAPON_SNIPER - LOOT_BLACKLIST;
+    //LOOT_WEAPON_SMG_POOL = _List_SMG + LOOT_WHITELIST_WEAPON_SMG - LOOT_BLACKLIST;
+    //LOOT_WEAPON_ASSAULT_POOL = _List_Assault + LOOT_WHITELIST_WEAPON_ASSAULT - LOOT_BLACKLIST;
+    //LOOT_WEAPON_LAUNCHER_POOL = _List_Launchers + LOOT_WHITELIST_WEAPON_LAUNCHER - LOOT_BLACKLIST;
 	LOOT_WEAPON_POOL = LOOT_WEAPON_MG_POOL + LOOT_WEAPON_HANDGUN_POOL + LOOT_WEAPON_SNIPER_POOL + LOOT_WEAPON_SMG_POOL + LOOT_WEAPON_ASSAULT_POOL + LOOT_WEAPON_LAUNCHER_POOL;
 }
 else

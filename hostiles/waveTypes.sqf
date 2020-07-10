@@ -225,7 +225,7 @@ DBW_PISTOLWAVE = {
 		_unit = [_class,_location] call DBW_spawnHostile;
 		private _setSkill = [_unit,_skill] call DBW_setSkill;
 		private _init = [_unit, _cost call CWS_getHostileScoreMultiplier] call DBW_initUnit;
-		private _randWeap = [_unit,List_Secondaries] call DBW_giveRandSecWeap;
+		private _randWeap = [_unit,LOOT_WEAPON_HANDGUN_POOL] call DBW_giveRandSecWeap;
 		if ((floor random 3) == 1) then {
 			_unit additem (call bulwark_fnc_getFAKClass);
 		};

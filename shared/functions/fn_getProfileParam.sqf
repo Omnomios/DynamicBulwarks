@@ -14,7 +14,7 @@ if(isNil "_savedParams") then {
         [format ["No saved value for param: %1", _paramName], "PARAM"] call shared_fnc_log;
         _value = _defaultValue;
     } else {
-        // [format ["Found value: %1 for param: %2,", (_singleParam select 1), _paramName], "PARAM"] call shared_fnc_log;
+        [format ["Found value: %1 for param: %2,", (_singleParam select 1), _paramName], "PARAM"] call shared_fnc_log;
         _value = _singleParam select 1;
     };
 };

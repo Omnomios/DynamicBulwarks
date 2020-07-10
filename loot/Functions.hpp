@@ -10,8 +10,13 @@ class loot
 
         class startPreSpawn {};
         class startRevealPreSpawnedLoot {};
-
+        
+        class getRealElements {};
+        class filter {};
         class generateLootLists {};
+        class getBaseWeapons {};
+        class getEmptyBackpacks {};
+        class sortBackpackTypes {};
     };
 
     class internal

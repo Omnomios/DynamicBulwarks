@@ -74,9 +74,11 @@ if(!isNil "_lootRoomPos") then {
 
 			_type = _randWeaponTypes selectRandomWeighted _randWeaponChances;
 			_weapon = [_type] call DBW_selectWeapon;
+			[str _weapon,"LOOTWEAPONSPAWN"]call shared_fnc_log;
 			_lootHolder addWeaponCargoGlobal [_weapon, 1];
 			_ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
 			_ammo = selectRandom _ammoArray;
+			[str _ammo,"LOOTWEAPONSPAWN"]call shared_fnc_log;
 			_lootHolder addMagazineCargoGlobal [_ammo, 1];
 			_magString = format ["mag%1",_type];
 			_getMag = call compile _magString;
