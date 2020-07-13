@@ -5,7 +5,7 @@
 *
 *  Domain: Client
 **/
-#include "..\..\shared\bulwark.hpp"
+#include "..\shared\bulwark.hpp"
 _ammoBox = _this select 0;
 _ammoPlayer = _this select 1;
 

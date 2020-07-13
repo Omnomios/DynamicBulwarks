@@ -76,7 +76,7 @@ if (count LOOT_POOL_LAUNCHER > 0) then {
 };
 if (count LOOT_POOL_ATTACHMENT > 0) then {
 	randItemTypes pushback "ATTACHMENT";
-	randItemChances pushback LOOT_POOL_ATTACHMENT call shared_fnc_getCurrentParamValue;
+	randItemChances pushback BULWARK_PARAM_LOOT_ATTACHMENT call shared_fnc_getCurrentParamValue;
 };
 if (count LOOT_POOL_ASSAULT > 0) then {
 	randItemTypes pushback "ASSAULT";
