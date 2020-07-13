@@ -10,7 +10,6 @@ _return = [];
 	if (count ([[_configInherited]] call loot_fnc_filter) > 0) then
 	{
 		_return pushBackUnique configName _configInherited;
-		[str configName _configInherited,"BackpackFunction"] call shared_fnc_log;
 	}
 	else
 	{

@@ -24,7 +24,7 @@ removeAllAssignedItems player;
 player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
 
 if(PLAYER_STARTWEAPON) then {
-    _weap = selectRandom LOOT_WEAPON_HANDGUN_POOL;
+    _weap = selectRandom LOOT_POOL_HANDGUN;
 		_ammo = selectRandom getArray (configFile >> "CfgWeapons" >> _weap >> "magazines");
 		for "_i" from 1 to 3 do {player addMagazine _ammo;};
 		player addWeapon _weap;

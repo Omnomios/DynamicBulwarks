@@ -23,11 +23,17 @@ _allFactionsBySide = [_allFactionsByDisplayName, [], {
 _sideNames = ["OPFOR", "BLUE", "IND", "CIV"];
 
 _allRealFactions = [];
+_allFactionsWithLoot = [];
 _index = -1;
 {
 	private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call BIS_fnc_returnConfigEntry;
 	private _displayName = [configfile >> "CfgFactionClasses" >> _x,"displayName"] call BIS_fnc_returnConfigEntry;
 	[_x] call factions_fnc_getAllFactionHostiles params ["_allInfantry","_filteredVehicles"];
+	//pushback any faction that has men for restricting loot per faction - civilian factions are missing?
+	if (count _allInfantry > 0) then {
+		private _displayName = format ["%1 %2",_sideNames select _side,_displayName];
+		_allFactionsWithLoot pushback [_x,_displayName,_x];
+	};
 	//filter out factions that don't have anything
 	if (count _allInfantry + count _filteredVehicles > 0) then {
 		private _displayName = format ["%1 %2 [I:%3 V:%4]",_sideNames select _side, _displayName,count _allInfantry,count _filteredVehicles];
@@ -36,4 +42,4 @@ _index = -1;
 } forEach _allFactionsBySide;
 //[format ["Factions list generated: %1", _allRealFactions], "PARAM"] call shared_fnc_log;
 
-_allRealFactions; //return
+[_allRealFactions,_allFactionsWithLoot] //return

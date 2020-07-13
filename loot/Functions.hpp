@@ -17,6 +17,8 @@ class loot
         class getBaseWeapons {};
         class getEmptyBackpacks {};
         class sortBackpackTypes {};
+        class setLootTypes {};
+        class getAttachments {};
     };
 
     class internal

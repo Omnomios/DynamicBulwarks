@@ -30,6 +30,8 @@
 #define GET_CURRENT_PARAM_BY_ID(id) GET_PARAM_BY_ID(CurrentBulwarkParams, id)
 
 #define PARAM_CATEGORY_FILTERS "Filters"
+#define PARAM_CATEGORY_LOOT "Loot"
+#define PARAM_CATEGORY_WEIGHTEDLOOT "Weighted Randomized loot settings"
 #define PARAM_CATEGORY_WAVE "Waves"
 #define PARAM_CATEGORY_START "Start Conditions"
 #define PARAM_CATEGORY_BULWARK "Bulwark Configuration"
@@ -38,6 +40,7 @@
 #define PARAM_CATEGORY_GEOGRAPHY "Geography"
 #define PARAM_CATEGORY_UPGRADES "Upgrades"
 #define PARAM_CATEGORY_PLAYER "Player Configuration"
+#define PARAM_CATEGORY_AMOUNTAMMO "Ammo loot settings"
 
 // A boolean value (true/false)
 #define PARAM_TYPE_BOOL 0

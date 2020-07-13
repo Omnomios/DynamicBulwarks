@@ -13,7 +13,10 @@ switch (_dlcParameter) do {
 };
 _filteredConfigs = [];
 {	//filter out scoped out configs - make sure scope is number
-	[_x,'scope'] call BIS_fnc_returnConfigEntry params [["_scope", 0, [0]]];
+	private _scope = [_x,'scope',0] call BIS_fnc_returnConfigEntry;
+	if (typeName _scope != "SCALAR") then {
+		_scope = 0;
+	};
 	private _config = _x;
 	if (_scope == 2) then {
 		//dlc filter

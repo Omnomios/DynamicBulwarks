@@ -8,7 +8,7 @@
 _hPos = 1; //0.70
 _lPos = 0.35;
 
-_weaponList = List_AllWeapons;
+_weaponList = LOOT_POOL_ALLWEAPONS;
 
 
 if(isNil {_this select 0}) then {

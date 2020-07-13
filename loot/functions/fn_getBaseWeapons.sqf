@@ -5,7 +5,7 @@
 params [["_weaponsArray",[]]];
 _return = [];
 {
-	//see what the weapon inherits from, if its not scoped out the weapon is probably spawning with attachments and it should take the inheritsFrom backpack instead.
+	//see what the weapon inherits from, if its not scoped out the weapon is probably spawning with attachments and it should take the inheritsFrom weapon instead.
 	private _configInherited = inheritsfrom (configfile >> "CfgWeapons" >> _x);
 	if (count ([[_configInherited]] call loot_fnc_filter) > 0) then
 	{

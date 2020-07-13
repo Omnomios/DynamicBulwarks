@@ -1,5 +1,5 @@
 /*
-* Function to filter out empty strings or nil elements
+* Function to filter out empty strings
 * - expects string or array of strings
 * - outputs array of passed strings
 * example: elements call loot_fnc_getRealElements;
