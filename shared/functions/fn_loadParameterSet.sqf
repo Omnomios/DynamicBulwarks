@@ -28,7 +28,7 @@ if (isNil "_paramSet") then {
         if (_paramIndex != -1) then {
             private _param = GET_PARAM_BY_INDEX(_params, _paramIndex);
             PARAM_SET_VALUE(_param, SAVED_PARAM_GET_VALUE(_savedParam));
-            // [format ["Loaded param %1 with saved value %2", PARAM_GET_TITLE(_param), SAVED_PARAM_GET_VALUE(_savedParam)], "PARAM"] call shared_fnc_log;
+            [format ["Loaded param %1 with saved value %2", PARAM_GET_TITLE(_param), SAVED_PARAM_GET_VALUE(_savedParam)], "PARAM"] call shared_fnc_log;
         } else {
             [format ["Failed to find parameter with ID %1", _paramId], "PARAM"] call shared_fnc_log;
         };

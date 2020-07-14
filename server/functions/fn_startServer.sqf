@@ -28,6 +28,8 @@ call compile preprocessFileLineNumbers  "presets\init_preset.sqf";
 
 call loot_fnc_generateLootLists;
 
+call loot_fnc_setLootTypes;
+
 call compile preprocessFileLineNumbers  "hostiles\lists.sqf";
 
 ["<t size = '.5'>Creating Base...</t>", 0, 0, 30, 0] remoteExec ["BIS_fnc_dynamicText", 0];

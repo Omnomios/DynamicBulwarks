@@ -72,46 +72,28 @@ LOOT_BLACKLIST = [
 	"B_LIB_US_TypeA3",
 	"LIB_HandGrenade_base"
 ];
-//Loot Chances - chance in % that weapon spawn, spawns a weapon of the following type -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
-launcherWeapTypeChance =    15;
-assaultWeapTypeChance =     30;
-smgWeapTypeChance =         25;    //shotguns included in SMG array since there aren't that many
-sniperWeapTypeChance =      20;
-mgWeapTypeChance =          5;
-handgunWeapTypeChance =		5;
-//chances in % for what type of item spawns -- 10 would be 10% chance, 40 would be 40% chance if all combined are 100:
-clothesTypeChance = 		15;
-itemsTypeChance =			10;
-weaponsTypeChance =			25;
-backpacksTypeChance =		20;
-explosivesTypeChance =		30;
-//Ammo amount - how many magazines can spawn with weapons [1,3] would be minimum 1 and maximum 3, the maximum is also used to determine how much ammo you get from ammo drops:
-magLAUNCHER =	[3,6];
-magASSAULT =	[2,5];
-magSMG =		[4,6];      //shotguns included in SMG array since there aren't that many
-magSNIPER =		[2,4];
-magMG =			[2,4];
-magHANDGUN =	[2,4];
 
-/* Whitelist modes */
-/* 0 = Adds Whitelist Items to loot spawn */
-/* 1 = Only Whitelist Items will spawn as loot */
-//There must be at least 1 element in each array for Whitelist mode 1, or set the spawn chance of the ones you left empty to 0
-//Adding items multiple times increases the chance of them to be spawned.
-LOOT_WHITELIST_MODE = 0;
-/* Loot Whitelists */
-/* Fill with classname arrays: ["example_item_1", "example_item_2"] */
-LOOT_WHITELIST_WEAPON_MG = [];
-LOOT_WHITELIST_WEAPON_SNIPER = [];
-LOOT_WHITELIST_WEAPON_SMG = [];     //shotguns included in SMG array since there aren't that many
-LOOT_WHITELIST_WEAPON_ASSAULT = [];
-LOOT_WHITELIST_WEAPON_LAUNCHER = [];
-LOOT_WHITELIST_WEAPON_HANDGUN = [];
-LOOT_WHITELIST_APPAREL = [];
-LOOT_WHITELIST_ITEM = [];
-LOOT_WHITELIST_EXPLOSIVE = [];
-LOOT_WHITELIST_STORAGE = [];
-
+//LOOT WHITELISTS, when a whitelist contains an element it is used instead of what the game grabs from factions:
+LOOT_WHITELIST_UNIFORMS = [];
+LOOT_WHITELIST_VESTS = [];
+LOOT_WHITELIST_HEADGEAR = [];
+LOOT_WHITELIST_BACKPACKS = [];
+LOOT_WHITELIST_STATICGUNS = [];
+LOOT_WHITELIST_AUTOSTATICGUNS = [];
+LOOT_WHITELIST_STATICSUPPORTS = [];
+LOOT_WHITELIST_DRONES = [];
+LOOT_WHITELIST_GLASSES = [];
+LOOT_WHITELIST_ITEMS = [];
+LOOT_WHITELIST_ATTACHMENT = [];
+LOOT_WHITELIST_GRENADES = [];
+LOOT_WHITELIST_EXPLOSIVES = [];
+LOOT_WHITELIST_MG = [];
+LOOT_WHITELIST_SMG = [];
+LOOT_WHITELIST_SNIPER = [];
+LOOT_WHITELIST_SHOTGUN = [];
+LOOT_WHITELIST_HANDGUN = [];
+LOOT_WHITELIST_LAUNCHER = [];
+LOOT_WHITELIST_ASSAULT = [];
 /* POINTS */
 SCORE_RANDOMBOX = 950;  // Cost to spin the box
 //Point multipliers of SCORE_KILL for different waves

@@ -165,7 +165,7 @@ DBW_MGWAVE = {
 		private _unit = [_class,_location] call DBW_spawnHostile;
 		private _setSkill = [_unit,_skill] call DBW_setSkill;
 		private _init = [_unit, _cost call CWS_getHostileScoreMultiplier] call DBW_initUnit;
-		private _giveSniper = [_unit,List_MG] call DBW_giveRandPriWeap;
+		private _giveSniper = [_unit,LOOT_POOL_MG] call DBW_giveRandPriWeap;
 	}
 	forEach _infantryToSpawnWithCosts;
 
@@ -185,7 +185,7 @@ DBW_SNIPERWAVE = {
 		private _unit = [_class,_location] call DBW_spawnHostile;
 		private _setSkill = [_unit,_skill] call DBW_setSkill;
 		private _init = [_unit, _cost call CWS_getHostileScoreMultiplier] call DBW_initUnit;
-		private _giveSniper = [_unit,List_Sniper] call DBW_giveRandPriWeap;
+		private _giveSniper = [_unit,LOOT_POOL_SNIPER] call DBW_giveRandPriWeap;
 	}
 	forEach _infantryToSpawnWithCosts;
 
@@ -205,7 +205,7 @@ DBW_NORMALWAVE = {
 		private _setSkill = [_unit,_skill] call DBW_setSkill;
 		private _init = [_unit, _cost call CWS_getHostileScoreMultiplier] call DBW_initUnit;
 		if (RANDOM_WEAPONS) then {
-			[_unit,List_Primaries] call DBW_giveRandPriWeap;
+			[_unit,LOOT_POOL_ALLWEAPONS] call DBW_giveRandPriWeap;
 		};
 	}
 	forEach _infantryToSpawnWithCosts;
@@ -225,7 +225,7 @@ DBW_PISTOLWAVE = {
 		_unit = [_class,_location] call DBW_spawnHostile;
 		private _setSkill = [_unit,_skill] call DBW_setSkill;
 		private _init = [_unit, _cost call CWS_getHostileScoreMultiplier] call DBW_initUnit;
-		private _randWeap = [_unit,List_Secondaries] call DBW_giveRandSecWeap;
+		private _randWeap = [_unit,LOOT_POOL_HANDGUN] call DBW_giveRandSecWeap;
 		if ((floor random 3) == 1) then {
 			_unit additem (call bulwark_fnc_getFAKClass);
 		};

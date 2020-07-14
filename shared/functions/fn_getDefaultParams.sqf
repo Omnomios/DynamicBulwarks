@@ -37,12 +37,11 @@ private _defaultBulwarkParams = [
 	],
 	[ 
 		BULWARK_PARAM_FILTER_FACTIONS,
-		"Factions", PARAM_CATEGORY_FILTERS, PARAM_TYPE_NUMBER, true, 
+		"Hostile factions", PARAM_CATEGORY_FILTERS, PARAM_TYPE_NUMBER, true, 
 		factionOptions,
 		["OPF_F"],
 		"Select which factions can spawn as enemies"
 	],
-
 	//
 	// PARAM_CATEGORY_WAVE
 	//
@@ -156,7 +155,7 @@ private _defaultBulwarkParams = [
 			[0, "No", 0],
 			[1, "Yes", 1]],
 		1,
-		"Should there be less chance of repeating the same special wave type?"
+		"Should you not get the same special wave again, until you had every other possible special wave?"
 	],
 	[
 		BULWARK_PARAM_ARMOUR_START_WAVE,
@@ -233,16 +232,6 @@ private _defaultBulwarkParams = [
 		"Should enemies have completely randomized weapons?"
 	],
 	[
-		BULWARK_PARAM_HUD_POINT_HITMARKERS,
-		"Point hitmarkers on HUD?", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, false,
-		[
-			[0, "No", 0],
-			[1, "Yes", 1]
-		],
-		1,
-		"Should there be hit markers on the HUD?"
-	],
-	[
 		BULWARK_PARAM_LOOT_HOUSE_DENSITY,
 		"Minimum buildings near bulwark", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, false,
 		[
@@ -255,93 +244,16 @@ private _defaultBulwarkParams = [
 		],
 		1,
 		"The minimum number of buildings which must be near the bulwark to be considered a valid starting location"
-	],
+	],	
 	[
-		BULWARK_PARAM_LOOT_HOUSE_DISTRIBUTION,
-		"Loot distribution", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, false,
+		BULWARK_PARAM_HUD_POINT_HITMARKERS,
+		"Point hitmarkers on HUD?", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, false,
 		[
-			[0, "Every building", 1],
-			[1, "Every second building", 2],
-			[2, "Every third building", 3],
-			[3, "Every fourth building", 4]
+			[0, "No", 0],
+			[1, "Yes", 1]
 		],
 		1,
-		"This determines which buildings will spawn loot"
-	],
-	[
-		BULWARK_PARAM_LOOT_ROOM_DISTRIBUTION,
-		"Loot density", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, false,
-		[
-			[0, "Every location", 1],
-			[1, "Every second location", 2],
-			[2, "Every third location", 3],
-			[3, "Every fourth location", 4]
-		],
-		1,
-		"This determines which locations within a building will spawn loot"
-	],
-	[
-		BULWARK_PARAM_LOOT_WORN,
-		"Enabled worn/carried items", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, true,
-		[
-			[0,           "Uniforms", LOOT_CATEGORY_UNIFORMS],
-			[1,              "Vests", LOOT_CATEGORY_VESTS],
-			[2,          "Backpacks", LOOT_CATEGORY_BACKPACKS],
-			[3,               "Hats", LOOT_CATEGORY_HATS],
-			[4,            "Glasses", LOOT_CATEGORY_GLASSES],
-			[5,               "NVGs", LOOT_CATEGORY_NVGS],
-			[6, "Map, Compass, etc.", LOOT_CATEGORY_MISC]
-		],
-		[0, 1, 2, 3, 4, 5, 6],
-		"Which worn/carried items can spawn as loot"
-	],
-	[
-		BULWARK_PARAM_LOOT_WEAPONS,
-		"Enabled weapons", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, true,
-		[
-			[0, "Sniper Rifles", LOOT_CATEGORY_SNIPER],
-			[1,"Assault Rifles", LOOT_CATEGORY_ASSAULT],
-			[2,          "SMGs", LOOT_CATEGORY_SMG],
-			[3,  "Machine Guns", LOOT_CATEGORY_MG],
-			[4,     "Launchers", LOOT_CATEGORY_LAUNCHERS],
-			[5,      "Handguns", LOOT_CATEGORY_HANDGUNS]
-		],
-		[0, 1, 2, 3, 4, 5],
-		"Which weapons can spawn as loot"
-	],
-	[
-		BULWARK_PARAM_LOOT_ATTACHMENTS,
-		"Enabled weapon attachments", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, true,
-		[
-			[0,             "Optics", LOOT_CATEGORY_OPTICS],
-			[1,   "Rail Attachments", LOOT_CATEGORY_RAIL_ATTACHMENTS],
-			[2, "Muzzle Attachments", LOOT_CATEGORY_MUZZLE_ATTACHMENTS],
-			[3,             "Bipods", LOOT_CATEGORY_BIPODS]
-		],
-		[0, 1, 2, 3],
-		"Which weapons attachments can spawn as loot"
-	],
-	[
-		BULWARK_PARAM_LOOT_EXPLOSIVES,
-		"Enabled explosives", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, true,
-		[
-			[0,      "Mines", LOOT_CATEGORY_MINES],
-			[1,   "Grenades", LOOT_CATEGORY_GRENADES],
-			[2, "Explosives", LOOT_CATEGORY_EXPLOSIVES]
-		],
-		[0, 1, 2],
-		"Which explosives can spawn as loot"
-	],
-	[
-		BULWARK_PARAM_LOOT_CONSTRUCTS,
-		"Enabled constructs", PARAM_CATEGORY_GAME, PARAM_TYPE_NUMBER, true,
-		[
-			[0,    "Static Guns", LOOT_CATEGORY_STATIC_GUNS],
-			[1, "Automated Guns", LOOT_CATEGORY_DRONE_GUNS],
-			[2,         "Drones", LOOT_CATEGORY_DRONES]
-		],
-		[0, 1, 2],
-		"Which construction packs can spawn as loot"
+		"Should there be hit markers on the HUD?"
 	],
 	[
 		BULWARK_PARAM_LOOT_SUPPLYDROP,
@@ -650,7 +562,277 @@ private _defaultBulwarkParams = [
 		],
 		1,
 		"Whether or not friendly-fire is enabled"
+	],
+	//
+	// PARAM_CATEGORY_LOOT
+	//
+	[
+		BULWARK_PARAM_LOOT_HOUSE_DISTRIBUTION,
+		"Loot distribution", PARAM_CATEGORY_LOOT, PARAM_TYPE_NUMBER, false,
+		[
+			[0, "Every building", 1],
+			[1, "Every second building", 2],
+			[2, "Every third building", 3],
+			[3, "Every fourth building", 4]
+		],
+		1,
+		"This determines which buildings will spawn loot"
+	],
+	[
+		BULWARK_PARAM_LOOT_ROOM_DISTRIBUTION,
+		"Loot density", PARAM_CATEGORY_LOOT, PARAM_TYPE_NUMBER, false,
+		[
+			[0, "Every location", 1],
+			[1, "Every second location", 2],
+			[2, "Every third location", 3],
+			[3, "Every fourth location", 4]
+		],
+		1,
+		"This determines which locations within a building will spawn loot"
+	],
+	[ 
+		BULWARK_PARAM_LOOT_FACTIONS,
+		"Loot factions", PARAM_CATEGORY_LOOT, PARAM_TYPE_NUMBER, true, 
+		lootFactionOptions,
+		["BLU_F"],
+		"Restricts loot by faction. Only gear of the selected factions will spawn as loot."
+	],
+	//
+	// PARAM_CATEGORY_WEIGHTEDLOOT
+	//
+	[
+		BULWARK_PARAM_LOOT_ITEMS, 
+		"Items",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely items spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_UNIFORMS, 
+		"Uniforms",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely uniforms spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_VESTS, 
+		"Vests",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely vests spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_BACKPACKS, 
+		"Backpacks",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely backpacks spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_HEADGEAR, 
+		"Headgear",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely headgear spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_GLASSES,
+		"Glasses",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely glasses spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_GRENADES, 
+		"Grenades",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely grenades spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_EXPLOSIVE, 
+		"Explosives",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely explosives spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_STATICGUN, 
+		"Static gun backpacks",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely static gun backpacks spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_AUTOGUN, 
+		"Automatic gun backpacks",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely automatic static gun backpacks spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_DRONE, 
+		"Drone backpack",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely loot drones spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_MG, 
+		"Machine guns",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely machine guns spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_HANDGUN, 
+		"Handguns",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely handguns spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_SNIPER, 
+		"Sniper Rifles",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely sniper rifles spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_SMG, 
+		"Submachine guns",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely submachine guns spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_ASSAULT, 
+		"Assault rifles",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely assault rifles spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_LAUNCHER, 
+		"Launchers",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely launchers spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_SHOTGUN, 
+		"Shotguns",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely shotguns spawn, relative to other items. 0 means it will never spawn"
+	],
+	[
+		BULWARK_PARAM_LOOT_ATTACHMENT, 
+		"Weapon attachments",PARAM_CATEGORY_WEIGHTEDLOOT, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"How likely weapon attachments spawn, relative to other items. 0 means it will never spawn"
+	],
+	//
+	// PARAM_CATEGORY_AMOUNTAMMO
+	//
+	[
+		BULWARK_PARAM_AMMO_ASSAULTMIN, 
+		"Assault rifle minimum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"Minimum amount of magazines that spawn with an assault rifle"
+	],
+	[
+		BULWARK_PARAM_AMMO_ASSAULTMAX, 
+		"Assault rifle maximum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		3,
+		"Maximum amount of magazines that spawn with an assault rifle"
+	],
+	[
+		BULWARK_PARAM_AMMO_SMGMIN, 
+		"SMG minimum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		2,
+		"Minimum amount of magazines that spawn with a submachine gun"
+	],
+	[
+		BULWARK_PARAM_AMMO_SMGMAX, 
+		"SMG maximum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		5,
+		"Maximum amount of magazines that spawn with a submachine gun"
+	],
+	[
+		BULWARK_PARAM_AMMO_MGMIN, 
+		"MG minimum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"Minimum amount of magazines that spawn with a machine gun"
+	],
+	[
+		BULWARK_PARAM_AMMO_MGMAX, 
+		"MG maximum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		3,
+		"Maximum amount of magazines that spawn with a machine gun"
+	],
+	[
+		BULWARK_PARAM_AMMO_SNIPERMIN, 
+		"Sniper minimum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		3,
+		"Minimum amount of magazines that spawn with a sniper rifle"
+	],
+	[
+		BULWARK_PARAM_AMMO_SNIPERMAX, 
+		"Sniper maximum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		6,
+		"Maximum amount of magazines that spawn with a sniper rifle"
+	],
+	[
+		BULWARK_PARAM_AMMO_LAUNCHERMIN, 
+		"Launcher minimum rockets",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		1,
+		"Minimum amount of magazines that spawn with a Launcher"
+	],
+	[
+		BULWARK_PARAM_AMMO_LAUNCHERMAX, 
+		"Launcher maximum rockets",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		2,
+		"Maximum amount of magazines that spawn with a Launcher"
+	],
+	[
+		BULWARK_PARAM_AMMO_HANDGUNMIN, 
+		"Handgun minimum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		2,
+		"Minimum amount of magazines that spawn with a handgun"
+	],
+	[
+		BULWARK_PARAM_AMMO_HANDGUNMAX, 
+		"Handgun maximum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		4,
+		"Maximum amount of magazines that spawn with a handgun"
+	],
+	[
+		BULWARK_PARAM_AMMO_SHOTGUNMIN, 
+		"Shotgun minimum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		4,
+		"Minimum amount of magazines that spawn with a shotgun"
+	],
+	[
+		BULWARK_PARAM_AMMO_SHOTGUNMAX, 
+		"Shotgun maximum magazines",PARAM_CATEGORY_AMOUNTAMMO, PARAM_TYPE_NUMBER, false,
+		[],
+		6,
+		"Maximum amount of magazines that spawn with a shotgun"
 	]
 ];
-
 _defaultBulwarkParams;
