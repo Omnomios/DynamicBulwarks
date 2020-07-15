@@ -15,37 +15,42 @@ CWS_getCostFactor = {
 
 CWS_getRoleFactor = {
     params ["_cfg"];
-    private _roleCosts = [
-        ["MachineGunner", 17],
-        ["Grenadier", 16],
-        ["Marksman", 16],
-        ["MissileSpecialist", 15],
-        ["Sapper", 15],
-        ["CombatLifeSaver", 15],
-        ["Rifleman", 15],
-        ["SpecialOperative", 15],
-        ["Assistant", 13],
-        ["RadioOperator", 13]
-    ];
-
     private _role = [_cfg,"role"] call BIS_fnc_returnConfigEntry;
-    _index = _roleCosts findIf { (_x select 0) == _role };
-    private _roleCost = (_roleCosts select _index) select 1;
+    private _roleCost = 0;
+    switch (_role) do {
+        case "MachineGunner": {_roleCost = 17};
+        case "Grenadier": {_roleCost = 16};
+        case "Marksman": {_roleCost = 16};
+        case "MissileSpecialist": {_roleCost = 15};
+        case "Sapper": {_roleCost = 15};
+        case "CombatLifeSaver": {_roleCost = 15};
+        case "Rifleman": {_roleCost = 15};
+        case "SpecialOperative": {_roleCost = 15};
+        case "Assistant": {_roleCost = 13};
+        case "RadioOperator": {_roleCost = 13};
+        default {_roleCost = 15};
+    };
     _roleCost / 20;
 };
 
 CWS_GetCombinedArmor = {
     params ["_cfg"];
     private _linkedItemsArr = [_cfg,"respawnLinkedItems"] call BIS_fnc_returnConfigEntry;
+   // [str _cfg,"INFCOSTUNIT"] call shared_fnc_log;
+   //[str _linkedItemsArr,"INFCOSTITEMS"] call shared_fnc_log;
     //if item has armor values extract that info as well and combine to single armor rating value for the unit
     private _armor = 0;
 	{
+        //[str _x,"INFCOSTITEM"] call shared_fnc_log;
         private _config = configfile >> "CfgWeapons" >> _x;
         private _hitpointProtection = [_config >> "ItemInfo" >> "HitpointsProtectionInfo",0] call BIS_fnc_returnChildren;
         if (count _hitpointProtection != 0) then {
             {
                 private _armorValue = [_x,"armor",0] call BIS_fnc_returnConfigEntry;
+                if (typeName _armorValue == "SCALAR") then {
+                //[str _armorValue,"INFCOSTARMOR"] call shared_fnc_log;
                 _armor = _armor + _armorValue;
+                };
             } forEach _hitpointProtection;
         };
     } forEach _linkedItemsArr;

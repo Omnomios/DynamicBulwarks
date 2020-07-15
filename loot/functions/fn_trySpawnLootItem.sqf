@@ -62,65 +62,79 @@ if(!isNil "_lootRoomPos") then {
 		case "MG": {
 			private _weapon = selectRandom LOOT_POOL_MG;
 			_lootHolder addWeaponCargoGlobal [_weapon, 1];
-			private _ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-			private _ammo = selectRandom _ammoArray;
-			private _minMag = BULWARK_PARAM_AMMO_MGMIN call shared_fnc_getCurrentParamValue;
-			private _maxMag = BULWARK_PARAM_AMMO_MGMAX call shared_fnc_getCurrentParamValue;
-			_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			private _ammoArray = [configFile >> "CfgWeapons" >> _weapon,"magazines",[]] call BIS_fnc_returnConfigEntry;
+			if (count _ammoArray > 0) then {
+				private _ammo = selectRandom _ammoArray;
+				private _minMag = BULWARK_PARAM_AMMO_MGMIN call shared_fnc_getCurrentParamValue;
+				private _maxMag = BULWARK_PARAM_AMMO_MGMAX call shared_fnc_getCurrentParamValue;
+				_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			};
 		};
 		case "SMG": {
 			private _weapon = selectRandom LOOT_POOL_SMG;
 			_lootHolder addWeaponCargoGlobal [_weapon, 1];
-			private _ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
+			private _ammoArray = [configFile >> "CfgWeapons" >> _weapon,"magazines",[]] call BIS_fnc_returnConfigEntry;
+			if (count _ammoArray > 0) then {
 			private _ammo = selectRandom _ammoArray;
-			private _minMag = BULWARK_PARAM_AMMO_SMGMIN call shared_fnc_getCurrentParamValue;
-			private _maxMag = BULWARK_PARAM_AMMO_SMGMAX call shared_fnc_getCurrentParamValue;
-			_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+				private _minMag = BULWARK_PARAM_AMMO_SMGMIN call shared_fnc_getCurrentParamValue;
+				private _maxMag = BULWARK_PARAM_AMMO_SMGMAX call shared_fnc_getCurrentParamValue;
+				_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			};
 		};
 		case "SNIPER": {
 			private _weapon = selectRandom LOOT_POOL_SNIPER;
 			_lootHolder addWeaponCargoGlobal [_weapon, 1];
-			private _ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-			private _ammo = selectRandom _ammoArray;
-			private _minMag = BULWARK_PARAM_AMMO_SNIPERMIN call shared_fnc_getCurrentParamValue;
-			private _maxMag = BULWARK_PARAM_AMMO_SNIPERMAX call shared_fnc_getCurrentParamValue;
-			_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			private _ammoArray = [configFile >> "CfgWeapons" >> _weapon,"magazines",[]] call BIS_fnc_returnConfigEntry;
+			if (count _ammoArray > 0) then {
+				private _ammo = selectRandom _ammoArray;
+				private _minMag = BULWARK_PARAM_AMMO_SNIPERMIN call shared_fnc_getCurrentParamValue;
+				private _maxMag = BULWARK_PARAM_AMMO_SNIPERMAX call shared_fnc_getCurrentParamValue;
+				_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			};
 		};
 		case "SHOTGUN": {
 			private _weapon = selectRandom LOOT_POOL_SHOTGUN;
 			_lootHolder addWeaponCargoGlobal [_weapon, 1];
-			private _ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-			private _ammo = selectRandom _ammoArray;
-			private _minMag = BULWARK_PARAM_AMMO_SHOTGUNMIN call shared_fnc_getCurrentParamValue;
-			private _maxMag = BULWARK_PARAM_AMMO_SHOTGUNMAX call shared_fnc_getCurrentParamValue;
-			_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			private _ammoArray = [configFile >> "CfgWeapons" >> _weapon,"magazines",[]] call BIS_fnc_returnConfigEntry;
+			if (count _ammoArray > 0) then {
+				private _ammo = selectRandom _ammoArray;
+				private _minMag = BULWARK_PARAM_AMMO_SHOTGUNMIN call shared_fnc_getCurrentParamValue;
+				private _maxMag = BULWARK_PARAM_AMMO_SHOTGUNMAX call shared_fnc_getCurrentParamValue;
+				_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			};
 		};
 		case "HANDGUN": {
 			private _weapon = selectRandom LOOT_POOL_HANDGUN;
 			_lootHolder addWeaponCargoGlobal [_weapon, 1];
-			private _ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-			private _ammo = selectRandom _ammoArray;
-			private _minMag = BULWARK_PARAM_AMMO_HANDGUNMIN call shared_fnc_getCurrentParamValue;
-			private _maxMag = BULWARK_PARAM_AMMO_HANDGUNMAX call shared_fnc_getCurrentParamValue;
-			_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			private _ammoArray = [configFile >> "CfgWeapons" >> _weapon,"magazines",[]] call BIS_fnc_returnConfigEntry;
+			if (count _ammoArray > 0) then {
+				private _ammo = selectRandom _ammoArray;
+				private _minMag = BULWARK_PARAM_AMMO_HANDGUNMIN call shared_fnc_getCurrentParamValue;
+				private _maxMag = BULWARK_PARAM_AMMO_HANDGUNMAX call shared_fnc_getCurrentParamValue;
+				_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			};
 		};
 		case "LAUCNHER": {
 			private _weapon = selectRandom LOOT_POOL_LAUNCHER;
 			_lootHolder addWeaponCargoGlobal [_weapon, 1];
-			private _ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-			private _ammo = selectRandom _ammoArray;
-			private _minMag = BULWARK_PARAM_AMMO_LAUNCHERMIN call shared_fnc_getCurrentParamValue;
-			private _maxMag = BULWARK_PARAM_AMMO_LAUNCHERMAX call shared_fnc_getCurrentParamValue;
-			_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			private _ammoArray = [configFile >> "CfgWeapons" >> _weapon,"magazines",[]] call BIS_fnc_returnConfigEntry;
+			if (count _ammoArray > 0) then {
+				private _ammo = selectRandom _ammoArray;
+				private _minMag = BULWARK_PARAM_AMMO_LAUNCHERMIN call shared_fnc_getCurrentParamValue;
+				private _maxMag = BULWARK_PARAM_AMMO_LAUNCHERMAX call shared_fnc_getCurrentParamValue;
+				_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			};
 		};
 		case "ASSAULT": {
 			private _weapon = selectRandom LOOT_POOL_ASSAULT;
 			_lootHolder addWeaponCargoGlobal [_weapon, 1];
-			private _ammoArray = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines");
-			private _ammo = selectRandom _ammoArray;
-			private _minMag = BULWARK_PARAM_AMMO_ASSAULTMIN call shared_fnc_getCurrentParamValue;
-			private _maxMag = BULWARK_PARAM_AMMO_ASSAULTMAX call shared_fnc_getCurrentParamValue;
-			_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			private _ammoArray = [configFile >> "CfgWeapons" >> _weapon,"magazines",[]] call BIS_fnc_returnConfigEntry;
+			if (count _ammoArray > 0) then {
+				private _ammo = selectRandom _ammoArray;
+				private _minMag = BULWARK_PARAM_AMMO_ASSAULTMIN call shared_fnc_getCurrentParamValue;
+				private _maxMag = BULWARK_PARAM_AMMO_ASSAULTMAX call shared_fnc_getCurrentParamValue;
+				_lootHolder addMagazineCargoGlobal [_ammo, (floor random (_maxMag - _minMag)) + _minMag];
+			};
 		};
 	};
 
