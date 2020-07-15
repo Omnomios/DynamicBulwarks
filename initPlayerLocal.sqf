@@ -2,8 +2,9 @@
 // will occur after game start when all parameters have been finalized.
 
 format ["initPlayerLocal called for %1", player] call shared_fnc_log;
-
+startLoadingScreen ["Preparing the trap..."];
 call compile preprocessFileLineNumbers "lobby\lobby.sqf";
+endLoadingScreen;
 
 // Lower recoil, lower sway, remove stamina on respawn
 CWS_ResetStaminaRecoil = {
