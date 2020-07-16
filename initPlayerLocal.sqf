@@ -3,8 +3,11 @@
 
 format ["initPlayerLocal called for %1", player] call shared_fnc_log;
 startLoadingScreen ["Preparing the trap..."];
+"Lobby initializing" call shared_fnc_log;
 call compile preprocessFileLineNumbers "lobby\lobby.sqf";
+"Lobby initialized" call shared_fnc_log;
 endLoadingScreen;
+
 
 // Lower recoil, lower sway, remove stamina on respawn
 CWS_ResetStaminaRecoil = {

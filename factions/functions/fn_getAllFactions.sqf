@@ -8,6 +8,7 @@
 * Gets factions from config
 */
 
+["Start faction list generation", "PARAM"] call shared_fnc_log;
 _allFactions = ((call BIS_fnc_getFactions) select { [configfile >> "CfgFactionClasses" >> _x,"side"] call BIS_fnc_returnConfigEntry <= 3 }); 
 
 _displayNames = (_allFactions apply { [configfile >> "CfgFactionClasses" >> _x,"displayName"] call BIS_fnc_returnConfigEntry }) call BIS_fnc_sortAlphabetically; 
@@ -41,5 +42,5 @@ _index = -1;
 	};
 } forEach _allFactionsBySide;
 //[format ["Factions list generated: %1", _allRealFactions], "PARAM"] call shared_fnc_log;
-
+["End faction list generation", "PARAM"] call shared_fnc_log;
 [_allRealFactions,_allFactionsWithLoot] //return
