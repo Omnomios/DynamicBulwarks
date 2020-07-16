@@ -9,7 +9,12 @@
 */
 
 ["Start faction list generation", "PARAM"] call shared_fnc_log;
-_allFactions = ((call BIS_fnc_getFactions) select { [configfile >> "CfgFactionClasses" >> _x,"side"] call BIS_fnc_returnConfigEntry <= 3 }); 
+
+_allFactions = ((call BIS_fnc_getFactions) select {
+	private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call BIS_fnc_returnConfigEntry;
+	[format ["Faction: %1 Side: %2", _x, _side], "PARAM"] call shared_fnc_log;
+	_side <= 3 
+}); 
 
 _displayNames = (_allFactions apply { [configfile >> "CfgFactionClasses" >> _x,"displayName"] call BIS_fnc_returnConfigEntry }) call BIS_fnc_sortAlphabetically; 
 
