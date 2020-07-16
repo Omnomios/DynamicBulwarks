@@ -8,6 +8,7 @@ class shared
         class getDefaultParameterSets {};
         class getDefaultParams {};
 
+        class getConfigEntryAsNumber {};
     };
 
     class internal

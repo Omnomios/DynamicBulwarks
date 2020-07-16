@@ -11,7 +11,8 @@
 ["Start faction list generation", "PARAM"] call shared_fnc_log;
 
 _allFactions = ((call BIS_fnc_getFactions) select {
-	private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call BIS_fnc_returnConfigEntry;
+	//private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call BIS_fnc_returnConfigEntry;
+	private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call shared_fnc_getConfigEntryAsNumber;
 	[format ["Faction: %1 Side: %2", _x, _side], "PARAM"] call shared_fnc_log;
 	_side <= 3 
 }); 
