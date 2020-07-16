@@ -8,5 +8,9 @@ class server
         class setParams {};
         class setLocations {};
         class registerPlayer {};
+
+        class preInitServer {
+            preInit = 1;
+        };
     };
 };
