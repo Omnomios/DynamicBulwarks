@@ -14,7 +14,11 @@ _allFactions = ((call BIS_fnc_getFactions) select {
 	//private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call BIS_fnc_returnConfigEntry;
 	private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call shared_fnc_getConfigEntryAsNumber;
 	[format ["Faction: %1 Side: %2", _x, _side], "PARAM"] call shared_fnc_log;
-	_side <= 3 
+	if (!isNil "_side") then {
+		_side <= 3
+	} else {
+		false
+	};
 }); 
 
 _displayNames = (_allFactions apply { [configfile >> "CfgFactionClasses" >> _x,"displayName"] call BIS_fnc_returnConfigEntry }) call BIS_fnc_sortAlphabetically; 
@@ -33,7 +37,8 @@ _allRealFactions = [];
 _allFactionsWithLoot = [];
 _index = -1;
 {
-	private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call BIS_fnc_returnConfigEntry;
+	// private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call BIS_fnc_returnConfigEntry;
+	private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call shared_fnc_getConfigEntryAsNumber;
 	private _displayName = [configfile >> "CfgFactionClasses" >> _x,"displayName"] call BIS_fnc_returnConfigEntry;
 	[_x] call factions_fnc_getAllFactionHostiles params ["_allInfantry","_filteredVehicles"];
 	//pushback any faction that has men for restricting loot per faction - civilian factions are missing?
