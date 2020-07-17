@@ -88,6 +88,7 @@
 #define BULWARK_PARAM_AMMO_HANDGUNMAX			84
 #define BULWARK_PARAM_AMMO_SHOTGUNMIN			85
 #define BULWARK_PARAM_AMMO_SHOTGUNMAX			86
+#define BULWARK_PARAM_LOOT_MODS					87
 
 // These are known parameter values, and should be named <param name>_<value name>
 // WARNING: If you change these it could mess up the interpretation of people's saved parameters.
