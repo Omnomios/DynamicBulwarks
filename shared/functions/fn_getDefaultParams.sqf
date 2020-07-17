@@ -592,10 +592,17 @@ private _defaultBulwarkParams = [
 	],
 	[ 
 		BULWARK_PARAM_LOOT_FACTIONS,
-		"Loot factions", PARAM_CATEGORY_LOOT, PARAM_TYPE_NUMBER, true, 
+		"Loot filter: Factions", PARAM_CATEGORY_LOOT, PARAM_TYPE_NUMBER, true, 
 		lootFactionOptions,
-		["BLU_F"],
-		"Restricts loot by faction. Only gear of the selected factions will spawn as loot."
+		[],
+		"Restricts loot by faction. All gear of the selected factions will spawn as loot. Also works together with mod filter."
+	],
+	[
+		BULWARK_PARAM_LOOT_MODS,
+		"Loot filter: Mods", PARAM_CATEGORY_LOOT, PARAM_TYPE_STRING,true,
+		modTagOptions,
+		[],
+		"Restricts loot by mods. All gear of the selected mods will spawn as loot. Also works together with faction filter."
 	],
 	//
 	// PARAM_CATEGORY_WEIGHTEDLOOT

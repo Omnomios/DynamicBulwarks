@@ -19,6 +19,7 @@ class loot
         class sortBackpackTypes {};
         class setLootTypes {};
         class getAttachments {};
+        class getModTags {};
     };
 
     class internal

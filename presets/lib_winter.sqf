@@ -5,9 +5,6 @@
 *  https://steamcommunity.com/workshop/filedetails/?id=660460283
 *  Domain: Client, Server
 **/
-/* MOD FILTER */
-modTag = ["LIB"]; //limits loot and vehicles to a specific mod. Mods usually have a tag within their class name, use that. For example modTag = ["LIB"] would only spawn Iron Front Weapons. Can use multiple for example:modTag = ["LIB,"NORTH"];
-
 /* Attacker Waves */
 //Unit Whitelist - unit classnames are expected for example: HOSTILE_LEVEL_1_WHITELIST = ["B_Soldier_A_F","B_support_MG_F"];
 HOSTILE_INFANTRY_WHITELIST = [];

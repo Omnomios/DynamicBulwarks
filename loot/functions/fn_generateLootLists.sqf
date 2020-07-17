@@ -2,32 +2,59 @@
 * Populates global arrays with spawnable loot classes
 * Domain: Server
 * Todo: 
-* - To get all glasses for a faction and not just a few, might need to get identities and find which glasses in CfgGlasses they can spawn with
-* - CBA has a system for randomized glasses might need to be accounted for as well since configs are different
-* - Make sure all headgear is there due to randomized headgear being configured differently some might be missing
+* - To get all glasses for a faction and not just a few, might need to get identities and find which glasses in CfgGlasses they can spawn with - factions
+* - CBA has a system for randomized glasses might need to be accounted for as well since configs are different - factions
+* - Make sure all headgear is there due to randomized headgear being configured differently some might be missing - factions
 * - autonomous MG array is empty for some reason
 **/
 
 #include "..\..\shared\bulwark.hpp"
-
-_factions = BULWARK_PARAM_LOOT_FACTIONS call shared_fnc_getCurrentParamValue; //BULWARK_PARAM_FACTIONS call shared_fnc_getCurrentParamValue;
-//filter out infantry and by faction
-_unitConfigs = 	"
-	[_x,'simulation'] call BIS_fnc_returnConfigEntry == 'soldier' &&
-	[_x,'faction'] call BIS_fnc_returnConfigEntry in _factions
-" configClasses (configFile >> "CfgVehicles");
-_filteredUnitConfigs = [_unitConfigs] call loot_fnc_filter;
-
-//grab all gear from the infantry configs
+//
+_mods = BULWARK_PARAM_LOOT_MODS call shared_fnc_getCurrentParamValue;
+_factions = BULWARK_PARAM_LOOT_FACTIONS call shared_fnc_getCurrentParamValue;
 _allItems = [];
-{
-	[[_x,"Items",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
-	[[_x,"linkedItems",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
-	[[_x,"magazines",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
-	[[_x,"uniformClass",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
-	[[_x,"weapons",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
-	[[_x,"backpack",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
-} forEach _filteredUnitConfigs;
+//run if there are mods to be filtered, or no filters are activated
+if (count _mods > 0 || (count _mods == 0 && count _factions == 0)) then {
+	private _cfgVehicleConfigs = "[_x,'vehicleClass'] call BIS_fnc_returnConfigEntry == 'Backpacks'" configClasses (configFile >> "CfgVehicles");
+	private _cfgWeaponConfigs = "true" configClasses (configFile >> "CfgWeapons");
+	private _cfgMagazinesConfigs = "true" configClasses (configFile >> "CfgMagazines");
+    private _cfgGlasses = "true" configClasses (configFile >> "CfgGlasses");
+    private _allConfigs = [_cfgVehicleConfigs + _cfgWeaponConfigs + _cfgMagazinesConfigs + _cfgGlasses];
+	//filter out mods if mod filter is applied
+	if (count _mods > 0) then {
+		_allConfigs call loot_fnc_filter apply {
+			configName (_x) splitString "_" apply {
+				if (_x in _mods) then {
+					_allItems pushbackUnique configName _x
+				};
+			};
+		};
+	}
+	else
+	{
+		_allConfigs call loot_fnc_filter apply {_allItems pushbackUnique configName _x};
+	};
+};
+
+//get infantry from selected factions
+if (count _factions > 0) then {
+	private _unitConfigs = 	"
+		[_x,'simulation'] call BIS_fnc_returnConfigEntry == 'soldier' &&
+		[_x,'faction'] call BIS_fnc_returnConfigEntry in _factions
+	" configClasses (configFile >> "CfgVehicles");
+	_filteredUnitConfigs = [_unitConfigs] call loot_fnc_filter;
+
+
+	//grab all gear from the infantry configs
+	{
+		[[_x,"Items",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+		[[_x,"linkedItems",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+		[[_x,"magazines",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+		[[_x,"uniformClass",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+		[[_x,"weapons",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+		[[_x,"backpack",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
+	} forEach _filteredUnitConfigs;
+};
 
 //sort items
 /*https://community.bistudio.com/wiki/BIS_fnc_itemType*/
