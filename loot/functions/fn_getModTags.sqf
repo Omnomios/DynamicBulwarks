@@ -2,8 +2,10 @@
 * Gets all mod tags to be used for mod filters
 * Getting info from CfgPatches instead of CfgWeapons and CfgVehicles, because it has a lot less entries in it, therefore less loading time. Also every mod has CfgPatches entries
 */
+["Start of mod list generation","MODLIST"] call shared_fnc_log;
 _typeTags = ["U","H","B","I","O","V"]; //tags used to descripe types of gear - if these show up the modTag will be in different place
 _modTags = [];
+modTagOptions = [];
 {
 	_blacklist = ["A3"] + _modTags; //vanilla arma content or other stuff that needs to be excluded - also exclude entries that would contain already added tags
 	private _splitString = configName _x splitString "_";
@@ -64,12 +66,12 @@ _modTags = [];
 					_possibleModTag = _splitStringItem select 0;
 				};
 				if (_possibleModTag != "muzzle") then { //Exclude vanilla muzzles, since we don't use mod filter for any vanilla items anyway.
-				diag_log str _possibleModTag;
-				diag_log str _item;
-				_modTags pushBackUnique toUpper _possibleModTag;
+				_modtag = toUpper _possibleModTag;
+				modTagOptions pushBackUnique [_modtag,_modtag,_modtag];
 				};
 			};
 		};
 	};
 } forEach ("true" configClasses (configFile >> "CfgPatches"));
-modTagOptions = [_modTags,str _modTags,_modTags];
+publicVariable "modTagOptions";
+["End of mod list generation","MODLIST"] call shared_fnc_log;

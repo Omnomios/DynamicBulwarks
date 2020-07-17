@@ -15,6 +15,7 @@ _factions = BULWARK_PARAM_LOOT_FACTIONS call shared_fnc_getCurrentParamValue;
 _allItems = [];
 //run if there are mods to be filtered, or no filters are activated
 if (count _mods > 0 || (count _mods == 0 && count _factions == 0)) then {
+	["Using the direct method to grab loot.","[GenerateLootList]"] call shared_fnc_log;
 	private _cfgVehicleConfigs = "[_x,'vehicleClass'] call BIS_fnc_returnConfigEntry == 'Backpacks'" configClasses (configFile >> "CfgVehicles");
 	private _cfgWeaponConfigs = "true" configClasses (configFile >> "CfgWeapons");
 	private _cfgMagazinesConfigs = "true" configClasses (configFile >> "CfgMagazines");
@@ -23,9 +24,10 @@ if (count _mods > 0 || (count _mods == 0 && count _factions == 0)) then {
 	//filter out mods if mod filter is applied
 	if (count _mods > 0) then {
 		_allConfigs call loot_fnc_filter apply {
-			configName (_x) splitString "_" apply {
+			private _className =configName _x;
+			 _className splitString "_" apply {
 				if (_x in _mods) then {
-					_allItems pushbackUnique configName _x
+					_allItems pushbackUnique _className;
 				};
 			};
 		};
@@ -38,6 +40,7 @@ if (count _mods > 0 || (count _mods == 0 && count _factions == 0)) then {
 
 //get infantry from selected factions
 if (count _factions > 0) then {
+	["Using the unit method to grab loot.","[GenerateLootList]"] call shared_fnc_log;
 	private _unitConfigs = 	"
 		[_x,'simulation'] call BIS_fnc_returnConfigEntry == 'soldier' &&
 		[_x,'faction'] call BIS_fnc_returnConfigEntry in _factions
@@ -57,6 +60,7 @@ if (count _factions > 0) then {
 };
 
 //sort items
+["Sorting items","[GenerateLootList]"] call shared_fnc_log;
 /*https://community.bistudio.com/wiki/BIS_fnc_itemType*/
 _List_MG = [];
 _List_Sniper = [];
@@ -151,3 +155,5 @@ if (count LOOT_WHITELIST_HANDGUN > 0)           then {LOOT_POOL_HANDGUN         
 if (count LOOT_WHITELIST_LAUNCHER > 0)          then {LOOT_POOL_LAUNCHER            = LOOT_WHITELIST_LAUNCHER}          else {LOOT_POOL_LAUNCHER        = _List_Launcher                   - LOOT_BLACKLIST};
 if (count LOOT_WHITELIST_ASSAULT > 0)           then {LOOT_POOL_ASSAULT             = LOOT_WHITELIST_ASSAULT}           else {LOOT_POOL_ASSAULT         = _List_Assault                    - LOOT_BLACKLIST};
 LOOT_POOL_ALLWEAPONS = LOOT_POOL_MG + LOOT_POOL_SMG + LOOT_POOL_SNIPER + LOOT_POOL_SHOTGUN + LOOT_POOL_HANDGUN + LOOT_POOL_LAUNCHER + LOOT_POOL_ASSAULT;
+["Done creating loot lists","[GenerateLootList]"] call shared_fnc_log;
+[format ["Weapons:%1",count LOOT_POOL_ALLWEAPONS],"[GenerateLootList]"] call shared_fnc_log;

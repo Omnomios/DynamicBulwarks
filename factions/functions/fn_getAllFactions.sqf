@@ -8,12 +8,12 @@
 * Gets factions from config
 */
 
-["Start faction list generation", "PARAM"] call shared_fnc_log;
+["Start faction list generation", "FactionsParam"] call shared_fnc_log;
 
 _allFactions = ((call BIS_fnc_getFactions) select {
 	private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call shared_fnc_getConfigEntryAsNumber;
 	if (!isNil "_side") then {
-		[format ["Faction: %1 Side: %2", _x, _side], "PARAM"] call shared_fnc_log;
+		//[format ["Faction: %1 Side: %2", _x, _side], "PARAM"] call shared_fnc_log;
 		_side <= 3
 	} else {
 		false
@@ -36,6 +36,7 @@ _allRealFactions = [];
 _allFactionsWithLoot = [];
 _index = -1;
 {
+	[format ["Getting faction data for: %1",_x],"FactionsParam"] call shared_fnc_log;
 	private _side = [configfile >> "CfgFactionClasses" >> _x,"side"] call shared_fnc_getConfigEntryAsNumber;
 	private _displayName = [configfile >> "CfgFactionClasses" >> _x,"displayName"] call BIS_fnc_returnConfigEntry;
 	[_x] call factions_fnc_getAllFactionHostiles params ["_allInfantry","_filteredVehicles"];
@@ -51,5 +52,5 @@ _index = -1;
 	};
 } forEach _allFactionsBySide;
 //[format ["Factions list generated: %1", _allRealFactions], "PARAM"] call shared_fnc_log;
-["End faction list generation", "PARAM"] call shared_fnc_log;
+["End faction list generation", "FactionsParam"] call shared_fnc_log;
 [_allRealFactions,_allFactionsWithLoot] //return

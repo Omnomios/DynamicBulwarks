@@ -4,4 +4,5 @@ if (isServer) then {
     publicVariable "factionOptions";
     lootFactionOptions = _lootFactions;
     publicVariable "lootFactionOptions";
+    [] call loot_fnc_getModTags;
 };

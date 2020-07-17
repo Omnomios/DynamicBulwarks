@@ -595,7 +595,7 @@ private _defaultBulwarkParams = [
 		"Loot filter: Factions", PARAM_CATEGORY_LOOT, PARAM_TYPE_NUMBER, true, 
 		lootFactionOptions,
 		[],
-		"Restricts loot by faction. All gear of the selected factions will spawn as loot. Also works together with mod filter."
+		"Restricts loot by faction. All gear of the selected factions will spawn as loot. Also works together with mod filter. LEAVE BOTH LOOT FILTERS EMPTY TO PLAY WITH EVERYTHING"
 	],
 	[
 		BULWARK_PARAM_LOOT_MODS,
