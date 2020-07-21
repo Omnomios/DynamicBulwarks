@@ -9,6 +9,7 @@ class shared
         class getDefaultParams {};
 
         class getConfigEntryAsNumber {};
+        class getConfigEntryAsString {};
     };
 
     class internal

@@ -12,10 +12,15 @@
 //
 _mods = BULWARK_PARAM_LOOT_MODS call shared_fnc_getCurrentParamValue;
 _factions = BULWARK_PARAM_LOOT_FACTIONS call shared_fnc_getCurrentParamValue;
+//get DLC filter parameter
+switch (BULWARK_PARAM_FILTER_DLC call shared_fnc_getCurrentParamValue) do {
+	case 0: {excludedDLC = [];};
+	case 1: {excludedDLC = ["ENOCH","CONTACT"];};
+};
 _allItems = [];
 //run if there are mods to be filtered, or no filters are activated
 if (count _mods > 0 || (count _mods == 0 && count _factions == 0)) then {
-	["Using the direct method to grab loot.","[GenerateLootList]"] call shared_fnc_log;
+	["Using the direct method to grab loot.","GenerateLootList"] call shared_fnc_log;
 	private _cfgVehicleConfigs = "[_x,'vehicleClass'] call BIS_fnc_returnConfigEntry == 'Backpacks'" configClasses (configFile >> "CfgVehicles");
 	private _cfgWeaponConfigs = "true" configClasses (configFile >> "CfgWeapons");
 	private _cfgMagazinesConfigs = "true" configClasses (configFile >> "CfgMagazines");
@@ -23,9 +28,9 @@ if (count _mods > 0 || (count _mods == 0 && count _factions == 0)) then {
     private _allConfigs = [_cfgVehicleConfigs + _cfgWeaponConfigs + _cfgMagazinesConfigs + _cfgGlasses];
 	//filter out mods if mod filter is applied
 	if (count _mods > 0) then {
-		_allConfigs call loot_fnc_filter apply {
-			private _className =configName _x;
-			 _className splitString "_" apply {
+		[_allConfigs call loot_fnc_filterScope] call loot_fnc_filterDLC apply {
+			private _className = configName _x;
+			_className splitString "_" apply {
 				if (_x in _mods) then {
 					_allItems pushbackUnique _className;
 				};
@@ -34,18 +39,18 @@ if (count _mods > 0 || (count _mods == 0 && count _factions == 0)) then {
 	}
 	else
 	{
-		_allConfigs call loot_fnc_filter apply {_allItems pushbackUnique configName _x};
+		[_allConfigs call loot_fnc_filterScope] call loot_fnc_filterDLC apply {_allItems pushbackUnique configName _x};
 	};
 };
 
 //get infantry from selected factions
 if (count _factions > 0) then {
-	["Using the unit method to grab loot.","[GenerateLootList]"] call shared_fnc_log;
+	["Using the unit method to grab loot.","GenerateLootList"] call shared_fnc_log;
 	private _unitConfigs = 	"
 		[_x,'simulation'] call BIS_fnc_returnConfigEntry == 'soldier' &&
 		[_x,'faction'] call BIS_fnc_returnConfigEntry in _factions
 	" configClasses (configFile >> "CfgVehicles");
-	_filteredUnitConfigs = [_unitConfigs] call loot_fnc_filter;
+	_filteredUnitConfigs = _unitConfigs call loot_fnc_filterScope;
 
 
 	//grab all gear from the infantry configs
@@ -57,10 +62,10 @@ if (count _factions > 0) then {
 		[[_x,"weapons",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
 		[[_x,"backpack",""] call BIS_fnc_returnConfigEntry] call loot_fnc_getRealElements apply {_allItems pushBackUnique _x};
 	} forEach _filteredUnitConfigs;
+	_allItems call loot_fnc_filterDLC;
 };
-
 //sort items
-["Sorting items","[GenerateLootList]"] call shared_fnc_log;
+["Sorting items","GenerateLootList"] call shared_fnc_log;
 /*https://community.bistudio.com/wiki/BIS_fnc_itemType*/
 _List_MG = [];
 _List_Sniper = [];
@@ -155,5 +160,5 @@ if (count LOOT_WHITELIST_HANDGUN > 0)           then {LOOT_POOL_HANDGUN         
 if (count LOOT_WHITELIST_LAUNCHER > 0)          then {LOOT_POOL_LAUNCHER            = LOOT_WHITELIST_LAUNCHER}          else {LOOT_POOL_LAUNCHER        = _List_Launcher                   - LOOT_BLACKLIST};
 if (count LOOT_WHITELIST_ASSAULT > 0)           then {LOOT_POOL_ASSAULT             = LOOT_WHITELIST_ASSAULT}           else {LOOT_POOL_ASSAULT         = _List_Assault                    - LOOT_BLACKLIST};
 LOOT_POOL_ALLWEAPONS = LOOT_POOL_MG + LOOT_POOL_SMG + LOOT_POOL_SNIPER + LOOT_POOL_SHOTGUN + LOOT_POOL_HANDGUN + LOOT_POOL_LAUNCHER + LOOT_POOL_ASSAULT;
-["Done creating loot lists","[GenerateLootList]"] call shared_fnc_log;
-[format ["Weapons:%1",count LOOT_POOL_ALLWEAPONS],"[GenerateLootList]"] call shared_fnc_log;
+["Done creating loot lists","GenerateLootList"] call shared_fnc_log;
+[format ["Weapons:%1",count LOOT_POOL_ALLWEAPONS],"GenerateLootList"] call shared_fnc_log;

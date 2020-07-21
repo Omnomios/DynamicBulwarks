@@ -12,7 +12,6 @@ class loot
         class startRevealPreSpawnedLoot {};
         
         class getRealElements {};
-        class filter {};
         class generateLootLists {};
         class getBaseWeapons {};
         class getEmptyBackpacks {};
@@ -20,6 +19,8 @@ class loot
         class setLootTypes {};
         class getAttachments {};
         class getModTags {};
+        class filterScope {};
+        class filterDLC {};
     };
 
     class internal
