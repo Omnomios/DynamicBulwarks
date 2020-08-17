@@ -14,7 +14,7 @@ CWS_getCostFactor = {
 CWS_getThreatFactor = {
     params ["_cfg"];
     private _threatForNoThreatVehicles = 0.05;
-    private _threat = getArray (_cfg >> "threat") select 0;
+    private _threat = [_cfg, "threat", [0]] call BIS_fnc_returnConfigEntry select 0;
     if (_threat == 0) then {
         _threat = _threatForNoThreatVehicles;
     };
