@@ -26,21 +26,21 @@ wreckRemovalMaxTime = 50;
 
 class Header
 {
-	gameType =  Defend;
-	minPlayers =  	 1;
-	maxPlayers = 	  25;
+	gameType   = Defend;
+	minPlayers = 1;
+	maxPlayers = 25;
 };
 
 class CfgFunctions
 {
-	#include "score\Functions.hpp"
-	#include "supports\Functions.hpp"
-	#include "bulwark\Functions.hpp"
-	#include "sound\Functions.hpp"
-	#include "area\Functions.hpp"
-	#include "build\Functions.hpp"
-	#include "hostiles\Functions.hpp"
-	#include "loot\Functions.hpp"
+	#include "score\functions.hpp"
+	#include "supports\functions.hpp"
+	#include "bulwark\functions.hpp"
+	#include "sound\functions.hpp"
+	#include "area\functions.hpp"
+	#include "build\functions.hpp"
+	#include "hostiles\functions.hpp"
+	#include "loot\functions.hpp"
 };
 
 
