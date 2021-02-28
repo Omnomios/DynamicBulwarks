@@ -134,12 +134,23 @@ BULWARK_BUILDITEMS = [
     [1000, "Hallogen Lamp",        "Land_LampHalogen_F",               90,   1],
     [1000, "Double H Barrier",     "Land_HBarrierWall4_F",              0,   4],
     [1000, "Concrete Platform",    "BlockConcrete_F",                   0, 3.5],
+    [1000, "Dragons Tooth",        "Land_DragonsTeeth_01_1x1_new_F",    0, 1.5],
+    [1000, "Metal Hedgehog",       "Land_CzechHedgehog_01_new_F",       0, 1.5],
+    [1000, "Concrete Hedgehog",    "Land_ConcreteHedgehog_01_F",      180, 1.5],
     [1200, "Storage box large",    "Box_NATO_AmmoVeh_F",                0,   1],
     [2500, "Static HMG",           "B_HMG_01_high_F",                   0,   1],
     [3000, "Small Bunker",         "Land_BagBunker_Small_F",          180,   3],
-    [4500, "Pillbox",              "Land_PillboxBunker_01_hex_F",      90, 2.5],
-    [6000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",            0, 3.5],
-    [9500, "Modular Bunker",       "Land_Bunker_01_Small_F",          180, 3.5]
+    [4000, "Small Dome",           "Land_Dome_Small_F",                 0,  10],
+    [4500, "Pillbox",              "Land_PillboxBunker_01_hex_F",      90,   5],
+    [4500, "Rectangle Pillbox",    "Land_PillboxBunker_01_rectangle_F",90,   5],
+    [5000, "Airstrip Platform",    "Land_AirstripPlatform_01_F",        0,  10],
+    [6000, "Guard Tower",          "Land_Cargo_Patrol_V3_F",            0,   5],
+    [6000, "Large Dome",           "Land_Dome_Big_F",                 180,  20],
+    [8000, "Big Pillbox",          "Land_PillboxBunker_01_big_F",     180,  10],
+    [9500, "Modular Bunker",       "Land_Bunker_01_Small_F",          180,  10],
+    [9500, "HQ Mod. Bunker",       "Land_Bunker_01_HQ_F",             180,  10],
+    [10000,"Tall Mod. Bunker",     "Land_Bunker_01_tall_F",           180,  10],
+    [10000,"Big Mod. Bunker",      "Land_Bunker_01_big_F",            180,  10]
 ];
 
 /* Time of Day*/

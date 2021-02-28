@@ -11,6 +11,7 @@ while {true} do {
         [ "#rev", 1, _playerInvToCheck ] remoteExecCall ["BIS_fnc_reviveOnState", _playerInvToCheck];
         _playerInvToCheck switchMove "PlayerStand";
         _playerInvToCheck removeItem "Medikit";
+        systemChat "Player Revived, Medikit removed";
         [_playerInvToCheck] remoteExec ["bulwark_fnc_revivePlayer", 2];
       };
     };
