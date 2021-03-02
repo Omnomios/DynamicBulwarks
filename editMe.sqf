@@ -98,14 +98,16 @@ HOSTILE_ARMOUR_POINT_SCORE = 4;
 
 BULWARK_SUPPORTITEMS = [
     [800,  "Recon UAV",             "reconUAV"],
-    [1680, "Emergency Teleport",   "telePlode"],
+    [1680, "Emergency Teleport",    "telePlode"],
     [1950, "Paratroopers",          "paraDrop"],
-    [3850, "Missile CAS",          "airStrike"],
-    [4220, "Mine Cluster Shell",   "mineField"],
+	[2000, "Artillery Strike",		"artillery"],      
+    [3500, "Artillery Barrage",		"artilleryBarrage"],
+    [3850, "Missile CAS",           "airStrike"],
+    [4220, "Mine Cluster Shell",    "mineField"],
     [4690, "Rage Stimpack",         "ragePack"],
-    [5930, "Mind Control Gas",    "mindConGas"],
+    [5930, "Mind Control Gas",      "mindConGas"],
     [6666, "ARMAKART TM",           "armaKart"],
-    [7500, "Predator Drone",    "droneControl"]
+    [7500, "Predator Drone",        "droneControl"]
 ];
 
 /* Objects the Player can buy */
