@@ -68,6 +68,33 @@ DBW_FOGWAVE = {
 };
 
 DBW_SWITCHAROOWAVE = { //want to add garrisoned units in surrounding buildings. Making the player do some room clearing to make wave more intresting.
+
+	private _playerHoldingObject = false;
+	//initially check if anyone is holding an object
+	{
+		if (player call build_fnc_isHoldingObject) then 
+		{
+			_playerHoldingObject = true
+		};
+		
+	} forEach allPlayers;
+
+	//if anyone is holding an object loop until he doesnt hold it anymore
+	while {_playerHoldingObject} do 
+	{
+		[format ["<t>please drop the box to a safe position</t>"], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
+		sleep 1;
+		_playerHoldingObject =false;
+		
+		{
+			if (player call build_fnc_isHoldingObject) then 
+			{
+				_playerHoldingObject = true
+			};
+			
+		} forEach allPlayers;
+	};
+	
 	execVM "hostiles\specSwticharooWave.sqf";
 	["SpecialWarning",["You were overrun! Take back the bulwark!! Quickly!"]] remoteExec ["BIS_fnc_showNotification", 0];
 	["Alarm"] remoteExec ["playSound", 0];
