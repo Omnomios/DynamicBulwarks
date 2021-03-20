@@ -10,26 +10,11 @@
 ["Terminate"] remoteExec ["BIS_fnc_EGSpectator", 0];
 [] remoteExec ["killPoints_fnc_updateHud", 0];
 
-private "_time";
-_time = DOWN_TIME;
-
-while {_time > 0 && attkWave != 0} do {
-	_time = _time - 1;  
-	//shows timer in the hint box on the top right only after first round
-	if (_time>0) then {
-		hintSilent format["wave %1: \n %2",attkWave+1 , [((_time)/60)+.01,"HH:MM"] call BIS_fnc_timetostring];
-	}else{
-		hintSilent format["wave %1 is getting spawned now", attkWave+1];
-	};
-	
-	//shows timer with sound in the middle of the screen
-	if(_time <= 15) then {
-		"beep_target" remoteExec ["playsound", 0];
-		[format ["<t>%1</t>", _time], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
-	};
+for ("_i") from 0 to 14 do {
+	if(_i > 10) then {"beep_target" remoteExec ["playsound", 0];} else {"readoutClick" remoteExec ["playsound", 0];};
+	[format ["<t>%1</t>", 15-_i], 0, 0, 1, 0] remoteExec ["BIS_fnc_dynamicText", 0];
 	sleep 1;
 };
-
 
 "Cleaning up..." call shared_fnc_log;
 
