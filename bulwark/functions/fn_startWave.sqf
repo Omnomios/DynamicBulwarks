@@ -19,7 +19,7 @@ while {_time > 0 && attkWave != 0} do {
 	if (_time>0) then {
 		hintSilent format["wave %1: \n %2",attkWave+1 , [((_time)/60)+.01,"HH:MM"] call BIS_fnc_timetostring];
 	}else{
-		hintSilent format["wave %1 incoming", attkWave+1];
+		hintSilent format["wave %1 is getting spawned now", attkWave+1];
 	};
 	
 	//shows timer with sound in the middle of the screen
