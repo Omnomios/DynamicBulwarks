@@ -70,25 +70,6 @@ player addEventHandler ["HandleDamage", {
     };
 }];
 
-if(PLAYER_STARTWEAPON) then {
-    _weap = selectRandom LOOT_POOL_HANDGUN;
-		_ammo = selectRandom getArray (configFile >> "CfgWeapons" >> _weap >> "magazines");
-		for "_i" from 1 to 3 do {player addMagazine _ammo;};
-		player addWeapon _weap;
-};
-
-if(PLAYER_STARTMAP) then {
-    player addItem "ItemMap";
-    player assignItem "ItemMap";
-    player linkItem "ItemMap";
-};
-
-if(PLAYER_STARTNVG) then {
-    player addItem "Integrated_NVG_F";
-    player assignItem "Integrated_NVG_F";
-    player linkItem "Integrated_NVG_F";
-};
-
 private _newLoc = [bulwarkBox] call bulwark_fnc_findPlaceAround;
 player setPosASL _newLoc;
 
