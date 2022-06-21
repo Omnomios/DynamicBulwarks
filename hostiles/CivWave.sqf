@@ -60,21 +60,26 @@ CWS_AddNextCivWaypoint = {
 private _civFaction = "CIV_F";
 private _cfgVehiclesConfig = configFile >> "CfgVehicles";
 private _cfgVehiclesConfigCount = count _cfgVehiclesConfig;
+
 for [{_i = 0}, {_i < _cfgVehiclesConfigCount}, {_i = _i + 1}] do
 {
-  _config = _cfgVehiclesConfig select _i;
-  if (isClass _config) then
+ _config = _cfgVehiclesConfig select _i;
+ if (isClass _config) then
+ {
+  _scope = getNumber (_config >> "scope");
+  if (_scope == 2) then
   {
-    _typeMan = getNumber (_config >> "isMan");
-    if (_typeMan != 0) then
+   _typeMan = getNumber (_config >> "isMan");
+   if (_typeMan != 0) then
+   {
+    _faction = getText (_config >> "faction");
+    if (_faction == _civFaction) then 
     {
-      _faction = getText (_config >> "faction");
-      if (_faction == _civFaction) then 
-      {
-        civClassArr set [count civClassArr, configName _config];
-      };
+     civClassArr set [count civClassArr, configName _config];
     };
+   };
   };
+ };
 };
 
 for [{_i=0}, {_i<20}, {_i=_i+1}] do {

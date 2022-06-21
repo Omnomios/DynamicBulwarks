@@ -23,6 +23,7 @@ if(_killPoints >= _shopPrice && !(player call build_fnc_isHoldingObject)) then {
     [player, _buildItem] remoteExec ["build_fnc_doCreate", 2];
     objPurchase = true;
 } else {
+    ctrlEnable [1600, true];
     if(_killPoints < _shopPrice) then {
         [format ["<t size='0.6' color='#ff3300'>Not enough points for %1!</t>", _shopName], -0, -0.02, 2, 0.1] call BIS_fnc_dynamicText;
         objPurchase = false;
