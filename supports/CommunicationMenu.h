@@ -96,3 +96,14 @@ class telePlode
     enable = "1";
     removeAfterExpressionCall = 1;
 };
+
+class radioBox
+{
+    text = "Radio Box (ACRE/TFAR) for 2min";
+    submenu = "";
+    expression = "[_this select 0, _this select 1,'radioBox'] remoteExec ['killPoints_fnc_support', 2];";
+    icon = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\transport_ca.paa";
+    cursor = "\a3\Ui_f\data\IGUI\Cfg\Cursors\iconCursorSupport_ca.paa";
+    enable = "1";
+    removeAfterExpressionCall = 1;
+};

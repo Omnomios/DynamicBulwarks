@@ -13,5 +13,6 @@ class supports
         class droneControl {};
         class mineField {};
         class telePlode{};
+        class radioBox {};
     };
 };
