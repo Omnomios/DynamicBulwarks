@@ -327,12 +327,13 @@ private _defaultBulwarkParams = [
 		BULWARK_PARAM_TIME_MULTIPLIER,
 		"Time multiplier", PARAM_CATEGORY_TIME, PARAM_TYPE_NUMBER, false,
 		[
-			[0, "Real-time", 3],
-			[1, "1hr/10 min", 6],
-			[2, "1hr/5 min", 12],
-			[3, "1hr/3 min", 20],
-			[4, "1hr/2 min", 30],
-			[5, "1hr/1 min", 60]
+			[0, "Real-time", 1],
+			[1, "1hr/20 min", 3],
+			[2, "1hr/10 min", 6],
+			[3, "1hr/5 min", 12],
+			[4, "1hr/3 min", 20],
+			[5, "1hr/2 min", 30],
+			[6, "1hr/1 min", 60]
 		],
 		0,
 		"The rate at which game time passes. Note church bells ring every 15 minutes game time..."
@@ -349,7 +350,9 @@ private _defaultBulwarkParams = [
 			[1, "Small (100m)", 100],
 			[2, "Normal (150m)", 150],
 			[3, "Large (200m)", 200],
-			[4, "Huge (250m)", 250]
+			[4, "Huge (250m)", 250],
+			[5, "Mega Huge (500m)", 500],
+			[6, "Ultra Huge (1000m)", 1000]
 		],
 		2,
 		"This is the mission area radius be around the start area"
