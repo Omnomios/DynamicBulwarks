@@ -40,4 +40,7 @@ switch (_type) do {
     case ("telePlode"): {
     [_player] call supports_fnc_telePlode;
     };
+    case ("radioBox"): {
+    [_player] call supports_fnc_radioBox;
+    };
 };

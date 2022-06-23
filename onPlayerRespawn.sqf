@@ -21,6 +21,9 @@ removeVest player;
 removeBackpack player;
 removeAllWeapons player;
 removeAllAssignedItems player;
+player linkItem "ItemWatch";
+player linkItem "ItemCompass";
+
 player setPosASL ([bulwarkBox] call bulwark_fnc_findPlaceAround);
 
 if(PLAYER_STARTWEAPON) then {
@@ -31,19 +34,21 @@ if(PLAYER_STARTWEAPON) then {
 };
 
 if(PLAYER_STARTMAP) then {
-    player addItem "ItemMap";
-    player assignItem "ItemMap";
     player linkItem "ItemMap";
 };
 
 if(PLAYER_STARTNVG) then {
-    player addItem "Integrated_NVG_F";
-    player assignItem "Integrated_NVG_F";
     player linkItem "Integrated_NVG_F";
 };
 
+// ACRE 2 Radio
+if (acre_main) then {
+  player addItem "ACRE_PRC343";
+};
+
+//TFAR Radio
 if (isClass (configfile >> "CfgVehicles" >> "tf_anarc164")) then {
-  player addItem "tf_anprc152";
+  player linkItem "TFAR_anprc152";
 };
 
 waituntil {alive player};

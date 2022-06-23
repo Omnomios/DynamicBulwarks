@@ -77,6 +77,9 @@ format ["Configuring Bulwark at Location: %1 City: %2", bulwarkRoomPos, bulwarkC
 	};
 ","",1,false,false,"true","true",2.5]] remoteExec ["addAction", 0, true];
 
+//Add delete dumped Items-Script to leader
+[bulwarkBox, ["Delete Dumped Items", { execVM "clearZone.sqf"; },"",0,false,false,"true","player == leader player",2.5]] remoteExec ["addAction", 0, true];
+
 //Add Bulwark Box to Zeus
 mainZeus addCuratorEditableObjects [[bulwarkBox], true];
 

@@ -1,9 +1,9 @@
 onLoadMission = "Hold out as long as you can!";
 onLoadIntro = "Defend yourself";
 onLoadName = "Dynamic Bulwarks";
-briefingName = "Dynamic Bulwarks";
+briefingName = "Dynamic Bulwarks -dev 20200817 WMod";
 overviewText = "Survive by scavenging equipment, in a randomly selected city, against ever increasing waves of hostiles.";
-author = "Hilltop & omNomios";
+author = "Frank648, Hilltop & omNomios, edit by Spacefussel, Wetzer & Hirado";
 overviewPicture = "preview.paa";
 
 loadScreen = "preview.paa";
@@ -30,7 +30,7 @@ class Header
 {
 	gameType =  Survive;
 	minPlayers =  	 1;
-	maxPlayers = 	 12;
+	maxPlayers = 	 15;
 };
 
 #include "shared\defines.hpp"
@@ -70,6 +70,7 @@ class CfgRemoteExec
 		class support {};
 		class airStrike {};
 		class ragePack {};
+		class radioBox {};
 		class say3DGlobal {};
 		class createBlur {};
 		class suiExplode{};

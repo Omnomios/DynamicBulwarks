@@ -5,6 +5,7 @@
 *
 *  Domain: Server
 **/
+
 params ["_player", "_targetPos", "_unitCount", "_aircraft", "_classList"];
 
 if (count _targetPos == 0) then {
@@ -19,11 +20,12 @@ if (count _targetPos == 0) then {
 
   _dropStart  = _targetPos vectorAdd [_pointX, _pointY, _height];
   _dropTarget = [(_targetPos select 0), (_targetPos select 1), 200];
-  _dropEnd    = _targetPos vectorAdd [-_pointX*2, -_pointY*2, _height];;
+  _dropEnd    = _targetPos vectorAdd [-_pointX*2, -_pointY*2, _height];
 
   _targetSmoker = "SmokeShellOrange" createVehicle (_targetPos vectorAdd [0,0,0.3]);
 
-  _agSpawn = [_dropStart, 0, supportAircraft, WEST] call bis_fnc_spawnvehicle;
+  _agSpawn = [_dropStart, 0, supportAircraft, west] call BIS_fnc_spawnVehicle;
+//  _agSpawn = [_dropStart, 0, supportAircraft, playerSide] call BIS_fnc_spawnVehicle;
   _agVehicle = _agSpawn select 0;	//the aircraft
   _agCrew = _agSpawn select 1;	//the units that make up the crew
   _ag = _agSpawn select 2;	//the group
@@ -64,16 +66,22 @@ _agVehicle setVelocity [
   sleep 0.5;
 
   coreGroup = group _player;
+  _tempGroup = createGroup west;
   [group _player, _player] remoteExec ["selectLeader", groupOwner group _player];
 
   for ("_i") from 1 to PARATROOP_COUNT do {
       _location = getPos _agVehicle;
       _unitClass = selectRandom _classList;
       _unit = objNull;
-      _unit = coreGroup createUnit [_unitClass, _location vectorAdd [0,0,-2], [], 0.5, "CAN_COLLIDE"];
-      mainZeus addCuratorEditableObjects [[_unit], true];
-      sleep 0.3;
+//      _unit = coreGroup createUnit [_unitClass, _location vectorAdd [0,0,-2], [], 0.5, "CAN_COLLIDE"];
+      _unit = _tempGroup createUnit [_unitClass, _location vectorAdd [0,0,-2], [], 0.5, "CAN_COLLIDE"];
       waitUntil {!isNull _unit};
+      [_unit] joinSilent coreGroup;		// hoffentlich wechseln diese die seite
+//      [_unit] join coreGroup;			// eingefügt funzt in lokalen MP
+//      [_unit] join group _player;
+//      sleep 0.3;
+      mainZeus addCuratorEditableObjects [[_unit], true];
+      removeBackpack _unit;			// löscht eventuellen Backpack
       _unit addBackpack "B_Parachute";
       _unit setSkill ["aimingAccuracy", 0.8];
       _unit setSkill ["aimingSpeed", 0.7];

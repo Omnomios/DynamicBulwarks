@@ -68,7 +68,6 @@ _supplyBox allowDamage false;
 [_supplyBox, _cargo] remoteExec ["addAction", 0, true];
 
 
-
 waitUntil {getpos _supplyBox select 2<4};
 _smoker = "SmokeShellBlue" createVehicle (getpos _supplyBox vectorAdd [0,0,5]);
 detach _supplyBox;
@@ -76,3 +75,6 @@ detach _supplyBox;
 sleep 20;
 deletevehicle _agVehicle;
 {deletevehicle _x} foreach _agCrew;
+
+// delete Parachute if it is hanging in trees
+deletevehicle _parachute;

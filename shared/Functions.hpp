@@ -3,7 +3,7 @@ class shared
     class public
     {
         file = "shared\functions";
-		class log {};
+	class log {};
         class getCurrentParamValue {};
         class getDefaultParameterSets {};
         class getDefaultParams {};

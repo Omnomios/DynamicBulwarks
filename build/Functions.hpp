@@ -6,7 +6,7 @@ class build
         class sell {};
         class pickup {};
         class reset{};
-		    class move {};
+	class move {};
         class place {};
 
         class doPlace {};
